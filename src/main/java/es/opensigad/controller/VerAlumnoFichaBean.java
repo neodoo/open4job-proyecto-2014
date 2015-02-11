@@ -32,7 +32,7 @@ public class VerAlumnoFichaBean {
 
 	public String getDetalleAlumno(int idAlumno) {
 
-		String pagina = "alumnoFicha";
+		String pagina = "verAlumnoFicha";
 
 		AlumnoDAO alumnoDAO = new AlumnoDAO();
 		alumnoVO = alumnoDAO.getDetalleAlumno(idAlumno);

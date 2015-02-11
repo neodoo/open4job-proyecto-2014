@@ -1,6 +1,5 @@
 package es.opensigad.model.dao;
 
-import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,9 +16,7 @@ import javax.sql.DataSource;
 
 import es.opensigad.model.vo.AlumnoVO;
 
-public class AlumnoDAO implements AlumnoDAOInterfaz, Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 	public static final Logger logger = Logger.getLogger(AlumnoVO.class
 			.getName());
@@ -37,7 +34,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz, Serializable {
 
 	public List<AlumnoVO> getListAlumno() {
 
-		List<AlumnoVO> listAlumno = null;
+		List<AlumnoVO> listAlumno = new ArrayList<AlumnoVO>();
 		Connection con = null;
 		AlumnoVO alumnoVO = null;
 		PreparedStatement ps = null;
