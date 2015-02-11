@@ -27,6 +27,12 @@
 		<h:commandButton value="Ver Ficha"
 			action="#{verAlumnoFaltaFichaBean.getDetalleFalta(verAlumnoFaltaFichaBean.id)}"></h:commandButton>
 	</h:form>
-
+	<h3>Notas del Alumno</h3>
+	<h:form>
+		Introduce el id_matricula a visualizar: <h:inputText
+			value="#{verAlumnoNotaListadoBean.idMatricula}"></h:inputText>
+		<h:commandButton value="Mostrar notas del alumno"
+			action="#{verAlumnoNotaListadoBean.getDetalleNotasAlumno(verAlumnoNotaListadoBean.idMatricula)}"></h:commandButton>
+	</h:form>
 </h:body>
 </html>
