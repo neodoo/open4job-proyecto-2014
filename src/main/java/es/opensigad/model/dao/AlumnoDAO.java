@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -19,8 +17,6 @@ import javax.sql.DataSource;
 
 import es.opensigad.model.vo.AlumnoVO;
 
-@ManagedBean
-@SessionScoped
 public class AlumnoDAO implements AlumnoDAOInterfaz, Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -81,7 +77,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz, Serializable {
 		return listAlumno;
 	}
 
-	public AlumnoVO getDetalleAlumno(int num_expediente) {
+	public AlumnoVO getDetalleAlumno(int idAlumno) {
 
 		AlumnoVO alumnoVO = null;
 		Connection con = null;
@@ -92,7 +88,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz, Serializable {
 			new ArrayList<AlumnoVO>();
 			con = ds.getConnection();
 			ps = con.prepareStatement("SELECT * FROM alumno where id =?");
-			ps.setInt(1, num_expediente);
+			ps.setInt(1, idAlumno);
 
 			result = ps.executeQuery();
 

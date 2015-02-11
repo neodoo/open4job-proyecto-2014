@@ -8,6 +8,6 @@ public interface AlumnoDAOInterfaz {
 
 	public List<AlumnoVO> getListAlumno();
 
-	public AlumnoVO getDetalleAlumno(int num_expediente);
+	public AlumnoVO getDetalleAlumno(int idAlumno);
 
 }
