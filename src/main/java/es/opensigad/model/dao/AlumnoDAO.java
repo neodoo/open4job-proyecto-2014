@@ -21,7 +21,7 @@ import es.opensigad.model.vo.AlumnoVO;
 
 @ManagedBean
 @SessionScoped
-public class AlumnoDAO implements AlumnoDaoInterfaz, Serializable {
+public class AlumnoDAO implements AlumnoDAOInterfaz, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -127,5 +127,7 @@ public class AlumnoDAO implements AlumnoDaoInterfaz, Serializable {
 		}
 
 		return alumnoVO;
+
 	}
+
 }
