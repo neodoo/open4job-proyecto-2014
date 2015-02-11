@@ -1,16 +1,9 @@
 package es.opensigad.model.vo;
 
-import java.io.Serializable;
 import java.sql.Date;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+public class AlumnoVO {
 
-@ManagedBean
-@RequestScoped
-public class AlumnoVO implements Serializable{
-
-	private static final long serialVersionUID = 1L;
 	private int id;
 	private int num_expediente;
 	private String nombre;
@@ -25,8 +18,8 @@ public class AlumnoVO implements Serializable{
 	private String localidad;
 	private String domicilio;
 	private String email;
-	
-	public AlumnoVO(){
+
+	public AlumnoVO() {
 		super();
 	}
 
@@ -162,8 +155,8 @@ public class AlumnoVO implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public String toString() {
-		return ("AlumnoDAO[ id = " + id + " num_expediente = " + num_expediente );
+		return ("AlumnoDAO[ id = " + id + " num_expediente = " + num_expediente);
 	}
 }

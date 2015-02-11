@@ -30,16 +30,6 @@ public class AlumnoDAO implements AlumnoDAOInterfaz, Serializable {
 
 	private DataSource ds;
 
-	private AlumnoVO alumnoVO;
-
-	public AlumnoVO getAlumnoVO() {
-		return alumnoVO;
-	}
-
-	public void setAlumnoVO(AlumnoVO alumnoVO) {
-		this.alumnoVO = alumnoVO;
-	}
-
 	public AlumnoDAO() {
 		try {
 			Context ctx = new InitialContext();
@@ -93,6 +83,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz, Serializable {
 
 	public AlumnoVO getDetalleAlumno(int num_expediente) {
 
+		AlumnoVO alumnoVO = null;
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet result = null;
@@ -100,15 +91,13 @@ public class AlumnoDAO implements AlumnoDAOInterfaz, Serializable {
 		try {
 			new ArrayList<AlumnoVO>();
 			con = ds.getConnection();
-
-			this.alumnoVO = null;
 			ps = con.prepareStatement("SELECT * FROM alumno where id =?");
 			ps.setInt(1, num_expediente);
 
 			result = ps.executeQuery();
 
 			while (result.next()) {
-				this.alumnoVO = new AlumnoVO(result.getInt("id"),
+				alumnoVO = new AlumnoVO(result.getInt("id"),
 						result.getInt("num_expediente"),
 						result.getString("nombre"),
 						result.getString("apellido1"),
