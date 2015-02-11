@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+ 
+    <h:head>
+        <title>Datos de Evaluación</title>
+    </h:head>
+    <h:body>
+    	<h1>Datos de Evaluación</h1>
+ 
+ 		<h:dataTable value="#{verAlumnoEvaluacionListadoBean.alumnoEvaluacionListadoVO}" var="e"
+    			styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row"
+    		>
+ 
+    		<h:column>
+    			<f:facet name="header">
+    				ID
+    			</f:facet>
+    				#{e.idEvaluacion}
+    		</h:column>
+ 
+    		<h:column>
+    			<f:facet name="header">
+    				Enseñanza
+				</f:facet>
+    				#{e.idEnsenanza}
+    		</h:column>
+ 
+ 			<h:column>
+    			<f:facet name="header">
+    				Curso
+				</f:facet>
+    				#{e.idCurso}
+    		</h:column>
+ 
+    		<h:column>
+    			<f:facet name="header">
+    				Evaluacion
+				</f:facet>
+    				#{e.evaluacion}
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">
+    				Fecha Inicio
+				</f:facet>
+    				#{e.fechaInicio}
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">
+    				Fecha Fin
+				</f:facet>
+    				#{e.fechaFin}
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">
+    				Fecha Sesión
+				</f:facet>
+    				#{e.fechaSesion}
+    		</h:column>
+    		<h:column>
+    			<f:facet name="header">
+    				Fecha Publicacion
+				</f:facet>
+    				#{e.fechaPublicacion}
+    		</h:column>
+ 
+    	</h:dataTable>
+    </h:body>
+</html>
