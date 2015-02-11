@@ -27,6 +27,23 @@
 		<h:commandButton value="Ver falta"
 			action="#{verAlumnoFaltaFichaBean.getDetalleFalta(verAlumnoFaltaFichaBean.id)}"></h:commandButton>
 	</h:form>
+	
+	<h3>Notas del Alumno</h3>
+	<h:form>
+		Introduce el id_matricula a visualizar: <h:inputText
+			value="#{verAlumnoNotaListadoBean.idMatricula}"></h:inputText>
+		<h:commandButton value="Mostrar notas del alumno"
+			action="#{verAlumnoNotaListadoBean.getDetalleNotasAlumno(verAlumnoNotaListadoBean.idMatricula)}"></h:commandButton>
+	</h:form>
+
+	<br /><a href="insertarAlumnoNota.xhtml">Insertar nota para un alumno</a>
+	<br /><a href="actualizarAlumnoNota.xhtml">Actualizar nota para un alumno</a>
+
+	<h3>Evaluaciones del Alumno</h3>
+	<h:form>
+		<h:commandButton value="Mostrar evaluaciones generales"
+			action="#{verAlumnoEvaluacionListadoBean.getAlumnoEvaluacionListado()}"></h:commandButton>
+	</h:form>
 
 	<h3>Faltas del alumno</h3>
 	<h:form>

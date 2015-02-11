@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>Lista Notas Alumno</title>
+</h:head>
+<h:body>
+
+
+	<h1>Notas del alumno</h1>
+	<p>#{Notas.idMatricula}</p>
+	<h:dataTable value="#{verAlumnoNotaListadoBean.alumnoNotas}" var="nota"
+		styleClass="order-table" headerClass="order-table-header"
+		rowClasses="order-table-odd-row,order-table-even-row">
+		<h:column>
+			<f:facet name="header">
+				ID_matricula
+			</f:facet>
+				#{nota.idMatricula}
+			</h:column>
+		<h:column>
+			<f:facet name="header">
+			Id_Enseñanza
+			</f:facet>
+			#{nota.idEnsenanza}
+			</h:column>
+		<h:column>
+			<f:facet name="header">
+			ID_Materia
+			</f:facet>
+			#{nota.idMateria}
+			</h:column>
+		<h:column>
+			<f:facet name="header">
+			ID_Evaluacion
+			</f:facet>
+			#{nota.idEvaluacion}
+			</h:column>
+		<h:column>
+			<f:facet name="header">
+			Nota
+			</f:facet>
+			#{nota.nota}
+			</h:column>
+	</h:dataTable>
+</h:body>
+</html>
