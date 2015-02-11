@@ -21,10 +21,10 @@
 
 	<br></br>
 
-	<h3>Faltas del alumno</h3>
+	<h3>Una falta del alumno</h3>
 	<h:form>
 		<h:inputText value="#{verAlumnoFaltaFichaBean.id}" />
-		<h:commandButton value="Ver Ficha"
+		<h:commandButton value="Ver falta"
 			action="#{verAlumnoFaltaFichaBean.getDetalleFalta(verAlumnoFaltaFichaBean.id)}"></h:commandButton>
     		<h:commandButton value="Ver Lista" action="#{verAlumnoListaBean.getListAlumno()}"></h:commandButton>
 	</h:form>
@@ -45,6 +45,14 @@
 		<h:commandButton value="Mostrar evaluaciones generales"
 			action="#{verAlumnoEvaluacionListadoBean.getAlumnoEvaluacionListado()}"></h:commandButton>
 	</h:form>
+
+	<h3>Faltas del alumno</h3>
+	<h:form>
+		<h:inputText value="#{verAlumnoFaltaListadoBean.idAlumno}" />
+		<h:commandButton value="Ver listado"
+			action="#{verAlumnoFaltaListadoBean.getAlumnoFaltaListado(verAlumnoFaltaListadoBean.idAlumno)}"></h:commandButton>
+	</h:form>
+
 
 </h:body>
 </html>
