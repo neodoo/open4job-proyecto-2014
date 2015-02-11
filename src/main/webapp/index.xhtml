@@ -1,19 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
-      >
-    <h:head>
-        <title>OpenSIGAD</title>
-    </h:head>
-    <h:body>
-    	<h3>SIGAD</h3>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>OpenSIGAD</title>
+</h:head>
+<h:body>
+
+	<h1>OpenSIGAD</h1>
+
+	<h3>Alumno</h3>
+	<h:form>
+		<h:inputText value="#{verAlumnoFichaBean.id}" />
+		<h:commandButton value="Ver Ficha"
+			action="#{verAlumnoFichaBean.getDetalleAlumno(verAlumnoFichaBean.id)}"></h:commandButton>
+	</h:form>
+
+	<br></br>
+
+	<h3>Faltas del alumno</h3>
+	<h:form>
+		<h:inputText value="#{verAlumnoFaltaFichaBean.id}" />
+		<h:commandButton value="Ver Ficha"
+			action="#{verAlumnoFaltaFichaBean.getDetalleFalta(verAlumnoFaltaFichaBean.id)}"></h:commandButton>
+	</h:form>
+	
+	<h3>Notas del Alumno</h3>
+	<h:form>
+		Introduce el id_matricula a visualizar: <h:inputText
+			value="#{verAlumnoNotaListadoBean.idMatricula}"></h:inputText>
+		<h:commandButton value="Mostrar notas del alumno"
+			action="#{verAlumnoNotaListadoBean.getDetalleNotasAlumno(verAlumnoNotaListadoBean.idMatricula)}"></h:commandButton>
+	</h:form>
+
+	<br /><a href="insertarAlumnoNota.xhtml">Insertar nota para un alumno</a>
+	<br /><a href="actualizarAlumnoNota.xhtml">Actualizar nota para un alumno</a>
+
+	<h3>Evaluaciones del Alumno</h3>
+	<h:form>
+		<h:commandButton value="Mostrar evaluaciones generales"
+			action="#{verAlumnoEvaluacionListadoBean.getAlumnoEvaluacionListado()}"></h:commandButton>
+	</h:form>
+
     	<h:form>
     		<h:inputText value="#{verAlumnoFichaBean.id}"/>
     	   <h:commandButton value="Ver Ficha" action="#{verAlumnoFichaBean.getDetalleAlumno(verAlumnoFichaBean.id)}"></h:commandButton>
     	</h:form>
-    </h:body>
+    	
+        <h:form>
+    		<h:inputText value="#{verAlumnoFichaBean.id}"/>
+    	   <h:commandButton value="Ver Ficha" action="#{verAlumnoFichaBean.getDetalleAlumno(verAlumnoFichaBean.id)}"></h:commandButton>
+    	</h:form>
+
+</h:body>
 </html>
