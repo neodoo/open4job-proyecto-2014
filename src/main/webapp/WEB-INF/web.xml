@@ -31,12 +31,12 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
-	
-		<!-- Welcome page -->
+
+	<!-- Welcome page -->
 	<welcome-file-list>
 		<welcome-file>faces/index.xhtml</welcome-file>
 	</welcome-file-list>
-	
+
 	<resource-ref>
 		<description>Mysql dataSource</description>
 		<res-ref-name>jdbc/opensigad</res-ref-name>
