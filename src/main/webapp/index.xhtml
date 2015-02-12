@@ -19,29 +19,11 @@
 			action="#{verAlumnoFichaBean.getDetalleAlumno(verAlumnoFichaBean.id)}"></h:commandButton>
 		<h:commandButton value="Ver Lista"
 			action="#{verAlumnoListaBean.getListAlumno()}"></h:commandButton>
-
 	</h:form>
-
-	<br></br>
-
-	<h3>Faltas del alumno</h3>
-
-
-	<h3>Una falta del alumno</h3>
-
-	<h:form>
-		<h:inputText value="#{verAlumnoFaltaFichaBean.id}" />
-		<h:commandButton value="Ver falta"
-			action="#{verAlumnoFaltaFichaBean.getDetalleFalta(verAlumnoFaltaFichaBean.id)}"></h:commandButton>
-		<h:commandButton value="Ver Lista"
-			action="#{verAlumnoListaBean.getListAlumno()}"></h:commandButton>
-	</h:form>
-
 
 	<br></br>
 
 	<h3>Notas del Alumno</h3>
-
 	<h:form>
 		Introduce el id_matricula a visualizar: <h:inputText
 			value="#{verAlumnoNotaListadoBean.idMatricula}"></h:inputText>
@@ -49,33 +31,24 @@
 			action="#{verAlumnoNotaListadoBean.getDetalleNotasAlumno(verAlumnoNotaListadoBean.idMatricula)}"></h:commandButton>
 	</h:form>
 
-
 	<br></br>
 
 	<h3>Matriculas del alumno</h3>
-
-	<h3>Una falta del alumno</h3>
-	<h:form>
-		<h:inputText value="#{verAlumnoFaltaFichaBean.id}" />
-		<h:commandButton value="Ver falta"
-			action="#{verAlumnoFaltaFichaBean.getDetalleFalta(verAlumnoFaltaFichaBean.id)}"></h:commandButton>
-	</h:form>
-
-	<h3>Faltas del alumno</h3>
-
 	<h:form>
 		Id del alumno: <h:inputText
 			value="#{verAlumnoMatriculaListadoBean.id}" />
 		<h:commandButton value="Ver matrículas del alumno"
 			action="#{verAlumnoMatriculaListadoBean.getListaMatricula(verAlumnoMatriculaListadoBean.id)}"></h:commandButton>
-
 	</h:form>
+
 	<br />
 	<a href="insertarAlumnoNota.xhtml">Insertar nota para un alumno</a>
 	<br />
 	<a href="actualizarAlumnoNota.xhtml">Actualizar nota para un alumno</a>
 	<br />
 	<a href="borrarAlumnoNota.xhtml">Borrar nota para un alumno</a>
+
+	<br></br>
 
 	<h3>Evaluaciones del Alumno</h3>
 	<h:form>
@@ -94,13 +67,11 @@
 		<h:commandButton value="Ver Ficha"
 			action="#{verAlumnoFichaBean.getDetalleAlumno(verAlumnoFichaBean.id)}"></h:commandButton>
 	</h:form>
+	<br></br>
 
 	<h3>Faltas del alumno</h3>
-	<h:form>
-		<h:inputText value="#{verAlumnoFaltaListadoBean.idAlumno}" />
-		<h:commandButton value="Ver listado"
-			action="#{verAlumnoFaltaListadoBean.getAlumnoFaltaListado(verAlumnoFaltaListadoBean.idAlumno)}"></h:commandButton>
+	<a href="indexAlumnoFalta.xhtml">Ir a faltas</a>
+	<br></br>
 
-	</h:form>
 </h:body>
 </html>
