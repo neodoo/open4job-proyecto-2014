@@ -17,7 +17,7 @@ import es.opensigad.model.vo.AlumnoNotaVO;
 
 public class AlumnoNotaDAO {
 
-	private DataSource ds;
+	protected DataSource ds;
 
 	public AlumnoNotaDAO() {
 		try {
