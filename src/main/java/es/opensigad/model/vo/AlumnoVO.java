@@ -5,14 +5,14 @@ import java.sql.Date;
 public class AlumnoVO {
 
 	private int id;
-	private int num_expediente;
+	private int num_Expediente;
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
 	private String sexo;
 	private String dni;
 	private String telefono;
-	private Date fecha_acimiento;
+	private Date fecha_Nacimiento;
 	private String pais;
 	private String provincia;
 	private String localidad;
@@ -23,20 +23,20 @@ public class AlumnoVO {
 		super();
 	}
 
-	public AlumnoVO(int id, int num_expediente, String nombre,
+	public AlumnoVO(int id, int num_Expediente, String nombre,
 			String apellido1, String apellido2, String sexo, String dni,
-			String telefono, Date fecha_nacimiento, String pais,
+			String telefono, Date fecha_Nacimiento, String pais,
 			String provincia, String localidad, String domicilio, String email) {
 
 		this.id = id;
-		this.num_expediente = num_expediente;
+		this.num_Expediente = num_Expediente;
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
 		this.sexo = sexo;
 		this.dni = dni;
 		this.telefono = telefono;
-		this.fecha_acimiento = fecha_nacimiento;
+		this.fecha_Nacimiento = fecha_Nacimiento;
 		this.pais = pais;
 		this.provincia = provincia;
 		this.localidad = localidad;
@@ -52,12 +52,12 @@ public class AlumnoVO {
 		this.id = id;
 	}
 
-	public int getNum_expediente() {
-		return num_expediente;
+	public int getNum_Expediente() {
+		return num_Expediente;
 	}
 
-	public void setNum_expediente(int num_expediente) {
-		this.num_expediente = num_expediente;
+	public void setNum_Expediente(int num_Expediente) {
+		this.num_Expediente = num_Expediente;
 	}
 
 	public String getNombre() {
@@ -108,12 +108,12 @@ public class AlumnoVO {
 		this.telefono = telefono;
 	}
 
-	public Date getFecha_acimiento() {
-		return fecha_acimiento;
+	public Date getFecha_Nacimiento() {
+		return fecha_Nacimiento;
 	}
 
-	public void setFecha_acimiento(Date fecha_acimiento) {
-		this.fecha_acimiento = fecha_acimiento;
+	public void setFecha_Nacimiento(Date fecha_Nacimiento) {
+		this.fecha_Nacimiento = fecha_Nacimiento;
 	}
 
 	public String getPais() {
@@ -157,6 +157,6 @@ public class AlumnoVO {
 	}
 
 	public String toString() {
-		return ("AlumnoDAO[ id = " + id + " num_expediente = " + num_expediente);
+		return ("AlumnoDAO[ id = " + id + " num_expediente = " + num_Expediente);
 	}
 }
