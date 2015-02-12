@@ -38,7 +38,7 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 	}
 
 	// Faltas de un alumno
-	public List<AlumnoFaltaVO> getListFaltasAlumno(int pidAlumno) {
+	public List<AlumnoFaltaVO> getListaFaltas(int pidAlumno) {
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -110,7 +110,7 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
 		return faltaVO;
 	}

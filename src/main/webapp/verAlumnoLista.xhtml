@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+</h:head>
+
+<h:body>
+
+
+
+
+	<h1>Lista de alumnos</h1>
+
+	<h:dataTable value="#{verAlumnoListaBean.alumnoLista}" var="c"
+		styleClass="order-table" headerClass="order-table-header"
+		rowClasses="order-table-odd-row,order-table-even-row">
+
+
+		<h:column>
+			<f:facet name="header"> id	 </f:facet>
+    				#{c.id}
+    	</h:column>
+
+		<h:column>
+			<f:facet name="header"> expediente </f:facet>
+    				#{c.num_expediente}
+    	</h:column>
+
+		<h:column>
+			<f:facet name="header"> nombre </f:facet>
+    				#{c.nombre}
+    	</h:column>
+
+		<h:column>
+			<f:facet name="header"> apellido 1 </f:facet>
+    				#{c.apellido1}
+    		</h:column>
+		<h:column>
+			<f:facet name="header"> apellido 2 </f:facet>
+    				#{c.apellido2}
+    	</h:column>
+
+		<h:column>
+			<f:facet name="header"> sexo </f:facet>
+    				#{c.sexo}
+    	</h:column>
+
+		<h:column>
+			<f:facet name="header"> dni </f:facet>
+    				#{c.dni}
+    	</h:column>
+
+		<h:column>
+			<f:facet name="header"> telefono </f:facet>
+    				#{c.telefono}
+    	</h:column>
+
+		<h:column>
+			<f:facet name="header"> fecha nacimiento </f:facet>
+    				#{c.fecha_acimiento}
+    	</h:column>
+		<h:column>
+			<f:facet name="header"> pais </f:facet>
+    				#{c.pais}
+    	</h:column>
+		<h:column>
+			<f:facet name="header"> provincia </f:facet>
+    				#{c.provincia}
+    	</h:column>
+		<h:column>
+			<f:facet name="header"> localidad </f:facet>
+    				#{c.localidad}
+    	</h:column>
+		<h:column>
+			<f:facet name="header"> domicilio </f:facet>
+    				#{c.domicilio}
+    	</h:column>
+		<h:column>
+			<f:facet name="header"> email </f:facet>
+    				#{c.email}
+    	</h:column>
+	</h:dataTable>
+</h:body>
+
+</html>

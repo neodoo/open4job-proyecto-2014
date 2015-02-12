@@ -33,7 +33,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 		}
 	}
 
-	public int insertarMatricula(int idAlumno, Date fecha, String centro,
+	public boolean insertarMatricula(int idAlumno, Date fecha, String centro,
 			String tipoEnsenanza, String ensenanza, String curso) {
 		Connection conn;
 		try {
@@ -48,16 +48,11 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			stmt.setString(5, ensenanza);
 			stmt.setString(5, curso);
 			stmt.executeUpdate();
-			if (stmt != null) {
-				try {
-					stmt.close();
-				} catch (Exception e) {
-				}
-			}
+			return true;
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
-		return 1;
+		return false;
 	}
 
 	public boolean borrarMatricula(int idMatricula) {

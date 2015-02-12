@@ -89,8 +89,8 @@ public class AlumnoFaltaVO {
 		return observaciones;
 	}
 
-	public void setObservaciones(String obtervaciones) {
-		this.observaciones = obtervaciones;
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
 	}
 
 	public String toString() {
