@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>Lista Matriculas Alumno</title>
+</h:head>
+<h:body>
+	<h1>Matriculas del alumno</h1>
+	<h:form>
+		Introduce el idMatricula para borrar la matricula deseada: 
+		<h:inputText value="#{eliminarAlumnoMatriculaBean.idMatricula}"></h:inputText>
+		<br/><h:commandButton value="Borrar la matrícula" action="#{eliminarAlumnoMatriculaBean.borrarMatricula(eliminarAlumnoMatriculaBean.idMatricula)}"></h:commandButton>
+	</h:form>
+</h:body>
+</html>
