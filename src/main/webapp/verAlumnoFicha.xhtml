@@ -11,11 +11,48 @@
 <h:body>
 
 	<h1>Ficha Alumno</h1>
-	<h:outputText value="#{verAlumnoFichaBean.alumnoVO.nombre}">
-	</h:outputText>
-	<h:outputText value="#{verAlumnoFichaBean.alumnoVO.apellido1}">
-	</h:outputText>
-	
+	<h:panelGrid columns="4" cellspacing="10">
+	Nº Expediente:<h:outputText
+			value="#{verAlumnoFichaBean.alumnoVO.numExpediente}">
+		</h:outputText>
+	Sexo:<h:outputText
+			value="#{verAlumnoFichaBean.alumnoVO.sexo}">
+		</h:outputText>
+	Nombre :<h:outputText value="#{verAlumnoFichaBean.alumnoVO.nombre}">
+		</h:outputText>
+	F.Nacimiento:<h:outputText
+			value="#{verAlumnoFichaBean.alumnoVO.fechaNacimiento}">
+		</h:outputText>
+	Primer Apellido: <h:outputText
+			value="#{verAlumnoFichaBean.alumnoVO.apellido1}">
+		</h:outputText>
+	País:<h:outputText
+			value="#{verAlumnoFichaBean.alumnoVO.pais}">
+		</h:outputText>
+	Segundo Apellido: <h:outputText
+			value="#{verAlumnoFichaBean.alumnoVO.apellido2}">
+		</h:outputText>
+	Provincia:<h:outputText
+			value="#{verAlumnoFichaBean.alumnoVO.provincia}">
+		</h:outputText>
+	Dni:<h:outputText
+			value="#{verAlumnoFichaBean.alumnoVO.dni}">
+		</h:outputText>
+	Localidad:<h:outputText
+			value="#{verAlumnoFichaBean.alumnoVO.localidad}">
+		</h:outputText>
+	Domicilio:<h:outputText
+			value="#{verAlumnoFichaBean.alumnoVO.domicilio}">
+		</h:outputText>
+	Email:<h:outputText
+			value="#{verAlumnoFichaBean.alumnoVO.email}">
+		</h:outputText>
+	Teléfono:<h:outputText
+			value="#{verAlumnoFichaBean.alumnoVO.telefono}">
+		</h:outputText>
+	<!--  h:commandButton value="Borrar Alumno"
+			action="#{borrarAlumnoFichaBean.deleteAlumno(verAlumnoFichaBean.alumnoVO.id)}"></h:commandButton-->
+	</h:panelGrid>
 </h:body>
 
 </html>

@@ -35,7 +35,7 @@ public class VerAlumnoMatriculaListadoBean implements Serializable {
 
 	public String getListaMatricula(int idAlumno) {
 
-		String pagina = "verAlumnoMatriculaLista";
+		String pagina = "verAlumnoMatriculaListado";
 		
 		AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
 		listaMatriculaVO = matriculaDAO.getListadoMatricula(idAlumno);
