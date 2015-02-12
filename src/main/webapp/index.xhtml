@@ -17,6 +17,8 @@
 		<h:inputText value="#{verAlumnoFichaBean.id}" />
 		<h:commandButton value="Ver Ficha"
 			action="#{verAlumnoFichaBean.getDetalleAlumno(verAlumnoFichaBean.id)}"></h:commandButton>
+		  		<h:commandButton value="Ver Lista" action="#{verAlumnoListaBean.getListAlumno()}"></h:commandButton>
+		
 	</h:form>
 
 	<br></br>
@@ -26,8 +28,7 @@
 		<h:inputText value="#{verAlumnoFaltaFichaBean.id}" />
 		<h:commandButton value="Ver falta"
 			action="#{verAlumnoFaltaFichaBean.getDetalleFalta(verAlumnoFaltaFichaBean.id)}"></h:commandButton>
-    		<h:commandButton value="Ver Lista" action="#{verAlumnoListaBean.getListAlumno()}"></h:commandButton>
-	</h:form>
+  	</h:form>
 	
 	<h3>Notas del Alumno</h3>
 	<h:form>
