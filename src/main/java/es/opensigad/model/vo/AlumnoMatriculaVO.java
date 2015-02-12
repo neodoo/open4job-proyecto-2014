@@ -5,14 +5,14 @@ import java.sql.Date;
 public class AlumnoMatriculaVO {
 	
 	private int id;
-	private Date fechaCurso;
+	private String fechaCurso;
 	private String centro;
 	private String tipoEnsenanza;
 	private String ensenanza;
 	private String curso;
 	private int idAlumno;
 	
-	public AlumnoMatriculaVO(int id,Date fechaCurso,String centro,String tipoEnsenanza, String ensenanza,
+	public AlumnoMatriculaVO(int id,String fechaCurso,String centro,String tipoEnsenanza, String ensenanza,
 			String curso,int idAlumno){
 		
 		this.id=id;
@@ -41,11 +41,11 @@ public class AlumnoMatriculaVO {
 		this.id = id;
 	}
 
-	public Date getFechaCurso() {
+	public String getFechaCurso() {
 		return fechaCurso;
 	}
 
-	public void setFechaCurso(Date fechaCurso) {
+	public void setFechaCurso(String fechaCurso) {
 		this.fechaCurso = fechaCurso;
 	}
 
