@@ -23,22 +23,6 @@
 
 	<br></br>
 
-	<h3>Faltas del alumno</h3>
-
-
-	<h3>Una falta del alumno</h3>
-
-	<h:form>
-		<h:inputText value="#{verAlumnoFaltaFichaBean.id}" />
-		<h:commandButton value="Ver falta"
-			action="#{verAlumnoFaltaFichaBean.getDetalleFalta(verAlumnoFaltaFichaBean.id)}"></h:commandButton>
-		<h:commandButton value="Ver Lista"
-			action="#{verAlumnoListaBean.getListAlumno()}"></h:commandButton>
-	</h:form>
-
-
-	<br></br>
-
 	<h3>Notas del Alumno</h3>
 
 	<h:form>
@@ -48,22 +32,10 @@
 			action="#{verAlumnoNotaListadoBean.getDetalleNotasAlumno(verAlumnoNotaListadoBean.idMatricula)}"></h:commandButton>
 	</h:form>
 
-
 	<br></br>
 
 	<h3>Matriculas del alumno</h3>
 
-<<<<<<< HEAD
-	<h3>Una falta del alumno</h3>
-	<h:form>
-		<h:inputText value="#{verAlumnoFaltaFichaBean.id}" />
-		<h:commandButton value="Ver falta"
-			action="#{verAlumnoFaltaFichaBean.getDetalleFalta(verAlumnoFaltaFichaBean.id)}"></h:commandButton>
-	</h:form>
-	
-	<h3>Faltas del alumno</h3>
-=======
->>>>>>> a7750866a44f7442eb4d5f727b8a5ba1b9df34dc
 	<h:form>
 		Id del alumno: <h:inputText
 			value="#{verAlumnoMatriculaListadoBean.id}" />
@@ -97,13 +69,12 @@
 			<h:commandButton value="Ver Ficha"
 				action="#{verAlumnoFichaBean.getDetalleAlumno(verAlumnoFichaBean.id)}"></h:commandButton>
 		</h:form>
+	<br></br>
 
-		<h3>Faltas del alumno</h3>
-		<h:form>
-			<h:inputText value="#{verAlumnoFaltaListadoBean.idAlumno}" />
-			<h:commandButton value="Ver listado"
-				action="#{verAlumnoFaltaListadoBean.getAlumnoFaltaListado(verAlumnoFaltaListadoBean.idAlumno)}"></h:commandButton>
-
-		</h:form>
+	<h3>Faltas del alumno</h3>
+	<a href="indexAlumnoFalta.xhtml">Ir a faltas</a>
+		
+	<br></br>
+			
 </h:body>
 </html>
