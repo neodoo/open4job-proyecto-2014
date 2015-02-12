@@ -3,13 +3,16 @@ package es.opensigad.model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
 import es.opensigad.model.vo.AlumnoNotaVO;
 
 public class AlumnoNotaDAO {
@@ -77,6 +80,7 @@ public class AlumnoNotaDAO {
 		}
 		return false;
 	}
+
 	public boolean actualizarNotaByIdMatricula(int idMatricula,
 			int idEnsenanza, int idMateria, int idEvaluacion, int nota) {
 		try {
@@ -95,7 +99,26 @@ public class AlumnoNotaDAO {
 		} catch (Exception e) {
 			Logger.getLogger(getClass().getName()).log(
 					Level.SEVERE,
-					"Error en AlumnoNotaDAO.insertarNotasAlumnoByIdMatricula:"
+					"Error en AlumnoNotaDAO.actualizarNotaByIdMatricula:"
+							+ e.getMessage());
+		}
+		return false;
+	}
+
+	public boolean borrarNotaByIdMatricula(int idMatricula) {
+		try {
+			Connection conn = ds.getConnection();
+			PreparedStatement pstm;
+			String query = "delete from nota where id_matricula = ?";
+			pstm = conn.prepareStatement(query);
+			pstm.setInt(1, idMatricula);
+			if (pstm.executeUpdate()==1){
+				return true;
+			}	
+		} catch (Exception e) {
+			Logger.getLogger(getClass().getName()).log(
+					Level.SEVERE,
+					"Error en AlumnoNotaDAO.	public boolean borrarNotaByIdMatricula:"
 							+ e.getMessage());
 		}
 		return false;
