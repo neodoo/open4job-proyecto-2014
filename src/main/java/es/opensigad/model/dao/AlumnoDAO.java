@@ -21,7 +21,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 	public static final Logger logger = Logger.getLogger(AlumnoVO.class
 			.getName());
 
-	private DataSource ds;
+	DataSource ds;
 
 	public AlumnoDAO() {
 		try {
