@@ -13,7 +13,8 @@
 
 
 
-	<h1>Lista de alumnos</h1>
+	<h1><h:outputLabel id="tituloListaAlumno"
+			value="#{etqAlm['titulo.listaAlumno']}" /></h1>
 
 	<h:dataTable value="#{verAlumnoListaBean.alumnoLista}" var="c"
 		styleClass="order-table" headerClass="order-table-header"
@@ -28,7 +29,7 @@
 		<h:column>
 			<f:facet name="header">
 				<h:outputLabel id="etiquetaNumExpediente"
-					value="#{etq['etiquetas.numExpediente']}" />
+					value="#{etqAlm['etiquetas.numExpediente']}" />
 			</f:facet>
     				#{c.numExpediente}
     	</h:column>
@@ -36,7 +37,7 @@
 		<h:column>
 			<f:facet name="header">
 				<h:outputLabel id="etiquetaNombre"
-					value="#{etq['etiquetas.nombre']}" />
+					value="#{etqAlm['etiquetas.nombre']}" />
 			</f:facet>
     				#{c.nombre}
     	</h:column>
@@ -44,28 +45,28 @@
 		<h:column>
 			<f:facet name="header">
 				<h:outputLabel id="etiquetaApellido1"
-					value="#{etq['etiquetas.apellido1']}" />
+					value="#{etqAlm['etiquetas.apellido1']}" />
 			</f:facet>
     				#{c.apellido1}
     		</h:column>
 		<h:column>
 			<f:facet name="header">
 				<h:outputLabel id="etiquetaApellido2"
-					value="#{etq['etiquetas.apellido2']}" />
+					value="#{etqAlm['etiquetas.apellido2']}" />
 			</f:facet>
     				#{c.apellido2}
     	</h:column>
 
 		<h:column>
 			<f:facet name="header">
-				<h:outputLabel id="etiquetaSexo" value="#{etq['etiquetas.sexo']}" />
+				<h:outputLabel id="etiquetaSexo" value="#{etqAlm['etiquetas.sexo']}" />
 			</f:facet>
     				#{c.sexo}
     	</h:column>
 
 		<h:column>
 			<f:facet name="header">
-				<h:outputLabel id="etiquetaDni" value="#{etq['etiquetas.dni']}" />
+				<h:outputLabel id="etiquetaDni" value="#{etqAlm['etiquetas.dni']}" />
 			</f:facet>
     				#{c.dni}
     	</h:column>
@@ -73,7 +74,7 @@
 		<h:column>
 			<f:facet name="header">
 				<h:outputLabel id="etiquetaTelefono"
-					value="#{etq['etiquetas.telefono']}" />
+					value="#{etqAlm['etiquetas.telefono']}" />
 			</f:facet>
     				#{c.telefono}
     	</h:column>
@@ -81,40 +82,40 @@
 		<h:column>
 			<f:facet name="header">
 				<h:outputLabel id="etiquetaFechaNacimiento"
-					value="#{etq['etiquetas.fechaNacimiento']}" />
+					value="#{etqAlm['etiquetas.fechaNacimiento']}" />
 			</f:facet>
     				#{c.fechaNacimiento}
     	</h:column>
 		<h:column>
 			<f:facet name="header">
-				<h:outputLabel id="etiquetaPais" value="#{etq['etiquetas.pais']}" />
+				<h:outputLabel id="etiquetaPais" value="#{etqAlm['etiquetas.pais']}" />
 			</f:facet>
     				#{c.pais}
     	</h:column>
 		<h:column>
 			<f:facet name="header">
 				<h:outputLabel id="etiquetaProvincia"
-					value="#{etq['etiquetas.provincia']}" />
+					value="#{etqAlm['etiquetas.provincia']}" />
 			</f:facet>
     				#{c.provincia}
     	</h:column>
 		<h:column>
 			<f:facet name="header">
 				<h:outputLabel id="etiquetaLocalidad"
-					value="#{etq['etiquetas.localidad']}" />
+					value="#{etqAlm['etiquetas.localidad']}" />
 			</f:facet>
     				#{c.localidad}
     	</h:column>
 		<h:column>
 			<f:facet name="header">
 				<h:outputLabel id="etiquetaDomicilio"
-					value="#{etq['etiquetas.domicilio']}" />
+					value="#{etqAlm['etiquetas.domicilio']}" />
 			</f:facet>
     				#{c.domicilio}
     	</h:column>
 		<h:column>
 			<f:facet name="header">
-				<h:outputLabel id="etiquetaEmail" value="#{etq['etiquetas.email']}" />
+				<h:outputLabel id="etiquetaEmail" value="#{etqAlm['etiquetas.email']}" />
 			</f:facet>
     				#{c.email}
     	</h:column>

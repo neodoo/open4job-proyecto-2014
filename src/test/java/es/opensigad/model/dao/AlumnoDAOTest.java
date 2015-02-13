@@ -25,15 +25,15 @@ public class AlumnoDAOTest extends TestCase {
 	}
 
 	public void testInsertAlumno() {
-
+		int id = 200;
 		java.util.Date utilDate = new java.util.Date();
 		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-
-		int id = 200;
-		alumnoDAO.insertAlumno(id, id, "nom", "ape", "ape", "h", "dni" + id,
+		AlumnoVO alumno = new AlumnoVO(id, id, "nom", "ape", "ape", "h", "dni" + id,
 				"tfno", sqlDate, "pais", "prov", "loc", "dom", "email");
+		
+		alumnoDAO.insertAlumno(alumno);
 
-		AlumnoVO alumno = alumnoDAO.getDetalleAlumno(id);
+		alumno = alumnoDAO.getDetalleAlumno(id);
 
 		alumno.toString();
 		assertTrue(alumno != null);
