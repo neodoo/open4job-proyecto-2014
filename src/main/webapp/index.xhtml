@@ -9,23 +9,24 @@
 	<title>OpenSIGAD</title>
 </h:head>
 <h:body>
+		<h:messages style="margin:8px;" />
+	<br />
 	<h1>
-		<h:outputLabel id="tituloOpensigad" value="#{etq['titulo.opensigad']}" />
+		<h:outputLabel id="tituloOpensigad" value="#{etqAlm['titulo.opensigad']}" />
 	</h1>
 
 	<h3>
 		<h:outputLabel id="etiquetaAlumnos"
-			value="#{etq['etiquetas.alumnos']}" />
+			value="#{etqAlm['etiquetas.alumnos']}" />
 	</h3>
 	<h:form>
 		<h:inputText value="#{verAlumnoFichaBean.id}" />
 		<h:commandButton value="Ver Ficha"
-			action="#{verAlumnoFichaBean.getDetalleAlumno(verAlumnoFichaBean.id)}"></h:commandButton>
+			action="#{verAlumnoFichaBean.getDetalleAlumno()}"></h:commandButton>
 		<h:commandButton value="Ver Lista"
 			action="#{verAlumnoListaBean.getListAlumno()}"></h:commandButton>
 
 	</h:form>
-
 	<br></br>
 
 	<h3>Faltas del alumno</h3>
