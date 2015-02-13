@@ -63,16 +63,10 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			conn = ds.getConnection();
 
 			PreparedStatement stmt = conn
-					.prepareStatement("DELETE * FROM matriculas WHERE id=?");
+					.prepareStatement("DELETE FROM matriculas WHERE id=?");
 			stmt.setInt(1, idMatricula);
 			if(stmt.executeUpdate()==1){
 				return true;
-			}
-			if (stmt != null) {
-				try {
-					stmt.close();
-				} catch (Exception e) {
-				}
 			}
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
