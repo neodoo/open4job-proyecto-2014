@@ -16,18 +16,9 @@
 			value="#{etqAlm['titulo.opensigad']}" />
 	</h1>
 
-	<h3>
-		<h:outputLabel id="etiquetaAlumnos"
-			value="#{etqAlm['etiquetas.alumnos']}" />
-	</h3>
-	<h:form>
-		<h:inputText value="#{verAlumnoFichaBean.id}" />
-		<h:commandButton value="Ver Ficha"
-			action="#{verAlumnoFichaBean.getDetalleAlumno()}"></h:commandButton>
-		<h:commandButton value="Ver Lista"
-			action="#{verAlumnoListaBean.getListAlumno()}"></h:commandButton>
-
-	</h:form>
+	
+	<a href="indexAlumno.xhtml"><h:outputLabel id="etiquetaAlumnos"
+			value="#{etqAlm['etiquetas.alumnos']}" /></a>
 	<br></br>
 
 	<h3>Faltas del alumno</h3>
