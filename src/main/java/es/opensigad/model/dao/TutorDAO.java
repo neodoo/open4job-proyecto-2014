@@ -77,34 +77,6 @@ public class TutorDAO implements TutorDAOInterface {
 
 	}
 
-	// recibe 1 idTutor y devuelve ese tutor
-	/*public TutorVO getTutor(int id) {
-		TutorVO tutor = null;
-
-		try{
-			if (ds == null)
-				throw new SQLException("Can't get data source");
-			// get database connection
-			Connection con = ds.getConnection();
-	
-			if (con == null)
-				throw new SQLException("Can't get database connection");
-	
-			PreparedStatement st = con
-					.prepareStatement("SELECT * FROM tutor WHERE idtutores = ?");
-			st.setInt(1, id);
-			ResultSet rs = st.executeQuery();
-			if (rs.next()) {
-				tutor = new TutorVO(rs.getInt(1), rs.getInt(2), rs.getString(3),
-						rs.getString(4), rs.getString(5), rs.getString(6),
-						rs.getDate(7), rs.getString(8), rs.getString(9),
-						rs.getString(10));
-			}				
-		} catch (Exception e) {
-			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
-		}
-		return tutor;
-	}*/
 
 	// borra 1 tutor con el idTutor recibido
 	public void deleteTutor(int id) {
@@ -157,10 +129,11 @@ public class TutorDAO implements TutorDAOInterface {
 		}		
 	}
 
-	public void insertarTutor(String nombre, String apellido1,
-			String apellido2, String DNI, java.sql.Date fechaNac,
-			String parentesco, String telefono, String email) {
-
+	public boolean insertarTutor(int idAlumno, String nombre, String apellido1,
+			String apellido2, String DNI, java.sql.Date fechaNac, String parentesco,
+			String telefono, String email) {
+		
+		
 		try{
 			if (ds == null)
 				throw new SQLException("Can't get data source");
@@ -169,24 +142,52 @@ public class TutorDAO implements TutorDAOInterface {
 	
 			if (con == null)
 				throw new SQLException("Can't get database connection");
-	
-			PreparedStatement st = con
-					.prepareStatement("INSERT INTO tutor (idAlumno,nombre,apellido1,apellido2,DNI,fechaNac,parentesco,telefono,email) values (1,?,?,?,?,?,?,?)");			
-			st.setString(1, nombre);
-			st.setString(2, apellido1);
-			st.setString(3, apellido2);
-			st.setString(4, DNI);
-			java.sql.Date fecha = new java.sql.Date (fechaNac.getTime());
-			st.setDate(5, fecha);
-			st.setString(6, telefono);
-			st.setString(7, email);
-			st.executeUpdate();		
-			//return true;
-
-		} catch (Exception e) {
-			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
+			
+			/*Validamos si el tutor a insertar ya existe*/		
+			PreparedStatement val = con.prepareStatement("SELECT idTutor FROM tutor WHERE idAlumno = ?");
+			val.setInt(1, idAlumno);		
+			ResultSet rs = val.executeQuery();
+			
+			/*Si no existe en la base de datos lo insertamos en la tabla*/
+			if (!rs.next()){
+				PreparedStatement st = con
+						.prepareStatement("INSERT INTO tutor (idAlumno,nombre,apellido1,apellido2,DNI,fechaNac,parentesco,tlf,email) values ('1',?,?,?,?,?,?,?,?)");			
+				st.setString(1, nombre);
+				st.setString(2, apellido1);
+				st.setString(3, apellido2);
+				st.setString(4, DNI);
+				java.sql.Date fecha = new java.sql.Date (fechaNac.getTime());
+				st.setDate(5,fecha);
+				st.setString(6, parentesco);
+				st.setString(7, telefono);
+				st.setString(8, email);
+				st.executeUpdate();
+				
+				/*Recupero el idTutor que acabamos de crear*/
+				PreparedStatement st2 = con.prepareStatement("SELECT idTutor FROM tutor WHERE DNI LIKE ?");
+				st2.setString(1, DNI);
+				ResultSet rs2 = st2.executeQuery();
+					if (rs.next()){
+						//inserto el tutor en la tabla de relaciones
+						PreparedStatement st3 = con.prepareStatement("INSERT INTO relacionAlumnoTutor(idAlumno, idTutor) values ('1',?) ");
+						st3.setInt(1, rs.getInt("idTutor"));		
+					}
+			}else{
+				/*Si existe solo insertamos la relacion*/
+				PreparedStatement st = con.prepareStatement("INSERT INTO relacionAlumnoTutor(idAlumno, idTutor) values ('1',?) ");
+				st.setInt(1, rs.getInt("idTutor"));		
+			}
+			
+			return true;
 		}
-		//return false;
+		catch (Exception e) 
+		{
+				Logger.getLogger(getClass().getName()).log(Level.SEVERE,
+					"Error en TutorDAO.insertarTutor:"
+							+ e.getMessage());
+			
+		}
+		return false;
 	}
 	
 	public TutorVO getDetalleTutor(int idTutor) {
@@ -223,5 +224,7 @@ public class TutorDAO implements TutorDAOInterface {
 		return tutorVO;
 
 	}
+
+
 
 }
