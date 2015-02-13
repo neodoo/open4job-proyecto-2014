@@ -10,49 +10,81 @@
 
 <h:body>
 
-	<h1>Ficha Alumno</h1>
+	<h1>
+		<h:outputLabel id="tituloFichaAlumno"
+			value="#{etq['titulo.fichaAlumno']}" />
+	</h1>
+	<h:inputHidden id="id" value="#{verAlumnoFichaBean.alumnoVO.idAlumno}"></h:inputHidden>
+
 	<h:panelGrid columns="4" cellspacing="10">
-	Nº Expediente:<h:outputText
-			value="#{verAlumnoFichaBean.alumnoVO.numExpediente}">
+
+		<h:outputLabel id="etiquetaNumExpediente"
+			value="#{etq['etiquetas.numExpediente']}" />
+		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.numExpediente}">
 		</h:outputText>
-	Sexo:<h:outputText
-			value="#{verAlumnoFichaBean.alumnoVO.sexo}">
+
+		<h:outputLabel id="etiquetaSexo" value="#{etq['etiquetas.sexo']}" />
+		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.sexo}">
 		</h:outputText>
-	Nombre :<h:outputText value="#{verAlumnoFichaBean.alumnoVO.nombre}">
+
+		<h:outputLabel id="etiquetaNombre" value="#{etq['etiquetas.nombre']}" />
+		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.nombre}">
 		</h:outputText>
-	F.Nacimiento:<h:outputText
-			value="#{verAlumnoFichaBean.alumnoVO.fechaNacimiento}">
+
+		<h:outputLabel id="etiquetaFechaNacimiento"
+			value="#{etq['etiquetas.fechaNacimiento']}" />
+		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.fechaNacimiento}">
 		</h:outputText>
-	Primer Apellido: <h:outputText
-			value="#{verAlumnoFichaBean.alumnoVO.apellido1}">
+
+		<h:outputLabel id="etiquetaApellido1"
+			value="#{etq['etiquetas.apellido1']}" />
+		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.apellido1}">
 		</h:outputText>
-	País:<h:outputText
-			value="#{verAlumnoFichaBean.alumnoVO.pais}">
+
+		<h:outputLabel id="etiquetaPais" value="#{etq['etiquetas.pais']}" />
+		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.pais}">
 		</h:outputText>
-	Segundo Apellido: <h:outputText
-			value="#{verAlumnoFichaBean.alumnoVO.apellido2}">
+
+		<h:outputLabel id="etiquetaApellido2"
+			value="#{etq['etiquetas.apellido2']}" />
+		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.apellido2}">
 		</h:outputText>
-	Provincia:<h:outputText
-			value="#{verAlumnoFichaBean.alumnoVO.provincia}">
+
+		<h:outputLabel id="etiquetaProvincia"
+			value="#{etq['etiquetas.provincia']}" />
+		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.provincia}">
 		</h:outputText>
-	Dni:<h:outputText
-			value="#{verAlumnoFichaBean.alumnoVO.dni}">
+
+		<h:outputLabel id="etiquetaDni" value="#{etq['etiquetas.dni']}" />
+		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.dni}">
 		</h:outputText>
-	Localidad:<h:outputText
-			value="#{verAlumnoFichaBean.alumnoVO.localidad}">
+
+		<h:outputLabel id="etiquetaLocalidad"
+			value="#{etq['etiquetas.localidad']}" />
+		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.localidad}">
 		</h:outputText>
-	Domicilio:<h:outputText
-			value="#{verAlumnoFichaBean.alumnoVO.domicilio}">
+
+		<h:outputLabel id="etiquetaDomicilio"
+			value="#{etq['etiquetas.domicilio']}" />
+		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.domicilio}">
 		</h:outputText>
-	Email:<h:outputText
-			value="#{verAlumnoFichaBean.alumnoVO.email}">
+
+		<h:outputLabel id="etiquetaEmail" value="#{etq['etiquetas.email']}" />
+		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.email}">
 		</h:outputText>
-	Teléfono:<h:outputText
-			value="#{verAlumnoFichaBean.alumnoVO.telefono}">
+
+		<h:outputLabel id="etiquetaTelefono"
+			value="#{etq['etiquetas.telefono']}" />
+		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.telefono}">
 		</h:outputText>
-	<!--  h:commandButton value="Borrar Alumno"
-			action="#{borrarAlumnoFichaBean.deleteAlumno(verAlumnoFichaBean.alumnoVO.id)}"></h:commandButton-->
+
+		<h:form>
+			<h:commandButton value="Borrar Alumno"
+				action="#{eliminarAlumnoFichaBean.deleteAlumno(id)}"></h:commandButton>
+		</h:form>
+
 	</h:panelGrid>
+
 </h:body>
 
 </html>

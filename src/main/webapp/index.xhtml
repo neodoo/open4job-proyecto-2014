@@ -9,10 +9,14 @@
 	<title>OpenSIGAD</title>
 </h:head>
 <h:body>
+	<h1>
+		<h:outputLabel id="tituloOpensigad" value="#{etq['titulo.opensigad']}" />
+	</h1>
 
-	<h1>OpenSIGAD</h1>
-
-	<h3>Alumno</h3>
+	<h3>
+		<h:outputLabel id="etiquetaAlumnos"
+			value="#{etq['etiquetas.alumnos']}" />
+	</h3>
 	<h:form>
 		<h:inputText value="#{verAlumnoFichaBean.id}" />
 		<h:commandButton value="Ver Ficha"
@@ -34,12 +38,9 @@
 	<br></br>
 
 	<h3>Matriculas del alumno</h3>
-	<h:form>
-		Id del alumno: <h:inputText
-			value="#{verAlumnoMatriculaListadoBean.id}" />
-		<h:commandButton value="Ver matrículas del alumno"
-			action="#{verAlumnoMatriculaListadoBean.getListaMatricula(verAlumnoMatriculaListadoBean.id)}"></h:commandButton>
-	</h:form>
+	<a href="indexAlumnoMatricula.xhtml">Ir a matriculas</a>
+	<br></br>
+
 
 	<br />
 	<a href="insertarAlumnoNota.xhtml">Insertar nota para un alumno</a>
