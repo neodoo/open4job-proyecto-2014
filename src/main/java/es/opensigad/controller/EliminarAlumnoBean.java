@@ -1,5 +1,7 @@
 package es.opensigad.controller;
 
+import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -11,8 +13,9 @@ import es.opensigad.model.vo.AlumnoVO;
 
 @ManagedBean
 @RequestScoped
-public class EliminarAlumnoBean {
+public class EliminarAlumnoBean implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private int idAlumno;
 	
 	public int getIdAlumno() {
@@ -36,7 +39,7 @@ public class EliminarAlumnoBean {
 
 	public String deleteAlumno(int idAlumno) {
 
-		String pagina = "index";
+		String pagina = "indexAlumno";
 
 		AlumnoDAO alumnoDAO = new AlumnoDAO();
 		alumnoDAO.deleteAlumno(idAlumno);

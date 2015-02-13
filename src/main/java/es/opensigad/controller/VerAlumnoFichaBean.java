@@ -1,5 +1,7 @@
 package es.opensigad.controller;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -8,7 +10,9 @@ import es.opensigad.model.vo.AlumnoVO;
 
 @ManagedBean
 @RequestScoped
-public class VerAlumnoFichaBean {
+public class VerAlumnoFichaBean implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	private int id;
 
