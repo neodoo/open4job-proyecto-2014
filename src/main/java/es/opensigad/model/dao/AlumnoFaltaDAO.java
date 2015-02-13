@@ -25,7 +25,7 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 	public static final Logger logger = Logger.getLogger(AlumnoFaltaVO.class
 			.getName());
 
-	private DataSource ds = null;
+	public DataSource ds = null;
 
 	public AlumnoFaltaDAO() {
 
