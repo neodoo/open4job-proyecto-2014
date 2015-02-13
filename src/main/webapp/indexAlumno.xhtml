@@ -9,39 +9,24 @@
 	<title>OpenSIGAD</title>
 </h:head>
 <h:body>
-
 	<h:messages style="margin:8px;" />
 	<br />
-
 	<h1>
-		<h:outputLabel id="tituloOpensigad"
-			value="#{etqAlm['titulo.opensigad']}" />
+		<h:outputLabel id="tituloOpensigad" value="#{etqAlm['titulo.opensigad']}" />
 	</h1>
 
 	<h3>
 		<h:outputLabel id="etiquetaAlumnos"
 			value="#{etqAlm['etiquetas.alumnos']}" />
 	</h3>
-	
-	<h3>Alumno</h3>
-	<a href="indexAlumno.xhtml"><h:outputLabel id="etiquetaAlumnos"
-			value="#{etqAlm['etiquetas.alumnos']}" /></a>
-	<br></br>
+	<h:form>
+		<h:inputText value="#{verAlumnoFichaBean.id}" />
+		<h:commandButton value="Ver Ficha"
+			action="#{verAlumnoFichaBean.getDetalleAlumno()}"></h:commandButton>
+		<h:commandButton value="Ver Lista"
+			action="#{verAlumnoListaBean.getListAlumno()}"></h:commandButton>
 
-	<h3>Tutores del alumno</h3>
-	<a href="indexAlumnoTutor.xhtml">Ir a tutores del alumno.</a>
-	<br></br>
-
-
-	<h3>Matriculas del alumno</h3>
-	<a href="indexAlumnoMatricula.xhtml">Ir a matriculas</a>
-	<br></br>
-
-
-	<h3>Faltas del alumno</h3>
-	<a href="indexAlumnoFalta.xhtml">Ir a faltas del alumno</a>
-	<br></br>
+	</h:form>
 
 </h:body>
-
 </html>

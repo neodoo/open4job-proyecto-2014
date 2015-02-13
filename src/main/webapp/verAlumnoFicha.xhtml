@@ -16,20 +16,21 @@
 	</h1>
 	<h:form>
 		<h:panelGrid columns="4" cellspacing="10">
-
 			<h:outputLabel id="etiquetaNumExpediente"
 				value="#{etqAlm['etiquetas.numExpediente']}" />
 			<h:inputText value="#{verAlumnoFichaBean.alumnoVO.numExpediente}">
 			</h:inputText>
-			
-			<h:outputLabel id="etiquetaSexo"
-				value="#{etqAlm['etiquetas.sexo']}" />
+
+			<h:outputLabel id="etiquetaSexo" value="#{etqAlm['etiquetas.sexo']}" />
 			<h:selectOneRadio value="#{verAlumnoFichaBean.alumnoVO.sexo}">
-				<f:selectItem itemValue="M" itemLabel="#{etqAlm['etiquetas.masculino']}" />
-				<f:selectItem itemValue="F" itemLabel="#{etqAlm['etiquetas.femenino']}" />
+				<f:selectItem itemValue="M"
+					itemLabel="#{etqAlm['etiquetas.masculino']}" />
+				<f:selectItem itemValue="F"
+					itemLabel="#{etqAlm['etiquetas.femenino']}" />
 			</h:selectOneRadio>
 
-			<h:outputLabel id="etiquetaNombre" value="#{etqAlm['etiquetas.nombre']}" />
+			<h:outputLabel id="etiquetaNombre"
+				value="#{etqAlm['etiquetas.nombre']}" />
 			<h:inputText value="#{verAlumnoFichaBean.alumnoVO.nombre}">
 			</h:inputText>
 
@@ -71,7 +72,8 @@
 			<h:inputText value="#{verAlumnoFichaBean.alumnoVO.domicilio}">
 			</h:inputText>
 
-			<h:outputLabel id="etiquetaEmail" value="#{etqAlm['etiquetas.email']}" />
+			<h:outputLabel id="etiquetaEmail"
+				value="#{etqAlm['etiquetas.email']}" />
 			<h:inputText value="#{verAlumnoFichaBean.alumnoVO.email}">
 			</h:inputText>
 
@@ -79,20 +81,14 @@
 				value="#{etqAlm['etiquetas.telefono']}" />
 			<h:inputText value="#{verAlumnoFichaBean.alumnoVO.telefono}">
 			</h:inputText>
-
-
-
-			<h:inputHidden id="idAlumno"
-				value="#{verAlumnoFichaBean.alumnoVO.idAlumno}"></h:inputHidden>
-
-			<h:commandButton value="Borrar Alumno"
-				action="#{eliminarAlumnoBean.deleteAlumno(verAlumnoFichaBean.alumnoVO.idAlumno)}"></h:commandButton>
-
-
-
 		</h:panelGrid>
 	</h:form>
+	<h:form>
+		<h:inputHidden id="idAlumno"
+			value="#{verAlumnoFichaBean.alumnoVO.idAlumno}"></h:inputHidden>
 
+		<h:commandButton value="Borrar Alumno"
+			action="#{eliminarAlumnoBean.deleteAlumno(verAlumnoFichaBean.alumnoVO.idAlumno)}"></h:commandButton>
+	</h:form>
 </h:body>
-
 </html>
