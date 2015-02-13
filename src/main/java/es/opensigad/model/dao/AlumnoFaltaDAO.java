@@ -73,10 +73,7 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 
 		} catch (SQLException e) {
 			listFaltas = null;
-			logger.log(
-					Level.SEVERE,
-					"Error en AlumnoFaltaDAO.getListaFaltas : "
-							+ e.getMessage());
+			logger.log(Level.SEVERE, "Error en AlumnoFaltaDAO.getListaFaltas : " + e.getMessage());
 		}
 		return listFaltas;
 	}
@@ -113,10 +110,7 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 			}
 
 		} catch (SQLException e) {
-			logger.log(
-					Level.SEVERE,
-					"Error en AlumnoFaltaDAO.getDetalleFalta : "
-							+ e.getMessage());
+			logger.log(Level.SEVERE, "Error en AlumnoFaltaDAO.getDetalleFalta : " + e.getMessage());
 		}
 		return faltaVO;
 	}
@@ -148,7 +142,7 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 			numReg = ps.executeUpdate();
 
 		} catch (SQLException e) {
-			logger.log(Level.SEVERE, "Error en AlumnoFaltaDAO.crearFalta : " + e.getMessage());
+			logger.log(Level.SEVERE, "Error en AlumnoFaltaDAO.insertarFalta : " + e.getMessage());
 		}
 
 		return numReg;
@@ -205,7 +199,7 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
-			logger.log(Level.SEVERE, "Error en AlumnoFaltaDAO.borrarFalta : " + e.getMessage());
+			logger.log(Level.SEVERE, "Error en AlumnoFaltaDAO.eliminarFalta : " + e.getMessage());
 		}
 
 		return numReg;
