@@ -12,31 +12,31 @@ import es.opensigad.model.vo.AlumnoFaltaVO;
 @ManagedBean
 @RequestScoped
 public class EliminarAlumnoFaltaBean implements Serializable {
-	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 
 	public EliminarAlumnoFaltaBean() {
 
 	}
 
-
-	
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
 	public String eliminarFalta(int id) {
-		String pagina=null;
+		String pagina = null;
 		AlumnoFaltaDAO alumnoFaltaDAO = new AlumnoFaltaDAO();
-		if (alumnoFaltaDAO.eliminarFalta(id)){
+		if (alumnoFaltaDAO.eliminarFalta(id) > 0) {
 			pagina = "eliminarAlumnoFaltaExito";
-		}else{
+		} else {
 			pagina = "eliminarAlumnoFaltaFallo";
 		}
 		return pagina;

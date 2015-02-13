@@ -31,7 +31,7 @@ public class VerAlumnoFaltaFichaBean {
 		this.faltaVO = faltaVO;
 	}
 
-	public String getDetalleFalta(int id) {
+	public String getDetalleFalta() {
 
 		String pagina = "verAlumnoFaltaFicha";
 

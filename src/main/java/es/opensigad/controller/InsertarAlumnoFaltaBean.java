@@ -12,7 +12,11 @@ import es.opensigad.model.vo.AlumnoFaltaVO;
 @ManagedBean
 @RequestScoped
 public class InsertarAlumnoFaltaBean implements Serializable {
-	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private int idAlumno;
 	private Date fecha;
@@ -23,102 +27,83 @@ public class InsertarAlumnoFaltaBean implements Serializable {
 	private String observaciones;
 
 	public InsertarAlumnoFaltaBean() {
-
 	}
 
-
-	
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
 	public int getIdAlumno() {
 		return idAlumno;
 	}
-
 
 	public void setIdAlumno(int idAlumno) {
 		this.idAlumno = idAlumno;
 	}
 
-
 	public Date getFecha() {
 		return fecha;
 	}
-
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 
-
-
 	public String getSesion() {
 		return sesion;
 	}
-
 
 	public void setSesion(String sesion) {
 		this.sesion = sesion;
 	}
 
-
 	public String getMateria() {
 		return materia;
 	}
-
 
 	public void setMateria(String materia) {
 		this.materia = materia;
 	}
 
-
-
 	public String getTipo() {
 		return tipo;
 	}
-
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
-
 	public String getJustificado() {
 		return justificado;
 	}
-
 
 	public void setJustificado(String justificado) {
 		this.justificado = justificado;
 	}
 
-
 	public String getObservaciones() {
 		return observaciones;
 	}
-
 
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
 	}
 
-
-	public String insertarFalta() {
+	public String insertarFalta(AlumnoFaltaVO falta) {
 		String pagina=null;
 		AlumnoFaltaDAO alumnoFaltaDAO = new AlumnoFaltaDAO();
-		//if (alumnoFaltaDAO.actualizarFalta(falta)){
-			pagina = "insertarAlumnoFaltaExito";
-		//}else{
-			//	pagina = "insertarAlumnoFaltaFallo";
-			//}
-		return pagina;
+		if (alumnoFaltaDAO.insertarFalta(falta) > 0){
+			pagina = "actualizarAlumnoFaltaExito";
+		}else{
+			pagina = "actualizarAlumnoFaltaFallo";
+		}
+		return pagina;		
+		
+		
 	}
 
 }

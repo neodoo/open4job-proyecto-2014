@@ -29,7 +29,7 @@ public class VerAlumnoFaltaListadoBean {
 		this.faltasVO = faltasVO;
 	}
 	
-	public String getAlumnoFaltaListado(int idAlumno) {
+	public String getAlumnoFaltaListado() {
 
 		String pagina = "verAlumnoFaltaListado";
 
