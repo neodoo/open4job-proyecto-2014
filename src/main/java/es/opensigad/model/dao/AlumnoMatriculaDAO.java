@@ -65,7 +65,9 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			PreparedStatement stmt = conn
 					.prepareStatement("DELETE * FROM matriculas WHERE id=?");
 			stmt.setInt(1, idMatricula);
-			stmt.executeUpdate();
+			if(stmt.executeUpdate()==1){
+				return true;
+			}
 			if (stmt != null) {
 				try {
 					stmt.close();
@@ -76,7 +78,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
 
-		return true;
+		return false;
 
 	}
 
