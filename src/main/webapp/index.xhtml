@@ -79,6 +79,15 @@
 		<h:commandButton value="Mostrar evaluaciones generales"
 			action="#{verAlumnoEvaluacionListadoBean.getAlumnoEvaluacionListado()}"></h:commandButton>
 	</h:form>
+	<a href="insertarAlumnoEvaluacion.xhtml">Insertar evaluacion para
+		un alumno</a>
+<h:form>
+	<!-- el id que se introduce lo manda a #{eliminarAlumnoEvaluacionBean.idEvaluacion} -->
+		<h:inputText value="#{eliminarAlumnoEvaluacionBean.idEvaluacion}" />
+		<!--  despues ejecuta el metodo del boton eliminarAlumnoEvaluacionBean.eliminarEvaluacionAlumno(eliminarAlumnoEvaluacionBean.idEvaluacion)-->
+		<h:commandButton value="Eliminar Evaluacion"
+			action="#{eliminarAlumnoEvaluacionBean.eliminarEvaluacionAlumno(eliminarAlumnoEvaluacionBean.idEvaluacion)}"></h:commandButton>
+	</h:form>
 
 	<h3>Faltas del alumno</h3>
 
@@ -98,23 +107,6 @@
 	<br />
 	<a href="borrarAlumnoNota.xhtml">Borrar nota para un alumno</a>
 
-	<h3>Evaluaciones del Alumno</h3>
-	<h:form>
-		<h:commandButton value="Mostrar evaluaciones generales"
-			action="#{verAlumnoEvaluacionListadoBean.getAlumnoEvaluacionListado()}"></h:commandButton>
-	</h:form>
-
-	<h:form>
-		<h:inputText value="#{verAlumnoFichaBean.id}" />
-		<h:commandButton value="Ver Ficha"
-			action="#{verAlumnoFichaBean.getDetalleAlumno(verAlumnoFichaBean.id)}"></h:commandButton>
-	</h:form>
-
-	<h:form>
-		<h:inputText value="#{verAlumnoFichaBean.id}" />
-		<h:commandButton value="Ver Ficha"
-			action="#{verAlumnoFichaBean.getDetalleAlumno(verAlumnoFichaBean.id)}"></h:commandButton>
-	</h:form>
 
 	<h3>Faltas del alumno</h3>
 	<h:form>
