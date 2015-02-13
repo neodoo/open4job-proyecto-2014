@@ -130,7 +130,7 @@ public class TutorDAO implements TutorDAOInterface {
 	}
 
 	public boolean insertarTutor(int idAlumno, String nombre, String apellido1,
-			String apellido2, String DNI, java.sql.Date fechaNac, String parentesco,
+			String apellido2, String DNI, Date fechaNac, String parentesco,
 			String telefono, String email) {
 		
 		
@@ -167,7 +167,7 @@ public class TutorDAO implements TutorDAOInterface {
 				PreparedStatement st2 = con.prepareStatement("SELECT idTutor FROM tutor WHERE DNI LIKE ?");
 				st2.setString(1, DNI);
 				ResultSet rs2 = st2.executeQuery();
-					if (rs.next()){
+					if (rs2.next()){
 						//inserto el tutor en la tabla de relaciones
 						PreparedStatement st3 = con.prepareStatement("INSERT INTO relacionAlumnoTutor(idAlumno, idTutor) values ('1',?) ");
 						st3.setInt(1, rs.getInt("idTutor"));		
@@ -224,6 +224,7 @@ public class TutorDAO implements TutorDAOInterface {
 		return tutorVO;
 
 	}
+
 
 
 

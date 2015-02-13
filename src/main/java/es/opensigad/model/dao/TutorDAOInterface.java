@@ -1,10 +1,11 @@
 package es.opensigad.model.dao;
 import es.opensigad.model.vo.TutorVO;
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 
 
 
@@ -25,7 +26,7 @@ public interface TutorDAOInterface {
 			String parentesco, String telefono, String email);
 
     public abstract boolean insertarTutor(int idAlumno, String nombre,
-			String apellido1, String apellido2, String DNI, java.sql.Date fechaNac,
+			String apellido1, String apellido2, String DNI, Date fechaNac,
 			String parentesco, String telefono, String email);
 	
 }
