@@ -22,65 +22,100 @@
 
 		<h:column>
 			<f:facet name="header"> id	 </f:facet>
-    				#{c.id}
+    				#{c.idAlumno}
     	</h:column>
 
 		<h:column>
-			<f:facet name="header"> expediente </f:facet>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaNumExpediente"
+					value="#{etq['etiquetas.numExpediente']}" />
+			</f:facet>
     				#{c.numExpediente}
     	</h:column>
 
 		<h:column>
-			<f:facet name="header"> nombre </f:facet>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaNombre"
+					value="#{etq['etiquetas.nombre']}" />
+			</f:facet>
     				#{c.nombre}
     	</h:column>
 
 		<h:column>
-			<f:facet name="header"> apellido 1 </f:facet>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaApellido1"
+					value="#{etq['etiquetas.apellido1']}" />
+			</f:facet>
     				#{c.apellido1}
     		</h:column>
 		<h:column>
-			<f:facet name="header"> apellido 2 </f:facet>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaApellido2"
+					value="#{etq['etiquetas.apellido2']}" />
+			</f:facet>
     				#{c.apellido2}
     	</h:column>
 
 		<h:column>
-			<f:facet name="header"> sexo </f:facet>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaSexo" value="#{etq['etiquetas.sexo']}" />
+			</f:facet>
     				#{c.sexo}
     	</h:column>
 
 		<h:column>
-			<f:facet name="header"> dni </f:facet>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaDni" value="#{etq['etiquetas.dni']}" />
+			</f:facet>
     				#{c.dni}
     	</h:column>
 
 		<h:column>
-			<f:facet name="header"> telefono </f:facet>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaTelefono"
+					value="#{etq['etiquetas.telefono']}" />
+			</f:facet>
     				#{c.telefono}
     	</h:column>
 
 		<h:column>
-			<f:facet name="header"> fecha nacimiento </f:facet>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaFechaNacimiento"
+					value="#{etq['etiquetas.fechaNacimiento']}" />
+			</f:facet>
     				#{c.fechaNacimiento}
     	</h:column>
 		<h:column>
-			<f:facet name="header"> pais </f:facet>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaPais" value="#{etq['etiquetas.pais']}" />
+			</f:facet>
     				#{c.pais}
     	</h:column>
 		<h:column>
-			<f:facet name="header"> provincia </f:facet>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaProvincia"
+					value="#{etq['etiquetas.provincia']}" />
+			</f:facet>
     				#{c.provincia}
     	</h:column>
 		<h:column>
-			<f:facet name="header"> localidad </f:facet>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaLocalidad"
+					value="#{etq['etiquetas.localidad']}" />
+			</f:facet>
     				#{c.localidad}
     	</h:column>
 		<h:column>
-			<f:facet name="header"> domicilio </f:facet>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaDomicilio"
+					value="#{etq['etiquetas.domicilio']}" />
+			</f:facet>
     				#{c.domicilio}
     	</h:column>
 		<h:column>
-			<f:facet name="header"> email </f:facet>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaEmail" value="#{etq['etiquetas.email']}" />
+			</f:facet>
     				#{c.email}
     	</h:column>
 	</h:dataTable>
