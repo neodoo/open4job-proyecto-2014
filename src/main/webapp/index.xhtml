@@ -53,12 +53,9 @@
 			action="#{verAlumnoNotaListadoBean.getDetalleNotasAlumno(verAlumnoNotaListadoBean.idMatricula)}"></h:commandButton>
 	</h:form>
 
-	<h3>Tutor</h3>
-	<h:form>
-		<h:inputText value="#{verTutorBean.id}" />
-		<h:commandButton value="Mostrar tutor"
-			action="#{verTutorBean.getDetalleTutor(verTutorBean.id)}"></h:commandButton>
-	</h:form>
+	<h3>Tutores del alumno</h3>
+
+	<a href="indexAlumnoTutor.xhtml">Ir a tutores del alumno.</a>
 
 	<br></br>
 
@@ -99,9 +96,9 @@
 	</h:form>
 
 	<h:form>
-	<br />
-	<a href="insertarAlumnoNota.xhtml">Insertar nota para un alumno</a>
-	<br />
+		<br />
+		<a href="insertarAlumnoNota.xhtml">Insertar nota para un alumno</a>
+		<br />
 	</h:form>
 	<a href="actualizarAlumnoNota.xhtml">Actualizar nota para un alumno</a>
 	<br />
@@ -109,7 +106,7 @@
 
 
 	<h3>Faltas del alumno</h3>
-	
+
 	<h:form>
 		<h:inputText value="#{verAlumnoFaltaListadoBean.idAlumno}" />
 		<h:commandButton value="Ver listado"
@@ -126,11 +123,11 @@
 		<h:commandButton value="Ver Ficha"
 			action="#{verAlumnoFichaBean.getDetalleAlumno(verAlumnoFichaBean.id)}"></h:commandButton>
 	</h:form>
-	
+
 	<br></br>
 
 	<h3>Faltas del alumno</h3>
-	
+
 	<a href="indexAlumnoFalta.xhtml">Ir a faltas</a>
 	<br></br>
 
