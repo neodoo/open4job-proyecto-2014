@@ -12,6 +12,7 @@
 
 	<h1>Falta</h1>
 
+	<h:form>
 	<h:panelGrid id="panel" columns="2" border="0" cellpadding="0" cellspacing="5">
 		<h:outputLabel value="Falta: " style="font-weight:bold" />
 		<h:inputText disabled="True"
@@ -44,8 +45,13 @@
 		</h:inputTextarea>
 	</h:panelGrid>
 
-		<h:commandButton value="Actualizar" action="#{accionActualizar}" />
-		<h:commandButton value="Borrar" action="#{accionBorrar}" />
+
+		<h:commandButton value="Insertar" action="#{insertarAlumnoFaltaBean.insertarFalta()}" />
+		<h:commandButton value="Actualizar" action="#{actualizarAlumnoFaltaBean.actualizarFalta(verAlumnoFaltaFichaBean.faltaVO.id )}" />
+		<h:commandButton value="Eliminar" action="#{eliminarAlumnoFaltaBean.eliminarFalta(eliminarAlumnoFaltaBean.id)}" />
+
+	</h:form>
+	
 </h:body>
 
 </html>
