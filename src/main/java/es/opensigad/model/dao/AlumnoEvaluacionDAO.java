@@ -2,9 +2,12 @@ package es.opensigad.model.dao;
 
 import java.io.Serializable;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -55,7 +58,7 @@ public class AlumnoEvaluacionDAO implements Serializable,
 			while (rs.next()) {
 				AlumnoEvaluacionVO evaluacion = new AlumnoEvaluacionVO();
 				evaluacion.setIdEvaluacion(rs.getInt("id"));
-				evaluacion.setIdEnsenanza(rs.getInt("id_enseñanza"));
+				evaluacion.setIdEnsenanza(rs.getInt("id_ensenanza"));
 				evaluacion.setIdCurso(rs.getInt("id_curso"));
 				evaluacion.setEvaluacion(rs.getInt("evaluacion"));
 				evaluacion.setFechaInicio(rs.getDate("fecha_inicio"));
@@ -75,24 +78,52 @@ public class AlumnoEvaluacionDAO implements Serializable,
 	}
 
 	// Crear nueva evaluacion
-	public void InsertarEvaluacionesVO() {
-		/*
-		 * try { EvaluacionVO evaluacion = new EvaluacionVO(); Connection
-		 * conexion = ds.getConnection(); PreparedStatement pstm = conexion
-		 * .prepareStatement("Insert into evaluacion Values (?,?,?,?,?,?,?,?)");
-		 * pstm.setInt(1, evaluacion.getId_evaluacion()); pstm.setInt(2,
-		 * evaluacion.getId_ensenanza()); pstm.setInt(3,
-		 * evaluacion.getId_curso()); pstm.setInt(4,
-		 * evaluacion.getEvaluacion()); pstm.setDate(5,
-		 * evaluacion.getFecha_inicio()); pstm.setDate(6,
-		 * evaluacion.getFecha_sesion()); pstm.setDate(7,
-		 * evaluacion.getFecha_fin()); pstm.setDate(8,
-		 * evaluacion.getFecha_publicacion()); pstm.execute(); } catch
-		 * (Exception e) {
-		 * 
-		 * Logger.getLogger(getClass().getName()).log(Level.SEVERE,
-		 * e.getMessage()); }
-		 */
+
+	public boolean insertarEvaluacionAlumno(int idEnsenanza, int idCurso,
+			int evaluacion, Date fechaInicio, Date fechaFin, Date fechaSesion,
+			Date fechaPublicacion) {
+
+		Connection conn = null;
+		PreparedStatement pstm = null;
+
+		try {
+
+			java.sql.Date fechaI = new java.sql.Date(fechaInicio.getTime());
+			java.sql.Date fechaF = new java.sql.Date(fechaFin.getTime());
+			java.sql.Date fechaS = new java.sql.Date(fechaSesion.getTime());
+			java.sql.Date fechaP = new java.sql.Date(fechaPublicacion.getTime());
+
+			conn = ds.getConnection();
+			String query = "insert into evaluacion (id_ensenanza,id_curso,evaluacion,fecha_inicio,fecha_final,fecha_sesion,fecha_publicacion) values (?,?,?,?,?,?,?)";
+			pstm = conn.prepareStatement(query);
+			pstm.setInt(1, idEnsenanza);
+			pstm.setInt(2, idCurso);
+			pstm.setInt(3, evaluacion);
+			pstm.setDate(4, fechaI);
+			pstm.setDate(5, fechaF);
+			pstm.setDate(6, fechaS);
+			pstm.setDate(7, fechaP);
+			pstm.execute();
+			return true;
+
+		} catch (Exception e) {
+			Logger.getLogger(getClass().getName()).log(
+					Level.SEVERE,
+					"Error en AlumnoEvaluacionDAO.insertarEvaluacionAlumno:"
+							+ e.getMessage());
+		} finally {
+			try {
+				pstm.close();
+			} catch (Exception e) {
+			}
+			try {
+				conn.close();
+			} catch (Exception e) {
+			}
+		}
+
+		return false;
+
 	}
 
 	public void EditarEvaluacionesVO() {
@@ -100,8 +131,27 @@ public class AlumnoEvaluacionDAO implements Serializable,
 
 	}
 
-	public void EliminarEvaluacionesVO() {
-		// TODO Auto-generated method stub
+	public void EliminarEvaluacionAlumno(int idEvaluacion) {
+		Connection conexion = null;
+		PreparedStatement pstm = null;
+		try {
+			conexion = ds.getConnection();
+			pstm = conexion
+					.prepareStatement("DELETE FROM evaluacion WHERE id=?");
+			pstm.setInt(1, idEvaluacion);
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstm.close();
+			} catch (Exception e) {
+			}
+			try {
+				conexion.close();
+			} catch (Exception e) {
+			}
+		}
 
 	}
 
