@@ -12,78 +12,86 @@
 
 	<h1>
 		<h:outputLabel id="tituloFichaAlumno"
-			value="#{etq['titulo.fichaAlumno']}" />
+			value="#{etqAlm['titulo.fichaAlumno']}" />
 	</h1>
-	<h:inputHidden id="id" value="#{verAlumnoFichaBean.alumnoVO.idAlumno}"></h:inputHidden>
+	<h:form>
+		<h:panelGrid columns="4" cellspacing="10">
 
-	<h:panelGrid columns="4" cellspacing="10">
+			<h:outputLabel id="etiquetaNumExpediente"
+				value="#{etqAlm['etiquetas.numExpediente']}" />
+			<h:inputText value="#{verAlumnoFichaBean.alumnoVO.numExpediente}">
+			</h:inputText>
+			
+			<h:outputLabel id="etiquetaSexo"
+				value="#{etqAlm['etiquetas.sexo']}" />
+			<h:selectOneRadio value="#{verAlumnoFichaBean.alumnoVO.sexo}">
+				<f:selectItem itemValue="M" itemLabel="#{etqAlm['etiquetas.masculino']}" />
+				<f:selectItem itemValue="F" itemLabel="#{etqAlm['etiquetas.femenino']}" />
+			</h:selectOneRadio>
 
-		<h:outputLabel id="etiquetaNumExpediente"
-			value="#{etq['etiquetas.numExpediente']}" />
-		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.numExpediente}">
-		</h:outputText>
+			<h:outputLabel id="etiquetaNombre" value="#{etqAlm['etiquetas.nombre']}" />
+			<h:inputText value="#{verAlumnoFichaBean.alumnoVO.nombre}">
+			</h:inputText>
 
-		<h:outputLabel id="etiquetaSexo" value="#{etq['etiquetas.sexo']}" />
-		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.sexo}">
-		</h:outputText>
+			<h:outputLabel id="etiquetaFechaNacimiento"
+				value="#{etqAlm['etiquetas.fechaNacimiento']}" />
+			<h:inputText value="#{verAlumnoFichaBean.alumnoVO.fechaNacimiento}">
+			</h:inputText>
 
-		<h:outputLabel id="etiquetaNombre" value="#{etq['etiquetas.nombre']}" />
-		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.nombre}">
-		</h:outputText>
+			<h:outputLabel id="etiquetaApellido1"
+				value="#{etqAlm['etiquetas.apellido1']}" />
+			<h:inputText value="#{verAlumnoFichaBean.alumnoVO.apellido1}">
+			</h:inputText>
 
-		<h:outputLabel id="etiquetaFechaNacimiento"
-			value="#{etq['etiquetas.fechaNacimiento']}" />
-		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.fechaNacimiento}">
-		</h:outputText>
+			<h:outputLabel id="etiquetaPais" value="#{etqAlm['etiquetas.pais']}" />
+			<h:inputText value="#{verAlumnoFichaBean.alumnoVO.pais}">
+			</h:inputText>
 
-		<h:outputLabel id="etiquetaApellido1"
-			value="#{etq['etiquetas.apellido1']}" />
-		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.apellido1}">
-		</h:outputText>
+			<h:outputLabel id="etiquetaApellido2"
+				value="#{etqAlm['etiquetas.apellido2']}" />
+			<h:inputText value="#{verAlumnoFichaBean.alumnoVO.apellido2}">
+			</h:inputText>
 
-		<h:outputLabel id="etiquetaPais" value="#{etq['etiquetas.pais']}" />
-		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.pais}">
-		</h:outputText>
+			<h:outputLabel id="etiquetaProvincia"
+				value="#{etqAlm['etiquetas.provincia']}" />
+			<h:inputText value="#{verAlumnoFichaBean.alumnoVO.provincia}">
+			</h:inputText>
 
-		<h:outputLabel id="etiquetaApellido2"
-			value="#{etq['etiquetas.apellido2']}" />
-		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.apellido2}">
-		</h:outputText>
+			<h:outputLabel id="etiquetaDni" value="#{etqAlm['etiquetas.dni']}" />
+			<h:inputText value="#{verAlumnoFichaBean.alumnoVO.dni}">
+			</h:inputText>
 
-		<h:outputLabel id="etiquetaProvincia"
-			value="#{etq['etiquetas.provincia']}" />
-		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.provincia}">
-		</h:outputText>
+			<h:outputLabel id="etiquetaLocalidad"
+				value="#{etqAlm['etiquetas.localidad']}" />
+			<h:inputText value="#{verAlumnoFichaBean.alumnoVO.localidad}">
+			</h:inputText>
 
-		<h:outputLabel id="etiquetaDni" value="#{etq['etiquetas.dni']}" />
-		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.dni}">
-		</h:outputText>
+			<h:outputLabel id="etiquetaDomicilio"
+				value="#{etqAlm['etiquetas.domicilio']}" />
+			<h:inputText value="#{verAlumnoFichaBean.alumnoVO.domicilio}">
+			</h:inputText>
 
-		<h:outputLabel id="etiquetaLocalidad"
-			value="#{etq['etiquetas.localidad']}" />
-		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.localidad}">
-		</h:outputText>
+			<h:outputLabel id="etiquetaEmail" value="#{etqAlm['etiquetas.email']}" />
+			<h:inputText value="#{verAlumnoFichaBean.alumnoVO.email}">
+			</h:inputText>
 
-		<h:outputLabel id="etiquetaDomicilio"
-			value="#{etq['etiquetas.domicilio']}" />
-		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.domicilio}">
-		</h:outputText>
+			<h:outputLabel id="etiquetaTelefono"
+				value="#{etqAlm['etiquetas.telefono']}" />
+			<h:inputText value="#{verAlumnoFichaBean.alumnoVO.telefono}">
+			</h:inputText>
 
-		<h:outputLabel id="etiquetaEmail" value="#{etq['etiquetas.email']}" />
-		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.email}">
-		</h:outputText>
 
-		<h:outputLabel id="etiquetaTelefono"
-			value="#{etq['etiquetas.telefono']}" />
-		<h:outputText value="#{verAlumnoFichaBean.alumnoVO.telefono}">
-		</h:outputText>
 
-		<h:form>
+			<h:inputHidden id="idAlumno"
+				value="#{verAlumnoFichaBean.alumnoVO.idAlumno}"></h:inputHidden>
+
 			<h:commandButton value="Borrar Alumno"
-				action="#{eliminarAlumnoFichaBean.deleteAlumno(id)}"></h:commandButton>
-		</h:form>
+				action="#{eliminarAlumnoFichaBean.deleteAlumno(verAlumnoFichaBean.alumnoVO.idAlumno)}"></h:commandButton>
 
-	</h:panelGrid>
+
+
+		</h:panelGrid>
+	</h:form>
 
 </h:body>
 

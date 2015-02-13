@@ -12,7 +12,7 @@ public class VerAlumnoFichaBean {
 
 	private int id;
 
-	private AlumnoVO alumnoVO;
+	private AlumnoVO alumnoVO= new AlumnoVO();
 
 	public int getId() {
 		return id;
@@ -30,12 +30,12 @@ public class VerAlumnoFichaBean {
 		this.alumnoVO = alumnoVO;
 	}
 
-	public String getDetalleAlumno(int idAlumno) {
+	public String getDetalleAlumno() {
 
 		String pagina = "verAlumnoFicha";
 
 		AlumnoDAO alumnoDAO = new AlumnoDAO();
-		alumnoVO = alumnoDAO.getDetalleAlumno(idAlumno);
+		alumnoVO = alumnoDAO.getDetalleAlumno(this.id);
 
 		return pagina;
 

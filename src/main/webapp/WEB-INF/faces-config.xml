@@ -10,8 +10,8 @@
      	        <default-locale>es</default-locale>
      	   </locale-config>
 	   <resource-bundle>
-		<base-name>es.opensigad.etiquetas</base-name>
-		<var>etq</var>
+		<base-name>es.opensigad.etiquetasAlumno</base-name>
+		<var>etqAlm</var>
 	   </resource-bundle>
      </application>
 </faces-config>
