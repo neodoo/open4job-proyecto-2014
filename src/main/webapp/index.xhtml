@@ -9,10 +9,11 @@
 	<title>OpenSIGAD</title>
 </h:head>
 <h:body>
-		<h:messages style="margin:8px;" />
+	<h:messages style="margin:8px;" />
 	<br />
 	<h1>
-		<h:outputLabel id="tituloOpensigad" value="#{etqAlm['titulo.opensigad']}" />
+		<h:outputLabel id="tituloOpensigad"
+			value="#{etqAlm['titulo.opensigad']}" />
 	</h1>
 
 	<h3>
@@ -51,8 +52,8 @@
 		<h:commandButton value="Mostrar notas del alumno"
 			action="#{verAlumnoNotaListadoBean.getDetalleNotasAlumno(verAlumnoNotaListadoBean.idMatricula)}"></h:commandButton>
 	</h:form>
-	
-		<h3>Tutor</h3>
+
+	<h3>Tutor</h3>
 	<h:form>
 		<h:inputText value="#{verTutorBean.id}" />
 		<h:commandButton value="Mostrar tutor"
@@ -81,8 +82,8 @@
 	</h:form>
 	<a href="insertarAlumnoEvaluacion.xhtml">Insertar evaluacion para
 		un alumno</a>
-<h:form>
-	<!-- el id que se introduce lo manda a #{eliminarAlumnoEvaluacionBean.idEvaluacion} -->
+	<h:form>
+		<!-- el id que se introduce lo manda a #{eliminarAlumnoEvaluacionBean.idEvaluacion} -->
 		<h:inputText value="#{eliminarAlumnoEvaluacionBean.idEvaluacion}" />
 		<!--  despues ejecuta el metodo del boton eliminarAlumnoEvaluacionBean.eliminarEvaluacionAlumno(eliminarAlumnoEvaluacionBean.idEvaluacion)-->
 		<h:commandButton value="Eliminar Evaluacion"
@@ -91,24 +92,24 @@
 
 	<h3>Faltas del alumno</h3>
 
-	
-
 	<h:form>
 		Insertar Matrícula 
 		<h:commandButton value="Insertar Matrícula"
 			action="insertarAlumnoMatricula"></h:commandButton>
 	</h:form>
 
-
+	<h:form>
 	<br />
 	<a href="insertarAlumnoNota.xhtml">Insertar nota para un alumno</a>
-	<br /></h:form>
+	<br />
+	</h:form>
 	<a href="actualizarAlumnoNota.xhtml">Actualizar nota para un alumno</a>
 	<br />
 	<a href="borrarAlumnoNota.xhtml">Borrar nota para un alumno</a>
 
 
 	<h3>Faltas del alumno</h3>
+	
 	<h:form>
 		<h:inputText value="#{verAlumnoFaltaListadoBean.idAlumno}" />
 		<h:commandButton value="Ver listado"
@@ -125,11 +126,14 @@
 		<h:commandButton value="Ver Ficha"
 			action="#{verAlumnoFichaBean.getDetalleAlumno(verAlumnoFichaBean.id)}"></h:commandButton>
 	</h:form>
+	
 	<br></br>
 
 	<h3>Faltas del alumno</h3>
+	
 	<a href="indexAlumnoFalta.xhtml">Ir a faltas</a>
 	<br></br>
-</h:form>
+
 </h:body>
+
 </html>
