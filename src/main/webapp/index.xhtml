@@ -9,10 +9,14 @@
 	<title>OpenSIGAD</title>
 </h:head>
 <h:body>
+	<h1>
+		<h:outputLabel id="tituloOpensigad" value="#{etq['titulo.opensigad']}" />
+	</h1>
 
-	<h1>OpenSIGAD</h1>
-
-	<h3>Alumno</h3>
+	<h3>
+		<h:outputLabel id="etiquetaAlumnos"
+			value="#{etq['etiquetas.alumnos']}" />
+	</h3>
 	<h:form>
 		<h:inputText value="#{verAlumnoFichaBean.id}" />
 		<h:commandButton value="Ver Ficha"
