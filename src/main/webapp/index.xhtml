@@ -34,5 +34,14 @@
 		<h:commandButton value="Mostrar notas del alumno"
 			action="#{verAlumnoNotaListadoBean.getDetalleNotasAlumno(verAlumnoNotaListadoBean.idMatricula)}"></h:commandButton>
 	</h:form>
+	
+		<h3>Tutor</h3>
+	<h:form>
+		<h:inputText value="#{verTutorBean.id}" />
+		<h:commandButton value="Mostrar tutor"
+			action="#{verTutorBean.getDetalleTutor(verTutorBean.id)}"></h:commandButton>
+	</h:form>
+
+	<br></br>
 </h:body>
 </html>
