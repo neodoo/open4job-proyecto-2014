@@ -6,35 +6,24 @@ import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import es.opensigad.model.dao.AlumnoNotaDAO;
+import es.opensigad.model.dao.AlumnoMatriculaDAO;
 
 @ManagedBean
 @RequestScoped
-public class InsertarAlumnoMatriculaBean implements Serializable{
-	
+public class InsertarAlumnoMatriculaBean implements Serializable {
+
 	private int idAlumno;
-	private Date fecha;
-	private String centro;
+	private String fecha;
 	private String tipoEnsenanza;
+	private String centro;
 	private String ensenanza;
 	private String curso;
 
-	InsertarAlumnoMatriculaBean() {
+	public InsertarAlumnoMatriculaBean() {
 
 	}
 
-	public String insertarAlumnoMatricula(int idAlumno, Date fecha, String centro,
-			String tipoEnsenanza, String ensenanza, String curso) {
-		String pagina = null;/*
-		AlumnoNotaDAO alumnoNotaDAO = new AlumnoNotaDAO();
-		if (alumnoNotaDAO.insertarNotasAlumnoByIdMatricula(idMatricula,
-				idEnsenanza, idMateria, idEvalucion, nota)) {
-			pagina = "insertarAlumnoNotaExito";
-		} else {
-			pagina = "insertarAlumnoNotaFallo";
-		}*/
-		return pagina;
-	}
+
 
 	public int getIdAlumno() {
 		return idAlumno;
@@ -44,11 +33,11 @@ public class InsertarAlumnoMatriculaBean implements Serializable{
 		this.idAlumno = idAlumno;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
@@ -82,5 +71,19 @@ public class InsertarAlumnoMatriculaBean implements Serializable{
 
 	public void setCurso(String curso) {
 		this.curso = curso;
+	}
+	public String insertarAlumnoMatricula(int idAlumno, String fecha,
+			String centro, String tipoEnsenanza, String ensenanza, String curso) {
+		String pagina = null;
+		AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
+
+		if (matriculaDAO.insertarMatricula(idAlumno, fecha, centro,
+				tipoEnsenanza, ensenanza, curso)) {
+			pagina = "insertarAlumnoMatriculaExito";
+		} else {
+			pagina = "insertarAlumnoMatriculaFallo";
+		}
+
+		return pagina;
 	}
 }

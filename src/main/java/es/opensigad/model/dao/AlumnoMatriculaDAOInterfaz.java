@@ -7,12 +7,12 @@ import es.opensigad.model.vo.AlumnoMatriculaVO;
 
 public interface AlumnoMatriculaDAOInterfaz {
 
-	public boolean insertarMatricula(int idAlumno, Date fecha, String centro,
+	public boolean insertarMatricula(int idAlumno, String fecha, String centro,
 			String tipoEnsenanza, String ensenanza, String curso);
 
 	public boolean borrarMatricula(int idMatricula);
 
-	public boolean modificarMatricula(int idMatricula, Date fecha,
+	public boolean modificarMatricula(int idMatricula, String fecha,
 			String centro, String tipoEnsenanza, String ensenanza, String curso);
 
 	public ArrayList<AlumnoMatriculaVO> getListadoMatricula(int idAlumno);

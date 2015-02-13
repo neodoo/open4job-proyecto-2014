@@ -9,7 +9,7 @@
 	<title>OpenSIGAD</title>
 </h:head>
 <h:body>
-<h3>Matriculas del alumno</h3>
+	<h3>Matriculas del alumno</h3>
 	<h:form>
 		Id del alumno: <h:inputText
 			value="#{verAlumnoMatriculaListadoBean.id}" />
@@ -17,12 +17,17 @@
 			action="#{verAlumnoMatriculaListadoBean.getListaMatricula(verAlumnoMatriculaListadoBean.id)}"></h:commandButton>
 	</h:form>
 	<h:form>
+		Insertar Matrícula 
+		<h:commandButton value="Insertar Matrícula"
+			action="insertarAlumnoMatricula"></h:commandButton>
+	</h:form>
+	<h:form>
 		Id de matricula: <h:inputText
 			value="#{eliminarAlumnoMatriculaBean.idMatricula}" />
 		<h:commandButton value="Borrar matrícula del alumno"
 			action="#{eliminarAlumnoMatriculaBean.borrarMatricula(eliminarAlumnoMatriculaBean.idMatricula)}"></h:commandButton>
 	</h:form>
-		
+
 </h:body>
 </html>
 

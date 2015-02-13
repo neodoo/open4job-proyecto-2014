@@ -11,11 +11,13 @@ public interface AlumnoDAOInterfaz {
 
 	public AlumnoVO getDetalleAlumno(int num_expediente);
 
-	public void insertAlumno(int id, int num_expediente, String nombre,
+	public boolean insertAlumno(AlumnoVO alumnoVO);
+
+	public boolean deleteAlumno(int id);
+	
+	public boolean modifyAlumno(int idAlumno, int numExpediente, String nombre,
 			String apellido1, String apellido2, String sexo, String dni,
 			String telefono, Date fecha_nacimiento, String pais,
 			String provincia, String localidad, String domicilio, String email);
-
-	public void deleteAlumno(int id);
 
 }

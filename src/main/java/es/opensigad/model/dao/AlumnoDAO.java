@@ -70,12 +70,13 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 				listAlumno.add(alumnoVO);
 			}
+			return listAlumno;
 		} catch (SQLException e) {
 			listAlumno = null;
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
 
-		return listAlumno;
+		return null;
 	}
 
 	/**
@@ -115,11 +116,12 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 						result.getString("domicilio"),
 						result.getString("email"));
 			}
+			return alumnoVO;
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
 
-		return alumnoVO;
+		return null;
 	}
 
 	/**
@@ -140,10 +142,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 	 * @param domicilio
 	 * @param email
 	 */
-	public void insertAlumno(int idAlumno, int numExpediente, String nombre,
-			String apellido1, String apellido2, String sexo, String dni,
-			String telefono, Date fecha_nacimiento, String pais,
-			String provincia, String localidad, String domicilio, String email) {
+	public boolean insertAlumno(AlumnoVO alumnoVO) {
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -152,26 +151,30 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			con = ds.getConnection();
 
 			ps = con.prepareStatement("INSERT INTO alumno VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-			ps.setInt(1, idAlumno);
-			ps.setInt(2, numExpediente);
-			ps.setString(3, nombre);
-			ps.setString(4, apellido1);
-			ps.setString(5, apellido2);
-			ps.setString(6, sexo);
-			ps.setString(7, dni);
-			ps.setString(8, telefono);
-			ps.setDate(9, fecha_nacimiento);
-			ps.setString(10, pais);
-			ps.setString(11, localidad);
-			ps.setString(12, provincia);
-			ps.setString(13, domicilio);
-			ps.setString(14, email);
+			ps.setInt(1, alumnoVO.getIdAlumno());
+			ps.setInt(2, alumnoVO.getNumExpediente());
+			ps.setString(3, alumnoVO.getNombre());
+			ps.setString(4, alumnoVO.getApellido1());
+			ps.setString(5, alumnoVO.getApellido2());
+			ps.setString(6, alumnoVO.getSexo());
+			ps.setString(7, alumnoVO.getDni());
+			ps.setString(8, alumnoVO.getTelefono());
+			ps.setDate(9, alumnoVO.getFechaNacimiento());
+			ps.setString(10, alumnoVO.getPais());
+			ps.setString(11, alumnoVO.getLocalidad());
+			ps.setString(12, alumnoVO.getProvincia());
+			ps.setString(13, alumnoVO.getDomicilio());
+			ps.setString(14, alumnoVO.getEmail());
 
 			ps.executeUpdate();
+
+			return true;
 
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
+
+		return false;
 	}
 
 	/**
@@ -179,7 +182,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 	 * 
 	 * @param idAlumno
 	 */
-	public void deleteAlumno(int idAlumno) {
+	public boolean deleteAlumno(int idAlumno) {
 		Connection con = null;
 		PreparedStatement ps = null;
 
@@ -188,13 +191,15 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 			ps = con.prepareStatement("DELETE FROM alumno WHERE id = ?");
 			ps.setInt(1, idAlumno);
-			
+
 			ps.executeUpdate();
+
+			return true;
 
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
-		
+		return false;
 	}
 
 	/**
@@ -217,7 +222,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 	 * @param domicilio
 	 * @param email
 	 */
-	public void modifyAlumno(int idAlumno, int numExpediente, String nombre,
+	public boolean modifyAlumno(int idAlumno, int numExpediente, String nombre,
 			String apellido1, String apellido2, String sexo, String dni,
 			String telefono, Date fecha_nacimiento, String pais,
 			String provincia, String localidad, String domicilio, String email) {
@@ -251,8 +256,12 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 			ps.executeUpdate();
 
+			return true;
+
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
+
+		return false;
 	}
 }
