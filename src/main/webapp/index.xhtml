@@ -17,8 +17,9 @@
 		<h:inputText value="#{verAlumnoFichaBean.id}" />
 		<h:commandButton value="Ver Ficha"
 			action="#{verAlumnoFichaBean.getDetalleAlumno(verAlumnoFichaBean.id)}"></h:commandButton>
-		  		<h:commandButton value="Ver Lista" action="#{verAlumnoListaBean.getListAlumno()}"></h:commandButton>
-		
+		<h:commandButton value="Ver Lista"
+			action="#{verAlumnoListaBean.getListAlumno()}"></h:commandButton>
+
 	</h:form>
 
 	<br></br>
@@ -53,57 +54,59 @@
 
 	<h3>Matriculas del alumno</h3>
 
-<<<<<<< HEAD
+	<h:commandButton value="Ir a las funciones de matrícula" action="indexMatricula"></h:commandButton>
+
+	<br></br>
+	
 	<h3>Una falta del alumno</h3>
 	<h:form>
 		<h:inputText value="#{verAlumnoFaltaFichaBean.id}" />
 		<h:commandButton value="Ver falta"
 			action="#{verAlumnoFaltaFichaBean.getDetalleFalta(verAlumnoFaltaFichaBean.id)}"></h:commandButton>
 	</h:form>
-	
+
 	<h3>Faltas del alumno</h3>
-=======
->>>>>>> a7750866a44f7442eb4d5f727b8a5ba1b9df34dc
+
+	
+
 	<h:form>
-		Id del alumno: <h:inputText
-			value="#{verAlumnoMatriculaListadoBean.id}" />
-		<h:commandButton value="Ver matrículas del alumno"
-			action="#{verAlumnoMatriculaListadoBean.getListaMatricula(verAlumnoMatriculaListadoBean.id)}"></h:commandButton>
+		Insertar Matrícula 
+		<h:commandButton value="Insertar Matrícula"
+			action="insertarAlumnoMatricula"></h:commandButton>
+	</h:form>
+
+
+	<br />
+	<a href="insertarAlumnoNota.xhtml">Insertar nota para un alumno</a>
+	<br />
+	<a href="actualizarAlumnoNota.xhtml">Actualizar nota para un alumno</a>
+	<br />
+	<a href="borrarAlumnoNota.xhtml">Borrar nota para un alumno</a>
+
+	<h3>Evaluaciones del Alumno</h3>
+	<h:form>
+		<h:commandButton value="Mostrar evaluaciones generales"
+			action="#{verAlumnoEvaluacionListadoBean.getAlumnoEvaluacionListado()}"></h:commandButton>
+	</h:form>
+
+	<h:form>
+		<h:inputText value="#{verAlumnoFichaBean.id}" />
+		<h:commandButton value="Ver Ficha"
+			action="#{verAlumnoFichaBean.getDetalleAlumno(verAlumnoFichaBean.id)}"></h:commandButton>
+	</h:form>
+
+	<h:form>
+		<h:inputText value="#{verAlumnoFichaBean.id}" />
+		<h:commandButton value="Ver Ficha"
+			action="#{verAlumnoFichaBean.getDetalleAlumno(verAlumnoFichaBean.id)}"></h:commandButton>
+	</h:form>
+
+	<h3>Faltas del alumno</h3>
+	<h:form>
+		<h:inputText value="#{verAlumnoFaltaListadoBean.idAlumno}" />
+		<h:commandButton value="Ver listado"
+			action="#{verAlumnoFaltaListadoBean.getAlumnoFaltaListado(verAlumnoFaltaListadoBean.idAlumno)}"></h:commandButton>
 
 	</h:form>
-		<br />
-		<a href="insertarAlumnoNota.xhtml">Insertar nota para un alumno</a>
-		<br />
-		<a href="actualizarAlumnoNota.xhtml">Actualizar nota para un
-			alumno</a>
-			<br />
-		<a href="borrarAlumnoNota.xhtml">Borrar nota para un
-			alumno</a>
-
-		<h3>Evaluaciones del Alumno</h3>
-		<h:form>
-			<h:commandButton value="Mostrar evaluaciones generales"
-				action="#{verAlumnoEvaluacionListadoBean.getAlumnoEvaluacionListado()}"></h:commandButton>
-		</h:form>
-
-		<h:form>
-			<h:inputText value="#{verAlumnoFichaBean.id}" />
-			<h:commandButton value="Ver Ficha"
-				action="#{verAlumnoFichaBean.getDetalleAlumno(verAlumnoFichaBean.id)}"></h:commandButton>
-		</h:form>
-
-		<h:form>
-			<h:inputText value="#{verAlumnoFichaBean.id}" />
-			<h:commandButton value="Ver Ficha"
-				action="#{verAlumnoFichaBean.getDetalleAlumno(verAlumnoFichaBean.id)}"></h:commandButton>
-		</h:form>
-
-		<h3>Faltas del alumno</h3>
-		<h:form>
-			<h:inputText value="#{verAlumnoFaltaListadoBean.idAlumno}" />
-			<h:commandButton value="Ver listado"
-				action="#{verAlumnoFaltaListadoBean.getAlumnoFaltaListado(verAlumnoFaltaListadoBean.idAlumno)}"></h:commandButton>
-
-		</h:form>
 </h:body>
 </html>
