@@ -25,7 +25,7 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 	public static final Logger logger = Logger.getLogger(AlumnoFaltaVO.class
 			.getName());
 
-	private DataSource ds = null;
+	public DataSource ds = null;
 
 	public AlumnoFaltaDAO() {
 
@@ -38,7 +38,7 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 	}
 
 	// Faltas de un alumno
-	public List<AlumnoFaltaVO> getListFaltasAlumno(int pidAlumno) {
+	public List<AlumnoFaltaVO> getListaFaltas(int pidAlumno) {
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -66,14 +66,17 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 				String justificado = rs.getString(7);
 				String observaciones = rs.getString(8);
 
-				faltaVO = new AlumnoFaltaVO(id, idAlumno, fecha, sesion, materia,
-						tipo, justificado, observaciones);
+				faltaVO = new AlumnoFaltaVO(id, idAlumno, fecha, sesion,
+						materia, tipo, justificado, observaciones);
 				listFaltas.add(faltaVO);
 			}
 
 		} catch (SQLException e) {
 			listFaltas = null;
-			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
+			logger.log(
+					Level.SEVERE,
+					"Error en AlumnoFaltaDAO.getListaFaltas : "
+							+ e.getMessage());
 		}
 		return listFaltas;
 	}
@@ -105,24 +108,91 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 				String justificado = rs.getString(7);
 				String observaciones = rs.getString(8);
 
-				faltaVO = new AlumnoFaltaVO(id, id_alumno, fecha, sesion, materia,
-						tipo, justificado, observaciones);
+				faltaVO = new AlumnoFaltaVO(id, id_alumno, fecha, sesion,
+						materia, tipo, justificado, observaciones);
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(
+					Level.SEVERE,
+					"Error en AlumnoFaltaDAO.getDetalleFalta : "
+							+ e.getMessage());
 		}
 		return faltaVO;
 	}
 
-	public void actualizarFalta(AlumnoFaltaVO falta) {
-		// TODO Auto-generated method stub
+	// Insertar una falta
+	public boolean insertarFalta(AlumnoFaltaVO falta) {
 
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+			String query = "INSERT INTO faltas (id, idAlumno, fecha, sesion, materia, tipo, justificado, observaciones) VALUES (?,?,?,?,?,?,?,?";
+
+			con = ds.getConnection();
+			ps = con.prepareStatement(query);
+			ps.setInt(1, falta.getId());
+			ps.executeUpdate();
+
+			return true;
+
+		} catch (SQLException e) {
+			logger.log(Level.SEVERE, "Error en AlumnoFaltaDAO.crearFalta : "
+					+ e.getMessage());
+		}
+
+		return false;
 	}
 
-	public void borrarFalta(int id) {
-		// TODO Auto-generated method stub
+	// Actualizar una falta
+	public boolean actualizarFalta(AlumnoFaltaVO falta) {
 
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+			String query = "UPDATE faltas SET id = ?, idAlumno = ?, fecha = ?, sesion = ?, materia = ?, tipo = ?, justificado = ?, observaciones = ? WHERE id = ?";
+
+			con = ds.getConnection();
+			ps = con.prepareStatement(query);
+			ps.setInt(1, falta.getId());
+			ps.executeUpdate();
+
+			return true;
+
+		} catch (SQLException e) {
+			logger.log(
+					Level.SEVERE,
+					"Error en AlumnoFaltaDAO.actualizarFalta : "
+							+ e.getMessage());
+		}
+
+		return false;
+	}
+
+	// Eliminar una falta
+	public boolean eliminarFalta(int idFalta) {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+			String query = "DELETE FROM faltas WHERE id = ?";
+
+			con = ds.getConnection();
+			ps = con.prepareStatement(query);
+			ps.setInt(1, idFalta);
+			ps.executeUpdate();
+
+			return true;
+
+		} catch (SQLException e) {
+			logger.log(Level.SEVERE, "Error en AlumnoFaltaDAO.borrarFalta : "
+					+ e.getMessage());
+		}
+
+		return false;
 	}
 
 }

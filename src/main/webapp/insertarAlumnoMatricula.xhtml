@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>Insertar Matriculas Alumno</title>
+</h:head>
+<h:body>
+	<h1>Introduce la matricula del alumno</h1>
+	<h:form>
+		Id Alumno<h:inputText value="#{insertarAlumnoMatriculaBean.idAlumno}"></h:inputText>
+		<br/>Fecha curso<h:inputText value="#{insertarAlumnoMatriculaBean.fecha}"></h:inputText>
+		<br/>Centro<h:inputText value="#{insertarAlumnoMatriculaBean.centro}"></h:inputText>
+		<br/>Tipo de enseñanza<h:inputText value="#{insertarAlumnoMatriculaBean.tipoEnsenanza}"></h:inputText>
+		<br/>Enseñanza<h:inputText value="#{insertarAlumnoMatriculaBean.ensenanza}"></h:inputText>
+		<br/>Curso<h:inputText value="#{insertarAlumnoMatriculaBean.curso}"></h:inputText>
+		<br/><h:commandButton value="Guardar matricula del alumno" action="#{insertarAlumnoMatriculaBean.insertarAlumnoMatricula(insertarAlumnoMatriculaBean.idAlumno,
+				 insertarAlumnoMatriculaBean.fecha, insertarAlumnoMatriculaBean.centro, insertarAlumnoMatriculaBean.tipoEnsenanza, insertarAlumnoMatriculaBean.ensenanza, insertarAlumnoMatriculaBean.curso)}"></h:commandButton>
+	</h:form>
+</h:body>
+</html>

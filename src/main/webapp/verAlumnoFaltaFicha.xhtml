@@ -10,11 +10,47 @@
 
 <h:body>
 
-	<h1>Ficha Falta</h1>
-	<h:outputText value="#{verAlumnoFaltaFichaBean.faltaVO.materia}">
-	</h:outputText>
-	<h:outputText value="#{verAlumnoFaltaFichaBean.faltaVO.tipo}">
-	</h:outputText>
+	<h1>Falta</h1>
+
+	<h:form>
+	<h:panelGrid id="panel" columns="2" border="0" cellpadding="0" cellspacing="5">
+		<h:outputLabel value="Falta: " style="font-weight:bold" />
+		<h:inputText disabled="True"
+			value="#{verAlumnoFaltaFichaBean.faltaVO.id}">
+		</h:inputText>
+		<h:outputLabel value="Alumno: " style="font-weight:bold" />
+		<h:inputText disabled="True"
+			value="#{verAlumnoFaltaFichaBean.faltaVO.idAlumno}">
+		</h:inputText>
+
+		<h:outputLabel value="Fecha: " style="font-weight:bold" />
+		<h:inputText value="#{verAlumnoFaltaFichaBean.faltaVO.fecha}">
+			<f:convertDateTime pattern="dd-MM-yyyy" />
+		</h:inputText>
+		<h:outputLabel value="Sesión: " style="font-weight:bold" />
+		<h:inputText value="#{verAlumnoFaltaFichaBean.faltaVO.sesion}">
+		</h:inputText>
+		<h:outputLabel value="Materia: " style="font-weight:bold" />
+		<h:inputText value="#{verAlumnoFaltaFichaBean.faltaVO.materia}">
+		</h:inputText>
+		<h:outputLabel value="Tipo: " style="font-weight:bold" />
+		<h:inputText value="#{verAlumnoFaltaFichaBean.faltaVO.tipo}">
+		</h:inputText>
+		<h:outputLabel value="Justificado: " style="font-weight:bold" />
+		<h:inputText value="#{verAlumnoFaltaFichaBean.faltaVO.justificado}">
+		</h:inputText>
+		<h:outputLabel value="Observaciones: " style="font-weight:bold" />
+		<h:inputTextarea rows="4" cols="50"
+			value="#{verAlumnoFaltaFichaBean.faltaVO.observaciones}">
+		</h:inputTextarea>
+	</h:panelGrid>
+
+
+		<h:commandButton value="Insertar" action="#{insertarAlumnoFaltaBean.insertarFalta()}" />
+		<h:commandButton value="Actualizar" action="#{actualizarAlumnoFaltaBean.actualizarFalta(verAlumnoFaltaFichaBean.faltaVO.id )}" />
+		<h:commandButton value="Eliminar" action="#{eliminarAlumnoFaltaBean.eliminarFalta(eliminarAlumnoFaltaBean.id)}" />
+
+	</h:form>
 	
 </h:body>
 

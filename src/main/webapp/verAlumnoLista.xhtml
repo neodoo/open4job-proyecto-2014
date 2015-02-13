@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+</h:head>
+
+<h:body>
+
+
+
+
+	<h1>Lista de alumnos</h1>
+
+	<h:dataTable value="#{verAlumnoListaBean.alumnoLista}" var="c"
+		styleClass="order-table" headerClass="order-table-header"
+		rowClasses="order-table-odd-row,order-table-even-row">
+
+
+		<h:column>
+			<f:facet name="header"> id	 </f:facet>
+    				#{c.idAlumno}
+    	</h:column>
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaNumExpediente"
+					value="#{etq['etiquetas.numExpediente']}" />
+			</f:facet>
+    				#{c.numExpediente}
+    	</h:column>
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaNombre"
+					value="#{etq['etiquetas.nombre']}" />
+			</f:facet>
+    				#{c.nombre}
+    	</h:column>
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaApellido1"
+					value="#{etq['etiquetas.apellido1']}" />
+			</f:facet>
+    				#{c.apellido1}
+    		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaApellido2"
+					value="#{etq['etiquetas.apellido2']}" />
+			</f:facet>
+    				#{c.apellido2}
+    	</h:column>
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaSexo" value="#{etq['etiquetas.sexo']}" />
+			</f:facet>
+    				#{c.sexo}
+    	</h:column>
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaDni" value="#{etq['etiquetas.dni']}" />
+			</f:facet>
+    				#{c.dni}
+    	</h:column>
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaTelefono"
+					value="#{etq['etiquetas.telefono']}" />
+			</f:facet>
+    				#{c.telefono}
+    	</h:column>
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaFechaNacimiento"
+					value="#{etq['etiquetas.fechaNacimiento']}" />
+			</f:facet>
+    				#{c.fechaNacimiento}
+    	</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaPais" value="#{etq['etiquetas.pais']}" />
+			</f:facet>
+    				#{c.pais}
+    	</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaProvincia"
+					value="#{etq['etiquetas.provincia']}" />
+			</f:facet>
+    				#{c.provincia}
+    	</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaLocalidad"
+					value="#{etq['etiquetas.localidad']}" />
+			</f:facet>
+    				#{c.localidad}
+    	</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaDomicilio"
+					value="#{etq['etiquetas.domicilio']}" />
+			</f:facet>
+    				#{c.domicilio}
+    	</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="etiquetaEmail" value="#{etq['etiquetas.email']}" />
+			</f:facet>
+    				#{c.email}
+    	</h:column>
+	</h:dataTable>
+</h:body>
+
+</html>
