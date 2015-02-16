@@ -9,23 +9,17 @@
 <h:body>
 
 	<ui:composition template="/template/common/commonLayout.xhtml">
+
 		<ui:define name="content">
-
-			<h:messages style="margin:8px;" />
-			<br />
-			<h3>
-				<h:outputLabel id="etiquetaAlumnos"
-					value="#{etqAlm['etiquetas.alumnos']}" />
-			</h3>
-			<h:form>
-				<h:inputText value="#{verAlumnoFichaBean.id}" />
-				<h:commandButton value="Ver Ficha"
-					action="#{verAlumnoFichaBean.getDetalleAlumno()}"></h:commandButton>
-				<h:commandButton value="Ver Lista"
-					action="#{verAlumnoListaBean.getListAlumno()}"></h:commandButton>
-
-			</h:form>
+			<h2>This is page1 content</h2>
 		</ui:define>
+
+		<ui:define name="footer">
+			<h2>This is page1 Footer</h2>
+		</ui:define>
+
 	</ui:composition>
+
 </h:body>
+
 </html>

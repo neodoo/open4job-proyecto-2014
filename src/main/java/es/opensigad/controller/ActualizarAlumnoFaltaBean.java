@@ -13,8 +13,12 @@ import es.opensigad.model.vo.AlumnoFaltaVO;
 @RequestScoped
 public class ActualizarAlumnoFaltaBean implements Serializable {
 
-	private int id;
-	private int idAlumno;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private long id;
+	private long idAlumno;
 	private Date fecha;
 	private String sesion;
 	private String materia;
@@ -26,19 +30,19 @@ public class ActualizarAlumnoFaltaBean implements Serializable {
 
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public int getIdAlumno() {
+	public long getIdAlumno() {
 		return idAlumno;
 	}
 
-	public void setIdAlumno(int idAlumno) {
+	public void setIdAlumno(long idAlumno) {
 		this.idAlumno = idAlumno;
 	}
 

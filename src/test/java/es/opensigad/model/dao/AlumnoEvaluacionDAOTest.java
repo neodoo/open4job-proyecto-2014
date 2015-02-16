@@ -16,8 +16,10 @@ public class AlumnoEvaluacionDAOTest extends TestCase {
 	}
 
 	public void testgetDetalleEvaluacion() {
+		
 		ArrayList<AlumnoEvaluacionVO> evaluacion = evaluacionDAO
 				.getDetalleEvaluacion(2);
+		
 		assertTrue(evaluacion.size()>0);
 
 	}

@@ -7,6 +7,29 @@
 	<version>1.0-SNAPSHOT</version>
 	<name>OpenSIGAD Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<showDeprecation>true</showDeprecation>
+					<showWarnings>true</showWarnings>
+					<executable>${env.JAVA_HOME_7}/bin/javac</executable>
+					<fork>true</fork>
+					<plugin>
+						<finalName>proyecto_open4job_2014</finalName>
+					</plugin>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.sun.faces</groupId>
@@ -38,7 +61,7 @@
 		<dependency>  
             <groupId>org.primefaces</groupId>  
             <artifactId>primefaces</artifactId>  
-            <version>3.3.1</version>  
+            <version>5.1</version>  
         </dependency>
 		<!-- MySql dependency -->
 		<dependency>
@@ -58,13 +81,11 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-	        <dependency>
-                        <groupId>commons-dbcp</groupId>
-                        <artifactId>commons-dbcp</artifactId>
-                        <version>1.4</version>
-                </dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
 	</dependencies>
-	<build>
-		<finalName>proyecto_open4job_2014</finalName>
-	</build>
+
 </project>

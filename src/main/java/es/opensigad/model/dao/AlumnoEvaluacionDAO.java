@@ -57,7 +57,7 @@ public class AlumnoEvaluacionDAO implements Serializable,
 			ResultSet rs = stm.executeQuery("select * from evaluacion");
 			while (rs.next()) {
 				AlumnoEvaluacionVO evaluacion = new AlumnoEvaluacionVO();
-				evaluacion.setIdEvaluacion(rs.getInt("id"));
+				evaluacion.setIdEvaluacion(rs.getInt("id_evaluacion"));
 				evaluacion.setIdEnsenanza(rs.getInt("id_ensenanza"));
 				evaluacion.setIdCurso(rs.getInt("id_curso"));
 				evaluacion.setEvaluacion(rs.getInt("evaluacion"));
@@ -126,8 +126,45 @@ public class AlumnoEvaluacionDAO implements Serializable,
 
 	}
 
-	public void EditarEvaluacionesVO() {
-		// TODO Auto-generated method stub
+	// Modificar una evaluacion
+	public boolean actualizarEvaluacionAlumno(int idEvaluacion, int idEnsenanza, int idCurso, 
+			int evaluacion, Date fechaInicio, Date fechaFin, Date fechaSesion, Date fechaPublicacion) {
+		
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		
+		try {
+
+			java.sql.Date fechaI = new java.sql.Date(fechaInicio.getTime());
+			java.sql.Date fechaF = new java.sql.Date(fechaFin.getTime());
+			java.sql.Date fechaS = new java.sql.Date(fechaSesion.getTime());
+			java.sql.Date fechaP = new java.sql.Date(fechaPublicacion.getTime());
+
+			conn = ds.getConnection();
+			String query = "update evaluacion set id_ensenanza=?, id_curso=?, evaluacion=?, fecha_inicio=?, fecha_final=?, fecha_sesion=?, fecha_publicacion=? where id_evaluacion=?";
+			pstm = conn.prepareStatement(query);
+			pstm.setInt(1, idEnsenanza);
+			pstm.setInt(2, idCurso);
+			pstm.setInt(3, evaluacion);
+			pstm.setDate(4, fechaI);
+			pstm.setDate(5, fechaF);
+			pstm.setDate(6, fechaS);
+			pstm.setDate(7, fechaP);
+			pstm.setInt(8, idEvaluacion);
+			int numFilas = pstm.executeUpdate();
+			return true;
+
+		} catch (Exception e) {
+			Logger.getLogger(getClass().getName()).log(
+					Level.SEVERE,
+					"Error en AlumnoEvaluacionDAO.actualizarEvaluacionAlumno:"
+							+ e.getMessage());
+		} finally {
+			try { pstm.close(); } catch (Exception e) {}
+			try { conn.close(); } catch (Exception e) {}
+		}
+		
+		return false;	
 
 	}
 
@@ -138,7 +175,7 @@ public class AlumnoEvaluacionDAO implements Serializable,
 		try {
 			conexion = ds.getConnection();
 			pstm = conexion
-					.prepareStatement("DELETE FROM evaluacion WHERE id=?");
+					.prepareStatement("DELETE FROM evaluacion WHERE id_evaluacion=?");
 			pstm.setInt(1, idEvaluacion);
 			pstm.executeUpdate();
 			return true;
@@ -169,14 +206,15 @@ public class AlumnoEvaluacionDAO implements Serializable,
 			PreparedStatement pstm;
 			Statement stm = conexion.createStatement();
 			ResultSet rs;
-			String consulta = "SELECT * FROM evaluacion where id =?";
+			String consulta = "SELECT * FROM evaluacion where id_evaluacion =?";
 			pstm = conexion.prepareStatement(consulta);
 			pstm.setInt(1, idEvaluacion);
 			rs = pstm.executeQuery();
 
 			while (rs.next()) {
 				AlumnoEvaluacionVO detalleEvaluacinesVO = new AlumnoEvaluacionVO();
-				detalleEvaluacinesVO.setEvaluacion(rs.getInt("id"));
+				int a = rs.getInt("id_evaluacion");
+				detalleEvaluacinesVO.setIdEvaluacion(rs.getInt("id_evaluacion"));
 				detalleEvaluacinesVO.setIdEnsenanza(rs.getInt("id_ensenanza"));
 				detalleEvaluacinesVO.setIdCurso(rs.getInt("id_curso"));
 				detalleEvaluacinesVO.setEvaluacion(rs.getInt("evaluacion"));
