@@ -28,6 +28,34 @@ public class AlumnoNotaDAO {
 		}
 	}
 
+	public ArrayList<AlumnoNotaVO> getAllAlumnoNotas() {
+		ArrayList<AlumnoNotaVO> alumnoNotas = new ArrayList<AlumnoNotaVO>();
+		try {
+			Connection conn = ds.getConnection();
+			Statement stm;
+			ResultSet rs;
+			String consulta = "select * from nota";
+			stm = conn.createStatement();
+			rs = stm.executeQuery(consulta);
+			while (rs.next()) {
+				AlumnoNotaVO alumnoNota = new AlumnoNotaVO();
+				alumnoNota.setIdEnsenanza(rs.getInt("id_ensenanza"));
+				alumnoNota.setIdMatricula(rs.getInt("id_matricula"));
+				alumnoNota.setIdMateria(rs.getInt("id_materia"));
+				alumnoNota.setIdEvaluacion(rs.getInt("id_evaluacion"));
+				alumnoNota.setNota(rs.getInt("nota"));
+				alumnoNotas.add(alumnoNota);
+			}
+			return alumnoNotas;
+		} catch (Exception e) {
+			Logger.getLogger(getClass().getName()).log(
+					Level.SEVERE,
+					"Error en AlumnoNotaDAO.getAllAlumnoNotas:"
+							+ e.getMessage());
+		}
+		return null;
+	}
+
 	public ArrayList<AlumnoNotaVO> getNotasByIdMatricula(int idMatricula) {
 		ArrayList<AlumnoNotaVO> notasAlumno = new ArrayList<AlumnoNotaVO>();
 		try {
@@ -112,9 +140,9 @@ public class AlumnoNotaDAO {
 			String query = "delete from nota where id_matricula = ?";
 			pstm = conn.prepareStatement(query);
 			pstm.setInt(1, idMatricula);
-			if (pstm.executeUpdate()==1){
+			if (pstm.executeUpdate() == 1) {
 				return true;
-			}	
+			}
 		} catch (Exception e) {
 			Logger.getLogger(getClass().getName()).log(
 					Level.SEVERE,

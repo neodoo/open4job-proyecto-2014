@@ -29,7 +29,7 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 	private int idMatricula;
 
 	public VerAlumnoNotaListadoBean() {
-
+		getAllAlumnoNotas();
 	}
 
 	public int getIdMatricula() {
@@ -54,5 +54,9 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 		alumnoNotas = notasAlumnoDAO.getNotasByIdMatricula(idMatricula);
 		return pagina;
 	}
+	public void getAllAlumnoNotas() {
+        AlumnoNotaDAO alumnoNotaDao = new AlumnoNotaDAO();
+        alumnoNotas = alumnoNotaDao.getAllAlumnoNotas();
+    }
 
 }
