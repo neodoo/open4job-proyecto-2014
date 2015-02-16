@@ -13,8 +13,10 @@
 	<h1>OpenSIGAD</h1>
 	<h3>Evaluaciones del Alumno</h3>
 	<h:form>
+		<h:form>
 		<h:commandButton value="Mostrar evaluaciones generales"
-			action="#{verAlumnoEvaluacionListadoBean.getAlumnoEvaluacionListado()}"></h:commandButton>
+			action="verAlumnoEvaluacion?faces-redirect=true"></h:commandButton>
+	</h:form>
 	</h:form>
 	<a href="insertarAlumnoEvaluacion.xhtml">Insertar evaluacion para
 		un alumno</a>
