@@ -14,9 +14,9 @@
 	<h3>Evaluaciones del Alumno</h3>
 	<h:form>
 		<h:form>
-		<h:commandButton value="Mostrar evaluaciones generales"
-			action="verAlumnoEvaluacion?faces-redirect=true"></h:commandButton>
-	</h:form>
+			<h:commandButton value="Mostrar evaluaciones generales"
+				action="verAlumnoEvaluacion?faces-redirect=true"></h:commandButton>
+		</h:form>
 	</h:form>
 	<a href="insertarAlumnoEvaluacion.xhtml">Insertar evaluacion para
 		un alumno</a>
@@ -31,6 +31,10 @@
 			<h:inputText value="#{verAlumnoEvaluacionFichaBean.idEvaluacion}" />
 			<h:commandButton value="Ver Evaluacion"
 				action="#{verAlumnoEvaluacionFichaBean.getDetalleEvaluacionAlumno(verAlumnoEvaluacionFichaBean.idEvaluacion)}"></h:commandButton>
+		</h:form>
+		<h:form>
+			<a href="actualizarAlumnoEvaluacion.xhtml">Actualizar evaluacion
+				del alumno</a>
 		</h:form>
 	</h:form>
 
