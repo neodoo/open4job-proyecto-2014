@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class AlumnoFaltaVO {
 
-	private int id;
-	private int idAlumno;
+	private long id;
+	private long idAlumno;
 	private Date fecha;
 	private String sesion;
 	private String materia;
@@ -15,8 +15,20 @@ public class AlumnoFaltaVO {
 
 	public AlumnoFaltaVO() {
 	}
+
+	public AlumnoFaltaVO(long idAlumno, Date fecha, String sesion,
+			String materia, String tipo, String justificado,
+			String observaciones) {
+		this.idAlumno = idAlumno;
+		this.fecha = fecha;
+		this.sesion = sesion;
+		this.materia = materia;
+		this.tipo = tipo;
+		this.justificado = justificado;
+		this.observaciones = observaciones;
+	}
 	
-	public AlumnoFaltaVO(int id, int idAlumno, Date fecha, String sesion,
+	public AlumnoFaltaVO(long id, long idAlumno, Date fecha, String sesion,
 			String materia, String tipo, String justificado,
 			String observaciones) {
 		this.id = id;
@@ -29,16 +41,18 @@ public class AlumnoFaltaVO {
 		this.observaciones = observaciones;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public int getIdAlumno() {
-		return idAlumno;
+	public long getIdAlumno() {
+		return idAlumno;	
+		//String query = "UPDATE faltas SET fecha = ?, sesion = ?, materia = ?, tipo = ?, justificado = ?, observaciones = ? WHERE id = ?";
+
 	}
 
 	public void setIdAlumno(int idAlumno) {

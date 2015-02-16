@@ -11,19 +11,20 @@
 <h:body>
 
 	<h1>OpenSIGAD</h1>
-		<h3>Una falta del alumno</h3>
-		<h:form>
-			<h:inputText value="#{verAlumnoFaltaFichaBean.id}" />
-			<h:commandButton value="Ver falta"
-				action="#{verAlumnoFaltaFichaBean.getDetalleFalta()}"></h:commandButton>
-		</h:form>
 
-		<h3>Faltas del alumno</h3>
-		<h:form>
-			<h:inputText value="#{verAlumnoFaltaListadoBean.idAlumno}" />
-			<h:commandButton value="Ver listado"
-				action="#{verAlumnoFaltaListadoBean.getAlumnoFaltaListado()}"></h:commandButton>
-		</h:form>
-		
+	<h3>Una falta del alumno</h3>
+	<h:form>
+		<h:inputText value="#{verAlumnoFaltaFichaBean.id}" />
+		<h:commandButton value="Ver falta"
+			action="#{verAlumnoFaltaFichaBean.getDetalleFalta()}"></h:commandButton>
+	</h:form>
+
+	<h3>Faltas del alumno</h3>
+	<h:form>
+		<h:inputText value="#{verAlumnoFaltaListadoBean.idAlumno}" />
+		<h:commandButton value="Ver listado"
+			action="#{verAlumnoFaltaListadoBean.getAlumnoFaltaListado()}"></h:commandButton>
+	</h:form>
+
 </h:body>
 </html>
