@@ -26,7 +26,7 @@ public class AlumnoEvaluacionDAO implements Serializable,
 
 	public static final Logger logger = Logger.getLogger(AlumnoVO.class
 			.getName());
-	private DataSource ds;
+	DataSource ds;
 	private AlumnoEvaluacionVO evaluacionVO;
 
 	public AlumnoEvaluacionVO getEvaluacionVO() {
