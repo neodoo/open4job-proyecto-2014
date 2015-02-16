@@ -196,7 +196,7 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 			con = ds.getConnection();
 			ps = con.prepareStatement(query);
 			ps.setInt(1, idFalta);
-			ps.executeUpdate();
+			numReg = ps.executeUpdate();
 
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "Error en AlumnoFaltaDAO.eliminarFalta : " + e.getMessage());
