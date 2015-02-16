@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+    <h:head>
+    	<h:outputStylesheet library="css" name="table-style.css"  />
+    	<title>Tutores</title>
+    </h:head>
+    <h:body>
+    <h1>Lista Tutores</h1>
+	<h:dataTable value="#{verTutorBean.tutorLista}" var="tL"
+		styleClass="order-table" headerClass="order-table-header"
+		rowClasses="order-table-odd-row,order-table-even-row">
+
+		<h:column>
+			<f:facet name="header">Nombre</f:facet> #{tL.nombre}
+    	</h:column>
+
+		<h:column>
+			<f:facet name="header">Apellido1</f:facet> #{tL.apellido1}
+    	</h:column>
+
+		<h:column>
+			<f:facet name="header">Apellido2</f:facet> #{tL.apellido2}
+    	</h:column>
+
+		<h:column>
+			<f:facet name="header">DNI</f:facet> #{tL.DNI}
+    	</h:column>
+
+	</h:dataTable>
+	<h:form>
+	    <h:commandButton value="Insertar" action="insertarTutor"></h:commandButton>
+	</h:form>
+    	<!-- <h:commandButton value="Modificar" action=""></h:commandButton>
+    	<h:commandButton value="Borrar" action=""></h:commandButton> -->
+   	</h:body>
+ </html>

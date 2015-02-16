@@ -1,6 +1,10 @@
 package es.opensigad.controller;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+
 import es.opensigad.model.dao.TutorDAO;
 import es.opensigad.model.vo.TutorVO;
 
@@ -11,7 +15,16 @@ public class VerTutorBean {
 	private int id;
 
 	private TutorVO tutorVO;
+	private List<TutorVO> tutorLista;
 	
+	public List<TutorVO> getTutorLista() {
+		return tutorLista;
+	}
+
+	public void setTutorLista(List<TutorVO> tutorLista) {
+		this.tutorLista = tutorLista;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -30,10 +43,21 @@ public class VerTutorBean {
 
 	public String getDetalleTutor(int idTutor) {
 
-		String pagina = "verTutorFicha";
+		String pagina = "verTutoresPorAlumno";
 
 		TutorDAO tutorDAO = new TutorDAO();
-		tutorVO = tutorDAO.getDetalleTutor(idTutor);
+		tutorLista = tutorDAO.getlistaTutor(id);
+
+		return pagina;
+
+	}
+	
+	public  String getListaTutor() {
+
+		String pagina = "verTutoresPorAlumno.xhtml";
+		TutorDAO tutorDAO = new TutorDAO();
+		tutorLista = new ArrayList<TutorVO>();
+		tutorLista = tutorDAO.getlistaTutor(id);
 
 		return pagina;
 

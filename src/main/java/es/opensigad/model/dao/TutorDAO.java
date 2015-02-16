@@ -78,6 +78,47 @@ public class TutorDAO implements TutorDAOInterface {
 	}
 
 
+	public ArrayList<TutorVO> getlistaTutor(int idAlumno) {
+
+		ArrayList<TutorVO> listaTutores = new ArrayList<TutorVO>();
+
+		try {
+				if (ds == null)
+					throw new SQLException("Can't get data source");
+				// get database connection
+				Connection con = ds.getConnection();
+
+				if (con == null)
+					throw new SQLException("Can't get database connection");
+
+				PreparedStatement st = con.prepareStatement("SELECT * FROM relacionAlumnoTutor WHERE idAlumno= ?");
+				st.setInt(1, idAlumno);
+				ResultSet rs = st.executeQuery();
+				
+				PreparedStatement stTutor= null;
+				while (rs.next()) {
+					
+					stTutor = con.prepareStatement("SELECT * FROM tutor WHERE idTutor= ?");
+					stTutor.setInt(1, rs.getInt(2));
+					ResultSet rsTutor= stTutor.executeQuery();
+					
+					while(rsTutor.next())
+					{
+						listaTutores.add(new TutorVO(rsTutor.getInt(1),rsTutor.getString(2), rsTutor.getString(3), 
+								rsTutor.getString(4), rsTutor.getString(5), rsTutor.getDate(6), rsTutor.getString(7), 
+								rsTutor.getString(8), rsTutor.getString(9)));
+						
+					}
+			}
+
+		} catch (Exception e) {
+			
+			Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Error en TutorDAO.listaTutor:"+ e.getMessage());
+
+		}
+		return listaTutores;
+
+	}
 	// borra 1 tutor con el idTutor recibido
 	public void deleteTutor(int id) {
 
