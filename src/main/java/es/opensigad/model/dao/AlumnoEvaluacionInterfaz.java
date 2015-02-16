@@ -13,6 +13,6 @@ public interface AlumnoEvaluacionInterfaz{
 				int evaluacion, Date fechaInicio, Date fechaFin, Date fechaSesion,
 				Date fechaPublicacion);
 	 public abstract void EditarEvaluacionesVO();
-	 public abstract void EliminarEvaluacionAlumno(int idEValuacion);
+	 public abstract boolean EliminarEvaluacionAlumno(int idEValuacion);
 	 
 }
