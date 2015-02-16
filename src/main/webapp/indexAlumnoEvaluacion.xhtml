@@ -11,20 +11,26 @@
 <h:body>
 
 	<h1>OpenSIGAD</h1>
-		<h3>Evaluaciones del Alumno</h3>
+	<h3>Evaluaciones del Alumno</h3>
 	<h:form>
 		<h:commandButton value="Mostrar evaluaciones generales"
 			action="#{verAlumnoEvaluacionListadoBean.getAlumnoEvaluacionListado()}"></h:commandButton>
 	</h:form>
 	<a href="insertarAlumnoEvaluacion.xhtml">Insertar evaluacion para
 		un alumno</a>
-<h:form>
-	<!-- el id que se introduce lo manda a #{eliminarAlumnoEvaluacionBean.idEvaluacion} -->
+	<h:form>
+		<!-- el id que se introduce lo manda a #{eliminarAlumnoEvaluacionBean.idEvaluacion} -->
 		<h:inputText value="#{eliminarAlumnoEvaluacionBean.idEvaluacion}" />
 		<!--  despues ejecuta el metodo del boton eliminarAlumnoEvaluacionBean.eliminarEvaluacionAlumno(eliminarAlumnoEvaluacionBean.idEvaluacion)-->
 		<h:commandButton value="Eliminar Evaluacion"
 			action="#{eliminarAlumnoEvaluacionBean.eliminarEvaluacionAlumno(eliminarAlumnoEvaluacionBean.idEvaluacion)}"></h:commandButton>
+		<h3>Detalle evaluacion</h3>
+		<h:form>
+			<h:inputText value="#{verAlumnoEvaluacionFichaBean.idEvaluacion}" />
+			<h:commandButton value="Ver Evaluacion"
+				action="#{verAlumnoEvaluacionFichaBean.getDetalleEvaluacionAlumno(verAlumnoEvaluacionFichaBean.idEvaluacion)}"></h:commandButton>
+		</h:form>
 	</h:form>
-		
+
 </h:body>
 </html>

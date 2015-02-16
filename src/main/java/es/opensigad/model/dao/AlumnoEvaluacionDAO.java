@@ -154,30 +154,37 @@ public class AlumnoEvaluacionDAO implements Serializable,
 		}
 
 	}
+//Listar evaluaciones por id
+	public ArrayList<AlumnoEvaluacionVO> getDetalleEvaluacion(int idEvaluacion) {
 
-	/*
-	 * Editar una evaluacion public void EditarEvaluacionesVO() { try
-	 * {EvaluacionVO Connection conexion = ds.getConnection(); PreparedStatement
-	 * pstm = conexion
-	 * .prepareStatement("Update evaluacion set id = ? , id_enseñanza = ? ," +
-	 * " id_curso = ?, evaluacion = ?, fecha_inicio = ?, " +
-	 * "fecha_sesion = ?, fecha_final = ? , fecha_publicacion = ? Where id= ?");
-	 * /*pstm.setInt(1, ); pstm.setInt(1, ); pstm.se// Editar una evaluacion
-	 * tInt(1, ); pstm.setInt(2, ); pstm.setDate(1, ); pstm.setDate(1, );
-	 * pstm.setDate(1, ); pstm.setDate(1, );
-	 * 
-	 * pstm.executeUpdate(); } catch (Exception e) {
-	 * 
-	 * Logger.getLogger(getClass().getName()).log(Level.SEVERE, e.getMessage());
-	 * } }
-	 * 
-	 * // Eliminar una evaluacion public void EliminarEvaluacionesVO(){
-	 * Connection conexion; try { conexion = ds.getConnection();
-	 * PreparedStatement pstm = conexion
-	 * .prepareStatement("DELETE FROM evaluacion WHERE id=?");
-	 * //pstm.setInt(1,); pstm.executeUpdate(); } catch (SQLException e) {
-	 * e.printStackTrace(); }
-	 * 
-	 * }
-	 */
+		ArrayList<AlumnoEvaluacionVO> detalleEvaluaciones = new ArrayList<AlumnoEvaluacionVO>();
+
+		try {
+			Connection conexion = ds.getConnection();
+			PreparedStatement pstm;
+			Statement stm = conexion.createStatement();
+			ResultSet rs;
+			String consulta = "SELECT * FROM evaluacion where id =?";
+			pstm = conexion.prepareStatement(consulta);
+			pstm.setInt(1, idEvaluacion);
+			rs = pstm.executeQuery();
+
+			while (rs.next()) {
+				AlumnoEvaluacionVO detalleEvaluacinesVO = new AlumnoEvaluacionVO();
+				detalleEvaluacinesVO.setEvaluacion(rs.getInt("id"));
+				detalleEvaluacinesVO.setIdEnsenanza(rs.getInt("id_ensenanza"));
+				detalleEvaluacinesVO.setIdCurso(rs.getInt("id_curso"));
+				detalleEvaluacinesVO.setEvaluacion(rs.getInt("evaluacion"));
+				detalleEvaluacinesVO.setFechaInicio(rs.getDate("fecha_inicio"));
+				detalleEvaluacinesVO.setFechaSesion(rs.getDate("fecha_sesion"));
+				detalleEvaluacinesVO.setFechaFin(rs.getDate("fecha_final"));
+				detalleEvaluacinesVO.setFechaPublicacion(rs
+						.getDate("fecha_publicacion"));
+				detalleEvaluaciones.add(detalleEvaluacinesVO);
+			}
+		} catch (SQLException e) {
+			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
+		}
+		return detalleEvaluaciones;
+	}
 }
