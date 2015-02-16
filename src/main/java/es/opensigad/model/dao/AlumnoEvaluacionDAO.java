@@ -131,7 +131,8 @@ public class AlumnoEvaluacionDAO implements Serializable,
 
 	}
 
-	public void EliminarEvaluacionAlumno(int idEvaluacion) {
+	public boolean EliminarEvaluacionAlumno(int idEvaluacion) {
+
 		Connection conexion = null;
 		PreparedStatement pstm = null;
 		try {
@@ -140,6 +141,7 @@ public class AlumnoEvaluacionDAO implements Serializable,
 					.prepareStatement("DELETE FROM evaluacion WHERE id=?");
 			pstm.setInt(1, idEvaluacion);
 			pstm.executeUpdate();
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -152,14 +154,17 @@ public class AlumnoEvaluacionDAO implements Serializable,
 			} catch (Exception e) {
 			}
 		}
+		return false;
 
 	}
-//Listar evaluaciones por id
+
+	// Listar evaluaciones por id
 	public ArrayList<AlumnoEvaluacionVO> getDetalleEvaluacion(int idEvaluacion) {
 
 		ArrayList<AlumnoEvaluacionVO> detalleEvaluaciones = new ArrayList<AlumnoEvaluacionVO>();
 
 		try {
+
 			Connection conexion = ds.getConnection();
 			PreparedStatement pstm;
 			Statement stm = conexion.createStatement();
@@ -187,4 +192,5 @@ public class AlumnoEvaluacionDAO implements Serializable,
 		}
 		return detalleEvaluaciones;
 	}
+
 }

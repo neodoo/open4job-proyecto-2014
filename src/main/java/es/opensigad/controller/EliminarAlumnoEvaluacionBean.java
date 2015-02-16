@@ -21,10 +21,15 @@ public class EliminarAlumnoEvaluacionBean {
 		this.idEvaluacion = idEvaluacion;
 	}
 	public String eliminarEvaluacionAlumno(int idEvaluacion) {
-		String pagina="eliminarAlumnoEvaluacion";
+		String pagina = null;
 		AlumnoEvaluacionDAO alumnoEvaluacionDAO = new AlumnoEvaluacionDAO();
-		alumnoEvaluacionDAO.EliminarEvaluacionAlumno(idEvaluacion);
 		
+		if(alumnoEvaluacionDAO.EliminarEvaluacionAlumno(idEvaluacion)){
+			pagina = "borrarAlumnoEvaluacion";
+		}else{
+			pagina = "borrarAlumnoEvaluacionFallo";
+		}
+
 		return pagina;
 	}
 }
