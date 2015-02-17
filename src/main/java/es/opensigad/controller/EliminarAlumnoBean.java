@@ -13,11 +13,11 @@ import es.opensigad.model.vo.AlumnoVO;
 
 @ManagedBean
 @RequestScoped
-public class EliminarAlumnoBean implements Serializable{
+public class EliminarAlumnoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private int idAlumno;
-	
+
 	public int getIdAlumno() {
 		return idAlumno;
 	}
@@ -26,9 +26,9 @@ public class EliminarAlumnoBean implements Serializable{
 		this.idAlumno = idAlumno;
 	}
 
-	@ManagedProperty(value="#{verAlumnoFichaBean}")
+	@ManagedProperty(value = "#{verAlumnoFichaBean}")
 	private VerAlumnoFichaBean verAlumnoFichaBean;
-	
+
 	public VerAlumnoFichaBean getVerAlumnoFichaBean() {
 		return verAlumnoFichaBean;
 	}
@@ -37,16 +37,23 @@ public class EliminarAlumnoBean implements Serializable{
 		this.verAlumnoFichaBean = verAlumnoFichaBean;
 	}
 
-	public String deleteAlumno(int idAlumno) {
+	public String deleteAlumno() {
 
 		String pagina = "indexAlumno";
-
+		FacesMessage facesMessage;
 		AlumnoDAO alumnoDAO = new AlumnoDAO();
-		alumnoDAO.deleteAlumno(idAlumno);
-		FacesMessage facesMessage = new FacesMessage(
-				FacesMessage.SEVERITY_INFO,
-				"El alumno con numero de expediente " + idAlumno
-						+ " ha sido eliminado", null);
+
+		if (alumnoDAO.deleteAlumno(verAlumnoFichaBean.getAlumnoVO()
+				.getIdAlumno()))
+			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"El alumno con numero de expediente "
+							+ verAlumnoFichaBean.getAlumnoVO().getNumExpediente()
+							+ " ha sido eliminado", null);
+		else
+			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"El alumno con numero de expediente "
+							+ verAlumnoFichaBean.getAlumnoVO().getNumExpediente()
+							+ " no existe", null);
 		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 		return pagina;
 

@@ -27,9 +27,9 @@ public class AlumnoDAOTest extends TestCase {
 	public void testInsertAlumno() {
 		int id = 200;
 		java.util.Date utilDate = new java.util.Date();
-		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+		
 		AlumnoVO alumno = new AlumnoVO(id, id, "nom", "ape", "ape", "h", "dni" + id,
-				"tfno", sqlDate, "pais", "prov", "loc", "dom", "email");
+				"tfno", utilDate, "pais", "prov", "loc", "dom", "email");
 		
 		alumnoDAO.insertAlumno(alumno);
 
@@ -41,7 +41,7 @@ public class AlumnoDAOTest extends TestCase {
 
 	public void testDeleteAlumno() {
 
-		int id = 101;
+		int id = 100;
 
 		AlumnoVO alumno = alumnoDAO.getDetalleAlumno(id);
 		
@@ -60,11 +60,12 @@ public class AlumnoDAOTest extends TestCase {
 		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
 		AlumnoVO alumno1 = alumnoDAO.getDetalleAlumno(id);
-
-		alumnoDAO.modifyAlumno(id, id, "nom" + id, "ape", "ape", "h", "dni"
+		AlumnoVO alumno2 = new AlumnoVO(id, id, "nom" + id, "ape", "ape", "h", "dni"
 				+ id, "tfno", sqlDate, "pais", "prov", "loc", "dom", "email");
 
-		AlumnoVO alumno2 = alumnoDAO.getDetalleAlumno(id);
+		alumnoDAO.modifyAlumno(alumno2);
+
+		alumno2 = alumnoDAO.getDetalleAlumno(id);
 
 		assertTrue(alumno1.getNombre() != alumno2.getNombre());
 	}

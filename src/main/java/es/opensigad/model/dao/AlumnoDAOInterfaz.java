@@ -15,9 +15,6 @@ public interface AlumnoDAOInterfaz {
 
 	public boolean deleteAlumno(int id);
 	
-	public boolean modifyAlumno(int idAlumno, int numExpediente, String nombre,
-			String apellido1, String apellido2, String sexo, String dni,
-			String telefono, Date fecha_nacimiento, String pais,
-			String provincia, String localidad, String domicilio, String email);
+	public boolean modifyAlumno(AlumnoVO alumnoVO);
 
 }
