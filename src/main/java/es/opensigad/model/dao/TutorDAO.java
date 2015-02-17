@@ -135,6 +135,21 @@ public class TutorDAO implements TutorDAOInterface {
 					.prepareStatement("DELETE FROM tutor WHERE idTutor = ?");
 			st.setInt(1, id);
 			st.executeUpdate();
+			
+			/*Validamos si el tutor a insertar ya existe*/		
+			PreparedStatement val = con.prepareStatement("SELECT idTutor FROM relacionAlumnoTutor WHERE idTutor = ?");
+			val.setInt(1, id);		
+			ResultSet rs = val.executeQuery();
+			
+			/*Si no existe en la base de datos lo borramos de la tabla intermedia(relacionAlumnoTutor)*/
+			if (!rs.next()){
+				PreparedStatement st2 = con
+						.prepareStatement("DELETE FROM relacionAlumnoTutor WHERE idTutor = ?");
+				st2.setInt(1, id);
+				st2.executeUpdate();
+			}
+			
+			
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
