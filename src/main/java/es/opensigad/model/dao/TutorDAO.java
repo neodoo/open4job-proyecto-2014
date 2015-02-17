@@ -185,14 +185,14 @@ public class TutorDAO implements TutorDAOInterface {
 				throw new SQLException("Can't get database connection");
 			
 			/*Validamos si el tutor a insertar ya existe*/		
-			PreparedStatement val = con.prepareStatement("SELECT idTutor FROM tutor WHERE idAlumno = ?");
+			PreparedStatement val = con.prepareStatement("SELECT idTutor FROM relacionAlumnoTutor WHERE idAlumno = ?");
 			val.setInt(1, idAlumno);		
 			ResultSet rs = val.executeQuery();
 			
 			/*Si no existe en la base de datos lo insertamos en la tabla*/
 			if (!rs.next()){
 				PreparedStatement st = con
-						.prepareStatement("INSERT INTO tutor (idAlumno,nombre,apellido1,apellido2,DNI,fechaNac,parentesco,tlf,email) values ('1',?,?,?,?,?,?,?,?)");			
+						.prepareStatement("INSERT INTO tutor (nombre,apellido1,apellido2,DNI,fechaNac,parentesco,tlf,email) values (?,?,?,?,?,?,?,?)");			
 				st.setString(1, nombre);
 				st.setString(2, apellido1);
 				st.setString(3, apellido2);
@@ -205,18 +205,26 @@ public class TutorDAO implements TutorDAOInterface {
 				st.executeUpdate();
 				
 				/*Recupero el idTutor que acabamos de crear*/
-				PreparedStatement st2 = con.prepareStatement("SELECT idTutor FROM tutor WHERE DNI LIKE ?");
-				st2.setString(1, DNI);
-				ResultSet rs2 = st2.executeQuery();
-					if (rs2.next()){
-						//inserto el tutor en la tabla de relaciones
-						PreparedStatement st3 = con.prepareStatement("INSERT INTO relacionAlumnoTutor(idAlumno, idTutor) values ('1',?) ");
-						st3.setInt(1, rs.getInt("idTutor"));		
-					}
+				ResultSet rsH= st.getGeneratedKeys();
+				int clave=0;
+				while(rsH.next())
+				{
+					clave = rsH.getInt(1);
+					System.out.println(clave);
+				
+				}
+				//inserto el tutor en la tabla de relaciones
+				PreparedStatement st3 = con.prepareStatement("INSERT INTO relacionAlumnoTutor(idAlumno, idTutor) values ('1',?) ");
+				
+				if(clave!=0)
+					st3.setInt(1, clave);		
+				st3.executeUpdate();
+				
 			}else{
 				/*Si existe solo insertamos la relacion*/
 				PreparedStatement st = con.prepareStatement("INSERT INTO relacionAlumnoTutor(idAlumno, idTutor) values ('1',?) ");
-				st.setInt(1, rs.getInt("idTutor"));		
+				st.setInt(1, rs.getInt("idTutor"));	
+				st.executeUpdate();
 			}
 			
 			return true;
@@ -230,6 +238,7 @@ public class TutorDAO implements TutorDAOInterface {
 		}
 		return false;
 	}
+
 	
 	public TutorVO getDetalleTutor(int idTutor) {
 		
