@@ -136,7 +136,7 @@ public class TutorDAO implements TutorDAOInterface {
 			st.setInt(1, id);
 			st.executeUpdate();
 			
-			/*Validamos si el tutor a insertar ya existe*/		
+			/*Validamos si el tutor a borrar ya existe*/		
 			PreparedStatement val = con.prepareStatement("SELECT idTutor FROM relacionAlumnoTutor WHERE idTutor = ?");
 			val.setInt(1, id);		
 			ResultSet rs = val.executeQuery();
