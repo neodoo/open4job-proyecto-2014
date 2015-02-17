@@ -213,7 +213,7 @@ public class AlumnoEvaluacionDAO implements Serializable,
 
 			while (rs.next()) {
 				AlumnoEvaluacionVO detalleEvaluacinesVO = new AlumnoEvaluacionVO();
-				int a = rs.getInt("id_evaluacion");
+				int a = rs.getInt("id");
 				detalleEvaluacinesVO.setIdEvaluacion(rs.getInt("id"));
 				detalleEvaluacinesVO.setIdEnsenanza(rs.getInt("id_ensenanza"));
 				detalleEvaluacinesVO.setIdCurso(rs.getInt("id_curso"));
