@@ -3,123 +3,107 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-<h:head>
-	<h:outputStylesheet library="css" name="table-style.css" />
-</h:head>
-
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:body>
 
+	<ui:composition template="/template/common/commonLayout.xhtml">
 
+		<ui:define name="content">
+			<h:form>
 
+				<p:dataTable id="tablaDeAlumnos" var="alumno"
+					value="#{verAlumnoListaBean.alumnoLista}"
+					widgetVar="tablaDeAlumnos"
+					emptyMessage="No hay alumnos con este criterio de filtrado"
+					filteredValue="#{verAlumnoListaBean.alumnoFiltro}" paginator="true"
+					rows="10" style="width:900px">
 
-	<h1><h:outputLabel id="tituloListaAlumno"
-			value="#{etqAlm['titulo.listaAlumno']}" /></h1>
+					<f:facet name="header">
+						<p:outputPanel>
+							<h:outputText value="Buscar en todos: " />
+							<p:inputText id="globalFilter"
+								onkeyup="PF('tablaDeAlumnos').filter()" style="width:150px" />
+						</p:outputPanel>
+					</f:facet>
 
-	<h:dataTable value="#{verAlumnoListaBean.alumnoLista}" var="c"
-		styleClass="order-table" headerClass="order-table-header"
-		rowClasses="order-table-odd-row,order-table-even-row">
+					<!-- 
+		 	<p:column id="idCol" headerText="ID">
+				<h:outputText value="#{alumno.idAlumno}" />
+			</p:column>-->
 
+					<p:column id="numExpCol" filterBy="#{alumno.numExpediente}"
+						headerText="Nº Expediente" filterMatchMode="exact">
+						<h:outputText value="#{alumno.numExpediente}" />
+					</p:column>
 
-		<h:column>
-			<f:facet name="header"> id	 </f:facet>
-    				#{c.idAlumno}
-    	</h:column>
+					<p:column id="nomCol" headerText="Nombre">
+						<h:outputText value="#{alumno.nombre}" />
+					</p:column>
 
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="etiquetaNumExpediente"
-					value="#{etqAlm['etiquetas.numExpediente']}" />
-			</f:facet>
-    				#{c.numExpediente}
-    	</h:column>
+					<p:column id="ap1Col" filterBy="#{alumno.apellido1}"
+						headerText="1º Apellido" filterMatchMode="startsWith">
+						<h:outputText value="#{alumno.apellido1}" />
+					</p:column>
 
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="etiquetaNombre"
-					value="#{etqAlm['etiquetas.nombre']}" />
-			</f:facet>
-    				#{c.nombre}
-    	</h:column>
+					<p:column id="ap2Col" filterBy="#{alumno.apellido2}"
+						headerText="2º Apellido" filterMatchMode="startsWith">
+						<h:outputText value="#{alumno.apellido2}" />
+					</p:column>
 
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="etiquetaApellido1"
-					value="#{etqAlm['etiquetas.apellido1']}" />
-			</f:facet>
-    				#{c.apellido1}
-    		</h:column>
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="etiquetaApellido2"
-					value="#{etqAlm['etiquetas.apellido2']}" />
-			</f:facet>
-    				#{c.apellido2}
-    	</h:column>
+					<p:column id="sexCol" filterBy="#{alumno.sexo}" headerText="Sexo"
+						filterMatchMode="startsWith">
+						<h:outputText value="#{alumno.sexo}" />
+					</p:column>
 
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="etiquetaSexo" value="#{etqAlm['etiquetas.sexo']}" />
-			</f:facet>
-    				#{c.sexo}
-    	</h:column>
+					<p:column id="dniCol" headerText="DNI">
+						<h:outputText value="#{alumno.dni}" />
+					</p:column>
 
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="etiquetaDni" value="#{etqAlm['etiquetas.dni']}" />
-			</f:facet>
-    				#{c.dni}
-    	</h:column>
+					<p:column id="fecNacCol" headerText="Fecha Nacimiento">
+						<h:outputText value="#{alumno.fechaNacimiento}" />
+					</p:column>
 
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="etiquetaTelefono"
-					value="#{etqAlm['etiquetas.telefono']}" />
-			</f:facet>
-    				#{c.telefono}
-    	</h:column>
+					<!--  DATOS DE CONTACTO
+			
+			
+			<p:column id="telCol" headerText="TELEFONO">
+				<h:outputText value="#{alumno.telefono}" />
+			</p:column>
+			
+			<p:column id="paisCol"  headerText="PAIS">
+				<h:outputText value="#{alumno.pais}" />
+			</p:column>
 
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="etiquetaFechaNacimiento"
-					value="#{etqAlm['etiquetas.fechaNacimiento']}" />
-			</f:facet>
-    				#{c.fechaNacimiento}
-    	</h:column>
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="etiquetaPais" value="#{etqAlm['etiquetas.pais']}" />
-			</f:facet>
-    				#{c.pais}
-    	</h:column>
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="etiquetaProvincia"
-					value="#{etqAlm['etiquetas.provincia']}" />
-			</f:facet>
-    				#{c.provincia}
-    	</h:column>
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="etiquetaLocalidad"
-					value="#{etqAlm['etiquetas.localidad']}" />
-			</f:facet>
-    				#{c.localidad}
-    	</h:column>
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="etiquetaDomicilio"
-					value="#{etqAlm['etiquetas.domicilio']}" />
-			</f:facet>
-    				#{c.domicilio}
-    	</h:column>
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="etiquetaEmail" value="#{etqAlm['etiquetas.email']}" />
-			</f:facet>
-    				#{c.email}
-    	</h:column>
-	</h:dataTable>
+			<p:column id="provCol" filterBy="#{alumno.provincia}"
+				headerText="PROVINCIA" filterMatchMode="startsWith">
+				<h:outputText value="#{alumno.provincia}" />
+			</p:column>
+
+			<p:column id="locCol" filterBy="#{alumno.localidad}"
+				headerText="LOCALIDAD" filterMatchMode="startsWith">
+				<h:outputText value="#{alumno.localidad}" />
+			</p:column>
+
+			<p:column id="domCol" headerText="DOMICILIO">
+				<h:outputText value="#{alumno.domicilio}" />
+			</p:column>
+
+			<p:column id="mailCol" headerText="MAIL">
+				<h:outputText value="#{alumno.email}" />
+			</p:column> 
+			-->
+
+				</p:dataTable>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+
 </h:body>
 
 </html>
+
+

@@ -12,6 +12,10 @@ public class AlumnoMatriculaVO {
 	private String curso;
 	private int idAlumno;
 	
+public AlumnoMatriculaVO(){
+		
+	}
+
 	public AlumnoMatriculaVO(int id,String fechaCurso,String centro,String tipoEnsenanza, String ensenanza,
 			String curso,int idAlumno){
 		

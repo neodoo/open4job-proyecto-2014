@@ -9,16 +9,16 @@ public interface AlumnoEvaluacionInterfaz {
 
 	public abstract ArrayList<AlumnoEvaluacionVO> getAlumnoEvaluacionListado();
 
-	public ArrayList<AlumnoEvaluacionVO> getDetalleEvaluacion(int idEvaluacion);
+	public ArrayList<AlumnoEvaluacionVO> getDetalleEvaluacion(int id);
 
 	public boolean insertarEvaluacionAlumno(int idEnsenanza, int idCurso,
 			int evaluacion, Date fechaInicio, Date fechaFin, Date fechaSesion,
 			Date fechaPublicacion);
 
-	public boolean actualizarEvaluacionAlumno(int id_evaluacion,
+	public boolean actualizarEvaluacionAlumno(int id,
 			int idEnsenanza, int idCurso, int evaluacion, Date fechaInicio,
 			Date fechaFin, Date fechaSesion, Date fechaPublicacion);
 
-	public abstract boolean EliminarEvaluacionAlumno(int idEValuacion);
+	public abstract boolean EliminarEvaluacionAlumno(int id);
 
 }

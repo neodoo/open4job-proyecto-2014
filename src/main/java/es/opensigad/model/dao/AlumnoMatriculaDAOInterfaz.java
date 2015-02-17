@@ -12,9 +12,11 @@ public interface AlumnoMatriculaDAOInterfaz {
 
 	public boolean borrarMatricula(int idMatricula);
 
-	public boolean modificarMatricula(int idMatricula, String fecha,
-			String centro, String tipoEnsenanza, String ensenanza, String curso);
+	public boolean modificarMatricula(int idAlumno, String fecha,
+			String centro, String tipoEnsenanza, String ensenanza, String curso, int idMatricula);
 
 	public ArrayList<AlumnoMatriculaVO> getListadoMatricula(int idAlumno);
+	
+	public AlumnoMatriculaVO getListaFichaMatricula(int idMatricula);
 
 }

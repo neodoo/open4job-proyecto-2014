@@ -16,17 +16,27 @@
 		<h:commandButton value="Ver matrículas del alumno"
 			action="#{verAlumnoMatriculaListadoBean.getListaMatricula(verAlumnoMatriculaListadoBean.id)}"></h:commandButton>
 	</h:form>
+	<br />
+	<h3>Una matrícula del alumno</h3>
+		<h:form>
+			<h:inputText value="#{verAlumnoMatriculaFichaBean.idMatricula}" />
+			<h:commandButton value="Ver matrícula"
+				action="#{verAlumnoMatriculaFichaBean.getDetalleMatricula()}"></h:commandButton>
+		</h:form>
+		<br />
 	<h:form>
 		Insertar Matrícula 
 		<h:commandButton value="Insertar Matrícula"
 			action="insertarAlumnoMatricula"></h:commandButton>
 	</h:form>
+	<br />
 	<h:form>
-		Id de matricula: <h:inputText
+		Eliminar por Id de matricula: <h:inputText
 			value="#{eliminarAlumnoMatriculaBean.idMatricula}" />
 		<h:commandButton value="Borrar matrícula del alumno"
 			action="#{eliminarAlumnoMatriculaBean.borrarMatricula(eliminarAlumnoMatriculaBean.idMatricula)}"></h:commandButton>
 	</h:form>
+	<br />
 
 </h:body>
 </html>

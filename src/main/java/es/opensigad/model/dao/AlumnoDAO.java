@@ -1,7 +1,6 @@
 package es.opensigad.model.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -82,10 +81,10 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 	/**
 	 * Devuelve un alumno
 	 * 
-	 * @param idAlumno
+	 * @param numExpediente
 	 *            para filtrar el alumno a mostrar
 	 */
-	public AlumnoVO getDetalleAlumno(int idAlumno) {
+	public AlumnoVO getDetalleAlumno(int numExpediente) {
 
 		AlumnoVO alumnoVO = null;
 		Connection con = null;
@@ -96,8 +95,8 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			new ArrayList<AlumnoVO>();
 			con = ds.getConnection();
 
-			ps = con.prepareStatement("SELECT * FROM alumno WHERE id =?");
-			ps.setInt(1, idAlumno);
+			ps = con.prepareStatement("SELECT * FROM alumno WHERE num_expediente =?");
+			ps.setInt(1, numExpediente);
 
 			result = ps.executeQuery();
 
@@ -146,12 +145,14 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 		Connection con = null;
 		PreparedStatement ps = null;
+		
+		java.util.Date utilDate = alumnoVO.getFechaNacimiento();
+		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
 		try {
 			con = ds.getConnection();
 
-			ps = con.prepareStatement("INSERT INTO alumno VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-			ps.setInt(1, alumnoVO.getIdAlumno());
+			ps = con.prepareStatement("INSERT INTO alumno VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			ps.setInt(2, alumnoVO.getNumExpediente());
 			ps.setString(3, alumnoVO.getNombre());
 			ps.setString(4, alumnoVO.getApellido1());
@@ -159,7 +160,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			ps.setString(6, alumnoVO.getSexo());
 			ps.setString(7, alumnoVO.getDni());
 			ps.setString(8, alumnoVO.getTelefono());
-			ps.setDate(9, alumnoVO.getFechaNacimiento());
+			ps.setDate(9, sqlDate);
 			ps.setString(10, alumnoVO.getPais());
 			ps.setString(11, alumnoVO.getLocalidad());
 			ps.setString(12, alumnoVO.getProvincia());
@@ -185,16 +186,19 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 	public boolean deleteAlumno(int idAlumno) {
 		Connection con = null;
 		PreparedStatement ps = null;
-
+		int numFila;
 		try {
 			con = ds.getConnection();
 
 			ps = con.prepareStatement("DELETE FROM alumno WHERE id = ?");
 			ps.setInt(1, idAlumno);
 
-			ps.executeUpdate();
+			numFila = ps.executeUpdate();
 
-			return true;
+			if (numFila > 0)
+				return true;
+			else
+				return false;
 
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
@@ -222,37 +226,36 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 	 * @param domicilio
 	 * @param email
 	 */
-	public boolean modifyAlumno(int idAlumno, int numExpediente, String nombre,
-			String apellido1, String apellido2, String sexo, String dni,
-			String telefono, Date fecha_nacimiento, String pais,
-			String provincia, String localidad, String domicilio, String email) {
+	public boolean modifyAlumno(AlumnoVO alumnoVO) {
 		Connection con = null;
 		PreparedStatement ps = null;
 
+		java.util.Date utilDate = alumnoVO.getFechaNacimiento();
+		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+		
 		try {
 			con = ds.getConnection();
 
 			ps = con.prepareStatement("UPDATE alumno SET "
-					+ "num_expediente=?, " + "nombre=?, " + "apellido1=?, "
-					+ "aepllido2 = ?, " + "sexo=?, " + "dni=?, "
+					+ "nombre=?, " + "apellido1=?, "
+					+ "apellido2 = ?, " + "sexo=?, " + "dni=?, "
 					+ "telefono=?, " + "fecha_nacimiento=?, " + "pais=?, "
 					+ "localidad=?, " + "provincia=?, " + "domicilio=?, "
-					+ "email=? " + "WHERE id = ?");
+					+ "email=? " + "WHERE num_expediente = ?");
 
-			ps.setInt(1, numExpediente);
-			ps.setString(2, nombre);
-			ps.setString(3, apellido1);
-			ps.setString(4, apellido2);
-			ps.setString(5, sexo);
-			ps.setString(6, dni);
-			ps.setString(7, telefono);
-			ps.setDate(8, fecha_nacimiento);
-			ps.setString(9, pais);
-			ps.setString(10, localidad);
-			ps.setString(11, provincia);
-			ps.setString(12, domicilio);
-			ps.setString(13, email);
-			ps.setInt(14, idAlumno);
+			ps.setString(1, alumnoVO.getNombre());
+			ps.setString(2, alumnoVO.getApellido1());
+			ps.setString(3, alumnoVO.getApellido2());
+			ps.setString(4, alumnoVO.getSexo());
+			ps.setString(5, alumnoVO.getDni());
+			ps.setString(6, alumnoVO.getTelefono());
+			ps.setDate(7, sqlDate);
+			ps.setString(8, alumnoVO.getPais());
+			ps.setString(9, alumnoVO.getLocalidad());
+			ps.setString(10, alumnoVO.getProvincia());
+			ps.setString(11, alumnoVO.getDomicilio());
+			ps.setString(12, alumnoVO.getEmail());
+			ps.setInt(13, alumnoVO.getNumExpediente());
 
 			ps.executeUpdate();
 
