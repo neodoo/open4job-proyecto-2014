@@ -35,7 +35,28 @@
 	<h:form>
 	    <h:commandButton value="Insertar" action="insertarTutor"></h:commandButton>
 	</h:form>
-    	<!-- <h:commandButton value="Modificar" action=""></h:commandButton>
-    	<h:commandButton value="Borrar" action=""></h:commandButton> -->
+	<!-- <h:form>
+		<h:inputText value="#{modificarTutorBean.idTutor}"></h:inputText>
+	    <h:commandButton value="Modificar" action=""></h:commandButton>
+	</h:form>-->
+  	<h:form>
+		<h:inputText value="#{eliminarTutorBean.idTutor}"></h:inputText>
+		<br/><h:commandButton value="Borrar el tutor" action="#{eliminarTutorBean.deleteTutor(eliminarTutorBean.idTutor)}"></h:commandButton>
+	</h:form>
+   	
    	</h:body>
  </html>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
