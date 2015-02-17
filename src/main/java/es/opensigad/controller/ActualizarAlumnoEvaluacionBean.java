@@ -1,6 +1,5 @@
 package es.opensigad.controller;
 
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,11 +7,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import es.opensigad.model.dao.*;
+
 @ManagedBean
 @RequestScoped
 public class ActualizarAlumnoEvaluacionBean implements Serializable{
 
-	private int idEvaluacion;
+	private int id;
 	private int idEnsenanza;
 	private int idCurso;
 	private int evaluacion;
@@ -24,12 +24,12 @@ public class ActualizarAlumnoEvaluacionBean implements Serializable{
 	public ActualizarAlumnoEvaluacionBean() {
 	}
 
-	public int getIdEvaluacion() {
-		return idEvaluacion;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdEvaluacion(int idEvaluacion) {
-		this.idEvaluacion = idEvaluacion;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getIdEnsenanza() {
@@ -88,12 +88,12 @@ public class ActualizarAlumnoEvaluacionBean implements Serializable{
 		this.fechaPublicacion = fechaPublicacion;
 	}
 
-	public String actualizarEvaluacionAlumno(int idEvaluacion, int idEnsenanza, int idCurso, 
+	public String actualizarEvaluacionAlumno(int id, int idEnsenanza, int idCurso, 
 		int evaluacion, Date fechaInicio, Date fechaFin, Date fechaSesion, Date fechaPublicacion) {
 
 		String pagina = null;
 		AlumnoEvaluacionDAO alumnoEvaluacionDAO = new AlumnoEvaluacionDAO();
-		if (alumnoEvaluacionDAO.actualizarEvaluacionAlumno(idEvaluacion, idEnsenanza, idCurso, evaluacion, fechaInicio, fechaFin, fechaSesion, fechaPublicacion)) {
+		if (alumnoEvaluacionDAO.actualizarEvaluacionAlumno(id, idEnsenanza, idCurso, evaluacion, fechaInicio, fechaFin, fechaSesion, fechaPublicacion)) {
 			pagina = "actualizarAlumnoEvaluacionExito";
 		} else {
 			pagina = "actualizarAlumnoEvaluacionFallo";

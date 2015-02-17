@@ -7,7 +7,7 @@ public class AlumnoEvaluacionVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private int idEvaluacion;
+	private int id;
 	private int idEnsenanza;
 	private int idCurso;
 	private int evaluacion;
@@ -16,12 +16,12 @@ public class AlumnoEvaluacionVO implements Serializable {
 	private Date fechaSesion;
 	private Date fechaPublicacion;
 
-	public int getIdEvaluacion() {
-		return idEvaluacion;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdEvaluacion(int idEvaluacion) {
-		this.idEvaluacion = idEvaluacion;
+	public void setIdEvaluacion(int id) {
+		this.id = id;
 	}
 
 	public int getIdEnsenanza() {

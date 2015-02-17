@@ -8,8 +8,6 @@ import javax.faces.bean.RequestScoped;
 
 import es.opensigad.model.dao.AlumnoEvaluacionDAO;
 
-
-
 @ManagedBean
 @RequestScoped
 public class InsertarAlumnoEvaluacionBean {

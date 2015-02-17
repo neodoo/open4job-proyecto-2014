@@ -12,16 +12,16 @@ import es.opensigad.model.vo.*;
 @RequestScoped
 public class VerAlumnoEvaluacionFichaBean {
 
-	private int idEvaluacion;
+	private int id;
 	
 	private ArrayList<AlumnoEvaluacionVO> listaEvaluacionDetalleVO;
 
-	public int getIdEvaluacion() {
-		return idEvaluacion;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdEvaluacion(int idEvaluacion) {
-		this.idEvaluacion = idEvaluacion;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public ArrayList<AlumnoEvaluacionVO> getlistaEvaluacionDetalleVO() {
@@ -33,13 +33,13 @@ public class VerAlumnoEvaluacionFichaBean {
 		this.listaEvaluacionDetalleVO = alumnoEvaluacionDetalleVO;
 	}
 
-	public String getDetalleEvaluacionAlumno(int idEvaluacion) {
+	public String getDetalleEvaluacionAlumno(int id) {
 
 		String pagina = "verAlumnoFichaEvaluacion";
 
 		AlumnoEvaluacionDAO evaluacionAlumnoDAO = new AlumnoEvaluacionDAO();
 		listaEvaluacionDetalleVO = evaluacionAlumnoDAO
-				.getDetalleEvaluacion(idEvaluacion);
+				.getDetalleEvaluacion(id);
 		
 		return pagina;
 

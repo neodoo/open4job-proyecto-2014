@@ -57,7 +57,7 @@ public class AlumnoEvaluacionDAO implements Serializable,
 			ResultSet rs = stm.executeQuery("select * from evaluacion");
 			while (rs.next()) {
 				AlumnoEvaluacionVO evaluacion = new AlumnoEvaluacionVO();
-				evaluacion.setIdEvaluacion(rs.getInt("id_evaluacion"));
+				evaluacion.setIdEvaluacion(rs.getInt("id"));
 				evaluacion.setIdEnsenanza(rs.getInt("id_ensenanza"));
 				evaluacion.setIdCurso(rs.getInt("id_curso"));
 				evaluacion.setEvaluacion(rs.getInt("evaluacion"));
@@ -127,7 +127,7 @@ public class AlumnoEvaluacionDAO implements Serializable,
 	}
 
 	// Modificar una evaluacion
-	public boolean actualizarEvaluacionAlumno(int idEvaluacion, int idEnsenanza, int idCurso, 
+	public boolean actualizarEvaluacionAlumno(int id, int idEnsenanza, int idCurso, 
 			int evaluacion, Date fechaInicio, Date fechaFin, Date fechaSesion, Date fechaPublicacion) {
 		
 		Connection conn = null;
@@ -141,7 +141,7 @@ public class AlumnoEvaluacionDAO implements Serializable,
 			java.sql.Date fechaP = new java.sql.Date(fechaPublicacion.getTime());
 
 			conn = ds.getConnection();
-			String query = "update evaluacion set id_ensenanza=?, id_curso=?, evaluacion=?, fecha_inicio=?, fecha_final=?, fecha_sesion=?, fecha_publicacion=? where id_evaluacion=?";
+			String query = "update evaluacion set id_ensenanza=?, id_curso=?, evaluacion=?, fecha_inicio=?, fecha_final=?, fecha_sesion=?, fecha_publicacion=? where id=?";
 			pstm = conn.prepareStatement(query);
 			pstm.setInt(1, idEnsenanza);
 			pstm.setInt(2, idCurso);
@@ -150,7 +150,7 @@ public class AlumnoEvaluacionDAO implements Serializable,
 			pstm.setDate(5, fechaF);
 			pstm.setDate(6, fechaS);
 			pstm.setDate(7, fechaP);
-			pstm.setInt(8, idEvaluacion);
+			pstm.setInt(8, id);
 			int numFilas = pstm.executeUpdate();
 			return true;
 
@@ -168,15 +168,15 @@ public class AlumnoEvaluacionDAO implements Serializable,
 
 	}
 
-	public boolean EliminarEvaluacionAlumno(int idEvaluacion) {
+	public boolean EliminarEvaluacionAlumno(int id) {
 
 		Connection conexion = null;
 		PreparedStatement pstm = null;
 		try {
 			conexion = ds.getConnection();
 			pstm = conexion
-					.prepareStatement("DELETE FROM evaluacion WHERE id_evaluacion=?");
-			pstm.setInt(1, idEvaluacion);
+					.prepareStatement("DELETE FROM evaluacion WHERE id=?");
+			pstm.setInt(1, id);
 			pstm.executeUpdate();
 			return true;
 		} catch (SQLException e) {
@@ -196,7 +196,7 @@ public class AlumnoEvaluacionDAO implements Serializable,
 	}
 
 	// Listar evaluaciones por id
-	public ArrayList<AlumnoEvaluacionVO> getDetalleEvaluacion(int idEvaluacion) {
+	public ArrayList<AlumnoEvaluacionVO> getDetalleEvaluacion(int id) {
 
 		ArrayList<AlumnoEvaluacionVO> detalleEvaluaciones = new ArrayList<AlumnoEvaluacionVO>();
 
@@ -206,15 +206,15 @@ public class AlumnoEvaluacionDAO implements Serializable,
 			PreparedStatement pstm;
 			Statement stm = conexion.createStatement();
 			ResultSet rs;
-			String consulta = "SELECT * FROM evaluacion where id_evaluacion =?";
+			String consulta = "SELECT * FROM evaluacion where id =?";
 			pstm = conexion.prepareStatement(consulta);
-			pstm.setInt(1, idEvaluacion);
+			pstm.setInt(1, id);
 			rs = pstm.executeQuery();
 
 			while (rs.next()) {
 				AlumnoEvaluacionVO detalleEvaluacinesVO = new AlumnoEvaluacionVO();
 				int a = rs.getInt("id_evaluacion");
-				detalleEvaluacinesVO.setIdEvaluacion(rs.getInt("id_evaluacion"));
+				detalleEvaluacinesVO.setIdEvaluacion(rs.getInt("id"));
 				detalleEvaluacinesVO.setIdEnsenanza(rs.getInt("id_ensenanza"));
 				detalleEvaluacinesVO.setIdCurso(rs.getInt("id_curso"));
 				detalleEvaluacinesVO.setEvaluacion(rs.getInt("evaluacion"));
