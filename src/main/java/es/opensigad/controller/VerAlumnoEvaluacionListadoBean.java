@@ -13,7 +13,7 @@ import es.opensigad.model.vo.AlumnoEvaluacionVO;
 @RequestScoped
 public class VerAlumnoEvaluacionListadoBean {
 
-	private int idEvaluacion;
+	private int id;
 	private int idEnsenanza;
 	private int idCurso;
 	private int evaluacion;
@@ -26,12 +26,12 @@ public class VerAlumnoEvaluacionListadoBean {
 
 	private ArrayList<AlumnoEvaluacionVO> alumnoEvaluacionListadoVO;
 
-	public int getIdEvaluacion() {
-		return idEvaluacion;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdEvaluacion(int idEvaluacion) {
-		this.idEvaluacion = idEvaluacion;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getIdEnsenanza() {
