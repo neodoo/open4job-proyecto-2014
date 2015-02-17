@@ -39,6 +39,7 @@
 					<h:outputLabel id="etiquetaFechaNacimiento"
 						value="#{etqAlm['etiquetas.fechaNacimiento']}" />
 					<h:inputText value="#{insertarAlumnoBean.alumnoVO.fechaNacimiento}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:inputText>
 
 					<h:outputLabel id="etiquetaApellido1"
@@ -89,7 +90,10 @@
 
 				<h:commandButton value="Insertar Alumno"
 					action="#{insertarAlumnoBean.insertAlumno()}"></h:commandButton>
+
 			</h:form>
+
+
 		</ui:define>
 
 	</ui:composition>
