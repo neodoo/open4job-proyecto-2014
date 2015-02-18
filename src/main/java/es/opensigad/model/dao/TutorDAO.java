@@ -327,6 +327,14 @@ public class TutorDAO implements TutorDAOInterface {
 
 	}
 
+	@Override
+	public void updateTutor(String nombre, String apellido1, String apellido2,
+			String tipo_documento, String DNI, Date fechaNac, String sexo,
+			String parentesco, String telefono, String email) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 
