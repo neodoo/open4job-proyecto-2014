@@ -7,21 +7,21 @@ import junit.framework.TestCase;
 
 public class AlumnoFaltaDAOTest extends TestCase {
 
-	long idFalta = 0;
-	long idAlumno = 999;
+	public static long idFalta = 0;
+	public static long idAlumno = 999999999;
 
 	AlumnoFaltaDAOPoolDB alumnoFaltaDAO = new AlumnoFaltaDAOPoolDB();
 
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 	
-	
 	public void test1() {
 
 		// Insertar falta
 		AlumnoFaltaVO alumnoFaltaVO = new AlumnoFaltaVO(idAlumno, sqlDate,
-				"sesion_" + idAlumno, "materia_" + idAlumno, "tipo_"+ idAlumno, "justificado_"+ idAlumno,
-				"observaciones_"+ idAlumno);
+				"sesion_" + idAlumno, "materia_" + idAlumno,
+				"tipo_" + idAlumno, "justificado_" + idAlumno, "observaciones_"
+						+ idAlumno);
 		idFalta = alumnoFaltaDAO.insertarFalta(alumnoFaltaVO);
 
 		assertTrue(idFalta > 0);

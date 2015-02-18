@@ -12,21 +12,21 @@ import es.opensigad.model.vo.AlumnoFaltaVO;
 @RequestScoped
 public class VerAlumnoFaltaListadoBean {
 
-	private int idAlumno;
-	private List<AlumnoFaltaVO> faltasVO;
+	private long idAlumno;
+	private List<AlumnoFaltaVO> alumnoFaltasVO;
 
-	public int getIdAlumno() {
+	public long getIdAlumno() {
 		return idAlumno;
 	}
-	public void setIdAlumno(int idAlumno) {
+	public void setIdAlumno(long idAlumno) {
 		this.idAlumno = idAlumno;
 	}
 
 	public List<AlumnoFaltaVO> getFaltasVO() {
-		return faltasVO;
+		return alumnoFaltasVO;
 	}
 	public void setFaltasVO(List<AlumnoFaltaVO> faltasVO) {
-		this.faltasVO = faltasVO;
+		this.alumnoFaltasVO = faltasVO;
 	}
 	
 	public String getAlumnoFaltaListado() {
@@ -34,7 +34,7 @@ public class VerAlumnoFaltaListadoBean {
 		String pagina = "verAlumnoFaltaListado";
 
 		AlumnoFaltaDAO faltaDAO = new AlumnoFaltaDAO();
-		faltasVO = faltaDAO.getListaFaltas(idAlumno);
+		alumnoFaltasVO = faltaDAO.getListaFaltas(idAlumno);
 
 		return pagina;
 
