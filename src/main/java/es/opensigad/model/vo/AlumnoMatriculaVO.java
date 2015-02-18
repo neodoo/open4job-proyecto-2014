@@ -14,8 +14,8 @@ public AlumnoMatriculaVO(){
 		
 	}
 
-	public AlumnoMatriculaVO(int id,int cursoEscolar,String centro,String ensenanza, String modulo,
-			int curso,int idAlumno){
+	public AlumnoMatriculaVO(int id,int idAlumno,int cursoEscolar,String centro,String ensenanza, String modulo,
+			int curso){
 		
 		this.id=id;
 		this.cursoEscolar=cursoEscolar;

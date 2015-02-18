@@ -118,8 +118,8 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				lista.add(new AlumnoMatriculaVO(rs.getInt(1), rs.getInt(2), rs
-						.getString(3), rs.getString(4), rs.getString(5), rs
-						.getInt(6), rs.getInt(7)));
+						.getInt(3), rs.getString(4), rs.getString(5), rs
+						.getString(6), rs.getInt(7)));
 			}
 			
 		} catch (SQLException e) {
@@ -143,8 +143,8 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				fichamatricula = (new AlumnoMatriculaVO(rs.getInt(1), rs.getInt(2), rs
-						.getString(3), rs.getString(4), rs.getString(5), rs
-						.getInt(6), rs.getInt(7)));
+						.getInt(3), rs.getString(4), rs.getString(5), rs
+						.getString(6), rs.getInt(7)));
 			}
 		
 		} catch (SQLException e) {
