@@ -22,11 +22,11 @@ public interface TutorDAOInterface {
 
 	// modifica un tutor con el id recibido
 	public abstract void updateTutor( String nombre,
-			String apellido1, String apellido2, String tipo_documento, String DNI, java.sql.Date fechaNac,
+			String apellido1, String apellido2, String tipo_documento, String DNI, Date fechaNac,
 			String sexo, String parentesco, String telefono, String email);
 
     public abstract boolean insertarTutor(int idAlumno, String nombre,
-			String apellido1, String apellido2, String tipo_documento, String DNI, java.sql.Date fechaNac,
+			String apellido1, String apellido2, String tipo_documento, String DNI, Date fechaNac,
 			String sexo, String parentesco, String telefono, String email);
 	
 }

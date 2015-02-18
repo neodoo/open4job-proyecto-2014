@@ -21,18 +21,36 @@ public class InsertarTutorBean implements Serializable{
 	
 	private TutorVO tutorVO;
 	
-	private int idTutor;
 	private int idAlumno;
+	private int idTutor;
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
+	private String tipo_documento;
 	private String DNI;
 	private Date fechaNac;
 	private String parentesco;
+	private String sexo;
 	private String tlf;
 	private String email;
-
 	
+	
+	public String getTipo_documento() {
+		return tipo_documento;
+	}
+
+	public void setTipo_documento(String tipo_documento) {
+		this.tipo_documento = tipo_documento;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
 	public int getIdTutor() {
 		return idTutor;
 	}
@@ -120,7 +138,7 @@ public class InsertarTutorBean implements Serializable{
 		String pagina;
 		
 		TutorDAO tutorDAO = new TutorDAO();
-		if(tutorDAO.insertarTutor(idAlumno,nombre, apellido1,apellido2, DNI, fechaNac, parentesco, tlf, email))
+		if(tutorDAO.insertarTutor(idAlumno,nombre, apellido1,apellido2, tipo_documento, DNI, fechaNac, sexo, parentesco, tlf, email))
 			pagina= "insertarTutorExito.xhtml";
 		else
 			pagina= "insertarTutorFallo.xhtml";
