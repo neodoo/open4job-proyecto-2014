@@ -31,7 +31,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			e.printStackTrace();
 		}
 	}
-
+	//InsertarMatricula
 	public boolean insertarMatricula(int idAlumno,int cursoEscolar, String centro,
 			String ensenanza, String modulo, int curso) {
 		Connection conn;
