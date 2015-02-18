@@ -16,11 +16,11 @@
 		<h:panelGrid id="panel" columns="2" border="0" cellpadding="0"
 			cellspacing="5">
 			<h:outputLabel value="Matrícula: " style="font-weight:bold" />
-			<h:inputText value="#{verAlumnoMatriculaFichaBean.idMatricula}">
+			<h:inputText value="#{verAlumnoMatriculaFichaBean.idMatricula}" disabled="true">
 			</h:inputText>
 			<h:outputLabel value="Curso escolar" style="font-weight:bold" />
 			<h:inputText
-				value="#{verAlumnoMatriculaFichaBean.matriculaVO.cursoEscolar}">
+				value="#{verAlumnoMatriculaFichaBean.matriculaVO.cursoEscolar}" disabled="true">
 			</h:inputText>
 			<h:outputLabel value="Centro: " style="font-weight:bold" />
 			<h:inputText
