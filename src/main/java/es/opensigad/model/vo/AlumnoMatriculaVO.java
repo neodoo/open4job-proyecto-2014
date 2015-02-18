@@ -3,7 +3,7 @@ package es.opensigad.model.vo;
 public class AlumnoMatriculaVO {
 	
 	private int id;
-	private int curso_escolar;
+	private int cursoEscolar;
 	private String centro;
 	private String ensenanza;
 	private String modulo;
@@ -18,7 +18,7 @@ public AlumnoMatriculaVO(){
 			int curso,int idAlumno){
 		
 		this.id=id;
-		this.curso_escolar=cursoEscolar;
+		this.cursoEscolar=cursoEscolar;
 		this.centro=centro;
 		this.ensenanza=ensenanza;
 		this.modulo=modulo;
@@ -26,6 +26,8 @@ public AlumnoMatriculaVO(){
 		this.idAlumno=idAlumno;
 		
 	}
+
+	
 
 	public int getId() {
 		return id;
@@ -35,12 +37,12 @@ public AlumnoMatriculaVO(){
 		this.id = id;
 	}
 
-	public int getCurso_escolar() {
-		return curso_escolar;
+	public int getCursoEscolar() {
+		return cursoEscolar;
 	}
 
-	public void setCurso_escolar(int curso_escolar) {
-		this.curso_escolar = curso_escolar;
+	public void setCursoEscolar(int cursoEscolar) {
+		this.cursoEscolar = cursoEscolar;
 	}
 
 	public String getCentro() {
@@ -86,7 +88,7 @@ public AlumnoMatriculaVO(){
 	@Override
 	public String toString() {
 		return "AlumnoMatriculaVO [id=" + id + ", curso_escolar="
-				+ curso_escolar + ", centro=" + centro + ", ensenanza="
+				+ cursoEscolar + ", centro=" + centro + ", ensenanza="
 				+ ensenanza + ", modulo=" + modulo + ", curso=" + curso
 				+ ", idAlumno=" + idAlumno + "]";
 	}

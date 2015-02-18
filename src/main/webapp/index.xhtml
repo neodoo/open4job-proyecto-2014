@@ -17,7 +17,7 @@
 		<h:outputLabel id="tituloOpensigad"
 			value="#{etqAlm['titulo.opensigad']}" />
 	</h1>
-	
+
 	<h3>Alumno</h3>
 	<a href="indexAlumno.xhtml"><h:outputLabel id="etiquetaAlumnos"
 			value="#{etqAlm['etiquetas.alumnos']}" /></a>
@@ -28,8 +28,13 @@
 	<br></br>
 
 
-	<h3>Matriculas del alumno</h3>
-	<a href="indexAlumnoMatricula.xhtml">Ir a matriculas</a>
+	<h3>
+		<h:outputLabel id="tituloMatriculaAlumno"
+			value="#{etqAlmMat['titulo.matriculaAlumno']}" />
+	</h3>
+	<a href="indexAlumnoMatricula.xhtml"><h:outputLabel id="etiquetaAlumnosMatricula"
+			value="#{etqAlmMat['etiquetas.irMatriculaAlumno']}" /></a>
+	
 	<br></br>
 
 
@@ -39,7 +44,7 @@
 	<h3>Notas del alumno</h3>
 	<a href="indexAlumnoNota.xhtml">Ir a notas del alumno</a>
 	<br></br>
-	
+
 	<h3>Evaluaciones</h3>
 	<a href="indexAlumnoEvaluacion.xhtml">Ir a las evaluaciones</a>
 	<br></br>
