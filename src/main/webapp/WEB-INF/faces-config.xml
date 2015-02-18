@@ -13,5 +13,9 @@
 		<base-name>es.opensigad.etiquetasAlumno</base-name>
 		<var>etqAlm</var>
 	   </resource-bundle>
+	   <resource-bundle>
+		<base-name>es.opensigad.etiquetasAlumnoMatricula</base-name>
+		<var>etqAlmMat</var>
+	   </resource-bundle>
      </application>
 </faces-config>

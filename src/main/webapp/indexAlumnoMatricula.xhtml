@@ -9,31 +9,48 @@
 	<title>OpenSIGAD</title>
 </h:head>
 <h:body>
-	<h3>Matriculas del alumno</h3>
+	<h3>
+		<h:outputLabel id="tituloMatriculaAlumno"
+			value="#{etqAlmMat['titulo.matriculaAlumno']}" />
+	</h3>
 	<h:form>
-		Id del alumno: <h:inputText
-			value="#{verAlumnoMatriculaListadoBean.id}" />
-		<h:commandButton value="Ver matrículas del alumno"
+		<h:outputLabel id="idAlumno"
+			value="#{etqAlmMat['etiquetas.idAlumno']}" />
+		<h:inputText value="#{verAlumnoMatriculaListadoBean.id}" />
+		<h:commandButton value="#{etqAlmMat['etiquetas.verMatriculasAlumno']}"
 			action="#{verAlumnoMatriculaListadoBean.getListaMatricula(verAlumnoMatriculaListadoBean.id)}"></h:commandButton>
+
 	</h:form>
 	<br />
-	<h3>Una matrícula del alumno</h3>
-		<h:form>
-			<h:inputText value="#{verAlumnoMatriculaFichaBean.idMatricula}" />
-			<h:commandButton value="Ver matrícula"
-				action="#{verAlumnoMatriculaFichaBean.getDetalleMatricula()}"></h:commandButton>
-		</h:form>
-		<br />
+	<h3>
+		<h:outputLabel id="tituloIdMatriculaAlumno"
+			value="#{etqAlmMat['titulo.matriculaPorIdMatricula']}" />
+	</h3>
 	<h:form>
-		Insertar Matrícula 
-		<h:commandButton value="Insertar Matrícula"
+		<h:outputLabel id="idMatricula"
+			value="#{etqAlmMat['etiquetas.idMatricula']}" />
+		<h:inputText value="#{verAlumnoMatriculaFichaBean.idMatricula}" />
+		<h:commandButton value="#{etqAlmMat['etiquetas.verMatricula']}"
+			action="#{verAlumnoMatriculaFichaBean.getDetalleMatricula()}"></h:commandButton>
+	</h:form>
+	<br />
+	<h:form>
+		<h3>
+			<h:outputLabel id="idInsertarMatricula"
+				value="#{etqAlmMat['titulo.insertarMatricula']}" />
+		</h3>
+		<h:commandButton value="#{etqAlmMat['etiquetas.ir']}"
 			action="insertarAlumnoMatricula"></h:commandButton>
 	</h:form>
 	<br />
 	<h:form>
-		Eliminar por Id de matricula: <h:inputText
-			value="#{eliminarAlumnoMatriculaBean.idMatricula}" />
-		<h:commandButton value="Borrar matrícula del alumno"
+		<h3>
+			<h:outputLabel id="idEliminarMatricula"
+				value="#{etqAlmMat['titulo.eliminarMatricula']}" />
+		</h3>
+		<h:outputLabel id="idMatricula"
+			value="#{etqAlmMat['etiquetas.idMatricula']}" /><h:inputText value="#{eliminarAlumnoMatriculaBean.idMatricula}" />
+		<h:commandButton value="#{etqAlmMat['etiquetas.borrar']}"
 			action="#{eliminarAlumnoMatriculaBean.borrarMatricula(eliminarAlumnoMatriculaBean.idMatricula)}"></h:commandButton>
 	</h:form>
 	<br />
