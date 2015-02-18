@@ -121,18 +121,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 						.getString(3), rs.getString(4), rs.getString(5), rs
 						.getInt(6), rs.getInt(7)));
 			}
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (Exception e) {
-				}
-			}
-			if (stmt != null) {
-				try {
-					stmt.close();
-				} catch (Exception e) {
-				}
-			}
+			
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
@@ -157,18 +146,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 						.getString(3), rs.getString(4), rs.getString(5), rs
 						.getInt(6), rs.getInt(7)));
 			}
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (Exception e) {
-				}
-			}
-			if (stmt != null) {
-				try {
-					stmt.close();
-				} catch (Exception e) {
-				}
-			}
+		
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}

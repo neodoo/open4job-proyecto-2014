@@ -27,6 +27,8 @@ public AlumnoMatriculaVO(){
 		
 	}
 
+	
+
 	public int getId() {
 		return id;
 	}
@@ -35,11 +37,11 @@ public AlumnoMatriculaVO(){
 		this.id = id;
 	}
 
-	public int getCurso_escolar() {
+	public int getCursoEscolar() {
 		return cursoEscolar;
 	}
 
-	public void setCurso_escolar(int cursoEscolar) {
+	public void setCursoEscolar(int cursoEscolar) {
 		this.cursoEscolar = cursoEscolar;
 	}
 
