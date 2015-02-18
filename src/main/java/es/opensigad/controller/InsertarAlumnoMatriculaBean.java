@@ -13,17 +13,15 @@ import es.opensigad.model.dao.AlumnoMatriculaDAO;
 public class InsertarAlumnoMatriculaBean implements Serializable {
 
 	private int idAlumno;
-	private String fecha;
-	private String tipoEnsenanza;
+	private int cursoEscolar;
 	private String centro;
 	private String ensenanza;
-	private String curso;
+	private String modulo;
+	private int curso;
 
 	public InsertarAlumnoMatriculaBean() {
 
 	}
-
-
 
 	public int getIdAlumno() {
 		return idAlumno;
@@ -33,12 +31,12 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 		this.idAlumno = idAlumno;
 	}
 
-	public String getFecha() {
-		return fecha;
+	public int getCursoEscolar() {
+		return cursoEscolar;
 	}
 
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
+	public void setCursoEscolar(int cursoEscolar) {
+		this.cursoEscolar = cursoEscolar;
 	}
 
 	public String getCentro() {
@@ -49,14 +47,6 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 		this.centro = centro;
 	}
 
-	public String getTipoEnsenanza() {
-		return tipoEnsenanza;
-	}
-
-	public void setTipoEnsenanza(String tipoEnsenanza) {
-		this.tipoEnsenanza = tipoEnsenanza;
-	}
-
 	public String getEnsenanza() {
 		return ensenanza;
 	}
@@ -65,20 +55,29 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 		this.ensenanza = ensenanza;
 	}
 
-	public String getCurso() {
+	public String getModulo() {
+		return modulo;
+	}
+
+	public void setModulo(String modulo) {
+		this.modulo = modulo;
+	}
+
+	public int getCurso() {
 		return curso;
 	}
 
-	public void setCurso(String curso) {
+	public void setCurso(int curso) {
 		this.curso = curso;
 	}
-	public String insertarAlumnoMatricula(int idAlumno, String fecha,
-			String centro, String tipoEnsenanza, String ensenanza, String curso) {
+
+	public String insertarAlumnoMatricula(int idAlumno, int cursoEscolar,
+			String centro, String ensenanza, String modulo, int curso) {
 		String pagina = null;
 		AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
 
-		if (matriculaDAO.insertarMatricula(idAlumno, fecha, centro,
-				tipoEnsenanza, ensenanza, curso)) {
+		if (matriculaDAO.insertarMatricula(idAlumno, cursoEscolar, centro,
+				ensenanza, modulo, curso)) {
 			pagina = "insertarAlumnoMatriculaExito";
 		} else {
 			pagina = "insertarAlumnoMatriculaFallo";
@@ -86,4 +85,5 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 
 		return pagina;
 	}
+
 }

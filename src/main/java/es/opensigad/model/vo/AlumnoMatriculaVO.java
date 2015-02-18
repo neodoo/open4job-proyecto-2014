@@ -1,40 +1,30 @@
 package es.opensigad.model.vo;
 
-import java.sql.Date;
-
 public class AlumnoMatriculaVO {
 	
 	private int id;
-	private String fechaCurso;
+	private int curso_escolar;
 	private String centro;
-	private String tipoEnsenanza;
 	private String ensenanza;
-	private String curso;
+	private String modulo;
+	private int curso;
 	private int idAlumno;
 	
 public AlumnoMatriculaVO(){
 		
 	}
 
-	public AlumnoMatriculaVO(int id,String fechaCurso,String centro,String tipoEnsenanza, String ensenanza,
-			String curso,int idAlumno){
+	public AlumnoMatriculaVO(int id,int cursoEscolar,String centro,String ensenanza, String modulo,
+			int curso,int idAlumno){
 		
 		this.id=id;
-		this.fechaCurso=fechaCurso;
+		this.curso_escolar=cursoEscolar;
 		this.centro=centro;
-		this.tipoEnsenanza=tipoEnsenanza;
 		this.ensenanza=ensenanza;
+		this.modulo=modulo;
 		this.curso=curso;
 		this.idAlumno=idAlumno;
 		
-	}
-
-	public String getCentro() {
-		return centro;
-	}
-
-	public void setCentro(String centro) {
-		this.centro = centro;
 	}
 
 	public int getId() {
@@ -45,20 +35,20 @@ public AlumnoMatriculaVO(){
 		this.id = id;
 	}
 
-	public String getFechaCurso() {
-		return fechaCurso;
+	public int getCurso_escolar() {
+		return curso_escolar;
 	}
 
-	public void setFechaCurso(String fechaCurso) {
-		this.fechaCurso = fechaCurso;
+	public void setCurso_escolar(int curso_escolar) {
+		this.curso_escolar = curso_escolar;
 	}
 
-	public String getTipoEnsenanza() {
-		return tipoEnsenanza;
+	public String getCentro() {
+		return centro;
 	}
 
-	public void setTipoEnsenanza(String tipoEnsenanza) {
-		this.tipoEnsenanza = tipoEnsenanza;
+	public void setCentro(String centro) {
+		this.centro = centro;
 	}
 
 	public String getEnsenanza() {
@@ -69,11 +59,19 @@ public AlumnoMatriculaVO(){
 		this.ensenanza = ensenanza;
 	}
 
-	public String getCurso() {
+	public String getModulo() {
+		return modulo;
+	}
+
+	public void setModulo(String modulo) {
+		this.modulo = modulo;
+	}
+
+	public int getCurso() {
 		return curso;
 	}
 
-	public void setCurso(String curso) {
+	public void setCurso(int curso) {
 		this.curso = curso;
 	}
 
@@ -87,10 +85,14 @@ public AlumnoMatriculaVO(){
 
 	@Override
 	public String toString() {
-		return "MatriculaVO [id=" + id + ", fechaCurso=" + fechaCurso
-				+ ", centro=" + centro + ", tipoEnsenanza=" + tipoEnsenanza
-				+ ", ensenanza=" + ensenanza + ", curso=" + curso
+		return "AlumnoMatriculaVO [id=" + id + ", curso_escolar="
+				+ curso_escolar + ", centro=" + centro + ", ensenanza="
+				+ ensenanza + ", modulo=" + modulo + ", curso=" + curso
 				+ ", idAlumno=" + idAlumno + "]";
 	}
+
+
+
+	
 
 }

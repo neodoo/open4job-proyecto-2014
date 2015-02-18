@@ -2,41 +2,38 @@ package es.opensigad.controller;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-
 import es.opensigad.model.dao.AlumnoFaltaDAO;
 import es.opensigad.model.vo.AlumnoFaltaVO;
 
 @ManagedBean
 @RequestScoped
 public class VerAlumnoFaltaFichaBean {
+	private long id;
 
-	private int id;
+	private AlumnoFaltaVO alumnoFaltaVO = new AlumnoFaltaVO();
 
-	private AlumnoFaltaVO faltaVO = new AlumnoFaltaVO ();
-
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public AlumnoFaltaVO getFaltaVO() {
-		return faltaVO;
+	public AlumnoFaltaVO getAlumnoFaltaVO() {
+		return alumnoFaltaVO;
 	}
 
-	public void setFaltaVO(AlumnoFaltaVO faltaVO) {
-		this.faltaVO = faltaVO;
+	public void setAlumnoFaltaVO(AlumnoFaltaVO alumnoFaltaVO) {
+		this.alumnoFaltaVO = alumnoFaltaVO;
 	}
 
 	public String getDetalleFalta() {
 
 		String pagina = "verAlumnoFaltaFicha";
 
-		AlumnoFaltaDAO faltaDAO = new AlumnoFaltaDAO();
-		faltaVO = faltaDAO.getDetalleFalta(id);
+		AlumnoFaltaDAO alumnoFaltaDAO = new AlumnoFaltaDAO();
+		alumnoFaltaVO = alumnoFaltaDAO.getDetalleFalta(id);
 
 		return pagina;
 

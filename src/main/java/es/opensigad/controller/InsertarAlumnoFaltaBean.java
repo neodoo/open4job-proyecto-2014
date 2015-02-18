@@ -17,31 +17,28 @@ public class InsertarAlumnoFaltaBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;
-	private int idAlumno;
+	private long id;
+	private long idAlumno;
 	private Date fecha;
 	private String sesion;
 	private String materia;
 	private String tipo;
 	private String justificado;
 	private String observaciones;
-
-	public InsertarAlumnoFaltaBean() {
-	}
-
-	public int getId() {
+	
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public int getIdAlumno() {
+	public long getIdAlumno() {
 		return idAlumno;
 	}
 
-	public void setIdAlumno(int idAlumno) {
+	public void setIdAlumno(long idAlumno) {
 		this.idAlumno = idAlumno;
 	}
 
@@ -93,17 +90,18 @@ public class InsertarAlumnoFaltaBean implements Serializable {
 		this.observaciones = observaciones;
 	}
 
+	public InsertarAlumnoFaltaBean() {
+	}
+
 	public String insertarFalta(AlumnoFaltaVO falta) {
-		String pagina=null;
+		String pagina = null;
 		AlumnoFaltaDAO alumnoFaltaDAO = new AlumnoFaltaDAO();
-		if (alumnoFaltaDAO.insertarFalta(falta) > 0){
-			pagina = "actualizarAlumnoFaltaExito";
-		}else{
-			pagina = "actualizarAlumnoFaltaFallo";
+		if (alumnoFaltaDAO.insertarFalta(falta) > 0) {
+			pagina = "insertarAlumnoFaltaExito";
+		} else {
+			pagina = "insertarAlumnoFaltaFallo";
 		}
-		return pagina;		
-		
-		
+		return pagina;
 	}
 
 }

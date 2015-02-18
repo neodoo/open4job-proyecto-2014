@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,7 +13,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import es.opensigad.model.vo.AlumnoFaltaVO;
 import es.opensigad.model.vo.AlumnoMatriculaVO;
 
 public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
@@ -34,20 +32,20 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 		}
 	}
 
-	public boolean insertarMatricula(int idAlumno,String fecha, String centro,
-			String tipoEnsenanza, String ensenanza, String curso) {
+	public boolean insertarMatricula(int idAlumno,int cursoEscolar, String centro,
+			String ensenanza, String modulo, int curso) {
 		Connection conn;
 		try {
 			conn = ds.getConnection();
 
 			PreparedStatement stmt = conn
-					.prepareStatement("INSERT INTO matriculas (fecha_curso,centro, tipo_ensenanza, ensenanza, curso, id_alumno) VALUES (?,?,?,?,?,?)");
+					.prepareStatement("INSERT INTO matriculas (curso_escolar,centro, ensenanza, modulo, curso, id_alumno) VALUES (?,?,?,?,?,?)");
 			
-			stmt.setString(1, fecha);
+			stmt.setInt(1, cursoEscolar);
 			stmt.setString(2, centro);
-			stmt.setString(3, tipoEnsenanza);
-			stmt.setString(4, ensenanza);
-			stmt.setString(5, curso);
+			stmt.setString(3, ensenanza);
+			stmt.setString(4, modulo);
+			stmt.setInt(5, curso);
 			stmt.setInt(6, idAlumno);
 			stmt.executeUpdate();
 			return true;
@@ -77,22 +75,22 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 	}
 
-	public boolean modificarMatricula(int idAlumno, String fecha,
-			String centro, String tipoEnsenanza, String ensenanza,
-			String curso, int idMatricula) {
+	public boolean modificarMatricula(int idAlumno, int cursoEscolar,
+			String centro, String ensenanza, String modulo,
+			int curso, int idMatricula) {
 
 		Connection conn;
 		try {
 			conn = ds.getConnection();
 
 			PreparedStatement stmt = conn
-					.prepareStatement("UPDATE matriculas SET fecha_curso=?, centro=?, tipo_ensenanza=?, ensenanza=?, "
+					.prepareStatement("UPDATE matriculas SET curso_escolar=?, centro=?, ensenanza=?, modulo=?, "
 							+ "curso=?, id_alumno=? WHERE id=?");
-			stmt.setString(1, fecha);
+			stmt.setInt(1, cursoEscolar);
 			stmt.setString(2, centro);
-			stmt.setString(3, tipoEnsenanza);
-			stmt.setString(4, ensenanza);
-			stmt.setString(5, curso);
+			stmt.setString(3, ensenanza);
+			stmt.setString(4, modulo);
+			stmt.setInt(5, curso);
 			stmt.setInt(6, idAlumno);
 			stmt.setInt(7, idMatricula);
 			int count = stmt.executeUpdate();
@@ -119,9 +117,9 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			stmt.setInt(1, idAlumno);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				lista.add(new AlumnoMatriculaVO(rs.getInt(1), rs.getString(2), rs
+				lista.add(new AlumnoMatriculaVO(rs.getInt(1), rs.getInt(2), rs
 						.getString(3), rs.getString(4), rs.getString(5), rs
-						.getString(6), rs.getInt(7)));
+						.getInt(6), rs.getInt(7)));
 			}
 			
 		} catch (SQLException e) {
@@ -144,9 +142,9 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			stmt.setInt(1, idMatricula);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				fichamatricula = (new AlumnoMatriculaVO(rs.getInt(1), rs.getString(2), rs
+				fichamatricula = (new AlumnoMatriculaVO(rs.getInt(1), rs.getInt(2), rs
 						.getString(3), rs.getString(4), rs.getString(5), rs
-						.getString(6), rs.getInt(7)));
+						.getInt(6), rs.getInt(7)));
 			}
 		
 		} catch (SQLException e) {

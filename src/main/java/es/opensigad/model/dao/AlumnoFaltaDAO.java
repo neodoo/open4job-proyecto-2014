@@ -1,6 +1,7 @@
 package es.opensigad.model.dao;
 
 import java.io.Serializable;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +19,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import es.opensigad.model.vo.AlumnoFaltaVO;
+
 
 public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 
@@ -42,21 +44,21 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 	public List<AlumnoFaltaVO> getListaFaltas(long pidAlumno) {
 
 		Connection con = null;
-		PreparedStatement ps = null;
+		CallableStatement cs = null;
 		ResultSet rs = null;
 
 		List<AlumnoFaltaVO> listFaltas = new ArrayList<AlumnoFaltaVO>();
 		AlumnoFaltaVO faltaVO = null;
 
 		try {
-
-			String query = "SELECT * FROM faltas WHERE id_alumno =? ORDER BY id";
-
-			con = ds.getConnection();
-			ps = con.prepareStatement(query);
-			ps.setLong(1, pidAlumno);
-			rs = ps.executeQuery();
-
+			String sqlSP = "{call GetFaltasAlumno(?)}";
+			
+			con = ds.getConnection();			
+			cs = con.prepareCall(sqlSP);
+			cs.setLong(1, pidAlumno);		
+			
+			rs = cs.executeQuery();			
+		
 			while (rs.next()) {
 				int id = rs.getInt(1);
 				int idAlumno = rs.getInt(2);
@@ -78,6 +80,20 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 					Level.SEVERE,
 					"Error en AlumnoFaltaDAO.getListaFaltas : "
 							+ e.getMessage());
+		} finally {
+			if (cs != null) {
+				try {
+					cs.close();
+				} catch (SQLException e) {
+				}
+			}
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				}
+			}			
 		}
 		return listFaltas;
 	}
@@ -92,13 +108,14 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 		AlumnoFaltaVO faltaVO = null;
 
 		try {
-			String query = "SELECT * FROM faltas WHERE id =?";
+			
+			String selectSQL = "SELECT * FROM faltas WHERE id =?";
 
 			con = ds.getConnection();
-			ps = con.prepareStatement(query);
+			ps = con.prepareStatement(selectSQL);
 			ps.setLong(1, pnumId);
 			rs = ps.executeQuery();
-
+					
 			while (rs.next()) {
 				int id = rs.getInt(1);
 				int id_alumno = rs.getInt(2);
@@ -118,47 +135,105 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 					Level.SEVERE,
 					"Error en AlumnoFaltaDAO.getDetalleFalta : "
 							+ e.getMessage());
+		} finally {
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+				}
+			}
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				}
+			}
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			}			
 		}
+
 		return faltaVO;
 	}
 
 	// Insertar una falta
 	public long insertarFalta(AlumnoFaltaVO falta) {
-	
+
 		long newId = 0;
-		
+
 		Connection con = null;
 		PreparedStatement ps = null;
+		ResultSet rs = null;
 
 		try {
-			String query = "INSERT INTO faltas (id_Alumno, fecha, sesion, materia, tipo, justificado, observaciones) VALUES (?,?,?,?,?,?,?)";
-			
+			String insertSQLTabla = "INSERT INTO faltas"
+					+ " (id_Alumno, fecha, sesion, materia, tipo, justificado, observaciones)"
+					+ " VALUES (?,?,?,?,?,?,?)";
+
 			con = ds.getConnection();
-			ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);		
+			con.setAutoCommit(false);
+
+			ps = con.prepareStatement(insertSQLTabla,
+					Statement.RETURN_GENERATED_KEYS);
 			ps.setLong(1, falta.getIdAlumno());
-			
-			java.sql.Date fechaSql = new java.sql.Date(falta.getFecha().getTime());
+
+			java.sql.Date fechaSql = new java.sql.Date(falta.getFecha()
+					.getTime());
 			ps.setDate(2, fechaSql);
-			
+
 			ps.setString(3, falta.getSesion());
 			ps.setString(4, falta.getMateria());
 			ps.setString(5, falta.getTipo());
 			ps.setString(6, falta.getJustificado());
 			ps.setString(7, falta.getObservaciones());
-			
 			ps.executeUpdate();
-			
-			try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
-				if (generatedKeys.next()) {
-					newId = generatedKeys.getLong(1);
-	            }
-	            else {
-	                logger.log(Level.SEVERE, "Error en AlumnoFaltaDAO.insertarFalta: No se ha obtenido el ID correctamente");
-	            }
-	        }			
+
+			try {
+				rs = ps.getGeneratedKeys();
+
+				if (rs.next()) {
+					newId = rs.getLong(1);
+				} else {
+					logger.log(Level.SEVERE,
+							"Error en AlumnoFaltaDAO.insertarFalta: No se ha obtenido el ID correctamente");
+				}
+
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException e) {
+					}
+				}
+			}
+
+			con.commit();
 
 		} catch (SQLException e) {
-			logger.log(Level.SEVERE, "Error en AlumnoFaltaDAO.insertarFalta: " + e.getMessage());
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+			}
+			logger.log(Level.SEVERE, "Error en AlumnoFaltaDAO.insertarFalta: "
+					+ e.getMessage());
+		} finally {
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+				}
+			}
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				}
+			}
 		}
 
 		return newId;
@@ -170,32 +245,57 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 		long numReg = 0;
 
 		Connection con = null;
-		PreparedStatement ps = null;
+		CallableStatement cs = null;
 
 		try {
-			String query = "UPDATE faltas SET fecha = ?, sesion = ?, materia = ?, tipo = ?, justificado = ?, observaciones = ? WHERE id = ?";
-
+			String sqlSP = "{call UpdateFaltaAlumno(?,?,?,?,?,?,?,?)}";
+			
 			con = ds.getConnection();
-			ps = con.prepareStatement(query);
+			con.setAutoCommit(false);
+			
+			cs = con.prepareCall(sqlSP);
 
 			java.sql.Date fechaSql = new java.sql.Date(falta.getFecha()
 					.getTime());
-			ps.setDate(1, fechaSql);
+			cs.setDate(1, fechaSql);
 
-			ps.setString(2, falta.getSesion());
-			ps.setString(3, falta.getMateria());
-			ps.setString(4, falta.getTipo());
-			ps.setString(5, falta.getJustificado());
-			ps.setString(6, falta.getObservaciones());
-			ps.setLong(7, falta.getId());
-
-			numReg = ps.executeUpdate();
+			cs.setString(2, falta.getSesion());
+			cs.setString(3, falta.getMateria());
+			cs.setString(4, falta.getTipo());
+			cs.setString(5, falta.getJustificado());
+			cs.setString(6, falta.getObservaciones());
+			cs.setLong(7, falta.getId());
+			cs.registerOutParameter(8, java.sql.Types.INTEGER);
+					
+			cs.executeUpdate();
+			
+			numReg = cs.getInt(8);
+			
+			con.commit();
 
 		} catch (SQLException e) {
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+			}
 			logger.log(
 					Level.SEVERE,
-					"Error en AlumnoFaltaDAO.actualizarFalta : "
+					"Error en AlumnoFaltaDAO.actualizarFalta: "
 							+ e.getMessage());
+		} finally {
+			if (cs != null) {
+				try {
+					cs.close();
+				} catch (SQLException e) {
+				}
+			}
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				}
+			}
 		}
 
 		return numReg;
@@ -210,16 +310,38 @@ public class AlumnoFaltaDAO implements AlumnoFaltaDAOInterfaz, Serializable {
 		PreparedStatement ps = null;
 
 		try {
-			String query = "DELETE FROM faltas WHERE id = ?";
+			String deleteSQLTabla = "DELETE FROM faltas" + " WHERE id = ?";
 
 			con = ds.getConnection();
-			ps = con.prepareStatement(query);
+			con.setAutoCommit(false);
+
+			ps = con.prepareStatement(deleteSQLTabla);
 			ps.setLong(1, idFalta);
 			numReg = ps.executeUpdate();
 
+			con.commit();
+
 		} catch (SQLException e) {
-			logger.log(Level.SEVERE, "Error en AlumnoFaltaDAO.eliminarFalta : "
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+			}
+			logger.log(Level.SEVERE, "Error en AlumnoFaltaDAO.eliminarFalta: "
 					+ e.getMessage());
+		} finally {
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+				}
+			}
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				}
+			}
 		}
 
 		return numReg;

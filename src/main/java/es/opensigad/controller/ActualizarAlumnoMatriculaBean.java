@@ -14,36 +14,18 @@ import es.opensigad.model.vo.AlumnoMatriculaVO;
 
 @ManagedBean
 @SessionScoped
-public class ActualizarAlumnoMatriculaBean implements Serializable{
+public class ActualizarAlumnoMatriculaBean implements Serializable {
 
 	private int idMatricula;
-	private String fechaCurso;
+	private int cursoEscolar;
 	private String centro;
-	private String tipoEnsenanza;
 	private String ensenanza;
-	private String curso;
+	private String modulo;
+	private int curso;
 	private int idAlumno;
-	
+
 	@ManagedProperty(value = "#{verAlumnoMatriculaFichaBean}")
 	private VerAlumnoMatriculaFichaBean verAlumnoMatriculaFichaBean;
-	/*private AlumnoMatriculaVO matriculaVO = new AlumnoMatriculaVO ();
-	
-	public AlumnoMatriculaVO getMatriculaVO() {
-		return matriculaVO;
-	}
-
-	public void setMatriculaVO(AlumnoMatriculaVO matriculaVO) {
-		this.matriculaVO = matriculaVO;
-	}
-
-	public ActualizarAlumnoMatriculaBean(){
-		
-	}*/
-	
-	
-	public int getIdMatricula() {
-		return idMatricula;
-	}
 
 	public VerAlumnoMatriculaFichaBean getVerAlumnoMatriculaFichaBean() {
 		return verAlumnoMatriculaFichaBean;
@@ -54,55 +36,72 @@ public class ActualizarAlumnoMatriculaBean implements Serializable{
 		this.verAlumnoMatriculaFichaBean = verAlumnoMatriculaFichaBean;
 	}
 
+	public int getIdMatricula() {
+		return idMatricula;
+	}
+
 	public void setIdMatricula(int idMatricula) {
 		this.idMatricula = idMatricula;
 	}
-	public String getFechaCurso() {
-		return fechaCurso;
+
+	public int getCursoEscolar() {
+		return cursoEscolar;
 	}
-	public void setFechaCurso(String fechaCurso) {
-		this.fechaCurso = fechaCurso;
+
+	public void setCursoEscolar(int cursoEscolar) {
+		this.cursoEscolar = cursoEscolar;
 	}
+
 	public String getCentro() {
 		return centro;
 	}
+
 	public void setCentro(String centro) {
 		this.centro = centro;
 	}
-	public String getTipoEnsenanza() {
-		return tipoEnsenanza;
-	}
-	public void setTipoEnsenanza(String tipoEnsenanza) {
-		this.tipoEnsenanza = tipoEnsenanza;
-	}
+
 	public String getEnsenanza() {
 		return ensenanza;
 	}
+
 	public void setEnsenanza(String ensenanza) {
 		this.ensenanza = ensenanza;
 	}
-	public String getCurso() {
+
+	public String getModulo() {
+		return modulo;
+	}
+
+	public void setModulo(String modulo) {
+		this.modulo = modulo;
+	}
+
+	public int getCurso() {
 		return curso;
 	}
-	public void setCurso(String curso) {
+
+	public void setCurso(int curso) {
 		this.curso = curso;
 	}
+
 	public int getIdAlumno() {
 		return idAlumno;
 	}
+
 	public void setIdAlumno(int idAlumno) {
 		this.idAlumno = idAlumno;
 	}
-	
-	public String modificarMatricula (int idAlumno, String fecha,
-			String centro, String tipoEnsenanza, String ensenanza, String curso, int idMatricula ){
-		String pagina=null;
+
+	public String modificarMatricula(int idAlumno, int cursoEscolar,
+			String centro, String ensenanza, String modulo, int curso,
+			int idMatricula) {
+		String pagina = null;
 		AlumnoMatriculaDAO alumnoMatriculaDAO = new AlumnoMatriculaDAO();
-		if (alumnoMatriculaDAO.modificarMatricula(idAlumno, fecha,
-			centro, tipoEnsenanza, ensenanza,  curso, idMatricula)){
-			pagina="actualizarAlumnoMatriculaExito";
-		}else{
-			pagina="actualizarAlumnoMatriculaFallo";
+		if (alumnoMatriculaDAO.modificarMatricula(idAlumno, cursoEscolar,
+				centro, ensenanza, modulo, curso, idMatricula)) {
+			pagina = "actualizarAlumnoMatriculaExito";
+		} else {
+			pagina = "actualizarAlumnoMatriculaFallo";
 		}
 		return pagina;
 	}

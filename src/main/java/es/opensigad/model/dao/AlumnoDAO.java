@@ -152,7 +152,8 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 		try {
 			con = ds.getConnection();
 
-			ps = con.prepareStatement("INSERT INTO alumno VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			ps = con.prepareStatement("INSERT INTO alumno VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			ps.setInt(1, 0);
 			ps.setInt(2, alumnoVO.getNumExpediente());
 			ps.setString(3, alumnoVO.getNombre());
 			ps.setString(4, alumnoVO.getApellido1());

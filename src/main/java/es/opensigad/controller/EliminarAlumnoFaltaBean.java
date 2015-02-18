@@ -1,13 +1,10 @@
 package es.opensigad.controller;
 
 import java.io.Serializable;
-import java.util.Date;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import es.opensigad.model.dao.AlumnoFaltaDAO;
-import es.opensigad.model.vo.AlumnoFaltaVO;
 
 @ManagedBean
 @RequestScoped
@@ -17,13 +14,13 @@ public class EliminarAlumnoFaltaBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;
+	private long id;
 
 	public EliminarAlumnoFaltaBean() {
 
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 

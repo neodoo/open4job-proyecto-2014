@@ -11,13 +11,13 @@
 	<h1>Introduce la matricula del alumno</h1>
 	<h:form>
 		Id Alumno<h:inputText value="#{insertarAlumnoMatriculaBean.idAlumno}"></h:inputText>
-		<br/>Fecha curso<h:inputText value="#{insertarAlumnoMatriculaBean.fecha}"></h:inputText>
+		<br/>Curso escolar<h:inputText value="#{insertarAlumnoMatriculaBean.cursoEscolar}"></h:inputText>
 		<br/>Centro<h:inputText value="#{insertarAlumnoMatriculaBean.centro}"></h:inputText>
-		<br/>Tipo de enseñanza<h:inputText value="#{insertarAlumnoMatriculaBean.tipoEnsenanza}"></h:inputText>
 		<br/>Enseñanza<h:inputText value="#{insertarAlumnoMatriculaBean.ensenanza}"></h:inputText>
+		<br/>Módulo<h:inputText value="#{insertarAlumnoMatriculaBean.modulo}"></h:inputText>
 		<br/>Curso<h:inputText value="#{insertarAlumnoMatriculaBean.curso}"></h:inputText>
 		<br/><h:commandButton value="Guardar matricula del alumno" action="#{insertarAlumnoMatriculaBean.insertarAlumnoMatricula(insertarAlumnoMatriculaBean.idAlumno,
-				 insertarAlumnoMatriculaBean.fecha, insertarAlumnoMatriculaBean.centro, insertarAlumnoMatriculaBean.tipoEnsenanza, insertarAlumnoMatriculaBean.ensenanza, insertarAlumnoMatriculaBean.curso)}"></h:commandButton>
+				 insertarAlumnoMatriculaBean.cursoEscolar, insertarAlumnoMatriculaBean.centro, insertarAlumnoMatriculaBean.ensenanza, insertarAlumnoMatriculaBean.modulo, insertarAlumnoMatriculaBean.curso)}"></h:commandButton>
 	</h:form>
 </h:body>
 </html>

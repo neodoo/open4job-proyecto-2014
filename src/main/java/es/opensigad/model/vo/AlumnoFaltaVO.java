@@ -16,18 +16,6 @@ public class AlumnoFaltaVO {
 	public AlumnoFaltaVO() {
 	}
 
-	public AlumnoFaltaVO(long idAlumno, Date fecha, String sesion,
-			String materia, String tipo, String justificado,
-			String observaciones) {
-		this.idAlumno = idAlumno;
-		this.fecha = fecha;
-		this.sesion = sesion;
-		this.materia = materia;
-		this.tipo = tipo;
-		this.justificado = justificado;
-		this.observaciones = observaciones;
-	}
-	
 	public AlumnoFaltaVO(long id, long idAlumno, Date fecha, String sesion,
 			String materia, String tipo, String justificado,
 			String observaciones) {
@@ -40,7 +28,20 @@ public class AlumnoFaltaVO {
 		this.justificado = justificado;
 		this.observaciones = observaciones;
 	}
-
+	
+	
+	public AlumnoFaltaVO(long idAlumno, Date fecha, String sesion,
+			String materia, String tipo, String justificado,
+			String observaciones) {
+		this.idAlumno = idAlumno;
+		this.fecha = fecha;
+		this.sesion = sesion;
+		this.materia = materia;
+		this.tipo = tipo;
+		this.justificado = justificado;
+		this.observaciones = observaciones;
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -51,11 +52,9 @@ public class AlumnoFaltaVO {
 
 	public long getIdAlumno() {
 		return idAlumno;	
-		//String query = "UPDATE faltas SET fecha = ?, sesion = ?, materia = ?, tipo = ?, justificado = ?, observaciones = ? WHERE id = ?";
-
 	}
 
-	public void setIdAlumno(int idAlumno) {
+	public void setIdAlumno(long idAlumno) {
 		this.idAlumno = idAlumno;
 	}
 
