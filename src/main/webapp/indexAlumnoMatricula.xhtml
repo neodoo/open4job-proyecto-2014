@@ -17,7 +17,7 @@
 		<h:outputLabel id="idAlumno"
 			value="#{etqAlmMat['etiquetas.idAlumno']}" />
 		<h:inputText value="#{verAlumnoMatriculaListadoBean.id}" />
-		<h:commandButton value="#{etqAlmMat['etiquetas.verMatriculasAlumno']}"
+		<h:commandButton value="#{etqAlmMat['boton.verMatriculasAlumno']}"
 			action="#{verAlumnoMatriculaListadoBean.getListaMatricula(verAlumnoMatriculaListadoBean.id)}"></h:commandButton>
 
 	</h:form>
@@ -30,7 +30,7 @@
 		<h:outputLabel id="idMatricula"
 			value="#{etqAlmMat['etiquetas.idMatricula']}" />
 		<h:inputText value="#{verAlumnoMatriculaFichaBean.idMatricula}" />
-		<h:commandButton value="#{etqAlmMat['etiquetas.verMatricula']}"
+		<h:commandButton value="#{etqAlmMat['boton.verMatricula']}"
 			action="#{verAlumnoMatriculaFichaBean.getDetalleMatricula()}"></h:commandButton>
 	</h:form>
 	<br />
@@ -39,7 +39,7 @@
 			<h:outputLabel id="idInsertarMatricula"
 				value="#{etqAlmMat['titulo.insertarMatricula']}" />
 		</h3>
-		<h:commandButton value="#{etqAlmMat['etiquetas.ir']}"
+		<h:commandButton value="#{etqAlmMat['boton.ir']}"
 			action="insertarAlumnoMatricula"></h:commandButton>
 	</h:form>
 	<br />
@@ -50,7 +50,7 @@
 		</h3>
 		<h:outputLabel id="idMatricula"
 			value="#{etqAlmMat['etiquetas.idMatricula']}" /><h:inputText value="#{eliminarAlumnoMatriculaBean.idMatricula}" />
-		<h:commandButton value="#{etqAlmMat['etiquetas.borrar']}"
+		<h:commandButton value="#{etqAlmMat['boton.borrar']}"
 			action="#{eliminarAlumnoMatriculaBean.borrarMatricula(eliminarAlumnoMatriculaBean.idMatricula)}"></h:commandButton>
 	</h:form>
 	<br />

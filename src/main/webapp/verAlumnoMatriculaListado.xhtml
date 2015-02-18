@@ -10,52 +10,62 @@
 
 <h:body>
 
-	<h1>Listado matricula alumno:</h1>
+	<h3>
+		<h:outputLabel id="idMatricula"
+			value="#{etqAlmMat['titulo.alumnoMatriculaListado']}" />
+	</h3>
 
-	<h:dataTable value="#{verAlumnoMatriculaListadoBean.listaMatriculaVO}" 
+	<h:dataTable value="#{verAlumnoMatriculaListadoBean.listaMatriculaVO}"
 		var="m" styleClass="order-table" headerClass="order-table-header"
 		rowClasses="order-table-odd-row,order-table-even-row">
 
 		<h:column>
 			<f:facet name="header">
-    				 ID
-    			</f:facet>
+				<h:outputLabel id="idMatricula"
+					value="#{etqAlmMat['etiquetas.idMatricula']}" />
+			</f:facet>
     				#{m.id}
     		</h:column>
 		<h:column>
 			<f:facet name="header">
-    				Curso escolar
-				</f:facet>
+				<h:outputLabel id="idCursoEscolar"
+					value="#{etqAlmMat['etiquetas.cursoEscolar']}" />
+			</f:facet>
     				#{m.cursoEscolar}
     		</h:column>
 		<h:column>
 			<f:facet name="header">
-    				Centro:
-    			</f:facet>
+				<h:outputLabel id="idCentro"
+					value="#{etqAlmMat['etiquetas.centro']}" />
+			</f:facet>
     				#{m.centro}
     		</h:column>
 		<h:column>
 			<f:facet name="header">
-    				 Enseñanza
-    			</f:facet>
+				<h:outputLabel id="idEnseñanza"
+					value="#{etqAlmMat['etiquetas.ensenanza']}" />
+			</f:facet>
     				#{m.ensenanza}
     		</h:column>
 		<h:column>
 			<f:facet name="header">
+				<h:outputLabel id="idModulo"
+					value="#{etqAlmMat['etiquetas.modulo']}" />
     				 Módulo
     			</f:facet>
     				#{m.modulo}
     		</h:column>
 		<h:column>
 			<f:facet name="header">
-    				 Curso
-    			</f:facet>
+				<h:outputLabel id="idCurso" value="#{etqAlmMat['etiquetas.curso']}" />
+			</f:facet>
     				#{m.curso}
     		</h:column>
 		<h:column>
 			<f:facet name="header">
-    				 Id Alumno
-    			</f:facet>
+				<h:outputLabel id="idAlumno"
+					value="#{etqAlmMat['etiquetas.idAlumno']}" />
+			</f:facet>
     				#{m.idAlumno}
     		</h:column>
 	</h:dataTable>
