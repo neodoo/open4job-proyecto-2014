@@ -5,9 +5,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-	<title>Inserción de tutor</title>
+	<h:outputLabel id="tituloTutor"
+						value="#{etqAlm['titulo.insercionTutor']}" />
 </h:head>
 <h:body>
-	<h1>El tutor no se ha insertado con éxito..</h1>
+	<h:outputLabel id="etiquetaInsercionFallo"
+						value="#{etqAlm['etiquetas.insercionFallo']}" />
 </h:body>
 </html>
