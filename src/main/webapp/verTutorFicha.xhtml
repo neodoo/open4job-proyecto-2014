@@ -10,7 +10,8 @@
 
 <h:body>
 
-	<h1>Ficha Tutor</h1>
+	<h:outputLabel id="tituloFichaTutor"
+						value="#{etqAlm['titulo.fichaTutor']}" />
 	<h:outputText value="#{verTutorBean.tutorVO.nombre}">
 	</h:outputText>
 	<h:outputText value="#{verTutorBean.tutorVO.apellido1}">

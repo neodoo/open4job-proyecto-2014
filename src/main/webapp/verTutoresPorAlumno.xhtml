@@ -7,28 +7,43 @@
       >
     <h:head>
     	<h:outputStylesheet library="css" name="table-style.css"  />
-    	<title>Tutores</title>
+    	<h:outputLabel id="etiquetaTutor"
+						value="#{etqAlm['titulo.tutores']}" />
     </h:head>
     <h:body>
-    <h1>Lista Tutores</h1>
+    <h:outputLabel id="etiquetaListatutor"
+						value="#{etqAlm['titulo.ListaTutores']}" />
 	<h:dataTable value="#{verTutorBean.tutorLista}" var="tL"
 		styleClass="order-table" headerClass="order-table-header"
 		rowClasses="order-table-odd-row,order-table-even-row">
 
 		<h:column>
-			<f:facet name="header">Nombre</f:facet> #{tL.nombre}
+		
+			<f:facet name="header">
+			<h:outputLabel id="etiquetaNombre"
+						value="#{etqAlm['etiquetas.nombre']}" />
+			</f:facet> #{tL.nombre}
     	</h:column>
 
 		<h:column>
-			<f:facet name="header">Apellido1</f:facet> #{tL.apellido1}
+			<f:facet name="header">
+			<h:outputLabel id="etiquetaApellido1"
+						value="#{etqAlm['etiquetas.apellido1']}" />
+			</f:facet> #{tL.apellido1}
     	</h:column>
 
 		<h:column>
-			<f:facet name="header">Apellido2</f:facet> #{tL.apellido2}
+			<f:facet name="header">
+			<h:outputLabel id="etiquetaApellido2"
+						value="#{etqAlm['etiquetas.apellido2']}" />
+						</f:facet> #{tL.apellido2}
     	</h:column>
 
 		<h:column>
-			<f:facet name="header">DNI</f:facet> #{tL.DNI}
+			<f:facet name="header">
+			<h:outputLabel id="etiquetaDNI"
+						value="#{etqAlm['etiquetas.dni']}" />
+			</f:facet> #{tL.DNI}
     	</h:column>
 
 	</h:dataTable>
