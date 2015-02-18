@@ -8,14 +8,17 @@ public class TutorVO {
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
-	private String DNI;
+	private String tipoDocumento;
+	private String documento;
 	private Date fechaNac;
+	private String sexo; 
 	private String parentesco;
 	private String tlf;
 	private String email;
 
 	public TutorVO(int idTutor, /*int idAlumno,*/ String nombre, String apellido1,
-					String apellido2, String DNI, Date fechaNac, String parentesco,
+					String apellido2,String tipoDocumento, String documento,
+					Date fechaNac, String sexo, String parentesco,
 					String tlf, String email) {
 		
 		this.idTutor = idTutor;
@@ -23,8 +26,10 @@ public class TutorVO {
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
-		this.DNI = DNI;
+		this.tipoDocumento = tipoDocumento;
+		this.documento = documento;
 		this.fechaNac = fechaNac;
+		this.sexo = sexo;
 		this.parentesco = parentesco;
 		this.tlf = tlf;
 		this.email = email;
@@ -39,14 +44,6 @@ public class TutorVO {
 	public void setIdTutor(int idTutor) {
 		this.idTutor = idTutor;
 	}
-
-	/*public int getIdAlumno() {
-		return idAlumno;
-	}
-
-	public void setIdAlumno(int idAlumno) {
-		this.idAlumno = idAlumno;
-	}*/
 
 	public String getNombre() {
 		return nombre;
@@ -71,13 +68,19 @@ public class TutorVO {
 	public void setApellido2(String apellido2) {
 		this.apellido2 = apellido2;
 	}
-
-	public String getDNI() {
-		return DNI;
+	public String getTipoDocumento() {
+		return tipoDocumento;
 	}
 
-	public void setDNI(String dNI) {
-		DNI = dNI;
+	public void setTipoDocumento(String tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+	public String getDocumento() {
+		return documento;
+	}
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
 	}
 	
 	public Date getFechaNac() {
@@ -86,6 +89,14 @@ public class TutorVO {
 
 	public void setFechaNac(Date fechaNac) {
 		this.fechaNac = fechaNac;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 
 	public String getParentesco() {
@@ -112,12 +123,14 @@ public class TutorVO {
 		this.email = email;
 	}
 
-
 	@Override
 	public String toString() {
-		return "TutoresVO [idTutor=" + idTutor + ", nombre=" + nombre + ", apellido1=" + apellido1
-				+ ", apellido2=" + apellido2 + ", DNI=" + DNI + ", fechaNac="
-				+ fechaNac + ", parentesco=" + parentesco + ", tlf=" + tlf
-				+ ", email=" + email + "]";
+		return "TutorVO [idTutor=" + idTutor + ", nombre=" + nombre
+				+ ", apellido1=" + apellido1 + ", apellido2=" + apellido2
+				+ ", tipoDocumento=" + tipoDocumento + ", documento="
+				+ documento + ", fechaNac=" + fechaNac + ", sexo=" + sexo
+				+ ", parentesco=" + parentesco + ", tlf=" + tlf + ", email="
+				+ email + "]";
 	}
+
 }

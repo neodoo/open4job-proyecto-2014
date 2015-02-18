@@ -64,15 +64,26 @@ public class TutorDAO implements TutorDAOInterface {
 			// conexion.prepareStatement("SELECT * FROM EQ4_BICI");
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-				listaTutores.add(new TutorVO(rs.getInt(1), rs
-						.getString(2), rs.getString(3), rs.getString(4), rs
-						.getString(5), rs.getDate(6), rs.getString(7), rs
-						.getString(8), rs.getString(9)));
+					String aux = new String();
+					PreparedStatement st1 = con.prepareStatement("SELECT parentesco FROM alumno_tutor WHERE idTutor = ?");
+					st1.setInt(1, rs.getInt(1));
+					ResultSet rs1 = st1.executeQuery();
+					while (rs1.next()){
+						aux = rs1.getString("parentesco");
+						
+						listaTutores.add(new TutorVO(rs.getInt(1), rs.getString(2),
+								rs.getString(3), rs.getString(4),
+								rs.getString(5), rs.getString(6),
+								rs.getDate(7), rs.getString(8), aux,
+								rs.getString(9), rs.getString(10)));
+					}
 			}
+			
 
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
+	
 		return listaTutores;
 
 	}
@@ -91,22 +102,26 @@ public class TutorDAO implements TutorDAOInterface {
 				if (con == null)
 					throw new SQLException("Can't get database connection");
 
-				PreparedStatement st = con.prepareStatement("SELECT * FROM relacionAlumnoTutor WHERE idAlumno= ?");
+				PreparedStatement st = con.prepareStatement("SELECT * FROM alumno_tutor WHERE idAlumno= ?");
 				st.setInt(1, idAlumno);
 				ResultSet rs = st.executeQuery();
 				
 				PreparedStatement stTutor= null;
 				while (rs.next()) {
 					
-					stTutor = con.prepareStatement("SELECT * FROM tutor WHERE idTutor= ?");
+					stTutor = con.prepareStatement("SELECT * FROM tutor WHERE id= ?");
 					stTutor.setInt(1, rs.getInt(2));
+					
+					String aux = rs.getString("parentesco");
 					ResultSet rsTutor= stTutor.executeQuery();
 					
 					while(rsTutor.next())
 					{
-						listaTutores.add(new TutorVO(rsTutor.getInt(1),rsTutor.getString(2), rsTutor.getString(3), 
-								rsTutor.getString(4), rsTutor.getString(5), rsTutor.getDate(6), rsTutor.getString(7), 
-								rsTutor.getString(8), rsTutor.getString(9)));
+						listaTutores.add(new TutorVO(rsTutor.getInt(1), rsTutor.getString(2),
+								rsTutor.getString(3), rsTutor.getString(4),
+								rsTutor.getString(5), rsTutor.getString(6),
+								rsTutor.getDate(7), rsTutor.getString(8), aux,
+								rsTutor.getString(9), rsTutor.getString(10)));
 						
 					}
 			}
@@ -132,19 +147,19 @@ public class TutorDAO implements TutorDAOInterface {
 				throw new SQLException("Can't get database connection");
 	
 			PreparedStatement st = con
-					.prepareStatement("DELETE FROM tutor WHERE idTutor = ?");
+					.prepareStatement("DELETE FROM tutor WHERE id = ?");
 			st.setInt(1, id);
 			st.executeUpdate();
 			
 			/*Validamos si el tutor a borrar ya existe*/		
-			PreparedStatement val = con.prepareStatement("SELECT idTutor FROM relacionAlumnoTutor WHERE idTutor = ?");
+			PreparedStatement val = con.prepareStatement("SELECT idTutor FROM alumno_tutor WHERE idTutor = ?");
 			val.setInt(1, id);		
 			ResultSet rs = val.executeQuery();
 			
-			/*Si no existe en la base de datos lo borramos de la tabla intermedia(relacionAlumnoTutor)*/
+			/*Si no existe en la base de datos lo borramos de la tabla intermedia(alumno_tutor)*/
 			if (!rs.next()){
 				PreparedStatement st2 = con
-						.prepareStatement("DELETE FROM relacionAlumnoTutor WHERE idTutor = ?");
+						.prepareStatement("DELETE FROM alumno_tutor WHERE idTutor = ?");
 				st2.setInt(1, id);
 				st2.executeUpdate();
 			}
@@ -156,8 +171,8 @@ public class TutorDAO implements TutorDAOInterface {
 	}
 
 	// modifica un tutor con el id recibido
-	public void updateTutor(String nombre, String apellido1, String apellido2,
-			String DNI, java.sql.Date fechaNac, String parentesco,
+	public boolean updateTutor(int idTutor, String nombre, String apellido1, String apellido2,
+			String tipoDocumento, String documento, java.sql.Date fechaNac, String parentesco,
 			String telefono, String email) {
 		
 		try{
@@ -170,23 +185,35 @@ public class TutorDAO implements TutorDAOInterface {
 				throw new SQLException("Can't get database connection");
 	
 			PreparedStatement st = con
-					.prepareStatement("UPDATE tutor SET nombre = ? , apellido1 = ? , apellido2 = ?, dni = ?, fechaNac = ?, tel = ?,email = ? WHERE idTutor = ?");
+					.prepareStatement("UPDATE tutor SET nombre = ? , apellido1 = ? , apellido2 = ?, tipoDocumento = ?, documento = ?, fechaNac = ?, tel = ?,email = ? WHERE id = ?");
 			st.setString(1, nombre);
 			st.setString(2, apellido1);
 			st.setString(3, apellido2);
-			st.setString(4, DNI);
+			st.setString(4, tipoDocumento);
+			st.setString(5, documento);
 			java.sql.Date fecha = new java.sql.Date (fechaNac.getTime());
-			st.setDate(5, fecha);
-			st.setString(6, telefono);
-			st.setString(7, email);
-			st.executeUpdate();					
+			st.setDate(6, fecha);
+			st.setString(7, telefono);
+			st.setString(8, email);
+			st.setInt(9, idTutor);
+			st.executeUpdate();	
+			
+			PreparedStatement st1 = con.
+								prepareStatement("UPDATE alumno_tutor SET parentesco = ? WHERE idAlumno = ?");
+		
+			st1.setString(1, parentesco);
+			st1.setInt(2, idTutor);
+			st1.executeUpdate();
+			return true;
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}		
+		return false;
 	}
 
 	public boolean insertarTutor(int idAlumno, String nombre, String apellido1,
-			String apellido2, String DNI, Date fechaNac, String parentesco,
+			String apellido2, String tipoDocumento, String documento, Date fechaNac,
+			String sexo, String parentesco, 
 			String telefono, String email) {
 		
 		
@@ -200,23 +227,24 @@ public class TutorDAO implements TutorDAOInterface {
 				throw new SQLException("Can't get database connection");
 			
 			/*Validamos si el tutor a insertar ya existe*/		
-			PreparedStatement val = con.prepareStatement("SELECT idTutor FROM relacionAlumnoTutor WHERE idAlumno = ?");
+			PreparedStatement val = con.prepareStatement("SELECT idTutor FROM alumno_tutor WHERE idAlumno = ?");
 			val.setInt(1, idAlumno);		
 			ResultSet rs = val.executeQuery();
 			
 			/*Si no existe en la base de datos lo insertamos en la tabla*/
 			if (!rs.next()){
 				PreparedStatement st = con
-						.prepareStatement("INSERT INTO tutor (nombre,apellido1,apellido2,DNI,fechaNac,parentesco,tlf,email) values (?,?,?,?,?,?,?,?)");			
+						.prepareStatement("INSERT INTO tutor (nombre,apellido1,apellido2,tipo_documento,documento,fecha_nacimiento,sexo,telefono,email) values (?,?,?,?,?,?,?,?,?)");			
 				st.setString(1, nombre);
 				st.setString(2, apellido1);
 				st.setString(3, apellido2);
-				st.setString(4, DNI);
+				st.setString(4, tipoDocumento);
+				st.setString(5, documento);
 				java.sql.Date fecha = new java.sql.Date (fechaNac.getTime());
-				st.setDate(5,fecha);
-				st.setString(6, parentesco);
-				st.setString(7, telefono);
-				st.setString(8, email);
+				st.setDate(6,fecha);
+				st.setString(7, sexo);
+				st.setString(8, telefono);
+				st.setString(9, email);
 				st.executeUpdate();
 				
 				/*Recupero el idTutor que acabamos de crear*/
@@ -229,7 +257,7 @@ public class TutorDAO implements TutorDAOInterface {
 				
 				}
 				//inserto el tutor en la tabla de relaciones
-				PreparedStatement st3 = con.prepareStatement("INSERT INTO relacionAlumnoTutor(idAlumno, idTutor) values ('1',?) ");
+				PreparedStatement st3 = con.prepareStatement("INSERT INTO alumno_tutor(idAlumno, idTutor) values ('1',?) ");
 				
 				if(clave!=0)
 					st3.setInt(1, clave);		
@@ -237,7 +265,7 @@ public class TutorDAO implements TutorDAOInterface {
 				
 			}else{
 				/*Si existe solo insertamos la relacion*/
-				PreparedStatement st = con.prepareStatement("INSERT INTO relacionAlumnoTutor(idAlumno, idTutor) values ('1',?) ");
+				PreparedStatement st = con.prepareStatement("INSERT INTO alumno_tutor(idAlumno, idTutor) values ('1',?) ");
 				st.setInt(1, rs.getInt("idTutor"));	
 				st.executeUpdate();
 			}
@@ -265,20 +293,29 @@ public class TutorDAO implements TutorDAOInterface {
 		try {
 			new ArrayList<TutorVO>();
 			con = ds.getConnection();
-			ps = con.prepareStatement("SELECT * FROM tutor where idTutor = ?");
+			ps = con.prepareStatement("SELECT * FROM tutor where id = ?");
 			ps.setInt(1, idTutor);
 
 			rs = ps.executeQuery();
-
+			
+			String aux = new String();
+			PreparedStatement pt1 = con.prepareStatement("SELECT * FROM alumno_tutor WHERE idTutor = ?");
+			pt1.setInt(1, idTutor);
+			while (rs.next()){
+				aux = rs.getString("parentesco");
+			}
+			
 			while (rs.next()) {
 				tutorVO = new TutorVO(
 						rs.getInt("idTutor"),
 						rs.getString("nombre"), 
 						rs.getString("apellido1"), 
-						rs.getString("apellido2"), 
-						rs.getString("DNI"), 
-						rs.getDate("fechaNac"), 
-						rs.getString("parentesco"), 
+						rs.getString("apellido2"),
+						rs.getString("tipo_documento"),
+						rs.getString("documento"), 
+						rs.getDate("fecha_nacimiento"),
+						rs.getString("sexo"),
+						aux,
 						rs.getString("tlf"), 
 						rs.getString("email"));
 			}
