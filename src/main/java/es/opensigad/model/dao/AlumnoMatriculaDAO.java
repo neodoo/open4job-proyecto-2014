@@ -31,7 +31,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			e.printStackTrace();
 		}
 	}
-
+	//InsertarMatricula
 	public boolean insertarMatricula(int idAlumno,int cursoEscolar, String centro,
 			String ensenanza, String modulo, int curso) {
 		Connection conn;
@@ -39,7 +39,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			conn = ds.getConnection();
 
 			PreparedStatement stmt = conn
-					.prepareStatement("INSERT INTO matriculas (curso_escolar,centro, ensenanza, modulo, curso, id_alumno) VALUES (?,?,?,?,?,?)");
+					.prepareStatement("INSERT INTO alumno_matricula (curso_escolar,centro, ensenanza, modulo, curso, id_alumno) VALUES (?,?,?,?,?,?)");
 			
 			stmt.setInt(1, cursoEscolar);
 			stmt.setString(2, centro);
@@ -62,7 +62,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			conn = ds.getConnection();
 
 			PreparedStatement stmt = conn
-					.prepareStatement("DELETE FROM matriculas WHERE id=?");
+					.prepareStatement("DELETE FROM alumno_matricula WHERE id=?");
 			stmt.setInt(1, idMatricula);
 			if(stmt.executeUpdate()==1){
 				return true;
@@ -84,7 +84,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			conn = ds.getConnection();
 
 			PreparedStatement stmt = conn
-					.prepareStatement("UPDATE matriculas SET curso_escolar=?, centro=?, ensenanza=?, modulo=?, "
+					.prepareStatement("UPDATE alumno_matricula SET curso_escolar=?, centro=?, ensenanza=?, modulo=?, "
 							+ "curso=?, id_alumno=? WHERE id=?");
 			stmt.setInt(1, cursoEscolar);
 			stmt.setString(2, centro);
@@ -113,13 +113,13 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			conn = ds.getConnection();
 
 			PreparedStatement stmt = conn
-					.prepareStatement("SELECT * FROM matriculas where id_alumno = ?");
+					.prepareStatement("SELECT * FROM alumno_matricula where id_alumno = ?");
 			stmt.setInt(1, idAlumno);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				lista.add(new AlumnoMatriculaVO(rs.getInt(1), rs.getInt(2), rs
-						.getString(3), rs.getString(4), rs.getString(5), rs
-						.getInt(6), rs.getInt(7)));
+						.getInt(3), rs.getString(4), rs.getString(5), rs
+						.getString(6), rs.getInt(7)));
 			}
 			
 		} catch (SQLException e) {
@@ -138,13 +138,13 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			conn = ds.getConnection();
 
 			PreparedStatement stmt = conn
-					.prepareStatement("SELECT * FROM matriculas where id= ?");
+					.prepareStatement("SELECT * FROM alumno_matricula where id= ?");
 			stmt.setInt(1, idMatricula);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				fichamatricula = (new AlumnoMatriculaVO(rs.getInt(1), rs.getInt(2), rs
-						.getString(3), rs.getString(4), rs.getString(5), rs
-						.getInt(6), rs.getInt(7)));
+						.getInt(3), rs.getString(4), rs.getString(5), rs
+						.getString(6), rs.getInt(7)));
 			}
 		
 		} catch (SQLException e) {
