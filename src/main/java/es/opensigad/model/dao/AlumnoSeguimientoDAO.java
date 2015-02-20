@@ -1,13 +1,14 @@
 package es.opensigad.model.dao;
 
 import java.io.Serializable;
-
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
 import es.opensigad.model.vo.AlumnoSeguimiento;
 
 
@@ -67,6 +68,32 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz, Seria
 		return ok;
 	}
 
+	// Datos de una falta
+	public AlumnoSeguimiento getDetalleFalta(long pnumId) {
+
+	
+		em.getTransaction().begin();
+
+		System.out.println("Detalles falta: \n");
+
+		String query = "from AlumnoSeguimiento aseg where aseg.id =" + pnumId;
+		List<AlumnoSeguimiento> faltas = em.createQuery(query).getResultList();
+
+		for (AlumnoSeguimiento faltaFila : faltas) {
+			System.out.println("id falta: " + faltaFila.getId());
+			System.out.println("id matricula alumno: "
+					+ faltaFila.getAlumnoMatricula().getId());
+			System.out.println("justificante: " + faltaFila.getJustificante());
+			System.out.println("sesion: " + faltaFila.getSesion());
+			System.out
+					.println("observaciones: " + faltaFila.getObservaciones());
+		}
+
+		em.getTransaction().commit();
+
+		return (AlumnoSeguimiento) faltas;
+
+	}
 
 
 }
