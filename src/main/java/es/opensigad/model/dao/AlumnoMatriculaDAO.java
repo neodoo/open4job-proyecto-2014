@@ -128,22 +128,43 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 	}
 
 	public ArrayList<AlumnoMatricula> getListadoMatricula(int idAlumno) {
+		
+		ArrayList<AlumnoMatricula> alumnoMatricula = null;
+		
+		EntityManagerFactory emf = Persistence
+				.createEntityManagerFactory("persistenceUnit");
+		EntityManager em = emf.createEntityManager();
+
+		try {
+			em.getTransaction().begin();
+
+			alumnoMatricula = (ArrayList<AlumnoMatricula>) em.createQuery(
+					"from alumnoMatricula").getResultList();
+
+			em.getTransaction().commit();
+
+			em.close();
+		} catch (EntityExistsException e) {
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
+		}
+		
+		return alumnoMatricula;
 
 		/*
 		 * Connection conn; ArrayList<AlumnoMatricula> lista = new
 		 * ArrayList<AlumnoMatricula>(); try { conn = ds.getConnection();
 		 * 
-		 * PreparedStatement stmt = conn
-		 * .prepareStatement("SELECT * FROM alumno_matricula where id_alumno = ?"
-		 * ); stmt.setInt(1, idAlumno); ResultSet rs = stmt.executeQuery();
-		 * while (rs.next()) { lista.add(new AlumnoMatricula(rs.getInt(1),
+		 * PreparedStatement stmt = conn .prepareStatement(
+		 * "SELECT * FROM alumno_matricula where id_alumno = ?" );
+		 * stmt.setInt(1, idAlumno); ResultSet rs = stmt.executeQuery(); while
+		 * (rs.next()) { lista.add(new AlumnoMatricula(rs.getInt(1),
 		 * rs.getInt(2), rs .getInt(3), rs.getString(4), rs.getString(5), rs
 		 * .getString(6), rs.getInt(7))); }
 		 * 
 		 * } catch (SQLException e) { logger.log(Level.SEVERE, "SQLException : "
 		 * + e.getMessage()); }
 		 */
-		return null;
 
 	}
 

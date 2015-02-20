@@ -12,11 +12,10 @@
     <h:body>
     	<h:outputLabel id="etiquetaNuevoTutor"
 						value="#{etqAlm['titulo.nuevoTutor']}" />
-						</h:outputLabel>
- 		<h:form>
+		<h:form>
     	   <!-- Aqui se ingresa el nombre y se valida -->
     	   <h:outputLabel id="etiquetaNombre"
-						value="#{etqAlm['etiquetas.nombre']}" /> </h:outputLabel>
+						value="#{etqAlm['etiquetas.nombre']}" />
     	   <h:inputText value="#{insertarTutorBean.nombre}" label="nombre">
     	   <f:validateLength minimum="2" maximum="10" />
     	   </h:inputText>
@@ -25,8 +24,7 @@
     	   <!-- Aqui se ingresa el apellido1 y se valida -->
     	   <h:outputLabel id="etiquetaApellido1"
 						value="#{etqAlm['etiquetas.apellido1']}" />
-						</h:outputLabel>
-    	   <h:inputText value="#{insertarTutorBean.apellido1}" label="apellido1">
+		   <h:inputText value="#{insertarTutorBean.apellido1}" label="apellido1">
     	   <f:validateLength minimum="2" maximum="10" />
     	   </h:inputText>
     	   <h:message for="apellido1" style="color:red" />
@@ -34,28 +32,32 @@
     	   <!-- Aqui se ingresa el apellido2 y se valida -->
     	    <h:outputLabel id="etiquetaApellido2"
 						value="#{etqAlm['etiquetas.apellido2']}" />
-						</h:outputLabel>
-    	   <h:inputText value="#{insertarTutorBean.apellido2}" label="apellido2">
+		   <h:inputText value="#{insertarTutorBean.apellido2}" label="apellido2">
     	   <f:validateLength minimum="2" maximum="10" />
     	   </h:inputText>
     	   <h:message for="apellido2" style="color:red" />
     	   <br> </br>
+    	   <!-- Aqui se ingresa el tipo de Documento y se valida -->
+    	    <h:outputLabel id="etiquetaTipoDocumento"
+						value="#{etqAlm['etiquetas.tipoDocumento']}" />
+		   <h:inputText value="#{insertarTutorBean.tipo_documento}" label="apellido2">
+    	   <f:validateLength minimum="2" maximum="10" />
+    	   </h:inputText>
+    	   <h:message for="tipoDocumento" style="color:red" />
+    	   <br> </br>
     	   <!-- Aqui se ingresa el DNI y se valida -->
     	     <h:outputLabel id="etiquetaDni"
 						value="#{etqAlm['etiquetas.dni']}" />
-						</h:outputLabel>
-    	   <h:inputText value="#{insertarTutorBean.DNI}" label="DNI">
-    	   <f:validateLength minimum="2" maximum="10" />
+		   <h:inputText value="#{insertarTutorBean.DNI}" label="DNI">
+    	   		<f:validateLength minimum="2" maximum="10" />
     	   </h:inputText>
     	   <h:message for="DNI" style="color:red" />
     	   <br> </br>
     	   <!-- Aqui se ingresa el Fecha Nacimiento y se valida -->  
     	     <h:outputLabel id="etiquetaFechaNacimiento"
 						value="#{etqAlm['etiquetas.fechaNacimiento']}" />
-						</h:outputLabel>
-    	   <h:inputText id="fechaNac" value="#{insertarTutorBean.fechaNac}" 
-			size="20" required="true"
-			label="fechaNac" >
+			<h:inputText id="fechaNac" value="#{insertarTutorBean.fechaNac}"> 
+			<f:validateLength size="20" required="true"/>
 			<f:convertDateTime pattern="dd-MM-yyyy"/>
 			<h:message for="fechaNac" style="color:red" />
 			</h:inputText>
@@ -63,7 +65,6 @@
 			<!-- Aqui se ingresa el parentesco y se valida -->
     	    <h:outputLabel id="etiquetaParentesco"
 						value="#{etqAlm['etiquetas.parentesco']}" />
-						</h:outputLabel>
     	    <h:inputText value="#{insertarTutorBean.parentesco}" label="parentesco">
     	    <f:validateLength minimum="2" maximum="20" />
     	    </h:inputText>
@@ -72,16 +73,14 @@
     	    <!-- Aqui se ingresa el telefono y se valida -->
     	    <h:outputLabel id="etiquetaTelefono"
 						value="#{etqAlm['etiquetas.telefono']}"/>
-						</h:outputLabel>
     	    <h:inputText value="#{insertarTutorBean.tlf}" label="tlf">
     	    <f:validateLength minimum="2" maximum="9" />
     	    </h:inputText>
     	    <h:message for="tlf" style="color:red" />
     	    <br> </br>
     	    <!-- Aqui se ingresa el email y se valida -->
-    	    <h:outputLabel id="etiquetaTelefono"
-						value="#{etqAlm['etiquetas.telefono']}" />
-						</h:outputLabel>
+    	    <h:outputLabel id="etiquetaEmail"
+						value="#{etqAlm['etiquetas.email']}" />
     	    <h:inputText value="#{insertarTutorBean.email}" label="email">
     	    <f:validateLength minimum="2" maximum="20" />
     	    </h:inputText>
