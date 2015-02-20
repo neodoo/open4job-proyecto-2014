@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import es.opensigad.model.dao.AlumnoMatriculaDAO;
-import es.opensigad.model.vo.AlumnoMatriculaVO;
+import es.opensigad.model.vo.AlumnoMatricula;
 
 @ManagedBean
 @RequestScoped
@@ -15,7 +15,7 @@ public class VerAlumnoMatriculaListadoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
-	private ArrayList<AlumnoMatriculaVO> listaMatriculaVO;
+	private ArrayList<AlumnoMatricula> listaMatricula;
 
 	public int getId() {
 		return id;
@@ -25,12 +25,12 @@ public class VerAlumnoMatriculaListadoBean implements Serializable {
 		this.id = id;
 	}
 
-	public ArrayList<AlumnoMatriculaVO> getListaMatriculaVO() {
-		return listaMatriculaVO;
+	public ArrayList<AlumnoMatricula> getListaMatricula() {
+		return listaMatricula;
 	}
 
-	public void setListaMatriculaVO(ArrayList<AlumnoMatriculaVO> listaMatriculaVO) {
-		this.listaMatriculaVO = listaMatriculaVO;
+	public void setListaMatricula(ArrayList<AlumnoMatricula> listaMatriculaVO) {
+		this.listaMatricula = listaMatricula;
 	}
 
 	public String getListaMatricula(int idAlumno) {
@@ -38,7 +38,7 @@ public class VerAlumnoMatriculaListadoBean implements Serializable {
 		String pagina = "verAlumnoMatriculaListado";
 		
 		AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
-		listaMatriculaVO = matriculaDAO.getListadoMatricula(idAlumno);
+		listaMatricula = matriculaDAO.getListadoMatricula(idAlumno);
 		
 		return pagina;
 
