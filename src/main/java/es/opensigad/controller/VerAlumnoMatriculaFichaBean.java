@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import es.opensigad.model.dao.AlumnoMatriculaDAO;
-import es.opensigad.model.vo.AlumnoMatriculaVO;
+import es.opensigad.model.vo.AlumnoMatricula;
 
 @ManagedBean
 @SessionScoped
@@ -14,7 +14,7 @@ public class VerAlumnoMatriculaFichaBean {
 
 	private int idMatricula;
 
-	private AlumnoMatriculaVO matriculaVO = new AlumnoMatriculaVO ();
+	private AlumnoMatricula matricula = new AlumnoMatricula ();
 
 
 	
@@ -30,14 +30,14 @@ public class VerAlumnoMatriculaFichaBean {
 
 
 
-	public AlumnoMatriculaVO getMatriculaVO() {
-		return matriculaVO;
+	public AlumnoMatricula getMatriculaVO() {
+		return matricula;
 	}
 
 
 
-	public void setMatriculaVO(AlumnoMatriculaVO matriculaVO) {
-		this.matriculaVO = matriculaVO;
+	public void setMatriculaVO(AlumnoMatricula matriculaVO) {
+		this.matricula = matriculaVO;
 	}
 
 
@@ -47,7 +47,7 @@ public class VerAlumnoMatriculaFichaBean {
 		String pagina = "verAlumnoMatriculaFicha";
 
 		AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
-		matriculaVO = matriculaDAO.getListaFichaMatricula(idMatricula);
+		matricula = matriculaDAO.getListaFichaMatricula(idMatricula);
 
 		return pagina;
 
