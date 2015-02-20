@@ -26,33 +26,48 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 	}
 
 	// InsertarMatricula
-	public boolean insertarMatricula(Alumno idAlumno, int cursoEscolar,
-			Centro centro, Ensenanza ensenanza, String modulo, int curso) {
+	public boolean insertarMatricula(int idAlumno, int cursoEscolar,
+			String centro, String ensenanza, String modulo, int curso) {
 
 		EntityManagerFactory emf = Persistence
 				.createEntityManagerFactory("persistenceUnit");
 		EntityManager em = emf.createEntityManager();
 
 		try {
-
+			
+			String query = "from Alumno m where m.id = :idAlumno";
+			String query1 = "from Centro c where c.titulo = :centro";
+			String query2 = "from Ensenanza e where e.nombre = :ensenanza";
+			
+			em.getTransaction().begin();
+			Alumno alumno = (Alumno) em.createQuery(query)
+					.setParameter(":idAlumno", idAlumno)
+					.getSingleResult();
+			Centro centroMatricula = (Centro) em.createQuery(query1)
+					.setParameter(":centro", centro)
+					.getSingleResult();
+			Ensenanza ensenanzaMatricula = (Ensenanza) em.createQuery(query2)
+					.setParameter(":ensenanza", ensenanza)
+					.getSingleResult();
+			
 			AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
-			alumnoMatricula.setAlumno(idAlumno);
+			alumnoMatricula.setAlumno(alumno);
 			alumnoMatricula.setCursoEscolar(cursoEscolar);
-			alumnoMatricula.setCentro(centro);
-			alumnoMatricula.setEnsenanza(ensenanza);
+			alumnoMatricula.setCentro(centroMatricula);
+			alumnoMatricula.setEnsenanza(ensenanzaMatricula);
 			alumnoMatricula.setModulo(modulo);
 			alumnoMatricula.setCurso(curso);
 
 			// Guardar matricula
 
-			em.getTransaction().begin();
+			
 			em.persist(alumnoMatricula);
 			em.getTransaction().commit();
 			em.close();
 
 			return true;
 
-		} catch (EntityExistsException e) {
+		} catch (Exception e) {
 
 			em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
@@ -117,7 +132,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 			return true;
 
-		} catch (EntityExistsException e) {
+		} catch (Exception e) {
 
 			em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
@@ -128,14 +143,15 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 	}
 
 	public ArrayList<AlumnoMatricula> getListadoMatricula(int idAlumno) {
-		
+
 		ArrayList<AlumnoMatricula> alumnoMatricula = null;
-		
+
 		EntityManagerFactory emf = Persistence
 				.createEntityManagerFactory("persistenceUnit");
 		EntityManager em = emf.createEntityManager();
 
 		try {
+
 			em.getTransaction().begin();
 
 			alumnoMatricula = (ArrayList<AlumnoMatricula>) em.createQuery(
@@ -144,27 +160,13 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			em.getTransaction().commit();
 
 			em.close();
+
 		} catch (EntityExistsException e) {
 			em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
-		
-		return alumnoMatricula;
 
-		/*
-		 * Connection conn; ArrayList<AlumnoMatricula> lista = new
-		 * ArrayList<AlumnoMatricula>(); try { conn = ds.getConnection();
-		 * 
-		 * PreparedStatement stmt = conn .prepareStatement(
-		 * "SELECT * FROM alumno_matricula where id_alumno = ?" );
-		 * stmt.setInt(1, idAlumno); ResultSet rs = stmt.executeQuery(); while
-		 * (rs.next()) { lista.add(new AlumnoMatricula(rs.getInt(1),
-		 * rs.getInt(2), rs .getInt(3), rs.getString(4), rs.getString(5), rs
-		 * .getString(6), rs.getInt(7))); }
-		 * 
-		 * } catch (SQLException e) { logger.log(Level.SEVERE, "SQLException : "
-		 * + e.getMessage()); }
-		 */
+		return alumnoMatricula;
 
 	}
 
@@ -178,8 +180,9 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 		try {
 
-			// String query = "from AlumnoMatricula m where m.id = "+ idMatricula;
-			
+			// String query = "from AlumnoMatricula m where m.id = "+
+			// idMatricula;
+
 			String query = "from AlumnoMatricula m where m.id = :idMatricula";
 
 			em.getTransaction().begin();
