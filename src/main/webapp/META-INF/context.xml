@@ -2,7 +2,7 @@
 <context>
 
 	<Resource name="jdbc/opensigad" auth="Container" type="javax.sql.DataSource"
-		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://192.168.26.67:3306/opensigad2"
+		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://192.168.26.67:3306/opensigad"
 		username="root" password="root" maxTotal="20" maxIdle="10"
 		maxWaitMillis="-1" />
 

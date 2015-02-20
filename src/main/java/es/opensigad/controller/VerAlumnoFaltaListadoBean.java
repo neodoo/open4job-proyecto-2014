@@ -5,7 +5,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import es.opensigad.model.dao.AlumnoFaltaDAO;
+import es.opensigad.model.dao.AlumnoSeguimientoDAO;
 import es.opensigad.model.vo.AlumnoFaltaVO;
 
 @ManagedBean
@@ -33,7 +33,7 @@ public class VerAlumnoFaltaListadoBean {
 
 		String pagina = "verAlumnoFaltaListado";
 
-		AlumnoFaltaDAO faltaDAO = new AlumnoFaltaDAO();
+		AlumnoSeguimientoDAO faltaDAO = new AlumnoSeguimientoDAO();
 		alumnoFaltasVO = faltaDAO.getListaFaltas(idAlumno);
 
 		return pagina;

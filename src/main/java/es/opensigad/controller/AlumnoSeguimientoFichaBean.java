@@ -6,15 +6,15 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import es.opensigad.model.dao.AlumnoFaltaDAO;
-import es.opensigad.model.vo.AlumnoFaltaVO;
+import es.opensigad.model.dao.AlumnoSeguimientoDAO;
+import es.opensigad.model.vo.AlumnoSeguimiento;
 
 @ManagedBean
 @RequestScoped
-public class AlumnoFaltaFichaBean {
+public class AlumnoSeguimientoFichaBean {
 
-	private long id;
-	private long idAlumno;
+	private int id;
+	private int idAlumno;
 	private Date fecha;
 	private String sesion;
 	private String materia;
@@ -22,17 +22,16 @@ public class AlumnoFaltaFichaBean {
 	private String justificado;
 	private String observaciones;
 
-	private AlumnoFaltaVO faltaVO = new AlumnoFaltaVO();
-	private List<AlumnoFaltaVO> faltasVO;
+	private AlumnoSeguimiento alumnoSeguimiento = new AlumnoSeguimiento();
+	private List<AlumnoSeguimiento> alumnoSeguimientos;
 
-	
 
 	public long getId() {
 		return id;
 	}
 
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -42,7 +41,7 @@ public class AlumnoFaltaFichaBean {
 	}
 
 
-	public void setIdAlumno(long idAlumno) {
+	public void setIdAlumno(int idAlumno) {
 		this.idAlumno = idAlumno;
 	}
 
@@ -107,12 +106,12 @@ public class AlumnoFaltaFichaBean {
 	}
 	
 	
-	public AlumnoFaltaVO getFaltaVO() {
-		return faltaVO;
+	public AlumnoSeguimiento getAlumnoSeguimiento() {
+		return alumnoSeguimiento;
 	}
 
-	public void setFaltaVO(AlumnoFaltaVO faltaVO) {
-		this.faltaVO = faltaVO;
+	public void setFaltaVO(AlumnoSeguimiento alumnoSeguimiento) {
+		this.alumnoSeguimiento = alumnoSeguimiento;
 	}
 
 	
@@ -129,7 +128,7 @@ public class AlumnoFaltaFichaBean {
 	
 	public String getDetalleFalta() {
 		String pagina = "AlumnoFalta";
-		AlumnoFaltaDAO faltaDAO = new AlumnoFaltaDAO();
+		AlumnoSeguimientoDAO faltaDAO = new AlumnoSeguimientoDAO();
 		faltaVO = faltaDAO.getDetalleFalta(id);
 		
 		return pagina;
@@ -137,7 +136,7 @@ public class AlumnoFaltaFichaBean {
 	
 	public String getAlumnoFaltaListado() {
 		String pagina = "AlumnoFaltaListado";
-		AlumnoFaltaDAO faltaDAO = new AlumnoFaltaDAO();
+		AlumnoSeguimientoDAO faltaDAO = new AlumnoSeguimientoDAO();
 		faltasVO = faltaDAO.getListaFaltas(idAlumno);
 
 		return pagina;
@@ -145,7 +144,7 @@ public class AlumnoFaltaFichaBean {
 	
 	public String insertarFalta() {
 		String pagina=null;
-		AlumnoFaltaDAO alumnoFaltaDAO = new AlumnoFaltaDAO();
+		AlumnoSeguimientoDAO alumnoFaltaDAO = new AlumnoSeguimientoDAO();
 
 		long count = alumnoFaltaDAO.insertarFalta(faltaVO);
 		if (count == 1){
@@ -158,7 +157,7 @@ public class AlumnoFaltaFichaBean {
 	
 	public String actualizarFalta() {
 		String pagina=null;
-		AlumnoFaltaDAO alumnoFaltaDAO = new AlumnoFaltaDAO();
+		AlumnoSeguimientoDAO alumnoFaltaDAO = new AlumnoSeguimientoDAO();
 
 		long count = alumnoFaltaDAO.actualizarFalta(faltaVO);
 		
@@ -172,7 +171,7 @@ public class AlumnoFaltaFichaBean {
 
 	public String eliminarFalta() {
 		String pagina=null;
-		AlumnoFaltaDAO alumnoFaltaDAO = new AlumnoFaltaDAO();
+		AlumnoSeguimientoDAO alumnoFaltaDAO = new AlumnoSeguimientoDAO();
 	
 		long count = alumnoFaltaDAO.eliminarFalta(faltaVO.getId());
 		

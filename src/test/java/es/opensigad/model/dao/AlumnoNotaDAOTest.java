@@ -5,13 +5,14 @@ import junit.framework.TestCase;
 import java.util.ArrayList;
 
 import es.opensigad.controller.VerAlumnoNotaListadoBean;
-import es.opensigad.model.vo.AlumnoNotaVO;
+import es.opensigad.model.vo.AlumnoNota;
+
 
 public class AlumnoNotaDAOTest extends TestCase {
 
 	public void testGetNotasByIdMatricula() {
 		AlumnoNotaDaoPoolDB alumnoDao = new  AlumnoNotaDaoPoolDB();
-		ArrayList <AlumnoNotaVO> alumnoNotas = alumnoDao.getNotasByIdMatricula(1);
+		ArrayList <AlumnoNota> alumnoNotas = alumnoDao.getNotasByIdMatricula(1);
 		assertTrue(alumnoNotas.size()>0);
 	}
 

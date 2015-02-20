@@ -2,7 +2,7 @@ package es.opensigad.controller;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import es.opensigad.model.dao.AlumnoFaltaDAO;
+import es.opensigad.model.dao.AlumnoSeguimientoDAO;
 import es.opensigad.model.vo.AlumnoFaltaVO;
 
 @ManagedBean
@@ -32,7 +32,7 @@ public class VerAlumnoFaltaFichaBean {
 
 		String pagina = "verAlumnoFaltaFicha";
 
-		AlumnoFaltaDAO alumnoFaltaDAO = new AlumnoFaltaDAO();
+		AlumnoSeguimientoDAO alumnoFaltaDAO = new AlumnoSeguimientoDAO();
 		alumnoFaltaVO = alumnoFaltaDAO.getDetalleFalta(id);
 
 		return pagina;
