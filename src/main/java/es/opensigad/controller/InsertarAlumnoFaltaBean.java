@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import es.opensigad.model.dao.AlumnoFaltaDAO;
+import es.opensigad.model.dao.AlumnoSeguimientoDAO;
 import es.opensigad.model.vo.AlumnoFaltaVO;
 
 @ManagedBean
@@ -95,7 +95,7 @@ public class InsertarAlumnoFaltaBean implements Serializable {
 
 	public String insertarFalta(AlumnoFaltaVO falta) {
 		String pagina = null;
-		AlumnoFaltaDAO alumnoFaltaDAO = new AlumnoFaltaDAO();
+		AlumnoSeguimientoDAO alumnoFaltaDAO = new AlumnoSeguimientoDAO();
 		if (alumnoFaltaDAO.insertarFalta(falta) > 0) {
 			pagina = "insertarAlumnoFaltaExito";
 		} else {

@@ -73,7 +73,7 @@ public class Alumno implements Serializable {
 	//bi-directional many-to-one association to AlumnoMatricula
 	@OneToMany(mappedBy="alumno")
 	private List<AlumnoMatricula> alumnoMatriculas;
-
+	
 	//bi-directional many-to-one association to AlumnoTutor
 	@OneToMany(mappedBy="alumno")
 	private List<AlumnoTutor> alumnoTutors;
