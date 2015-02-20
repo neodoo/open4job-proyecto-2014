@@ -6,14 +6,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import es.opensigad.model.dao.TutorDAO;
-import es.opensigad.model.vo.TutorVO;
+
 
 @ManagedBean
 @RequestScoped
 public class VerTutorBean {
 	
 	private int id;
-
+/*
 	private TutorVO tutorVO;
 	private List<TutorVO> tutorLista;
 	
@@ -62,4 +62,5 @@ public class VerTutorBean {
 		return pagina;
 
 	}
+	*/
 }
