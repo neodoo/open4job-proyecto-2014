@@ -42,7 +42,7 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 	public String getCentro() {
 		return centro;
 	}
-
+	//
 	public void setCentro(String centro) {
 		this.centro = centro;
 	}
@@ -61,7 +61,7 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 
 	public void setModulo(String modulo) {
 		this.modulo = modulo;
-	}
+	}//
 
 	public int getCurso() {
 		return curso;
@@ -70,18 +70,18 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 	public void setCurso(int curso) {
 		this.curso = curso;
 	}
-
+	//
 	public String insertarAlumnoMatricula(int idAlumno, int cursoEscolar,
 			String centro, String ensenanza, String modulo, int curso) {
 		String pagina = null;
 		AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
 
-		if (matriculaDAO.insertarMatricula(idAlumno, cursoEscolar, centro,
-				ensenanza, modulo, curso)) {
-			pagina = "insertarAlumnoMatriculaExito";
-		} else {
-			pagina = "insertarAlumnoMatriculaFallo";
-		}
+		//if (matriculaDAO.insertarMatricula(idAlumno, cursoEscolar, centro,
+		//		ensenanza, modulo, curso)) {
+		//	pagina = "insertarAlumnoMatriculaExito";
+		//} else {
+		//	pagina = "insertarAlumnoMatriculaFallo";
+		//}
 
 		return pagina;
 	}

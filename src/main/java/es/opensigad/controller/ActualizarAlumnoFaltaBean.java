@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import es.opensigad.model.dao.AlumnoSeguimientoDAO;
-import es.opensigad.model.vo.AlumnoFaltaVO;
+//import es.opensigad.model.vo.AlumnoFaltaVO;
 
 @ManagedBean
 @RequestScoped
@@ -94,15 +94,15 @@ public class ActualizarAlumnoFaltaBean implements Serializable {
 		this.observaciones = observaciones;
 	}
 
-	public String actualizarFalta(AlumnoFaltaVO falta) {
-		String pagina = null;
-		AlumnoSeguimientoDAO alumnoFaltaDAO = new AlumnoSeguimientoDAO();
-		if (alumnoFaltaDAO.actualizarFalta(falta) > 0) {
-			pagina = "actualizarAlumnoFaltaExito";
-		} else {
-			pagina = "actualizarAlumnoFaltaFallo";
-		}
-		return pagina;
-	}
+	//public String actualizarFalta(AlumnoFaltaVO falta) {
+	//	String pagina = null;
+	//	AlumnoSeguimientoDAO alumnoFaltaDAO = new AlumnoSeguimientoDAO();
+	//	if (alumnoFaltaDAO.actualizarFalta(falta) > 0) {
+	//		pagina = "actualizarAlumnoFaltaExito";
+			//	} else {
+	//		pagina = "actualizarAlumnoFaltaFallo";
+	//	}
+//	return pagina;
+//}
 
 }

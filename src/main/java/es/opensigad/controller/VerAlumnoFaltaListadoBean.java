@@ -6,14 +6,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import es.opensigad.model.dao.AlumnoSeguimientoDAO;
-import es.opensigad.model.vo.AlumnoFaltaVO;
+//import es.opensigad.model.vo.AlumnoFaltaVO;
 
 @ManagedBean
 @RequestScoped
 public class VerAlumnoFaltaListadoBean {
 
 	private long idAlumno;
-	private List<AlumnoFaltaVO> alumnoFaltasVO;
+	//private List<AlumnoFaltaVO> alumnoFaltasVO;
 
 	public long getIdAlumno() {
 		return idAlumno;
@@ -22,19 +22,19 @@ public class VerAlumnoFaltaListadoBean {
 		this.idAlumno = idAlumno;
 	}
 
-	public List<AlumnoFaltaVO> getFaltasVO() {
-		return alumnoFaltasVO;
-	}
-	public void setFaltasVO(List<AlumnoFaltaVO> faltasVO) {
-		this.alumnoFaltasVO = faltasVO;
-	}
+	//public List<AlumnoFaltaVO> getFaltasVO() {
+	//	return alumnoFaltasVO;
+	//}
+	//public void setFaltasVO(List<AlumnoFaltaVO> faltasVO) {
+	//	this.alumnoFaltasVO = faltasVO;
+	//}
 	
 	public String getAlumnoFaltaListado() {
 
 		String pagina = "verAlumnoFaltaListado";
 
 		AlumnoSeguimientoDAO faltaDAO = new AlumnoSeguimientoDAO();
-		alumnoFaltasVO = faltaDAO.getListaFaltas(idAlumno);
+		//alumnoFaltasVO = faltaDAO.getListaFaltas(idAlumno);
 
 		return pagina;
 

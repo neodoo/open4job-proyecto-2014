@@ -31,11 +31,11 @@ public class EliminarAlumnoFaltaBean implements Serializable {
 	public String eliminarFalta(int id) {
 		String pagina = null;
 		AlumnoSeguimientoDAO alumnoFaltaDAO = new AlumnoSeguimientoDAO();
-		if (alumnoFaltaDAO.eliminarFalta(id) > 0) {
-			pagina = "eliminarAlumnoFaltaExito";
-		} else {
-			pagina = "eliminarAlumnoFaltaFallo";
-		}
+		//if (alumnoFaltaDAO.eliminarFalta(id) > 0) {
+		//	pagina = "eliminarAlumnoFaltaExito";
+		//} else {
+		//	pagina = "eliminarAlumnoFaltaFallo";
+		//}
 		return pagina;
 	}
 

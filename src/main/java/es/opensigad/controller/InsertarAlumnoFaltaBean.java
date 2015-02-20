@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import es.opensigad.model.dao.AlumnoSeguimientoDAO;
-import es.opensigad.model.vo.AlumnoFaltaVO;
+//import es.opensigad.model.vo.AlumnoFaltaVO;
 
 @ManagedBean
 @RequestScoped
@@ -24,7 +24,7 @@ public class InsertarAlumnoFaltaBean implements Serializable {
 	private String materia;
 	private String tipo;
 	private String justificado;
-	private String observaciones;
+	//private String observaciones;
 	
 	public long getId() {
 		return id;
@@ -39,7 +39,7 @@ public class InsertarAlumnoFaltaBean implements Serializable {
 	}
 
 	public void setIdAlumno(long idAlumno) {
-		this.idAlumno = idAlumno;
+		//	this.idAlumno = idAlumno;
 	}
 
 	public Date getFecha() {
@@ -56,7 +56,7 @@ public class InsertarAlumnoFaltaBean implements Serializable {
 
 	public void setSesion(String sesion) {
 		this.sesion = sesion;
-	}
+	}//
 
 	public String getMateria() {
 		return materia;
@@ -82,26 +82,26 @@ public class InsertarAlumnoFaltaBean implements Serializable {
 		this.justificado = justificado;
 	}
 
-	public String getObservaciones() {
-		return observaciones;
-	}
+	//public String getObservaciones() {
+	//	return observaciones;
+	//}
 
-	public void setObservaciones(String observaciones) {
-		this.observaciones = observaciones;
-	}
+//public void setObservaciones(String observaciones) {
+//		this.observaciones = observaciones;
+//	}
 
 	public InsertarAlumnoFaltaBean() {
 	}
 
-	public String insertarFalta(AlumnoFaltaVO falta) {
-		String pagina = null;
-		AlumnoSeguimientoDAO alumnoFaltaDAO = new AlumnoSeguimientoDAO();
-		if (alumnoFaltaDAO.insertarFalta(falta) > 0) {
-			pagina = "insertarAlumnoFaltaExito";
-		} else {
-			pagina = "insertarAlumnoFaltaFallo";
-		}
-		return pagina;
-	}
+	//public String insertarFalta(AlumnoFaltaVO falta) {
+	//	String pagina = null;
+	//	AlumnoSeguimientoDAO alumnoFaltaDAO = new AlumnoSeguimientoDAO();
+	//	if (alumnoFaltaDAO.insertarFalta(falta) > 0) {
+	//		//		pagina = "insertarAlumnoFaltaExito";
+	//	} else {
+	//		pagina = "insertarAlumnoFaltaFallo";
+			//	}
+	//	return pagina;
+	//}
 
 }

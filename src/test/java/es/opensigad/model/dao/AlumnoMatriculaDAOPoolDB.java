@@ -13,7 +13,7 @@ public class AlumnoMatriculaDAOPoolDB extends AlumnoMatriculaDAO {
 		String password = "root";
 		String url = "jdbc:mysql://192.168.26.67:3306/opensigad2";
 
-		ds = setupDataSource(driver, user, password, url);
+		//ds = setupDataSource(driver, user, password, url);
 
 	}
 
