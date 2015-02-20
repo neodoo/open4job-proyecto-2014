@@ -28,7 +28,13 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 	// InsertarMatricula
 	public boolean insertarMatricula(Alumno idAlumno, int cursoEscolar,
 			Centro centro, Ensenanza ensenanza, String modulo, int curso) {
+		
+		EntityManagerFactory emf = Persistence
+				.createEntityManagerFactory("persistenceUnit");
+		EntityManager em = emf.createEntityManager();
+		
 		try {
+			
 			AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
 			alumnoMatricula.setAlumno(idAlumno);
 			alumnoMatricula.setCursoEscolar(cursoEscolar);
@@ -37,36 +43,45 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			alumnoMatricula.setModulo(modulo);
 			alumnoMatricula.setCurso(curso);
 
-			EntityManagerFactory emf = Persistence
-					.createEntityManagerFactory("persistenceUnit");
-			EntityManager em = emf.createEntityManager();
-
 			// Guardar matricula
+			
 			em.getTransaction().begin();
 			em.persist(alumnoMatricula);
 			em.getTransaction().commit();
 			em.close();
+			
 			return true;
+			
 		} catch (EntityExistsException e) {
+			
+			em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
+		
 		return false;
 
 	}
 
 	public boolean borrarMatricula(int idMatricula) {
+		
+		EntityManagerFactory emf = Persistence
+				.createEntityManagerFactory("persistenceUnit");
+		EntityManager em = emf.createEntityManager();
+		
 		try {
-			EntityManagerFactory emf = Persistence
-					.createEntityManagerFactory("persistenceUnit");
-			EntityManager em = emf.createEntityManager();
 			
-			//Borrar matricula
+			// Borrar matricula
+			
 			em.getTransaction().begin();
 			em.remove(idMatricula);
 			em.getTransaction().commit();
 			em.close();
+			
 			return true;
+			
 		} catch (EntityExistsException e) {
+			
+			em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
 
@@ -77,8 +92,13 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 	public boolean modificarMatricula(Alumno idAlumno, int cursoEscolar,
 			Centro centro, Ensenanza ensenanza, String modulo, int curso,
 			int idMatricula) {
+		
+		EntityManagerFactory emf = Persistence
+				.createEntityManagerFactory("persistenceUnit");
+		EntityManager em = emf.createEntityManager();
 
-		try{
+		try {
+			
 			AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
 			alumnoMatricula.setAlumno(idAlumno);
 			alumnoMatricula.setCursoEscolar(cursoEscolar);
@@ -88,24 +108,23 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			alumnoMatricula.setCurso(curso);
 			alumnoMatricula.setId(idMatricula);
 			
-			EntityManagerFactory emf = Persistence
-					.createEntityManagerFactory("persistenceUnit");
-			EntityManager em = emf.createEntityManager();
-			
-			//Modificar alumno
+			// Modificar alumno
 			
 			em.getTransaction().begin();
 			em.persist(alumnoMatricula);
 			em.getTransaction().commit();
 			em.close();
-			
+
 			return true;
+
+		} catch (EntityExistsException e) {
 			
-		}catch (EntityExistsException e) {
+			em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
+		
 		return false;
-	
+
 	}
 
 	public ArrayList<AlumnoMatricula> getListadoMatricula(int idAlumno) {
