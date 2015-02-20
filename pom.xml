@@ -63,6 +63,12 @@
             <artifactId>primefaces</artifactId>  
             <version>5.1</version>  
         </dependency>
+        <!-- JPA -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.6.Final</version>
+		</dependency>
 		<!-- MySql dependency -->
 		<dependency>
 			<groupId>mysql</groupId>
