@@ -1,12 +1,14 @@
 package es.opensigad.controller;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import es.opensigad.model.dao.AlumnoMatriculaDAO;
+import es.opensigad.model.vo.Alumno;
+import es.opensigad.model.vo.Centro;
+import es.opensigad.model.vo.Ensenanza;
 
 @ManagedBean
 @RequestScoped
@@ -71,8 +73,8 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 		this.curso = curso;
 	}
 
-	public String insertarAlumnoMatricula(int idAlumno, int cursoEscolar,
-			String centro, String ensenanza, String modulo, int curso) {
+	public String insertarAlumnoMatricula(Alumno idAlumno, int cursoEscolar,
+			Centro centro, Ensenanza ensenanza, String modulo, int curso) {
 		String pagina = null;
 		AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
 

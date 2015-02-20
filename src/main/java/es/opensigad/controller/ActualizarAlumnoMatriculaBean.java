@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
-import es.opensigad.model.dao.AlumnoSeguimientoDAO;
 import es.opensigad.model.dao.AlumnoMatriculaDAO;
-import es.opensigad.model.vo.AlumnoMatricula;
+import es.opensigad.model.vo.Alumno;
+import es.opensigad.model.vo.Centro;
+import es.opensigad.model.vo.Ensenanza;
 
 @ManagedBean
 @SessionScoped
@@ -91,8 +91,8 @@ public class ActualizarAlumnoMatriculaBean implements Serializable {
 		this.idAlumno = idAlumno;
 	}
 
-	public String modificarMatricula(int idAlumno, int cursoEscolar,
-			String centro, String ensenanza, String modulo, int curso,
+	public String modificarMatricula(Alumno idAlumno, int cursoEscolar,
+			Centro centro, Ensenanza ensenanza, String modulo, int curso,
 			int idMatricula) {
 		String pagina = null;
 		AlumnoMatriculaDAO alumnoMatriculaDAO = new AlumnoMatriculaDAO();
