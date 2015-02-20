@@ -3,69 +3,55 @@ package es.opensigad.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
-import es.opensigad.model.dao.*;
-import es.opensigad.model.vo.*;
-
+import es.opensigad.model.dao.AlumnoDAO;
+import es.opensigad.model.vo.Alumno;
 
 @ManagedBean
 @SessionScoped
 public class VerAlumnoListaBean {
 
-	
-	private List<AlumnoVO> alumnoLista;
-	private List<AlumnoVO> alumnoFiltro;
-	
+	private List<Alumno> alumnoLista;
+	private List<Alumno> alumnoFiltro;
 
-	
-
-
-	public List<AlumnoVO> getAlumnoFiltro() {
+	public List<Alumno> getAlumnoFiltro() {
 		return alumnoFiltro;
 	}
 
-
-
-	public void setAlumnoFiltro(List<AlumnoVO> alumnoFiltro) {
+	public void setAlumnoFiltro(List<Alumno> alumnoFiltro) {
 		this.alumnoFiltro = alumnoFiltro;
 	}
 
-
-
-	public List<AlumnoVO> getAlumnoLista() {
+	public List<Alumno> getAlumnoLista() {
 		return alumnoLista;
 	}
 
-
-
-	public void setAlumnoLista(List<AlumnoVO> alumnoLista) {
+	public void setAlumnoLista(List<Alumno> alumnoLista) {
 		this.alumnoLista = alumnoLista;
 	}
 
-	public  String getListAlumno() {
+	public String getListAlumno() {
 
 		String pagina = "verAlumnoLista";
 		AlumnoDAO alumnoDAO = new AlumnoDAO();
-		alumnoLista = new ArrayList<AlumnoVO>();
+		alumnoLista = new ArrayList<Alumno>();
 		alumnoLista = alumnoDAO.getListAlumno();
 
-		return pagina;
+		if (alumnoLista == null) {
+			pagina = "indexAlumno";
+			FacesMessage facesMessage;
 
-	}
-	
-	public String eliminarEvaluacionAlumno(int idEvaluacion) {
-		String pagina = null;
-		AlumnoEvaluacionDAO alumnoEvaluacionDAO = new AlumnoEvaluacionDAO();
-		
-		if(alumnoEvaluacionDAO.EliminarEvaluacionAlumno(idEvaluacion)){
-			pagina = "eliminarAlumnoEvaluacion";
-		}else{
-			pagina = "eliminarAlumnoEvaluacionFallo";
+			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"No hay campos para listar", null);
+			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+			return pagina;
 		}
-
 		return pagina;
+
 	}
 
 }
