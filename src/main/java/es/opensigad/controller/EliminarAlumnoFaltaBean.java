@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import es.opensigad.model.dao.AlumnoFaltaDAO;
+import es.opensigad.model.dao.AlumnoSeguimientoDAO;
 
 @ManagedBean
 @RequestScoped
@@ -30,7 +30,7 @@ public class EliminarAlumnoFaltaBean implements Serializable {
 
 	public String eliminarFalta(int id) {
 		String pagina = null;
-		AlumnoFaltaDAO alumnoFaltaDAO = new AlumnoFaltaDAO();
+		AlumnoSeguimientoDAO alumnoFaltaDAO = new AlumnoSeguimientoDAO();
 		if (alumnoFaltaDAO.eliminarFalta(id) > 0) {
 			pagina = "eliminarAlumnoFaltaExito";
 		} else {

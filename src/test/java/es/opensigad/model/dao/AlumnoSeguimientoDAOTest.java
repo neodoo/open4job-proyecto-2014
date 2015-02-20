@@ -2,15 +2,15 @@ package es.opensigad.model.dao;
 
 import java.util.List;
 
-import es.opensigad.model.vo.AlumnoFaltaVO;
+import es.opensigad.model.vo.AlumnoSeguimiento;
 import junit.framework.TestCase;
 
-public class AlumnoFaltaDAOTest extends TestCase {
+public class AlumnoSeguimientoDAOTest extends TestCase {
 
 	public static long idFalta = 0;
 	public static long idAlumno = 999999999;
 
-	AlumnoFaltaDAOPoolDB alumnoFaltaDAO = new AlumnoFaltaDAOPoolDB();
+	AlumnoSeguimientoDAOPoolDB alumnoSeguimientoDAO = new AlumnoSeguimientoDAOPoolDB();
 
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
@@ -18,35 +18,35 @@ public class AlumnoFaltaDAOTest extends TestCase {
 	public void test1() {
 
 		// Insertar falta
-		AlumnoFaltaVO alumnoFaltaVO = new AlumnoFaltaVO(idAlumno, sqlDate,
+		AlumnoSeguimiento alumnoSeguimiento = new AlumnoSeguimiento(idAlumno, sqlDate,
 				"sesion_" + idAlumno, "materia_" + idAlumno,
 				"tipo_" + idAlumno, "justificado_" + idAlumno, "observaciones_"
 						+ idAlumno);
-		idFalta = alumnoFaltaDAO.insertarFalta(alumnoFaltaVO);
+		idFalta = alumnoFaltaDAO.actualizarSeguimiento(alumnoFaltaVO);
 
 		assertTrue(idFalta > 0);
 	}
 
 	public void test2() {
 		// Visualizar una falta
-		AlumnoFaltaVO alumnoFaltaVO = alumnoFaltaDAO.getDetalleFalta(idFalta);
+		AlumnoSeguimiento alumnoSeguimiento = alumnoSeguimiento.getDetalleFalta(idFalta);
 
-		assertTrue(alumnoFaltaVO != null);
+		assertTrue(alumnoSeguimiento != null);
 	}
 
 	public void test3() {
 		// Actualizar falta
-		AlumnoFaltaVO alumnoFaltaVO = new AlumnoFaltaVO(idFalta, idAlumno,
+		AlumnoSeguimiento alumnoSeguimiento = new AlumnoSeguimiento(idFalta, idAlumno,
 				sqlDate, "sesion_000", "materia_000", "tipo_000",
 				"justificado_000", "observaciones_000");
-		alumnoFaltaDAO.actualizarFalta(alumnoFaltaVO);
+		alumnoSeguimientoDAO.actualizarSeguimiento(alumnoSeguimiento);
 
 		assertNotNull(alumnoFaltaVO);
 	}
 
 	public void test4() {
 		// Visualizar faltas por alumno
-		List<AlumnoFaltaVO> alumnoFaltasVO = alumnoFaltaDAO
+		List<AlumnoSeguimiento> alumnoFaltasVO = alumnoSeguimientoDAO
 				.getListaFaltas(idAlumno);
 
 		assertNotNull(alumnoFaltasVO);
@@ -54,7 +54,7 @@ public class AlumnoFaltaDAOTest extends TestCase {
 
 	public void test5() {
 		// Eliminar falta
-		alumnoFaltaDAO.eliminarFalta(idFalta);
+		alumnoSeguimientoDAO.eliminarSeguimiento(idFalta);
 
 		assertTrue(idFalta > 0);
 	}
