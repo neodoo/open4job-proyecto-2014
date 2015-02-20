@@ -49,7 +49,7 @@ public class AlumnoSeguimientoFichaBean {
 
 	public Date getFecha() {
 		return fecha;
-	}
+	}		
 
 
 	public void setFecha(Date fecha) {
@@ -103,7 +103,7 @@ public class AlumnoSeguimientoFichaBean {
 
 
 	public void setObservaciones(String observaciones) {
-		this.observaciones = observaciones;
+		this.observaciones = observaciones;		
 	}
 
 	
@@ -130,7 +130,7 @@ public class AlumnoSeguimientoFichaBean {
 	public String getDetalleAlumnoSeguimiento() {
 		String pagina = "AlumnoFalta";
 		AlumnoSeguimientoDAO seguimientoDAO = new AlumnoSeguimientoDAO();
-		seguimiento = seguimientoDAO.getDetalleAlumnoSeguimiento(id);
+		//seguimiento = seguimientoDAO.getDetalleAlumnoSeguimiento(id);
 		
 		return pagina;
 	}
@@ -147,12 +147,12 @@ public class AlumnoSeguimientoFichaBean {
 		String pagina=null;
 		AlumnoSeguimientoDAO alumnoSeguimientoDAO = new AlumnoSeguimientoDAO();
 
-		long count = alumnoSeguimientoDAO.insertarAlumnoSeguimiento(seguimiento);
-		if (count == 1){
-			pagina = "insertarAlumnoFaltaExito";
-		}else{
-			pagina = "insertarAlumnoFaltaFallo";
-		}
+		//long count = alumnoSeguimientoDAO.insertarAlumnoSeguimiento(seguimiento);
+		//if (count == 1){
+		//	pagina = "insertarAlumnoFaltaExito";
+		//}else{
+		//	pagina = "insertarAlumnoFaltaFallo";
+		//}
 		return pagina;
 	}
 	
@@ -174,13 +174,13 @@ public class AlumnoSeguimientoFichaBean {
 		String pagina=null;
 		AlumnoSeguimientoDAO alumnoSeguimientoDAO = new AlumnoSeguimientoDAO();
 	
-		long count = alumnoSeguimientoDAO.eliminarAlumnoSeguimiento(seguimiento.getId());
+		//long count = alumnoSeguimientoDAO.eliminarAlumnoSeguimiento(seguimiento.getId());
 		
-		if (count == 1){
-			pagina = "eliminarAlumnoFaltaExito";
-		}else{
-			pagina = "eliminarAlumnoFaltaFallo";
-		}
+		//if (count == 1){
+		//	pagina = "eliminarAlumnoFaltaExito";
+		//}else{
+		//	pagina = "eliminarAlumnoFaltaFallo";
+		//}
 		return pagina;
 	}
 }
