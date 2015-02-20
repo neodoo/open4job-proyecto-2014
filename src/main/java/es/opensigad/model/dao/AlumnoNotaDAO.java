@@ -43,7 +43,20 @@ public class AlumnoNotaDAO {
 	}
 
 	public ArrayList<AlumnoNota> getNotasByIdMatricula(int idMatricula) {
-		return null;
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");	
+		EntityManager em =  emf.createEntityManager();
+		
+		// Listar alumnos
+		em.getTransaction().begin();
+		
+		String query = "SELECT * FROM AlumnoNota an WHERE an.id = " + idMatricula;
+		
+		ArrayList<AlumnoNota> alumnos = (ArrayList<AlumnoNota>) em.createQuery( query ).getResultList();
+		
+		em.getTransaction().commit();
+		em.close();
+		
+		return alumnos;
 		
 	}
 
