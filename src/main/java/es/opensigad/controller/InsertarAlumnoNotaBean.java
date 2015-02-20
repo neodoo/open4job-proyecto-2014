@@ -61,12 +61,15 @@ public class InsertarAlumnoNotaBean implements Serializable {
 		this.nota = nota;
 	}
 
-	public String insertarNotaAlumno(int idMatricula, int idEnsenanza, int idMateria, int idEvalucion, int nota) {
-		String pagina=null;
+
+	public String insertarNotaAlumno(int idAlumnoMatricula, int idMateria,
+			 String evaluacion, int nota, String observacion) {
+		String pagina = null;
 		AlumnoNotaDAO alumnoNotaDAO = new AlumnoNotaDAO();
-		if (alumnoNotaDAO.insertarNotasAlumnoByIdMatricula(idMatricula, idEnsenanza, idMateria, idEvalucion, nota)){
+		if (alumnoNotaDAO.insertarNotasAlumnoByIdMatricula(idAlumnoMatricula,
+				 idMateria, evaluacion, nota, observacion)) {
 			pagina = "insertarAlumnoNotaExito";
-		}else{
+		} else {
 			pagina = "insertarAlumnoNotaFallo";
 		}
 		return pagina;

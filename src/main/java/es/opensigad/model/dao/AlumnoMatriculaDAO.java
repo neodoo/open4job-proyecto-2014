@@ -170,23 +170,34 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 	public AlumnoMatricula getListaFichaMatricula(int idMatricula) {
 
-		/*
-		 * Connection conn; AlumnoMatricula fichamatricula = null; try { conn =
-		 * ds.getConnection();
-		 * 
-		 * PreparedStatement stmt = conn
-		 * .prepareStatement("SELECT * FROM alumno_matricula where id= ?");
-		 * stmt.setInt(1, idMatricula); ResultSet rs = stmt.executeQuery();
-		 * while (rs.next()) { fichamatricula = (new
-		 * AlumnoMatricula(rs.getInt(1), rs.getInt(2), rs .getInt(3),
-		 * rs.getString(4), rs.getString(5), rs .getString(6), rs.getInt(7))); }
-		 * 
-		 * } catch (SQLException e) { logger.log(Level.SEVERE, "SQLException : "
-		 * + e.getMessage()); }
-		 */
+		AlumnoMatricula alumnoFichaMatricula = null;
 
-		return null;
+		EntityManagerFactory emf = Persistence
+				.createEntityManagerFactory("persistenceUnit");
+		EntityManager em = emf.createEntityManager();
+
+		try {
+
+			// String query = "from AlumnoMatricula m where m.id = "+ idMatricula;
+			
+			String query = "from AlumnoMatricula m where m.id = :idMatricula";
+
+			em.getTransaction().begin();
+			alumnoFichaMatricula = (AlumnoMatricula) em.createQuery(query)
+					.setParameter(":idMatricula", idMatricula)
+					.getSingleResult();
+
+			em.getTransaction().commit();
+			em.close();
+
+		} catch (EntityExistsException e) {
+
+			em.getTransaction().rollback();
+
+			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
+		}
+
+		return alumnoFichaMatricula;
 
 	}
-
 }

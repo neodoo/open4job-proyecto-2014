@@ -10,7 +10,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.sql.DataSource;
 
+import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.AlumnoNota;
+import es.opensigad.model.vo.EnsenanzaMateria;
 
 
 public class AlumnoNotaDAO {
@@ -45,8 +47,30 @@ public class AlumnoNotaDAO {
 		
 	}
 
-	public boolean insertarNotasAlumnoByIdMatricula(int idMatricula,int idEnsenanza, int idMateria, int idEvalucion,int nota){
-		return false;
+	public boolean insertarNotasAlumnoByIdMatricula(int idAlumnoMatricula,
+			int idMateria, String evaluacion, int nota, String observacion){
+		AlumnoMatricula matricula = new AlumnoMatricula();
+		matricula.setId(idAlumnoMatricula);
+
+		EnsenanzaMateria ensenanzaMateria = new EnsenanzaMateria();
+		ensenanzaMateria.setId(idMateria);
+
+		AlumnoNota alumnonota = new AlumnoNota();
+		alumnonota.setAlumnoMatricula(matricula);
+		alumnonota.setEnsenanzaMateria(ensenanzaMateria);
+		alumnonota.setEvaluacion(evaluacion);
+		alumnonota.setNota(nota);
+		alumnonota.setObservacion(observacion);
+
+		EntityManagerFactory emf = Persistence
+				.createEntityManagerFactory("persistenceUnit");
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(alumnonota);
+		em.getTransaction().commit();
+		em.close();
+
+		return true;
 			
 	}
 

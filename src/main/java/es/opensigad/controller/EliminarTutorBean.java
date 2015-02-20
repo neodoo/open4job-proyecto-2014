@@ -16,7 +16,7 @@ public class EliminarTutorBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private int idTutor;
 	
-	
+/*	
 	public int getIdTutor() {
 		return idTutor;
 	}
@@ -49,4 +49,5 @@ public class EliminarTutorBean implements Serializable{
 		return pagina;
 
 	}
+	*/
 }
