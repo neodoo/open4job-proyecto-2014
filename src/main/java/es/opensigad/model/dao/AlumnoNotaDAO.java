@@ -93,6 +93,22 @@ public class AlumnoNotaDAO {
 	}
 
 	public boolean borrarNotaByIdMatricula(int idMatricula) {
+		
+		AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
+		alumnoMatricula.setId(idMatricula);
+		AlumnoNota alumnoNota = new AlumnoNota();
+		alumnoNota.setAlumnoMatricula(alumnoMatricula);
+		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
+		EntityManager em = emf.createEntityManager();
+		
+		em.getTransaction().begin();
+		em.remove(alumnoNota);
+		
+		em.getTransaction().commit();
+		em.close();
+		
+		
 		return false;
 		
 	}
