@@ -14,9 +14,9 @@ public interface AlumnoMatriculaDAOInterfaz {
 
 	public boolean borrarMatricula(int idMatricula);
 
-	public boolean modificarMatricula(int idAlumno, int cursoEscolar,
-			String centro, String ensenanza, String modulo,
-			int curso, int idMatricula);
+	public boolean modificarMatricula(Alumno idAlumno, int cursoEscolar,
+			Centro centro, Ensenanza ensenanza, String modulo, int curso,
+			int idMatricula);
 
 	public ArrayList<AlumnoMatricula> getListadoMatricula(int idAlumno);
 	
