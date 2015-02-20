@@ -4,9 +4,9 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
 
-public class AlumnoFaltaDAOPoolDB extends AlumnoFaltaDAO {
+public class AlumnoSeguimientoDAOPoolDB extends AlumnoSeguimientoDAO {
 
-	public AlumnoFaltaDAOPoolDB() {
+	public AlumnoSeguimientoDAOPoolDB() {
 
 		String driver = "com.mysql.jdbc.Driver";
 		String user = "root";

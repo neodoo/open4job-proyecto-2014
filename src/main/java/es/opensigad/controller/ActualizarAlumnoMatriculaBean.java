@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
-import es.opensigad.model.dao.AlumnoFaltaDAO;
+import es.opensigad.model.dao.AlumnoSeguimientoDAO;
 import es.opensigad.model.dao.AlumnoMatriculaDAO;
 import es.opensigad.model.vo.AlumnoMatricula;
 
