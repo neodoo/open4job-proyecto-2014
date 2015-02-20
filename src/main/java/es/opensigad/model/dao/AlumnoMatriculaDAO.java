@@ -13,7 +13,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import es.opensigad.model.vo.AlumnoMatriculaVO;
+import es.opensigad.model.vo.AlumnoMatricula;
 
 public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
@@ -24,17 +24,17 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 	DataSource ds;
 
 	public AlumnoMatriculaDAO() {
-		try {
+	/*	try {
 			Context ctx = new InitialContext();
 			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/opensigad");
 		} catch (NamingException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 	//InsertarMatricula
 	public boolean insertarMatricula(int idAlumno,int cursoEscolar, String centro,
 			String ensenanza, String modulo, int curso) {
-		Connection conn;
+	/*	Connection conn;
 		try {
 			conn = ds.getConnection();
 
@@ -51,13 +51,13 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			return true;
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
-		}
+		}*/
 		return false;
 	}
 
 	public boolean borrarMatricula(int idMatricula) {
 
-		Connection conn;
+		/*Connection conn;
 		try {
 			conn = ds.getConnection();
 
@@ -69,7 +69,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			}
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
-		}
+		}*/
 
 		return false;
 
@@ -79,7 +79,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			String centro, String ensenanza, String modulo,
 			int curso, int idMatricula) {
 
-		Connection conn;
+		/*Connection conn;
 		try {
 			conn = ds.getConnection();
 
@@ -99,16 +99,16 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			
 		} catch (SQLException e1) {
 			logger.log(Level.SEVERE, "SQLException : " + e1.getMessage());
-		}
+		}*/
 
 		return false;
 
 	}
 
-	public ArrayList<AlumnoMatriculaVO> getListadoMatricula(int idAlumno) {
+	public ArrayList<AlumnoMatricula> getListadoMatricula(int idAlumno) {
 
-		Connection conn;
-		ArrayList<AlumnoMatriculaVO> lista = new ArrayList<AlumnoMatriculaVO>();
+		/*Connection conn;
+		ArrayList<AlumnoMatricula> lista = new ArrayList<AlumnoMatricula>();
 		try {
 			conn = ds.getConnection();
 
@@ -117,7 +117,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			stmt.setInt(1, idAlumno);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				lista.add(new AlumnoMatriculaVO(rs.getInt(1), rs.getInt(2), rs
+				lista.add(new AlumnoMatricula(rs.getInt(1), rs.getInt(2), rs
 						.getInt(3), rs.getString(4), rs.getString(5), rs
 						.getString(6), rs.getInt(7)));
 			}
@@ -125,15 +125,16 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
-
-		return lista;
+		
+*/
+		return null;
 
 	}
 	
-	public AlumnoMatriculaVO getListaFichaMatricula(int idMatricula) {
+	public AlumnoMatricula getListaFichaMatricula(int idMatricula) {
 
-		Connection conn;
-		AlumnoMatriculaVO fichamatricula = null;
+		/*Connection conn;
+		AlumnoMatricula fichamatricula = null;
 		try {
 			conn = ds.getConnection();
 
@@ -142,7 +143,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			stmt.setInt(1, idMatricula);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				fichamatricula = (new AlumnoMatriculaVO(rs.getInt(1), rs.getInt(2), rs
+				fichamatricula = (new AlumnoMatricula(rs.getInt(1), rs.getInt(2), rs
 						.getInt(3), rs.getString(4), rs.getString(5), rs
 						.getString(6), rs.getInt(7)));
 			}
@@ -150,8 +151,10 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
+		
+		*/
 
-		return fichamatricula;
+		return null;
 
 	}
 
