@@ -41,9 +41,8 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 					.createEntityManagerFactory("persistenceUnit");
 			EntityManager em = emf.createEntityManager();
 
-			// Guardar alumno
+			// Guardar matricula
 			em.getTransaction().begin();
-
 			em.persist(alumnoMatricula);
 			em.getTransaction().commit();
 			em.close();
@@ -52,20 +51,24 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
 		}
 		return false;
-		
+
 	}
 
 	public boolean borrarMatricula(int idMatricula) {
-
-		/*
-		 * Connection conn; try { conn = ds.getConnection();
-		 * 
-		 * PreparedStatement stmt = conn
-		 * .prepareStatement("DELETE FROM alumno_matricula WHERE id=?");
-		 * stmt.setInt(1, idMatricula); if(stmt.executeUpdate()==1){ return
-		 * true; } } catch (SQLException e) { logger.log(Level.SEVERE,
-		 * "SQLException : " + e.getMessage()); }
-		 */
+		try {
+			EntityManagerFactory emf = Persistence
+					.createEntityManagerFactory("persistenceUnit");
+			EntityManager em = emf.createEntityManager();
+			
+			//Borrar matricula
+			em.getTransaction().begin();
+			em.remove(idMatricula);
+			em.getTransaction().commit();
+			em.close();
+			return true;
+		} catch (EntityExistsException e) {
+			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
+		}
 
 		return false;
 

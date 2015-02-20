@@ -8,12 +8,11 @@ import java.util.Date;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import es.opensigad.model.dao.AlumnoDAO;
-import es.opensigad.model.vo.AlumnoVO;
+import es.opensigad.model.vo.Alumno;
 
 @ManagedBean
 @RequestScoped
@@ -23,7 +22,7 @@ public class VerAlumnoFichaBean implements Serializable {
 
 	private int id;
 
-	private AlumnoVO alumnoVO = new AlumnoVO();
+	private Alumno alumno = new Alumno();
 
 	private String fecha;
 
@@ -43,12 +42,12 @@ public class VerAlumnoFichaBean implements Serializable {
 		this.id = id;
 	}
 
-	public AlumnoVO getAlumnoVO() {
-		return alumnoVO;
+	public Alumno getAlumno() {
+		return alumno;
 	}
 
-	public void setAlumnoVO(AlumnoVO alumnoVO) {
-		this.alumnoVO = alumnoVO;
+	public void setAlumno(Alumno alumno) {
+		this.alumno = alumno;
 	}
 
 	public String getDetalleAlumno() {
@@ -56,21 +55,20 @@ public class VerAlumnoFichaBean implements Serializable {
 		String pagina = "verAlumnoFicha";
 		FacesMessage facesMessage;
 		AlumnoDAO alumnoDAO = new AlumnoDAO();
-		alumnoVO = alumnoDAO.getDetalleAlumno(this.id);
+		alumno = alumnoDAO.getDetalleAlumno(this.id);
 
-		if (alumnoVO != null) {
+		if (alumno != null) {
 			DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
-			fecha = format.format(alumnoVO.getFechaNacimiento());
+			fecha = format.format(alumno.getFechaNacimiento());
 
 			return pagina;
 		}
 
 		pagina = "indexAlumno";
 		facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"El alumno con numero de expediente "
-						+ this.id
-						+ " no existe", null);
+				"El alumno con numero de expediente " + this.id + " no existe",
+				null);
 		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 		return pagina;
 
@@ -87,20 +85,28 @@ public class VerAlumnoFichaBean implements Serializable {
 		try {
 			utilDate = (Date) format.parse(fecha);
 		} catch (ParseException e) {
-			e.printStackTrace();
+
+			facesMessage = new FacesMessage(
+					FacesMessage.SEVERITY_INFO,
+					"La fecha insertada no tiene el formato correcto 'dd/MM/yyyy'",
+					null);
+
+			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+			pagina = "verAlumnoFicha";
+			return pagina;
 		}
 
-		alumnoVO.setFechaNacimiento(utilDate);
+		alumno.setFechaNacimiento(utilDate);
 
-		if (alumnoDAO.modifyAlumno(alumnoVO))
+		if (alumnoDAO.modifyAlumno(alumno))
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"El alumno con numero de expediente "
-							+ alumnoVO.getNumExpediente()
+							+ alumno.getNumExpediente()
 							+ " ha sido modificado", null);
 		else
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"El alumno con numero de expediente "
-							+ alumnoVO.getNumExpediente()
+							+ alumno.getNumExpediente()
 							+ " no se ha modificado correctamente", null);
 		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 		return pagina;
