@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
-import es.opensigad.model.dao.AlumnoDAO;
-import es.opensigad.model.vo.AlumnoVO;
+import es.opensigad.model.dao.*;
+import es.opensigad.model.vo.*;
+
 
 @ManagedBean
 @SessionScoped
@@ -54,6 +54,18 @@ public class VerAlumnoListaBean {
 		return pagina;
 
 	}
+	
+	public String eliminarEvaluacionAlumno(int idEvaluacion) {
+		String pagina = null;
+		AlumnoEvaluacionDAO alumnoEvaluacionDAO = new AlumnoEvaluacionDAO();
+		
+		if(alumnoEvaluacionDAO.EliminarEvaluacionAlumno(idEvaluacion)){
+			pagina = "eliminarAlumnoEvaluacion";
+		}else{
+			pagina = "eliminarAlumnoEvaluacionFallo";
+		}
 
+		return pagina;
+	}
 
 }

@@ -1,20 +1,19 @@
 package es.opensigad.model.dao;
 
-import java.sql.Date;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Date;
 
-import es.opensigad.model.vo.AlumnoVO;
+import es.opensigad.model.vo.AlumnoEvaluacionVO;
 
 public interface AlumnoDAOInterfaz {
 
-	public List<AlumnoVO> getListAlumno();
+	public abstract ArrayList<AlumnoEvaluacionVO> getAlumnoEvaluacionListado();
 
-	public AlumnoVO getDetalleAlumno(int num_expediente);
+	public ArrayList<AlumnoEvaluacionVO> getDetalleEvaluacion(int id);
 
-	public boolean insertAlumno(AlumnoVO alumnoVO);
+	public boolean actualizarEvaluacionAlumno(int id,
+			int idCentroEstudio, int numero, String descripcion, Date fechaInicio,
+			Date fechaFin, Date fechaSesion, Date fechaPublicacion);
 
-	public boolean deleteAlumno(int id);
-	
-	public boolean modifyAlumno(AlumnoVO alumnoVO);
-
+	public boolean EliminarEvaluacionAlumno(int id);
 }
