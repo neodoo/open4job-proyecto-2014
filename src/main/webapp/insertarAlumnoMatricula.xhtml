@@ -8,15 +8,35 @@
 	<title>Insertar Matriculas Alumno</title>
 </h:head>
 <h:body>
-	<h1>Introduce la matricula del alumno</h1>
+	<h3>
+		<h:outputLabel id="tituloIntroducirMatriculaAlumno"
+			value="#{etqAlmMat['titulo.insertarAlumnoMatricula']}" />
+	</h3>
+
 	<h:form>
-		Id Alumno<h:inputText value="#{insertarAlumnoMatriculaBean.idAlumno}"></h:inputText>
-		<br/>Curso escolar<h:inputText value="#{insertarAlumnoMatriculaBean.cursoEscolar}"></h:inputText>
-		<br/>Centro<h:inputText value="#{insertarAlumnoMatriculaBean.centro}"></h:inputText>
-		<br/>Enseñanza<h:inputText value="#{insertarAlumnoMatriculaBean.ensenanza}"></h:inputText>
-		<br/>Módulo<h:inputText value="#{insertarAlumnoMatriculaBean.modulo}"></h:inputText>
-		<br/>Curso<h:inputText value="#{insertarAlumnoMatriculaBean.curso}"></h:inputText>
-		<br/><h:commandButton value="Guardar matricula del alumno" action="#{insertarAlumnoMatriculaBean.insertarAlumnoMatricula(insertarAlumnoMatriculaBean.idAlumno,
+		<h:outputLabel id="idAlumno"
+			value="#{etqAlmMat['etiquetas.idAlumno']}" />
+		<h:inputText value="#{insertarAlumnoMatriculaBean.idAlumno}"></h:inputText>
+		<br />
+		<h:outputLabel id="idCursoEscolar"
+			value="#{etqAlmMat['etiquetas.cursoEscolar']}" />
+		<h:inputText value="#{insertarAlumnoMatriculaBean.cursoEscolar}"></h:inputText>
+		<br />
+		<h:outputLabel id="idCentro" value="#{etqAlmMat['etiquetas.centro']}" />
+		<h:inputText value="#{insertarAlumnoMatriculaBean.centro}"></h:inputText>
+		<br />
+		<h:outputLabel id="idEnseñanza"
+			value="#{etqAlmMat['etiquetas.ensenanza']}" />
+		<h:inputText value="#{insertarAlumnoMatriculaBean.ensenanza}"></h:inputText>
+		<br />
+		<h:outputLabel id="idModulo" value="#{etqAlmMat['etiquetas.modulo']}" />
+		<h:inputText value="#{insertarAlumnoMatriculaBean.modulo}"></h:inputText>
+		<br />
+		<h:outputLabel id="idCurso" value="#{etqAlmMat['etiquetas.curso']}" />
+		<h:inputText value="#{insertarAlumnoMatriculaBean.curso}"></h:inputText>
+		<br />
+		<h:commandButton value="#{etqAlmMat['boton.guardarMatriculaAlumno']}"
+			action="#{insertarAlumnoMatriculaBean.insertarAlumnoMatricula(insertarAlumnoMatriculaBean.idAlumno,
 				 insertarAlumnoMatriculaBean.cursoEscolar, insertarAlumnoMatriculaBean.centro, insertarAlumnoMatriculaBean.ensenanza, insertarAlumnoMatriculaBean.modulo, insertarAlumnoMatriculaBean.curso)}"></h:commandButton>
 	</h:form>
 </h:body>
