@@ -8,15 +8,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import es.opensigad.model.dao.TutorDAO;
-import es.opensigad.model.vo.TutorVO;
+
 
 @ManagedBean
 @SessionScoped
 public class InsertarTutorBean implements Serializable{
 
-	/**
-	 * 
-	 */
+	/*
+	
 	private static final long serialVersionUID = 1L;
 	
 	private TutorVO tutorVO;
@@ -160,5 +159,5 @@ public class InsertarTutorBean implements Serializable{
 		
 	}
 	
-	*/
+	 */
 }
