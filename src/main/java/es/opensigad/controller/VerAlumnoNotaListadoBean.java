@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 import es.opensigad.model.dao.AlumnoNotaDAO;
-import es.opensigad.model.vo.AlumnoNotaVO;
+import es.opensigad.model.vo.AlumnoNota;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,7 +26,7 @@ import java.util.logging.Logger;
 @RequestScoped
 public class VerAlumnoNotaListadoBean implements Serializable {
 	
-	private ArrayList<AlumnoNotaVO> alumnoNotas;
+	private ArrayList<AlumnoNota> alumnoNotas;
 	private int idMatricula;
 
 	public VerAlumnoNotaListadoBean() {
@@ -40,11 +41,11 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 		this.idMatricula = idMatricula;
 	}
 
-	public ArrayList<AlumnoNotaVO> getAlumnoNotas() {
+	public ArrayList<AlumnoNota> getAlumnoNotas() {
 		return alumnoNotas;
 	}
 
-	public void setAlumnoNotas(ArrayList<AlumnoNotaVO> alumnNOtas) {
+	public void setAlumnoNotas(ArrayList<AlumnoNota> alumnNOtas) {
 		this.alumnoNotas = alumnNOtas;
 	}
 

@@ -1,20 +1,42 @@
 package es.opensigad.model.dao;
 
-import java.sql.Date;
 import java.util.List;
 
-import es.opensigad.model.vo.AlumnoVO;
+import es.opensigad.model.vo.AlumnoContacto;
+import es.opensigad.model.vo.AlumnoDireccion;
+import es.opensigad.model.vo.Alumno;
 
 public interface AlumnoDAOInterfaz {
 
-	public List<AlumnoVO> getListAlumno();
+	public List<Alumno> getListAlumno();
 
-	public AlumnoVO getDetalleAlumno(int num_expediente);
+	public Alumno getDetalleAlumno(int num_expediente);
 
-	public boolean insertAlumno(AlumnoVO alumnoVO);
+	public boolean insertAlumno(Alumno alumno);
 
 	public boolean deleteAlumno(int id);
 	
-	public boolean modifyAlumno(AlumnoVO alumnoVO);
-
+	public boolean modifyAlumno(Alumno alumno);
+	
+	
+	public boolean insertAlumnoContacto(AlumnoContacto alumnoContacto);
+	
+	public boolean deleteAlumnoContacto(int id);
+	
+	public boolean modifyAlumnoContacto(AlumnoContacto alumnoContacto);
+	
+	public AlumnoContacto getDetalleAlumnoContacto(int id);
+	
+	public List<AlumnoContacto> getListAlumnoContacto(int idAlumno);
+	
+	
+	public boolean insertAlumnoDireccion(AlumnoDireccion alumnoDireccion);
+	
+	public boolean deleteAlumnoDireccion(int id);
+	
+	public boolean modifyAlumnoDireccion(AlumnoDireccion alumnoDireccion);
+	
+	public AlumnoDireccion getDetalleAlumnoDireccion(int id);
+	
+	public List<AlumnoDireccion> getListAlumnoDireccion(int idAlumno);
 }
