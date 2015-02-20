@@ -3,7 +3,6 @@
   <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
     
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
- 
     <class>es.opensigad.model.vo.Alumno</class>
     <class>es.opensigad.model.vo.AlumnoContacto</class>
     <class>es.opensigad.model.vo.AlumnoDireccion</class>
