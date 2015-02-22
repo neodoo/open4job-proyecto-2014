@@ -34,22 +34,17 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 		EntityManager em = emf.createEntityManager();
 
 		try {
-			
-			String query = "from Alumno m where m.id = :idAlumno";
-			String query1 = "from Centro c where c.titulo = :centro";
-			String query2 = "from Ensenanza e where e.nombre = :ensenanza";
-			
+
 			em.getTransaction().begin();
-			Alumno alumno = (Alumno) em.createQuery(query)
-					.setParameter(":idAlumno", idAlumno)
-					.getSingleResult();
-			Centro centroMatricula = (Centro) em.createQuery(query1)
-					.setParameter(":centro", centro)
-					.getSingleResult();
-			Ensenanza ensenanzaMatricula = (Ensenanza) em.createQuery(query2)
-					.setParameter(":ensenanza", ensenanza)
-					.getSingleResult();
-			
+
+			Alumno alumno = new Alumno();
+			Centro centroMatricula = new Centro();
+			Ensenanza ensenanzaMatricula = new Ensenanza();
+
+			alumno.setId(idAlumno);
+			centroMatricula.setDescripcion(centro);
+			ensenanzaMatricula.setNombre(ensenanza);
+
 			AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
 			alumnoMatricula.setAlumno(alumno);
 			alumnoMatricula.setCursoEscolar(cursoEscolar);
@@ -58,12 +53,10 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			alumnoMatricula.setModulo(modulo);
 			alumnoMatricula.setCurso(curso);
 
-			// Guardar matricula
-
-			
+			// Guardar matricu
+			//si le paso el objeto en vez de el set persist dará error al estar creado en la bbdd???
 			em.persist(alumnoMatricula);
 			em.getTransaction().commit();
-			em.close();
 
 			return true;
 
@@ -71,6 +64,10 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 			em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
+
+		} finally {
+			em.close();
+			emf.close();
 		}
 
 		return false;
@@ -88,9 +85,10 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			// Borrar matricula
 
 			em.getTransaction().begin();
-			em.remove(idMatricula);
+			AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
+			alumnoMatricula = em.find(AlumnoMatricula.class, idMatricula);
+			em.remove(alumnoMatricula);
 			em.getTransaction().commit();
-			em.close();
 
 			return true;
 
@@ -98,6 +96,9 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 			em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
+		}finally {
+			em.close();
+			emf.close();
 		}
 
 		return false;
@@ -126,9 +127,8 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			// Modificar alumno
 
 			em.getTransaction().begin();
-			em.persist(alumnoMatricula);
+			em.merge(alumnoMatricula);
 			em.getTransaction().commit();
-			em.close();
 
 			return true;
 
@@ -136,6 +136,9 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 			em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
+		}finally {
+			em.close();
+			emf.close();
 		}
 
 		return false;
@@ -159,11 +162,13 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 			em.getTransaction().commit();
 
-			em.close();
 
 		} catch (EntityExistsException e) {
 			em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
+		}finally {
+			em.close();
+			emf.close();
 		}
 
 		return alumnoMatricula;
@@ -183,21 +188,26 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			// String query = "from AlumnoMatricula m where m.id = "+
 			// idMatricula;
 
-			String query = "from AlumnoMatricula m where m.id = :idMatricula";
+			// String query =
+			// "from AlumnoMatricula m where m.id = :idMatricula";
 
 			em.getTransaction().begin();
-			alumnoFichaMatricula = (AlumnoMatricula) em.createQuery(query)
-					.setParameter(":idMatricula", idMatricula)
-					.getSingleResult();
+			alumnoFichaMatricula = em.find(AlumnoMatricula.class, idMatricula);
 
+			/*
+			 * alumnoFichaMatricula = (AlumnoMatricula) em.createQuery(query)
+			 * .setParameter(":idMatricula", idMatricula) .getSingleResult();
+			 */
 			em.getTransaction().commit();
-			em.close();
+
 
 		} catch (EntityExistsException e) {
 
 			em.getTransaction().rollback();
-
 			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
+		}finally {
+			em.close();
+			emf.close();
 		}
 
 		return alumnoFichaMatricula;
