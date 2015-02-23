@@ -10,46 +10,46 @@
 
 <h:body>
 
-	<h1>Falta</h1>
+	<h1>Seguimiento del Alumno</h1>
 
 	<h:form>
 		<h:panelGrid id="panel" columns="2" border="0" cellpadding="0"
 			cellspacing="5">
 			<h:outputLabel value="Falta: " style="font-weight:bold" />
-			<h:inputText value="#{alumnoFaltaFichaBean.faltaVO.id}">
+			<h:inputText value="#{alumnoSeguimientoFichaBean.seguimiento.id}">
 			</h:inputText>
-			<h:outputLabel value="Alumno: " style="font-weight:bold" />
-			<h:inputText value="#{alumnoFaltaFichaBean.faltaVO.idAlumno}">
+			<h:outputLabel value="Matricula: " style="font-weight:bold" />
+			<h:inputText value="#{alumnoSeguimientoFichaBean.seguimiento.idMatricula}">
 			</h:inputText>
 			<h:outputLabel value="Fecha: " style="font-weight:bold" />
-			<h:inputText value="#{alumnoFaltaFichaBean.faltaVO.fecha}">
+			<h:inputText value="#{alumnoSeguimientoFichaBean.seguimiento.fecha}">
 				<f:convertDateTime pattern="yyyy-MM-dd" locale="es" type="date" timeZone="CET" />
 			</h:inputText>
 			<h:outputLabel value="Sesión: " style="font-weight:bold" />
-			<h:inputText value="#{alumnoFaltaFichaBean.faltaVO.sesion}">
+			<h:inputText value="#{alumnoSeguimientoFichaBean.seguimiento.sesion}">
 			</h:inputText>
 			<h:outputLabel value="Materia: " style="font-weight:bold" />
-			<h:inputText value="#{alumnoFaltaFichaBean.faltaVO.materia}">
+			<h:inputText value="#{alumnoSeguimientoFichaBean.seguimiento.idMateria}">
 			</h:inputText>
 			<h:outputLabel value="Tipo: " style="font-weight:bold" />
-			<h:inputText value="#{alumnoFaltaFichaBean.faltaVO.tipo}">
+			<h:inputText value="#{alumnoSeguimientoFichaBean.seguimiento.tipo}">
 			</h:inputText>
 			<h:outputLabel value="Justificado: " style="font-weight:bold" />
-			<h:inputText value="#{alumnoFaltaFichaBean.faltaVO.justificado}">
+			<h:inputText value="#{alumnoSeguimientoFichaBean.seguimiento.justificado}">
 			</h:inputText>
 			<h:outputLabel value="Observaciones: " style="font-weight:bold" />
 			<h:inputTextarea rows="4" cols="50"
-				value="#{alumnoFaltaFichaBean.faltaVO.observaciones}">
+				value="#{alumnoSeguimientoFichaBean.seguimiento.observaciones}">
 			</h:inputTextarea>
 		</h:panelGrid>
 
 
 		<h:commandButton value="Insertar"
-			action="#{alumnoFaltaFichaBean.insertarFalta()}" />
+			action="#{alumnoSeguimientoFichaBean.actualizarAlumnoSeguimiento()}" />
 		<h:commandButton value="Actualizar"
-			action="#{alumnoFaltaFichaBean.actualizarFalta()}" />
+			action="#{alumnoSeguimientoFichaBean.actualizarAlumnoSeguimiento()}" />
 		<h:commandButton value="Eliminar"
-			action="#{alumnoFaltaFichaBean.eliminarFalta()}" />
+			action="#{alumnoSeguimientoFichaBean.eliminarAlumnoSeguimiento()}" />
 
 	</h:form>
 

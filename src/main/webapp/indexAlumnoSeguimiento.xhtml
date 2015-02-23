@@ -11,20 +11,20 @@
 <h:body>
 
 	<h1>OpenSIGAD</h1>
-	<h3>Una falta del alumno</h3>
+	<h3>Un seguimiento del alumno</h3>
 
 	<h:form>
-		<h:inputText value="#{alumnoFaltaFichaBean.id}" />
-		<h:commandButton value="Ver falta"
-			action="#{alumnoFaltaFichaBean.getDetalleFalta()}"></h:commandButton>
+		<h:inputText value="#{alumnoSeguimientoFichaBean.id}" />
+		<h:commandButton value="Ver seguimiento"
+			action="#{alumnoSeguimientoFichaBean.getDetalleAlumnoSeguimiento()}"></h:commandButton>
 	</h:form>
 
-	<h3>Faltas del alumno</h3>
+	<h3>Seguimientos del alumno por su idMatricula</h3>
 
 	<h:form>
-		<h:inputText value="#{alumnoFaltaFichaBean.idAlumno}" />
+		<h:inputText value="#{alumnoSeguimientoFichaBean.idMatricula}" />
 		<h:commandButton value="Ver listado"
-			action="#{alumnoFaltaFichaBean.getAlumnoFaltaListado()}"></h:commandButton>
+			action="#{alumnoSeguimientoFichaBean.getListaAlumnoSeguimiento()}"></h:commandButton>
 	</h:form>
 
 
