@@ -17,47 +17,6 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz, Seria
 
 	public static final Logger logger = Logger.getLogger(AlumnoSeguimiento.class.getName());
 
-
-	// Listar seguimientos de un alumno
-	
-	public List<AlumnoSeguimiento> getListaAlumnoSeguimiento(int pidMatricula) {
-		
-		List<AlumnoSeguimiento> seguimientos = null;
-		
-		try{
-			 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
-		EntityManager em = emf.createEntityManager();
-
-		String query = "SELECT alumnoSeguimiento FROM AlumnoSeguimiento alumnoSeguimiento "
-				+ " WHERE alumnoSeguimiento.alumnoMatricula.id = :pidMatricula";
-
-		em.getTransaction().begin();
-
-		System.out.println("<h3>Listado de seguimientos (SELECT)</h3><br />");
-
-		seguimientos = em.createQuery(query)
-				.setParameter("pidMatricula", pidMatricula).getResultList();
-		for (AlumnoSeguimiento seguimientoFila : seguimientos) {
-
-			System.out.println("<h3>AlumnoSeguimiento (id = " + seguimientoFila.getId() 
-					+ ", idMatricula = " + seguimientoFila.getAlumnoMatricula().getId()
-					+ ", fecha = " + seguimientoFila.getFecha() 
-					+ ", sesion = " + seguimientoFila.getSesion() 
-					+ ", idMateria = " + seguimientoFila.getEnsenanzaMateria().getMateria()
-					+ ", tipo = " + seguimientoFila.getTipo()
-					+ ", justificante = " + seguimientoFila.getJustificante()
-					+ ")</h3><br />");
-		}
-
-		em.getTransaction().commit();
-		em.close();
-		}catch (Exception e){
-		 
-		}
-		return seguimientos;
-	
-	}
 	
 	public EntityManagerFactory emf = null;	
 	public EntityManager em = null;
@@ -66,6 +25,31 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz, Seria
 		emf = Persistence.createEntityManagerFactory("persistenceUnit");
 		em = emf.createEntityManager();		
 	}
+	
+
+	// Listar seguimientos de un alumno
+	
+	public List<AlumnoSeguimiento> getListaAlumnoSeguimiento(int pidMatricula) {
+		
+		List<AlumnoSeguimiento> seguimientos = null;
+		
+		try{
+		String query = "SELECT alumnoSeguimiento FROM AlumnoSeguimiento alumnoSeguimiento "
+				+ " WHERE alumnoSeguimiento.alumnoMatricula.id = :pidMatricula";
+
+		em.getTransaction().begin();
+		seguimientos = em.createQuery(query).setParameter("pidMatricula", pidMatricula).getResultList();
+		em.getTransaction().commit();
+		logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: OK.");	        	
+		}catch (Exception e){
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: ERROR. "
+					+ e.getMessage());	  
+		}
+		em.close();
+		return seguimientos;
+	}
+	
 
 	// Insertar/Actualizar alumno-seguimiento
 	public int actualizarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento) {
@@ -110,30 +94,24 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz, Seria
 	}
 
 	// Datos de una falta
-	public AlumnoSeguimiento getDetalleFalta(long pnumId) {
-
+	public AlumnoSeguimiento getDetalleAlumnoSeguimiento(long pnumId) {
 	
-		em.getTransaction().begin();
-
-		System.out.println("Detalles falta: \n");
+		List<AlumnoSeguimiento> seguimiento = null;
 
 		String query = "from AlumnoSeguimiento aseg where aseg.id =" + pnumId;
-		List<AlumnoSeguimiento> faltas = em.createQuery(query).getResultList();
+		em.getTransaction().begin();
+		seguimiento = em.createQuery(query).getResultList();
 
-		for (AlumnoSeguimiento faltaFila : faltas) {
-			System.out.println("id falta: " + faltaFila.getId());
-			System.out.println("id matricula alumno: "
-					+ faltaFila.getAlumnoMatricula().getId());
-			System.out.println("justificante: " + faltaFila.getJustificante());
-			System.out.println("sesion: " + faltaFila.getSesion());
-			System.out
-					.println("observaciones: " + faltaFila.getObservaciones());
+		try{
+			em.getTransaction().commit();
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: OK.");	        	
+		} catch (Exception e) { 
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: ERROR. "
+					+ e.getMessage());	        	
 		}
-
-		em.getTransaction().commit();
-
-		return (AlumnoSeguimiento) faltas;
-
+		em.close();
+		return (AlumnoSeguimiento) seguimiento;
 	}
 
 }

@@ -29,8 +29,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 	public boolean insertarMatricula(Alumno idAlumno, int cursoEscolar,
 			Centro centro, Ensenanza ensenanza, String modulo, int curso) {
 
-		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory("persistenceUnit");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
 		EntityManager em = emf.createEntityManager();
 
 		try {
@@ -64,8 +63,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 	public boolean borrarMatricula(int idMatricula) {
 
-		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory("persistenceUnit");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
 		EntityManager em = emf.createEntityManager();
 
 		try {
@@ -93,8 +91,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			Centro centro, Ensenanza ensenanza, String modulo, int curso,
 			int idMatricula) {
 
-		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory("persistenceUnit");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
 		EntityManager em = emf.createEntityManager();
 
 		try {
@@ -150,21 +147,6 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 		}
 		
 		return alumnoMatricula;
-
-		/*
-		 * Connection conn; ArrayList<AlumnoMatricula> lista = new
-		 * ArrayList<AlumnoMatricula>(); try { conn = ds.getConnection();
-		 * 
-		 * PreparedStatement stmt = conn .prepareStatement(
-		 * "SELECT * FROM alumno_matricula where id_alumno = ?" );
-		 * stmt.setInt(1, idAlumno); ResultSet rs = stmt.executeQuery(); while
-		 * (rs.next()) { lista.add(new AlumnoMatricula(rs.getInt(1),
-		 * rs.getInt(2), rs .getInt(3), rs.getString(4), rs.getString(5), rs
-		 * .getString(6), rs.getInt(7))); }
-		 * 
-		 * } catch (SQLException e) { logger.log(Level.SEVERE, "SQLException : "
-		 * + e.getMessage()); }
-		 */
 
 	}
 
