@@ -24,7 +24,7 @@ public interface TutorDAOInterface {
 			String documento, java.util.Date fechaNac, String parentesco,
 			String sexo, String telefono, String email);
 
-    public abstract boolean insertarTutor(int idAlumno, int idTutor, String nombre,
+    public abstract boolean insertarTutor(int idAlumno, String nombre,
 			String apellido1, String apellido2, String tipoDocumento,
 			String documento, java.util.Date fechaNac, String parentesco,
 			String sexo, String telefono, String email);
