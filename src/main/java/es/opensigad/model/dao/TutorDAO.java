@@ -194,7 +194,7 @@ public class TutorDAO implements TutorDAOInterface {
 	
 		// Recuperamos los datos de l tabla tutor con el id que nos llega
 				Query q = em
-						.createQuery("SELECT t FROM Tutor t WHERE t.tutor.id = :varTutor");
+						.createQuery("SELECT t FROM Tutor t"); // WHERE t.tutor.id = :varTutor");
 				q.setParameter("vartutor", idTutor);
 				tutor =  (Tutor) q.getSingleResult();
 

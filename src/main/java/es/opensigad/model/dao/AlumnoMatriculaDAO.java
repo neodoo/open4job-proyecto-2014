@@ -155,7 +155,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			em.getTransaction().begin();
 
 			alumnoMatricula = (ArrayList<AlumnoMatricula>) em.createQuery(
-					"from alumnoMatricula").getResultList();
+					"from AlumnoMatricula").getResultList();
 
 			em.getTransaction().commit();
 
