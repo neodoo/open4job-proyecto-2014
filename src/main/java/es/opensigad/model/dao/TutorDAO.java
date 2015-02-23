@@ -21,6 +21,9 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.sql.DataSource;
 
+import org.hibernate.exception.ConstraintViolationException;
+
+
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoTutor;
 import es.opensigad.model.vo.Tutor;
@@ -28,6 +31,8 @@ import es.opensigad.model.vo.Tutor;
 @ManagedBean
 @SessionScoped
 public class TutorDAO implements TutorDAOInterface {
+	
+	public final static String entityManager = "PersistenceUNIT";
 
 	public static final Logger logger = Logger
 			.getLogger(Alumno.class.getName());
@@ -45,7 +50,7 @@ public class TutorDAO implements TutorDAOInterface {
 		 * (NamingException e) { e.printStackTrace(); }
 		 */
 
-		emf = Persistence.createEntityManagerFactory("PersistenceUnit");
+		emf = Persistence.createEntityManagerFactory("entityManager");
 		em = emf.createEntityManager();
 
 	}
@@ -66,8 +71,9 @@ public class TutorDAO implements TutorDAOInterface {
 	}
 
 	// borra 1 tutor con el idTutor recibido
-	public void deleteTutor(int id) {
+	public boolean deleteTutor(int id) {
 
+		try{
 		em.getTransaction().begin();
 
 		AlumnoTutor alumnoTutor = new AlumnoTutor();
@@ -76,15 +82,24 @@ public class TutorDAO implements TutorDAOInterface {
 		alumnoTutor.setTutor(tutor);
 
 		em.remove(alumnoTutor);
-
+		
 		em.getTransaction().commit();
+		return true;
+		
+		}catch(ConstraintViolationException cve){
+			em.getTransaction().rollback();
+			return false;
+		}
+		
 	}
 
 	// modifica un tutor con el id recibido
-	public void updateTutor(int idAlumno, int idTutor, String nombre,
+	public boolean updateTutor(int idAlumno, int idTutor, String nombre,
 			String apellido1, String apellido2, String tipoDocumento,
-			String documento, java.sql.Date fechaNac, String parentesco,
+			String documento, java.util.Date fechaNac, String parentesco,
 			String sexo, String telefono, String email) {
+		
+		try{
 
 		em.getTransaction().begin();
 
@@ -100,7 +115,8 @@ public class TutorDAO implements TutorDAOInterface {
 		tutor.setApellido2(apellido2);
 		tutor.setTipoDocumento(tipoDocumento);
 		tutor.setDocumento(documento);
-		tutor.setFechaNacimiento(fechaNac);
+		java.sql.Date fecha = new java.sql.Date(fechaNac.getTime());
+		tutor.setFechaNacimiento(fecha);
 		tutor.setSexo(sexo);
 		tutor.setTelefono(telefono);
 		tutor.setEmail(email);
@@ -110,18 +126,28 @@ public class TutorDAO implements TutorDAOInterface {
 		alumnoTutor.setTutor(tutor);
 		alumnoTutor.setParentesco(parentesco);
 
-		em.persist(alumnoTutor);
-
+			em.merge(alumnoTutor);		
+			
+		//em.persist(alumnoTutor);
+		
 		em.getTransaction().commit();
-
+		
+		return true;
+		
+		}catch(ConstraintViolationException cve){
+			em.getTransaction().rollback();
+			return false;
+			
+		}
+		
 	}
 
-	public void insertarTutor(int idAlumno, int idTutor, String nombre,
+	public boolean insertarTutor(int idAlumno, int idTutor, String nombre,
 			String apellido1, String apellido2, String tipoDocumento,
-			String documento, java.sql.Date fechaNac, String parentesco,
+			String documento, java.util.Date fechaNac, String parentesco,
 			String sexo, String telefono, String email) {
 
-
+		try {
 		em.getTransaction().begin();
 
 		AlumnoTutor alumnoTutor = new AlumnoTutor();
@@ -130,18 +156,22 @@ public class TutorDAO implements TutorDAOInterface {
 
 		alumno.setId(idAlumno);
 		// rellenamos el objeto Tutor
-		tutor.setId(idTutor);
+
 		tutor.setNombre(nombre);
 		tutor.setApellido1(apellido1);
 		tutor.setApellido2(apellido2);
 		tutor.setTipoDocumento(tipoDocumento);
 		tutor.setDocumento(documento);
-		tutor.setFechaNacimiento(fechaNac);
+		java.sql.Date fecha = new java.sql.Date(fechaNac.getTime());
+		tutor.setFechaNacimiento(fecha);
 		tutor.setSexo(sexo);
 		tutor.setTelefono(telefono);
 		tutor.setEmail(email);
-
+			
+		em.persist(tutor);
+		
 		// Rellenamos el objeto AlumnoTutor
+		
 		alumnoTutor.setAlumno(alumno);
 		alumnoTutor.setTutor(tutor);
 		alumnoTutor.setParentesco(parentesco);
@@ -149,52 +179,28 @@ public class TutorDAO implements TutorDAOInterface {
 		em.persist(alumnoTutor);
 
 		em.getTransaction().commit();
-	
+		return true;
+		
+		}catch(ConstraintViolationException cve){
+			em.getTransaction().rollback();
+			return false;
+		}
+		
 	}
 
 	public Tutor getDetalleTutor(int idTutor) {
 
 		Tutor tutor = null;
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
+	
+		// Recuperamos los datos de l tabla tutor con el id que nos llega
+				Query q = em
+						.createQuery("SELECT t FROM Tutor t WHERE t.tutor.id = :varTutor");
+				q.setParameter("vartutor", idTutor);
+				tutor =  (Tutor) q.getSingleResult();
 
-		try {
-			new ArrayList<Tutor>();
+				return tutor;
 
-			ps = con.prepareStatement("SELECT * FROM tutor where id = ?");
-			ps.setInt(1, idTutor);
-
-			rs = ps.executeQuery();
-
-			String aux = new String();
-			PreparedStatement pt1 = con
-					.prepareStatement("SELECT * FROM alumno_tutor WHERE idTutor = ?");
-			pt1.setInt(1, idTutor);
-			while (rs.next()) {
-				aux = rs.getString("parentesco");
-			}
-
-			while (rs.next()) {
-				tutor = new Tutor();
-				tutor.setId(rs.getInt("idTutor"));
-				tutor.setNombre(rs.getString("nombre"));
-				tutor.setApellido1(rs.getString("apellido1"));
-				tutor.setApellido2(rs.getString("apellido2"));
-				tutor.setTipoDocumento(rs.getString("tipo_documento"));
-				tutor.setDocumento(rs.getString("documento"));
-				tutor.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
-				tutor.setSexo(rs.getString("sexo"));
-				tutor.setTelefono(rs.getString("tlf"));
-				tutor.setEmail(rs.getString("email"));
-
-			}
-		} catch (SQLException e) {
-			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
-		}
-
-		return tutor;
-
+		
 	}
 
 
