@@ -1,6 +1,7 @@
 package es.opensigad.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -8,6 +9,7 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoMatricula;
@@ -18,25 +20,24 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 	public static final Logger logger = Logger
 			.getLogger(AlumnoMatriculaDAO.class.getName());
-	
+
 	public final static String ENTITY_MANAGER = "opensigadUnit";
 
-	public EntityManagerFactory emf = null;
-	public EntityManager em = null;
-	
 	public AlumnoMatriculaDAO() {
-	
-		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory(ENTITY_MANAGER);
-		EntityManager em = emf.createEntityManager();
-
 	}
 
 	// InsertarMatricula
 	public boolean insertarMatricula(int idAlumno, int cursoEscolar,
 			String centro, String ensenanza, String modulo, int curso) {
 
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+		
 		try {
+
+			emf = Persistence
+					.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
 
 			em.getTransaction().begin();
 
@@ -56,7 +57,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			alumnoMatricula.setModulo(modulo);
 			alumnoMatricula.setCurso(curso);
 
-			// Guardar matricu
+			// Guardar matricula
 			// si le paso el objeto en vez de el set persist dará error al estar
 			// creado en la bbdd???
 			em.persist(alumnoMatricula);
@@ -80,7 +81,14 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 	public boolean borrarMatricula(int idMatricula) {
 
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+		
 		try {
+
+			emf = Persistence
+					.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
 
 			// Borrar matricula
 
@@ -109,7 +117,14 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			Centro centro, Ensenanza ensenanza, String modulo, int curso,
 			int idMatricula) {
 
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+		
 		try {
+
+			emf = Persistence
+					.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
 
 			AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
 			alumnoMatricula.setAlumno(idAlumno);
@@ -141,16 +156,22 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 	}
 
-	public ArrayList<AlumnoMatricula> getListadoMatricula(int idAlumno) {
+	public List<AlumnoMatricula> getListadoMatricula(int idAlumno) {
 
-		ArrayList<AlumnoMatricula> alumnoMatricula = null;
+		List<AlumnoMatricula> alumnoMatriculaList = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
 
 		try {
 
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
 			em.getTransaction().begin();
 
-			alumnoMatricula = (ArrayList<AlumnoMatricula>) em.createQuery(
-					"from AlumnoMatricula").getResultList();
+			Query q = em.createQuery("from AlumnoMatricula am");
+			alumnoMatriculaList = q.getResultList();
 
 			em.getTransaction().commit();
 
@@ -162,14 +183,21 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			emf.close();
 		}
 
-		return alumnoMatricula;
+		return alumnoMatriculaList;
 	}
 
 	public AlumnoMatricula getListaFichaMatricula(int idMatricula) {
 
 		AlumnoMatricula alumnoFichaMatricula = null;
 
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+		
 		try {
+
+			emf = Persistence
+					.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
 
 			// String query = "from AlumnoMatricula m where m.id = "+
 			// idMatricula;

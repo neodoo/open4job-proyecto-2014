@@ -2,6 +2,8 @@ package es.opensigad.controller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -15,7 +17,7 @@ public class VerAlumnoMatriculaListadoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
-	private ArrayList<AlumnoMatricula> listaMatricula;
+	private List<AlumnoMatricula> listaMatricula;
 
 	public int getId() {
 		return id;
@@ -25,11 +27,11 @@ public class VerAlumnoMatriculaListadoBean implements Serializable {
 		this.id = id;
 	}
 
-	public ArrayList<AlumnoMatricula> getListaMatricula() {
+	public List<AlumnoMatricula> getListaMatricula() {
 		return listaMatricula;
 	}
 
-	public void setListaMatricula(ArrayList<AlumnoMatricula> listaMatriculaVO) {
+	public void setListaMatricula(List<AlumnoMatricula> listaMatriculaVO) {
 		this.listaMatricula = listaMatricula;
 	}
 
