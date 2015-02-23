@@ -19,81 +19,72 @@
 				<h:panelGrid columns="4" cellspacing="10">
 					<h:outputLabel id="etiquetaNumExpediente"
 						value="#{etqAlm['etiquetas.numExpediente']}" />
-					<h:inputText value="#{insertarAlumnoBean.alumnoVO.numExpediente}">
+					<h:inputText value="#{AlumnoBean.alumno.numExpediente}">
+					</h:inputText>
+
+					<h:outputLabel id="etiquetaImagen"
+						value="#{etqAlm['etiquetas.imagen']}" />
+					<h:inputText value="#{AlumnoBean.alumno.imagen}">
+					</h:inputText>
+
+					<h:outputLabel id="etiquetaNombre"
+						value="#{etqAlm['etiquetas.nombre']}" />
+					<h:inputText value="#{AlumnoBean.alumno.nombre}">
 					</h:inputText>
 
 					<h:outputLabel id="etiquetaSexo"
 						value="#{etqAlm['etiquetas.sexo']}" />
-					<h:selectOneRadio value="#{insertarAlumnoBean.alumnoVO.sexo}">
+					<h:selectOneRadio value="#{AlumnoBean.alumno.sexo}">
 						<f:selectItem itemValue="M"
 							itemLabel="#{etqAlm['etiquetas.masculino']}" />
 						<f:selectItem itemValue="F"
 							itemLabel="#{etqAlm['etiquetas.femenino']}" />
 					</h:selectOneRadio>
 
-					<h:outputLabel id="etiquetaNombre"
-						value="#{etqAlm['etiquetas.nombre']}" />
-					<h:inputText value="#{insertarAlumnoBean.alumnoVO.nombre}">
-					</h:inputText>
-
-					<h:outputLabel id="etiquetaFechaNacimiento"
-						value="#{etqAlm['etiquetas.fechaNacimiento']}" />
-					<h:inputText value="#{insertarAlumnoBean.alumnoVO.fechaNacimiento}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:inputText>
-
 					<h:outputLabel id="etiquetaApellido1"
 						value="#{etqAlm['etiquetas.apellido1']}" />
-					<h:inputText value="#{insertarAlumnoBean.alumnoVO.apellido1}">
+					<h:inputText value="#{AlumnoBean.alumno.apellido1}">
 					</h:inputText>
 
-					<h:outputLabel id="etiquetaPais"
-						value="#{etqAlm['etiquetas.pais']}" />
-					<h:inputText value="#{insertarAlumnoBean.alumnoVO.pais}">
+					<h:outputLabel id="etiquetaTipoDocumento"
+						value="#{etqAlm['etiquetas.tipoDocumento']}" />
+					<h:inputText value="#{AlumnoBean.alumno.tipoDocumento}">
 					</h:inputText>
 
 					<h:outputLabel id="etiquetaApellido2"
 						value="#{etqAlm['etiquetas.apellido2']}" />
-					<h:inputText value="#{insertarAlumnoBean.alumnoVO.apellido2}">
+					<h:inputText value="#{AlumnoBean.alumno.apellido2}">
 					</h:inputText>
 
-					<h:outputLabel id="etiquetaProvincia"
-						value="#{etqAlm['etiquetas.provincia']}" />
-					<h:inputText value="#{insertarAlumnoBean.alumnoVO.provincia}">
+					<h:outputLabel id="etiquetaDocumento"
+						value="#{etqAlm['etiquetas.documento']}" />
+					<h:inputText value="#{AlumnoBean.alumno.documento}">
+					</h:inputText>
+					<h:outputLabel id="etiquetaFechaNacimiento"
+						value="#{etqAlm['etiquetas.fechaNacimiento']}" />
+					<h:inputText value="#{AlumnoBean.alumno.fechaNacimiento}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:inputText>
+					<h:outputLabel id="etiquetaPaisNacimiento"
+						value="#{etqAlm['etiquetas.paisNacimiento']}" />
+					<h:inputText value="#{AlumnoBean.territorioPais.codigo}">
+					</h:inputText>
+					<h:outputLabel id="etiquetaProvinciaNacimiento"
+						value="#{etqAlm['etiquetas.provinciaNacimiento']}" />
+					<h:inputText
+						value="#{AlumnoBean.territorioProvincia.codigo}">
 					</h:inputText>
 
-					<h:outputLabel id="etiquetaDni" value="#{etqAlm['etiquetas.dni']}" />
-					<h:inputText value="#{insertarAlumnoBean.alumnoVO.dni}">
-					</h:inputText>
-
-					<h:outputLabel id="etiquetaLocalidad"
-						value="#{etqAlm['etiquetas.localidad']}" />
-					<h:inputText value="#{insertarAlumnoBean.alumnoVO.localidad}">
-					</h:inputText>
-
-					<h:outputLabel id="etiquetaDomicilio"
-						value="#{etqAlm['etiquetas.domicilio']}" />
-					<h:inputText value="#{insertarAlumnoBean.alumnoVO.domicilio}">
-					</h:inputText>
-
-					<h:outputLabel id="etiquetaEmail"
-						value="#{etqAlm['etiquetas.email']}" />
-					<h:inputText value="#{insertarAlumnoBean.alumnoVO.email}">
-					</h:inputText>
-
-					<h:outputLabel id="etiquetaTelefono"
-						value="#{etqAlm['etiquetas.telefono']}" />
-					<h:inputText value="#{insertarAlumnoBean.alumnoVO.telefono}">
+					<h:outputLabel id="etiquetaLocalidadNacimiento"
+						value="#{etqAlm['etiquetas.localidadNacimiento']}" />
+					<h:inputText
+						value="#{AlumnoBean.alumno.localidadNacimiento}">
 					</h:inputText>
 
 				</h:panelGrid>
-
 				<h:commandButton value="Insertar Alumno"
-					action="#{insertarAlumnoBean.insertAlumno()}"></h:commandButton>
-
+					action="#{AlumnoBean.insertAlumno()}"></h:commandButton>
 			</h:form>
-
-
 		</ui:define>
 
 	</ui:composition>
