@@ -9,8 +9,8 @@ import es.opensigad.model.vo.Ensenanza;
 
 public interface AlumnoMatriculaDAOInterfaz {
 
-	public boolean insertarMatricula(Alumno idAlumno,int cursoEscolar, Centro centro,
-			Ensenanza ensenanza, String modulo, int curso);
+	public boolean insertarMatricula(int idAlumno,int cursoEscolar, String centro,
+			String ensenanza, String modulo, int curso);
 
 	public boolean borrarMatricula(int idMatricula);
 

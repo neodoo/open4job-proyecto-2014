@@ -15,7 +15,7 @@ import es.opensigad.model.vo.AlumnoNota;
 import es.opensigad.model.vo.EnsenanzaMateria;
 
 
-public class AlumnoNotaDAO {
+public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 	protected DataSource ds;
 
@@ -112,4 +112,5 @@ public class AlumnoNotaDAO {
 		return false;
 		
 	}
+
 }

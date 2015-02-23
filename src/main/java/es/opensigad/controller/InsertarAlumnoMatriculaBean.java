@@ -73,11 +73,12 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 		this.curso = curso;
 	}
 
-	public String insertarAlumnoMatricula(Alumno idAlumno, int cursoEscolar,
-			Centro centro, Ensenanza ensenanza, String modulo, int curso) {
+	public String insertarAlumnoMatricula(int idAlumno, int cursoEscolar,
+			String centro, String ensenanza, String modulo, int curso) {
 		String pagina = null;
 		AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
-
+		
+		
 		if (matriculaDAO.insertarMatricula(idAlumno, cursoEscolar, centro,
 				ensenanza, modulo, curso)) {
 			pagina = "insertarAlumnoMatriculaExito";
