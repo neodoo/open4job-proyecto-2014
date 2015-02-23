@@ -8,17 +8,19 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import es.opensigad.model.dao.TutorDAO;
+import es.opensigad.model.vo.AlumnoTutor;
+import es.opensigad.model.vo.Tutor;
 
 
 @ManagedBean
 @SessionScoped
 public class InsertarTutorBean implements Serializable{
 
-	/*
+	
 	
 	private static final long serialVersionUID = 1L;
 	
-	private TutorVO tutorVO;
+	//private Tutor tutorVO;
 	
 	private int idAlumno;
 	private int idTutor;
@@ -137,27 +139,27 @@ public class InsertarTutorBean implements Serializable{
 		String pagina;
 		
 		TutorDAO tutorDAO = new TutorDAO();
-		if(tutorDAO.insertarTutor(idAlumno,nombre, apellido1,apellido2, tipo_documento, DNI, fechaNac, sexo, parentesco, tlf, email))
-			pagina= "insertarTutorExito.xhtml";
-		else
-			pagina= "insertarTutorFallo.xhtml";
 		
-		return pagina;
+		if(tutorDAO.insertarTutor(idAlumno, nombre, apellido1, apellido2, tipo_documento, DNI, fechaNac, parentesco, sexo, tlf, email))
+			return "insertarTutorExito.xhtml";
+		else
+			return "insertarTutorFallo.xhtml";
+		
 		
 	}
 	
-	/*
+	
 	
 	public String getlistaTutor()
 	{
 		TutorDAO tutorDAO = new TutorDAO();
 		String pagina= "tutoresPorAlumno.xhtml";
 		
-		List<TutorVO> lista= tutorDAO.getlistaTutor();
+		List<AlumnoTutor> lista= tutorDAO.getlistaTutor(idAlumno);
 		
 		return pagina;
 		
 	}
 	
-	 */
+	 
 }
