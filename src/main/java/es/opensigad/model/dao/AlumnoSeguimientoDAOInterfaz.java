@@ -9,6 +9,6 @@ public interface AlumnoSeguimientoDAOInterfaz {
 	public abstract List<AlumnoSeguimiento> getListaAlumnoSeguimiento(int pidMatricula);
 	public abstract int actualizarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento);
 	public abstract int eliminarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento);
-	public AlumnoSeguimiento getDetalleAlumnoSeguimiento(long pnumId);
+	public AlumnoSeguimiento getDetalleAlumnoSeguimiento(int pnumId);
 
 }

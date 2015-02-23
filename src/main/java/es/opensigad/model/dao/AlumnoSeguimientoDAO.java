@@ -55,8 +55,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz,
 	}
 
 	// Datos de una falta
-
-	public AlumnoSeguimiento getDetalleAlumnoSeguimiento(long pnumId) {
+	public AlumnoSeguimiento getDetalleAlumnoSeguimiento(int pnumId) {
 
 		List<AlumnoSeguimiento> seguimiento = null;
 
