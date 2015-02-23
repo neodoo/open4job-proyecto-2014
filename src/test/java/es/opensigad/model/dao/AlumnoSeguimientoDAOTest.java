@@ -1,14 +1,17 @@
 package es.opensigad.model.dao;
 
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.AlumnoSeguimiento;
 import junit.framework.TestCase;
 
 public class AlumnoSeguimientoDAOTest extends TestCase {
 
-	public static long idFalta = 0;
-	public static long idAlumno = 999999999;
+	public static int idSeguimiento = 0;
+	public static int idAlumnoMatricula = 999999999;
 
 	AlumnoSeguimientoDAOPoolDB alumnoSeguimientoDAO = new AlumnoSeguimientoDAOPoolDB();
 
@@ -17,14 +20,31 @@ public class AlumnoSeguimientoDAOTest extends TestCase {
 	
 	public void test1() {
 
-		// Insertar falta
-		//AlumnoSeguimiento alumnoSeguimiento = new AlumnoSeguimiento(idAlumno, sqlDate,
-		//		"sesion_" + idAlumno, "materia_" + idAlumno,
-		//		"tipo_" + idAlumno, "justificado_" + idAlumno, "observaciones_"
-		//				+ idAlumno);
-		//idFalta = alumnoFaltaDAO.actualizarSeguimiento(alumnoFaltaVO);
+		// Alumno-Matricula
+		AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
+		alumnoMatricula.setId(idAlumnoMatricula);
+		
+		// Alumno-Seguimiento
+		AlumnoSeguimiento alumnoSeguimiento = new AlumnoSeguimiento();
+		alumnoSeguimiento.setAlumnoMatricula(alumnoMatricula);
+	
+		Date fechaSql = null;
+		try {
+			fechaSql = new SimpleDateFormat("dd/MM/yyy").parse("01/01/1901");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}				
+		//falta.setFecha(new Date());
+		alumnoSeguimiento.setFecha(fechaSql);
 
-		assertTrue(idFalta > 0);
+		alumnoSeguimiento.setSesion("sesion_I_TEST");
+		alumnoSeguimiento.setTipo("tipo_I_TEST");
+		alumnoSeguimiento.setJustificante(0);
+		alumnoSeguimiento.setObservaciones("observaciones_I_TEST");		
+		
+		idSeguimiento = alumnoSeguimientoDAO.actualizarAlumnoSeguimiento(alumnoSeguimiento);
+		
+		assertTrue(idSeguimiento > 0);
 	}
 
 	public void test2() {
@@ -32,16 +52,29 @@ public class AlumnoSeguimientoDAOTest extends TestCase {
 		//AlumnoSeguimiento alumnoSeguimiento = alumnoSeguimiento.getDetalleFalta(idFalta);
 
 		//assertTrue(alumnoSeguimiento != null);
+
 	}
 
 	public void test3() {
-		// Actualizar falta
-		//AlumnoSeguimiento alumnoSeguimiento = new AlumnoSeguimiento(idFalta, idAlumno,
-		//		sqlDate, "sesion_000", "materia_000", "tipo_000",
-		//		"justificado_000", "observaciones_000");
-		//alumnoSeguimientoDAO.actualizarSeguimiento(alumnoSeguimiento);
+		// Actualizar Alumno-Seguimiento
+		AlumnoSeguimiento alumnoSeguimiento = new AlumnoSeguimiento();
+	
+		Date fechaSql = null;
+		try {
+			fechaSql = new SimpleDateFormat("dd/MM/yyy").parse("02/02/1902");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}				
+		//falta.setFecha(new Date());
+		alumnoSeguimiento.setFecha(fechaSql);
 
-		//assertNotNull(alumnoFaltaVO);
+		alumnoSeguimiento.setSesion("sesion_U_TEST");
+		alumnoSeguimiento.setTipo("tipo_U_TEST");
+		alumnoSeguimiento.setObservaciones("observaciones_U_TEST");		
+		
+		idSeguimiento = alumnoSeguimientoDAO.actualizarAlumnoSeguimiento(alumnoSeguimiento);		
+		
+		assertTrue(idSeguimiento > 0);
 	}
 
 	public void test4() {
@@ -52,11 +85,14 @@ public class AlumnoSeguimientoDAOTest extends TestCase {
 		//assertNotNull(alumnoFaltasVO);
 	}
 
-	public void test5() {
-		// Eliminar falta
-		//alumnoSeguimientoDAO.eliminarSeguimiento(idFalta);
+	public void test5() {		
+		// Eliminar Seguimiento
+		AlumnoSeguimiento alumnoSeguimiento = new AlumnoSeguimiento();
+		alumnoSeguimiento.setId(idSeguimiento);
 
-		//assertTrue(idFalta > 0);
+		idSeguimiento = alumnoSeguimientoDAO.eliminarAlumnoSeguimiento(alumnoSeguimiento);
+
+		assertTrue(idSeguimiento > 0);
 	}
 
 }
