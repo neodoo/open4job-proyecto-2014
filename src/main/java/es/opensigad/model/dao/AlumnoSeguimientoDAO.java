@@ -33,63 +33,53 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz,
 		List<AlumnoSeguimiento> seguimientos = null;
 
 		try {
-
 			String query = "SELECT alumnoSeguimiento FROM AlumnoSeguimiento alumnoSeguimiento "
 					+ " WHERE alumnoSeguimiento.alumnoMatricula.id = :pidMatricula";
 
 			em.getTransaction().begin();
-
-			System.out
-					.println("<h3>Listado de seguimientos (SELECT)</h3><br />");
-
 			seguimientos = em.createQuery(query)
 					.setParameter("pidMatricula", pidMatricula).getResultList();
-			for (AlumnoSeguimiento seguimientoFila : seguimientos) {
-				System.out.println("<h3>AlumnoSeguimiento (id = "
-						+ seguimientoFila.getId() + ", idMatricula = "
-						+ seguimientoFila.getAlumnoMatricula().getId()
-						+ ", fecha = " + seguimientoFila.getFecha()
-						+ ", sesion = " + seguimientoFila.getSesion()
-						+ ", idMateria = "
-						+ seguimientoFila.getEnsenanzaMateria().getMateria()
-						+ ", tipo = " + seguimientoFila.getTipo()
-						+ ", justificante = "
-						+ seguimientoFila.getJustificante() + ")</h3><br />");
-			}
-
 			em.getTransaction().commit();
-
+			logger.log(Level.SEVERE,
+					"AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: OK.");
 		} catch (Exception e) {
-
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: ERROR. "
+							+ e.getMessage());
 		}
+
 		em.close();
 		return seguimientos;
 
 	}
 
 	// Datos de una falta
-	public AlumnoSeguimiento getDetalleFalta(long pnumId) {
 
-		em.getTransaction().begin();
+	public AlumnoSeguimiento getDetalleAlumnoSeguimiento(long pnumId) {
 
-		System.out.println("Detalles falta: \n");
+		List<AlumnoSeguimiento> seguimiento = null;
 
 		String query = "from AlumnoSeguimiento aseg where aseg.id =" + pnumId;
-		List<AlumnoSeguimiento> faltas = em.createQuery(query).getResultList();
+		em.getTransaction().begin();
+		seguimiento = em.createQuery(query).getResultList();
 
-		for (AlumnoSeguimiento faltaFila : faltas) {
-			System.out.println("id falta: " + faltaFila.getId());
-			System.out.println("id matricula alumno: "
-					+ faltaFila.getAlumnoMatricula().getId());
-			System.out.println("justificante: " + faltaFila.getJustificante());
-			System.out.println("sesion: " + faltaFila.getSesion());
-			System.out
-					.println("observaciones: " + faltaFila.getObservaciones());
+		try {
+			em.getTransaction().commit();
+			logger.log(Level.SEVERE,
+					"AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: OK.");
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: ERROR. "
+							+ e.getMessage());
 		}
 
 		em.getTransaction().commit();
 		em.close();
-		return (AlumnoSeguimiento) faltas;
+
+		return (AlumnoSeguimiento) seguimiento;
+
 	}
 
 	// Insertar/Actualizar alumno-seguimiento
@@ -113,6 +103,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz,
 
 		em.close();
 		return id;
+
 	}
 
 	// Eliminar alumno-seguimiento
@@ -137,4 +128,5 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz,
 		em.close();
 		return ok;
 	}
+	
 }
