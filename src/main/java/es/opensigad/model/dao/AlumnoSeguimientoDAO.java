@@ -75,7 +75,6 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz,
 							+ e.getMessage());
 		}
 
-		em.getTransaction().commit();
 		em.close();
 
 		return (AlumnoSeguimiento) seguimiento;
@@ -128,5 +127,4 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz,
 		em.close();
 		return ok;
 	}
-	
 }
