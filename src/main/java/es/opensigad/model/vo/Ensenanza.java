@@ -17,15 +17,13 @@ public class Ensenanza implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(unique=true, nullable=false)
 	private int id;
 
-	@Column(name="codigo_registro", length=45)
+	@Column(name="codigo_registro")
 	private String codigoRegistro;
 
 	private int horas;
 
-	@Column(length=45)
 	private String nombre;
 
 	//bi-directional many-to-one association to AlumnoMatricula
@@ -36,10 +34,6 @@ public class Ensenanza implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_ensenanza_tipo")
 	private EnsenanzaTipo ensenanzaTipo;
-
-	//bi-directional many-to-one association to EnsenanzaCiclo
-	@OneToMany(mappedBy="ensenanza")
-	private List<EnsenanzaCiclo> ensenanzaCiclos;
 
 	public Ensenanza() {
 	}
@@ -104,28 +98,6 @@ public class Ensenanza implements Serializable {
 
 	public void setEnsenanzaTipo(EnsenanzaTipo ensenanzaTipo) {
 		this.ensenanzaTipo = ensenanzaTipo;
-	}
-
-	public List<EnsenanzaCiclo> getEnsenanzaCiclos() {
-		return this.ensenanzaCiclos;
-	}
-
-	public void setEnsenanzaCiclos(List<EnsenanzaCiclo> ensenanzaCiclos) {
-		this.ensenanzaCiclos = ensenanzaCiclos;
-	}
-
-	public EnsenanzaCiclo addEnsenanzaCiclo(EnsenanzaCiclo ensenanzaCiclo) {
-		getEnsenanzaCiclos().add(ensenanzaCiclo);
-		ensenanzaCiclo.setEnsenanza(this);
-
-		return ensenanzaCiclo;
-	}
-
-	public EnsenanzaCiclo removeEnsenanzaCiclo(EnsenanzaCiclo ensenanzaCiclo) {
-		getEnsenanzaCiclos().remove(ensenanzaCiclo);
-		ensenanzaCiclo.setEnsenanza(null);
-
-		return ensenanzaCiclo;
 	}
 
 }

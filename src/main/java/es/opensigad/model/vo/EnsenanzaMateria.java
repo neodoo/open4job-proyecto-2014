@@ -17,7 +17,6 @@ public class EnsenanzaMateria implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(unique=true, nullable=false)
 	private int id;
 
 	@Column(name="horas_semanal")
@@ -26,7 +25,6 @@ public class EnsenanzaMateria implements Serializable {
 	@Column(name="horas_total")
 	private int horasTotal;
 
-	@Column(nullable=false, length=145)
 	private String materia;
 
 	//bi-directional many-to-one association to AlumnoNota
@@ -39,7 +37,7 @@ public class EnsenanzaMateria implements Serializable {
 
 	//bi-directional many-to-one association to EnsenanzaCurso
 	@ManyToOne
-	@JoinColumn(name="id_ensenanza_curso", nullable=false)
+	@JoinColumn(name="id_ensenanza_curso")
 	private EnsenanzaCurso ensenanzaCurso;
 
 	public EnsenanzaMateria() {

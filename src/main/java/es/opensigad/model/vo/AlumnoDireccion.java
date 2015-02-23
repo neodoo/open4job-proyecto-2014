@@ -16,34 +16,31 @@ public class AlumnoDireccion implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(unique=true, nullable=false)
 	private int id;
 
 	@Column(name="codigo_postal")
 	private int codigoPostal;
 
-	@Column(length=45)
 	private String domicilio;
 
-	@Column(length=45)
 	private String localidad;
 
 	private int principal;
 
-	//bi-directional many-to-one association to Territorio
+	//bi-directional many-to-one association to Alumno
 	@ManyToOne
-	@JoinColumn(name="pais")
-	private Territorio territorio1;
+	@JoinColumn(name="id_alumno")
+	private Alumno alumno;
 
 	//bi-directional many-to-one association to Territorio
 	@ManyToOne
 	@JoinColumn(name="provincia")
-	private Territorio territorio2;
+	private Territorio territorio1;
 
-	//bi-directional many-to-one association to Alumno
+	//bi-directional many-to-one association to Territorio
 	@ManyToOne
-	@JoinColumn(name="id_alumno", nullable=false)
-	private Alumno alumno;
+	@JoinColumn(name="pais")
+	private Territorio territorio2;
 
 	public AlumnoDireccion() {
 	}
@@ -88,6 +85,14 @@ public class AlumnoDireccion implements Serializable {
 		this.principal = principal;
 	}
 
+	public Alumno getAlumno() {
+		return this.alumno;
+	}
+
+	public void setAlumno(Alumno alumno) {
+		this.alumno = alumno;
+	}
+
 	public Territorio getTerritorio1() {
 		return this.territorio1;
 	}
@@ -102,14 +107,6 @@ public class AlumnoDireccion implements Serializable {
 
 	public void setTerritorio2(Territorio territorio2) {
 		this.territorio2 = territorio2;
-	}
-
-	public Alumno getAlumno() {
-		return this.alumno;
-	}
-
-	public void setAlumno(Alumno alumno) {
-		this.alumno = alumno;
 	}
 
 }

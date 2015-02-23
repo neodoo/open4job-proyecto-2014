@@ -16,26 +16,23 @@ public class AlumnoNota implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(unique=true, nullable=false)
 	private int id;
 
-	@Column(length=1)
 	private String evaluacion;
 
-	private int nota;
+	private String nota;
 
-	@Column(length=255)
 	private String observacion;
-
-	//bi-directional many-to-one association to EnsenanzaMateria
-	@ManyToOne
-	@JoinColumn(name="id_materia")
-	private EnsenanzaMateria ensenanzaMateria;
 
 	//bi-directional many-to-one association to AlumnoMatricula
 	@ManyToOne
 	@JoinColumn(name="id_alumno_matricula")
 	private AlumnoMatricula alumnoMatricula;
+
+	//bi-directional many-to-one association to EnsenanzaMateria
+	@ManyToOne
+	@JoinColumn(name="id_materia")
+	private EnsenanzaMateria ensenanzaMateria;
 
 	public AlumnoNota() {
 	}
@@ -56,11 +53,11 @@ public class AlumnoNota implements Serializable {
 		this.evaluacion = evaluacion;
 	}
 
-	public int getNota() {
+	public String getNota() {
 		return this.nota;
 	}
 
-	public void setNota(int nota) {
+	public void setNota(String nota) {
 		this.nota = nota;
 	}
 
@@ -72,20 +69,20 @@ public class AlumnoNota implements Serializable {
 		this.observacion = observacion;
 	}
 
-	public EnsenanzaMateria getEnsenanzaMateria() {
-		return this.ensenanzaMateria;
-	}
-
-	public void setEnsenanzaMateria(EnsenanzaMateria ensenanzaMateria) {
-		this.ensenanzaMateria = ensenanzaMateria;
-	}
-
 	public AlumnoMatricula getAlumnoMatricula() {
 		return this.alumnoMatricula;
 	}
 
 	public void setAlumnoMatricula(AlumnoMatricula alumnoMatricula) {
 		this.alumnoMatricula = alumnoMatricula;
+	}
+
+	public EnsenanzaMateria getEnsenanzaMateria() {
+		return this.ensenanzaMateria;
+	}
+
+	public void setEnsenanzaMateria(EnsenanzaMateria ensenanzaMateria) {
+		this.ensenanzaMateria = ensenanzaMateria;
 	}
 
 }

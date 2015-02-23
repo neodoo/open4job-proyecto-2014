@@ -16,20 +16,18 @@ public class AlumnoTutor implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(unique=true, nullable=false)
 	private int id;
 
-	@Column(length=45)
 	private String parentesco;
 
 	//bi-directional many-to-one association to Alumno
 	@ManyToOne
-	@JoinColumn(name="id_alumno", nullable=false)
+	@JoinColumn(name="id_alumno")
 	private Alumno alumno;
 
 	//bi-directional many-to-one association to Tutor
 	@ManyToOne
-	@JoinColumn(name="id_tutor", nullable=false)
+	@JoinColumn(name="id_tutor")
 	private Tutor tutor;
 
 	public AlumnoTutor() {

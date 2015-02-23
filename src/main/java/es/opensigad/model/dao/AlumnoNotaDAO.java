@@ -72,7 +72,7 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 		alumnonota.setAlumnoMatricula(matricula);
 		alumnonota.setEnsenanzaMateria(ensenanzaMateria);
 		alumnonota.setEvaluacion(evaluacion);
-		alumnonota.setNota(nota);
+		//alumnonota.setNota(nota);
 		alumnonota.setObservacion(observacion);
 
 		EntityManagerFactory emf = Persistence

@@ -17,35 +17,28 @@ public class Profesor implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(unique=true, nullable=false)
 	private int id;
 
-	@Column(nullable=false, length=45)
 	private String apellido1;
 
-	@Column(nullable=false, length=45)
 	private String apellido2;
 
-	@Column(length=9)
 	private String documento;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_nacimiento")
 	private Date fechaNacimiento;
 
-	@Column(length=145)
 	private String imagen;
 
-	@Column(nullable=false, length=45)
 	private String nombre;
 
-	@Column(name="num_registro", nullable=false, length=45)
+	@Column(name="num_registro")
 	private String numRegistro;
 
-	@Column(length=1)
 	private String sexo;
 
-	@Column(name="tipo_documento", length=1)
+	@Column(name="tipo_documento")
 	private String tipoDocumento;
 
 	public Profesor() {

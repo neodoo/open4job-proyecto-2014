@@ -18,35 +18,27 @@ public class Tutor implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(unique=true, nullable=false)
 	private int id;
 
-	@Column(length=45)
 	private String apellido1;
 
-	@Column(length=45)
 	private String apellido2;
 
-	@Column(length=9)
 	private String documento;
 
-	@Column(length=45)
 	private String email;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_nacimiento")
 	private Date fechaNacimiento;
 
-	@Column(length=45)
 	private String nombre;
 
-	@Column(length=1)
 	private String sexo;
 
-	@Column(length=15)
 	private String telefono;
 
-	@Column(name="tipo_documento", length=1)
+	@Column(name="tipo_documento")
 	private String tipoDocumento;
 
 	//bi-directional many-to-one association to AlumnoTutor

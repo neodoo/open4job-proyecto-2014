@@ -17,7 +17,6 @@ public class EnsenanzaCurso implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(unique=true, nullable=false)
 	private int id;
 
 	private int curso;

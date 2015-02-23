@@ -17,10 +17,8 @@ public class Territorio implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(unique=true, nullable=false, length=5)
 	private String codigo;
 
-	@Column(length=145)
 	private String descripcion;
 
 	//bi-directional many-to-one association to Alumno

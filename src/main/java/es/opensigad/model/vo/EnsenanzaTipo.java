@@ -17,16 +17,14 @@ public class EnsenanzaTipo implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(unique=true, nullable=false)
 	private int id;
 
-	@Column(name="codigo_registro", length=45)
+	@Column(name="codigo_registro")
 	private String codigoRegistro;
 
-	@Column(name="curso_escolar", length=5)
+	@Column(name="curso_escolar")
 	private String cursoEscolar;
 
-	@Column(length=145)
 	private String nombre;
 
 	//bi-directional many-to-one association to Ensenanza

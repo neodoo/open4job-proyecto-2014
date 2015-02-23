@@ -29,7 +29,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 	public boolean insertarMatricula(int idAlumno, int cursoEscolar,
 			String centro, String ensenanza, String modulo, int curso) {
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUNIT");
 		EntityManager em = emf.createEntityManager();
 
 		try {
@@ -75,7 +75,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 	public boolean borrarMatricula(int idMatricula) {
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUNIT");
 		EntityManager em = emf.createEntityManager();
 
 		try {
@@ -107,7 +107,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			Centro centro, Ensenanza ensenanza, String modulo, int curso,
 			int idMatricula) {
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUNIT");
 		EntityManager em = emf.createEntityManager();
 
 		try {
@@ -147,7 +147,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 		ArrayList<AlumnoMatricula> alumnoMatricula = null;
 
 		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory("persistenceUnit");
+				.createEntityManagerFactory("persistenceUNIT");
 		EntityManager em = emf.createEntityManager();
 
 		try {
@@ -176,7 +176,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 		AlumnoMatricula alumnoFichaMatricula = null;
 
 		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory("persistenceUnit");
+				.createEntityManagerFactory("persistenceUNIT");
 		EntityManager em = emf.createEntityManager();
 
 		try {

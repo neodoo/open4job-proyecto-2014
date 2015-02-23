@@ -18,48 +18,41 @@ public class Alumno implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(unique=true, nullable=false)
 	private int id;
 
-	@Column(nullable=false, length=45)
 	private String apellido1;
 
-	@Column(nullable=false, length=45)
 	private String apellido2;
 
-	@Column(length=9)
 	private String documento;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_nacimiento")
 	private Date fechaNacimiento;
 
-	@Column(length=245)
 	private String imagen;
 
-	@Column(name="localidad_nacimiento", length=45)
+	@Column(name="localidad_nacimiento")
 	private String localidadNacimiento;
 
-	@Column(nullable=false, length=45)
 	private String nombre;
 
-	@Column(name="num_expediente", nullable=false)
+	@Column(name="num_expediente")
 	private int numExpediente;
 
-	@Column(length=1)
 	private String sexo;
 
-	@Column(name="tipo_documento", length=1)
+	@Column(name="tipo_documento")
 	private String tipoDocumento;
 
 	//bi-directional many-to-one association to Territorio
 	@ManyToOne
-	@JoinColumn(name="pais_nacimiento")
+	@JoinColumn(name="provincia_nacimiento")
 	private Territorio territorio1;
 
 	//bi-directional many-to-one association to Territorio
 	@ManyToOne
-	@JoinColumn(name="provincia_nacimiento")
+	@JoinColumn(name="pais_nacimiento")
 	private Territorio territorio2;
 
 	//bi-directional many-to-one association to AlumnoContacto
@@ -73,7 +66,7 @@ public class Alumno implements Serializable {
 	//bi-directional many-to-one association to AlumnoMatricula
 	@OneToMany(mappedBy="alumno")
 	private List<AlumnoMatricula> alumnoMatriculas;
-	
+
 	//bi-directional many-to-one association to AlumnoTutor
 	@OneToMany(mappedBy="alumno")
 	private List<AlumnoTutor> alumnoTutors;

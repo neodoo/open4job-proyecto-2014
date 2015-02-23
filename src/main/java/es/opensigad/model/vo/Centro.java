@@ -17,37 +17,27 @@ public class Centro implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(unique=true, nullable=false)
 	private int id;
 
-	@Column(name="cod_postal", length=45)
+	@Column(name="cod_postal")
 	private String codPostal;
 
-	@Column(length=245)
 	private String descripcion;
 
-	@Column(length=45)
 	private String direccion;
 
-	@Column(length=45)
 	private String email;
 
-	@Column(length=45)
 	private String localidad;
 
-	@Column(length=5)
 	private String pais;
 
-	@Column(length=5)
 	private String provincia;
 
-	@Column(length=45)
 	private String telefono;
 
-	@Column(length=45)
 	private String titulo;
 
-	@Column(length=45)
 	private String website;
 
 	//bi-directional many-to-one association to AlumnoMatricula

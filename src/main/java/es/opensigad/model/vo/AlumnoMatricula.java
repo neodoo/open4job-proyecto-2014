@@ -17,7 +17,6 @@ public class AlumnoMatricula implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(unique=true, nullable=false)
 	private int id;
 
 	private int curso;
@@ -25,7 +24,6 @@ public class AlumnoMatricula implements Serializable {
 	@Column(name="curso_escolar")
 	private int cursoEscolar;
 
-	@Column(length=255)
 	private String modulo;
 
 	//bi-directional many-to-one association to Alumno
