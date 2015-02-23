@@ -16,6 +16,8 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz,
 
 	private static final long serialVersionUID = 1L;
 
+	public final static String ENTITY_MANAGER = "opensigadUnit";
+	
 	public static final Logger logger = Logger
 			.getLogger(AlumnoSeguimiento.class.getName());
 
@@ -23,8 +25,10 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz,
 	public EntityManager em = null;
 
 	public AlumnoSeguimientoDAO() {
-		emf = Persistence.createEntityManagerFactory("persistenceUnit");
+
+		emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
 		em = emf.createEntityManager();
+
 	}
 
 	// Listar seguimientos de un alumno
@@ -82,6 +86,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz,
 
 	// Insertar/Actualizar alumno-seguimiento
 	public int actualizarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento) {
+
 		int id = 0;
 
 		em.getTransaction().begin();
@@ -100,12 +105,14 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz,
 		}
 
 		em.close();
+
 		return id;
 
 	}
 
 	// Eliminar alumno-seguimiento
 	public int eliminarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento) {
+
 		int ok = 0;
 
 		em.getTransaction().begin();
@@ -124,6 +131,9 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz,
 		}
 
 		em.close();
+
 		return ok;
+
 	}
+
 }

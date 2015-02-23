@@ -1,7 +1,9 @@
 package es.opensigad.model.vo;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 
 
@@ -28,6 +30,7 @@ public class AlumnoSeguimiento implements Serializable {
 
 	private String sesion;
 
+	@Column(name="tipo", columnDefinition="enum('falta','incidencia')")
 	private String tipo;
 
 	//bi-directional many-to-one association to AlumnoMatricula

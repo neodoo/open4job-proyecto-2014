@@ -2,15 +2,15 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-CREATE SCHEMA IF NOT EXISTS `openSigad_Definitivo` DEFAULT CHARACTER SET latin1 ;
-USE `openSigad_Definitivo` ;
+CREATE SCHEMA IF NOT EXISTS `opensigad` DEFAULT CHARACTER SET latin1 ;
+USE `opensigad` ;
 
 -- -----------------------------------------------------
--- Table `openSigad_Definitivo`.`territorio`
+-- Table `opensigad`.`territorio`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `openSigad_Definitivo`.`territorio` ;
+DROP TABLE IF EXISTS `opensigad`.`territorio` ;
 
-CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`territorio` (
+CREATE TABLE IF NOT EXISTS `opensigad`.`territorio` (
   `codigo` VARCHAR(5) NOT NULL,
   `descripcion` VARCHAR(145) NULL DEFAULT NULL,
   PRIMARY KEY (`codigo`))
@@ -19,11 +19,11 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `openSigad_Definitivo`.`alumno`
+-- Table `opensigad`.`alumno`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `openSigad_Definitivo`.`alumno` ;
+DROP TABLE IF EXISTS `opensigad`.`alumno` ;
 
-CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`alumno` (
+CREATE TABLE IF NOT EXISTS `opensigad`.`alumno` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `num_expediente` INT(11) NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
@@ -44,25 +44,25 @@ CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`alumno` (
   INDEX `fk_alumno_codigo_pais_idx` (`pais_nacimiento` ASC),
   CONSTRAINT `fk_alumno_codigo_provincia`
     FOREIGN KEY (`provincia_nacimiento`)
-    REFERENCES `openSigad_Definitivo`.`territorio` (`codigo`)
+    REFERENCES `opensigad`.`territorio` (`codigo`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_alumno_codigo_pais`
     FOREIGN KEY (`pais_nacimiento`)
-    REFERENCES `openSigad_Definitivo`.`territorio` (`codigo`)
+    REFERENCES `opensigad`.`territorio` (`codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 11
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `openSigad_Definitivo`.`alumno_contacto`
+-- Table `opensigad`.`alumno_contacto`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `openSigad_Definitivo`.`alumno_contacto` ;
+DROP TABLE IF EXISTS `opensigad`.`alumno_contacto` ;
 
-CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`alumno_contacto` (
+CREATE TABLE IF NOT EXISTS `opensigad`.`alumno_contacto` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_alumno` INT(11) NOT NULL,
   `tipo` ENUM('telefono','email') NOT NULL,
@@ -72,20 +72,20 @@ CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`alumno_contacto` (
   INDEX `fk_alumno_contacto_id_alumno_idx` (`id_alumno` ASC),
   CONSTRAINT `fk_alumno_contacto_id_alumno`
     FOREIGN KEY (`id_alumno`)
-    REFERENCES `openSigad_Definitivo`.`alumno` (`id`)
+    REFERENCES `opensigad`.`alumno` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 17
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `openSigad_Definitivo`.`alumno_direccion`
+-- Table `opensigad`.`alumno_direccion`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `openSigad_Definitivo`.`alumno_direccion` ;
+DROP TABLE IF EXISTS `opensigad`.`alumno_direccion` ;
 
-CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`alumno_direccion` (
+CREATE TABLE IF NOT EXISTS `opensigad`.`alumno_direccion` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_alumno` INT(11) NOT NULL,
   `domicilio` VARCHAR(45) NULL DEFAULT NULL,
@@ -101,30 +101,30 @@ CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`alumno_direccion` (
   INDEX `fk_alumno_direccion_codigo_pais_idx` (`pais` ASC),
   CONSTRAINT `fk_alumno_direccion_id_direccion`
     FOREIGN KEY (`id_alumno`)
-    REFERENCES `openSigad_Definitivo`.`alumno` (`id`)
+    REFERENCES `opensigad`.`alumno` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_alumno_direccion_codigo_provincia`
     FOREIGN KEY (`provincia`)
-    REFERENCES `openSigad_Definitivo`.`territorio` (`codigo`)
+    REFERENCES `opensigad`.`territorio` (`codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_alumno_direccion_codigo_pais`
     FOREIGN KEY (`pais`)
-    REFERENCES `openSigad_Definitivo`.`territorio` (`codigo`)
+    REFERENCES `opensigad`.`territorio` (`codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 11
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `openSigad_Definitivo`.`centro`
+-- Table `opensigad`.`centro`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `openSigad_Definitivo`.`centro` ;
+DROP TABLE IF EXISTS `opensigad`.`centro` ;
 
-CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`centro` (
+CREATE TABLE IF NOT EXISTS `opensigad`.`centro` (
   `id` INT(11) NOT NULL,
   `titulo` VARCHAR(45) NULL DEFAULT NULL,
   `descripcion` VARCHAR(245) NULL DEFAULT NULL,
@@ -142,11 +142,11 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `openSigad_Definitivo`.`ensenanza_tipo`
+-- Table `opensigad`.`ensenanza_tipo`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `openSigad_Definitivo`.`ensenanza_tipo` ;
+DROP TABLE IF EXISTS `opensigad`.`ensenanza_tipo` ;
 
-CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`ensenanza_tipo` (
+CREATE TABLE IF NOT EXISTS `opensigad`.`ensenanza_tipo` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `curso_escolar` VARCHAR(5) NULL,
   `nombre` VARCHAR(145) NULL,
@@ -156,11 +156,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `openSigad_Definitivo`.`ensenanza`
+-- Table `opensigad`.`ensenanza`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `openSigad_Definitivo`.`ensenanza` ;
+DROP TABLE IF EXISTS `opensigad`.`ensenanza` ;
 
-CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`ensenanza` (
+CREATE TABLE IF NOT EXISTS `opensigad`.`ensenanza` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_ensenanza_tipo` INT(11) NULL DEFAULT NULL,
   `codigo_registro` VARCHAR(45) NULL DEFAULT NULL,
@@ -170,20 +170,20 @@ CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`ensenanza` (
   INDEX `fk_ensenanza_id_tipo_ensenanza_idx` (`id_ensenanza_tipo` ASC),
   CONSTRAINT `fk_ensenanza_id_tipo_ensenanza`
     FOREIGN KEY (`id_ensenanza_tipo`)
-    REFERENCES `openSigad_Definitivo`.`ensenanza_tipo` (`id`)
+    REFERENCES `opensigad`.`ensenanza_tipo` (`id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `openSigad_Definitivo`.`alumno_matricula`
+-- Table `opensigad`.`alumno_matricula`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `openSigad_Definitivo`.`alumno_matricula` ;
+DROP TABLE IF EXISTS `opensigad`.`alumno_matricula` ;
 
-CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`alumno_matricula` (
+CREATE TABLE IF NOT EXISTS `opensigad`.`alumno_matricula` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_alumno` INT(11) NULL DEFAULT NULL,
   `curso_escolar` INT(4) NULL DEFAULT NULL,
@@ -197,30 +197,30 @@ CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`alumno_matricula` (
   INDEX `fk_alumno_matricula_id_ensenanza_idx` (`id_ensenanza` ASC),
   CONSTRAINT `fk_alumno_matricula_id_alumno`
     FOREIGN KEY (`id_alumno`)
-    REFERENCES `openSigad_Definitivo`.`alumno` (`id`)
+    REFERENCES `opensigad`.`alumno` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_alumno_matricula_id_centro`
     FOREIGN KEY (`id_centro`)
-    REFERENCES `openSigad_Definitivo`.`centro` (`id`)
+    REFERENCES `opensigad`.`centro` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_alumno_matricula_id_ensenanza`
     FOREIGN KEY (`id_ensenanza`)
-    REFERENCES `openSigad_Definitivo`.`ensenanza` (`id`)
+    REFERENCES `opensigad`.`ensenanza` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 9
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `openSigad_Definitivo`.`ensenanza_ciclo`
+-- Table `opensigad`.`ensenanza_ciclo`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `openSigad_Definitivo`.`ensenanza_ciclo` ;
+DROP TABLE IF EXISTS `opensigad`.`ensenanza_ciclo` ;
 
-CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`ensenanza_ciclo` (
+CREATE TABLE IF NOT EXISTS `opensigad`.`ensenanza_ciclo` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_ensenanza` INT(11) NOT NULL,
   `ciclo` INT(11) NOT NULL,
@@ -228,20 +228,20 @@ CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`ensenanza_ciclo` (
   INDEX `fk_ensenanza_ciclo_id_ensenanza_idx` (`id_ensenanza` ASC),
   CONSTRAINT `fk_ensenanza_ciclo_id_ensenanza`
     FOREIGN KEY (`id_ensenanza`)
-    REFERENCES `openSigad_Definitivo`.`ensenanza_ciclo` (`id`)
+    REFERENCES `opensigad`.`ensenanza_ciclo` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `openSigad_Definitivo`.`ensenanza_curso`
+-- Table `opensigad`.`ensenanza_curso`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `openSigad_Definitivo`.`ensenanza_curso` ;
+DROP TABLE IF EXISTS `opensigad`.`ensenanza_curso` ;
 
-CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`ensenanza_curso` (
+CREATE TABLE IF NOT EXISTS `opensigad`.`ensenanza_curso` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_ensenanza_ciclo` INT(11) NULL DEFAULT NULL,
   `curso` INT(11) NULL DEFAULT NULL,
@@ -249,20 +249,20 @@ CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`ensenanza_curso` (
   INDEX `fk_ensenanza_curso_id_ensenanza_ciclo_idx` (`id_ensenanza_ciclo` ASC),
   CONSTRAINT `fk_ensenanza_curso_id_ensenanza_ciclo`
     FOREIGN KEY (`id_ensenanza_ciclo`)
-    REFERENCES `openSigad_Definitivo`.`ensenanza_ciclo` (`id`)
+    REFERENCES `opensigad`.`ensenanza_ciclo` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `openSigad_Definitivo`.`ensenanza_materia`
+-- Table `opensigad`.`ensenanza_materia`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `openSigad_Definitivo`.`ensenanza_materia` ;
+DROP TABLE IF EXISTS `opensigad`.`ensenanza_materia` ;
 
-CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`ensenanza_materia` (
+CREATE TABLE IF NOT EXISTS `opensigad`.`ensenanza_materia` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_ensenanza_curso` INT(11) NOT NULL,
   `materia` VARCHAR(145) NOT NULL,
@@ -272,20 +272,20 @@ CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`ensenanza_materia` (
   INDEX `fk_ensenanza_materia_id_ensenanza_curso_idx` (`id_ensenanza_curso` ASC),
   CONSTRAINT `fk_ensenanza_materia_id_ensenanza_curso`
     FOREIGN KEY (`id_ensenanza_curso`)
-    REFERENCES `openSigad_Definitivo`.`ensenanza_curso` (`id`)
+    REFERENCES `opensigad`.`ensenanza_curso` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `openSigad_Definitivo`.`alumno_nota`
+-- Table `opensigad`.`alumno_nota`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `openSigad_Definitivo`.`alumno_nota` ;
+DROP TABLE IF EXISTS `opensigad`.`alumno_nota` ;
 
-CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`alumno_nota` (
+CREATE TABLE IF NOT EXISTS `opensigad`.`alumno_nota` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_alumno_matricula` INT(11) NULL DEFAULT NULL,
   `evaluacion` ENUM('1','2','3','F','E') NULL DEFAULT NULL,
@@ -297,25 +297,25 @@ CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`alumno_nota` (
   INDEX `fk_alumno_nota_id_materia_idx` (`id_materia` ASC),
   CONSTRAINT `fk_alumno_nota_id_matricula`
     FOREIGN KEY (`id_alumno_matricula`)
-    REFERENCES `openSigad_Definitivo`.`alumno_matricula` (`id`)
+    REFERENCES `opensigad`.`alumno_matricula` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_alumno_nota_id_materia`
     FOREIGN KEY (`id_materia`)
-    REFERENCES `openSigad_Definitivo`.`ensenanza_materia` (`id`)
+    REFERENCES `opensigad`.`ensenanza_materia` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `openSigad_Definitivo`.`alumno_seguimiento`
+-- Table `opensigad`.`alumno_seguimiento`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `openSigad_Definitivo`.`alumno_seguimiento` ;
+DROP TABLE IF EXISTS `opensigad`.`alumno_seguimiento` ;
 
-CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`alumno_seguimiento` (
+CREATE TABLE IF NOT EXISTS `opensigad`.`alumno_seguimiento` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_matricula` INT(11) NOT NULL,
   `fecha` DATE NOT NULL,
@@ -329,25 +329,25 @@ CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`alumno_seguimiento` (
   INDEX `fk_alumno_seguimiento_id_materia_idx` (`id_materia` ASC),
   CONSTRAINT `fk_alumno_seguimiento_id_matricula`
     FOREIGN KEY (`id_matricula`)
-    REFERENCES `openSigad_Definitivo`.`alumno_matricula` (`id`)
+    REFERENCES `opensigad`.`alumno_matricula` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_alumno_seguimiento_id_materia`
     FOREIGN KEY (`id_materia`)
-    REFERENCES `openSigad_Definitivo`.`ensenanza_materia` (`id`)
+    REFERENCES `opensigad`.`ensenanza_materia` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 31
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `openSigad_Definitivo`.`tutor`
+-- Table `opensigad`.`tutor`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `openSigad_Definitivo`.`tutor` ;
+DROP TABLE IF EXISTS `opensigad`.`tutor` ;
 
-CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`tutor` (
+CREATE TABLE IF NOT EXISTS `opensigad`.`tutor` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL DEFAULT NULL,
   `apellido1` VARCHAR(45) NULL DEFAULT NULL,
@@ -360,16 +360,16 @@ CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`tutor` (
   `email` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 14
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `openSigad_Definitivo`.`alumno_tutor`
+-- Table `opensigad`.`alumno_tutor`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `openSigad_Definitivo`.`alumno_tutor` ;
+DROP TABLE IF EXISTS `opensigad`.`alumno_tutor` ;
 
-CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`alumno_tutor` (
+CREATE TABLE IF NOT EXISTS `opensigad`.`alumno_tutor` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `id_alumno` INT(11) NOT NULL,
   `id_tutor` INT(11) NOT NULL,
@@ -379,25 +379,25 @@ CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`alumno_tutor` (
   INDEX `fk_alumno_tutor_id_tutor_idx` (`id_tutor` ASC),
   CONSTRAINT `fk_alumno_tutor_id_alumno`
     FOREIGN KEY (`id_alumno`)
-    REFERENCES `openSigad_Definitivo`.`alumno` (`id`)
+    REFERENCES `opensigad`.`alumno` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_alumno_tutor_id_tutor`
     FOREIGN KEY (`id_tutor`)
-    REFERENCES `openSigad_Definitivo`.`tutor` (`id`)
+    REFERENCES `opensigad`.`tutor` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 0
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `openSigad_Definitivo`.`profesor`
+-- Table `opensigad`.`profesor`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `openSigad_Definitivo`.`profesor` ;
+DROP TABLE IF EXISTS `opensigad`.`profesor` ;
 
-CREATE TABLE IF NOT EXISTS `openSigad_Definitivo`.`profesor` (
+CREATE TABLE IF NOT EXISTS `opensigad`.`profesor` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `apellido1` VARCHAR(45) NOT NULL,

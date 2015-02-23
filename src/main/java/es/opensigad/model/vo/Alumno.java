@@ -40,9 +40,10 @@ public class Alumno implements Serializable {
 	@Column(name="num_expediente")
 	private int numExpediente;
 
+	@Column(name="sexo", columnDefinition="enum('h','m')")
 	private String sexo;
 
-	@Column(name="tipo_documento")
+	@Column(name="tipo_documento", columnDefinition="enum('dni','nif','pasaporte')")
 	private String tipoDocumento;
 
 	//bi-directional many-to-one association to Territorio

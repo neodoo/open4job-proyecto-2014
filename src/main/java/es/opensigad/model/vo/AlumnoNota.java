@@ -1,6 +1,7 @@
 package es.opensigad.model.vo;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -18,6 +19,7 @@ public class AlumnoNota implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
+	@Column(name="evaluacion", columnDefinition="enum('1','2','3','F','E')")
 	private String evaluacion;
 
 	private String nota;

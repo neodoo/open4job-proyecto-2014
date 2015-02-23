@@ -1,7 +1,9 @@
 package es.opensigad.model.vo;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 
 
@@ -36,9 +38,10 @@ public class Profesor implements Serializable {
 	@Column(name="num_registro")
 	private String numRegistro;
 
+	@Column(name="sexo", columnDefinition="enum('h','m')")
 	private String sexo;
 
-	@Column(name="tipo_documento")
+	@Column(name="tipo_documento", columnDefinition="enum('dni','nif','pasaporte')")
 	private String tipoDocumento;
 
 	public Profesor() {
