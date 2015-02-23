@@ -32,15 +32,19 @@
 		<h:outputLabel id="tituloMatriculaAlumno"
 			value="#{etqAlmMat['titulo.matriculaAlumno']}" />
 	</h3>
-	<a href="indexAlumnoMatricula.xhtml"><h:outputLabel id="etiquetaAlumnosMatricula"
+	<a href="indexAlumnoMatricula.xhtml"><h:outputLabel
+			id="etiquetaAlumnosMatricula"
 			value="#{etqAlmMat['etiquetas.irMatriculaAlumno']}" /></a>
-	
+  
 	<br></br>
 
 
-	<h3>Faltas del alumno</h3>
-	<a href="indexAlumnoSeguimiento.xhtml">Ir a faltas del alumno</a>
+	<h3>Seguimientos del alumno</h3>
+	<a href="indexAlumnoSeguimiento.xhtml"><h:outputLabel
+			id="etiquetasAlumnosSeguimiento"
+			value="#{etqSeg['etiqueta.irSeguimientoAlumno']}" /></a>
 	<br></br>
+
 	<h3>Notas del alumno</h3>
 	<a href="indexAlumnoNota.xhtml">Ir a notas del alumno</a>
 	<br></br>
