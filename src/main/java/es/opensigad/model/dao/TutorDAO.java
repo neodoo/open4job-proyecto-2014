@@ -40,10 +40,11 @@ public class TutorDAO implements TutorDAOInterface {
 		// Recuperamos el objeto relacion Alumno_tutor para recuperar todos los datos
 		Query q = em
 				.createQuery("SELECT at FROM AlumnoTutor at INNER JOIN Tutor t "
-						+ "ON at.idTutor = t.id"
-						+ "WHERE at.alumno.id = :varAlumno");
+						+ "ON at.idTutor = t.id "
+						+ "WHERE at.alumno.id " + idAlumno);
+						 						//= :varAlumno");
 		
-		q.setParameter("varAlumno", idAlumno);
+		//q.setParameter("varAlumno", idAlumno);
 		List<AlumnoTutor> listAlumnoTutor = q.getResultList();
 
 		return listAlumnoTutor;
@@ -176,9 +177,9 @@ public class TutorDAO implements TutorDAOInterface {
 		Tutor tutor = null;
 
 		// Recuperamos los datos de l tabla tutor con el id que nos llega
-		Query q = em.createQuery("SELECT t FROM Tutor t"); // WHERE t.tutor.id =
-															// :varTutor");
-		q.setParameter("vartutor", idTutor);
+		Query q = em.createQuery("SELECT t FROM Tutor t WHERE t.tutor.id " + idTutor); // WHERE t.tutor.id =
+																						// :varTutor");
+		//q.setParameter("varTutor", idTutor);
 		tutor = (Tutor) q.getSingleResult();
 
 		return tutor;
