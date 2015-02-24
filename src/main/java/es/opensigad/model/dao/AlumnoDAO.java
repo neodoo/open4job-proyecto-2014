@@ -39,7 +39,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 		try {
 			em.getTransaction().begin();
-			String query = "SELECT a FROM Alumno a WHERE id = " + numExpediente;
+			String query = "SELECT a FROM Alumno a WHERE num_expediente = " + numExpediente;
 
 			Alumno alumno = (Alumno) em.createQuery(query).getSingleResult();
 
