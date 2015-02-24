@@ -6,52 +6,62 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import es.opensigad.model.dao.AlumnoNotaDAO;
+import es.opensigad.model.vo.AlumnoMatricula;
+import es.opensigad.model.vo.EnsenanzaMateria;
 
 @ManagedBean
 @RequestScoped
 public class InsertarAlumnoNotaBean implements Serializable {
 	
-	private int idMatricula;
-	private int idEnsenanza;
-	private int idMateria;
-	private int idEvaluacion;
+	private AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
+	private EnsenanzaMateria ensenanzaMateria = new EnsenanzaMateria();
+	private int evaluacion;
 	private String nota;
+	private String observacion;
 
 	public InsertarAlumnoNotaBean() {
 
 	}
 
-	public int getIdMatricula() {
-		return idMatricula;
+	public AlumnoMatricula getAlumnoMatricula() {
+		return alumnoMatricula;
 	}
 
-	public void setIdMatricula(int idMatricula) {
-		this.idMatricula = idMatricula;
+
+	public void setAlumnoMatricula(AlumnoMatricula alumnoMatricula) {
+		this.alumnoMatricula = alumnoMatricula;
 	}
 
-	public int getIdEnsenanza() {
-		return idEnsenanza;
+
+	public EnsenanzaMateria getEnsenanzaMateria() {
+		return ensenanzaMateria;
 	}
 
-	public void setIdEnsenanza(int idEnsenanza) {
-		this.idEnsenanza = idEnsenanza;
+
+	public void setEnsenanzaMateria(EnsenanzaMateria ensenanzaMateria) {
+		this.ensenanzaMateria = ensenanzaMateria;
 	}
 
-	public int getIdMateria() {
-		return idMateria;
+
+	public int getEvaluacion() {
+		return evaluacion;
 	}
 
-	public void setIdMateria(int idMateria) {
-		this.idMateria = idMateria;
+
+	public void setEvaluacion(int evaluacion) {
+		this.evaluacion = evaluacion;
 	}
 
-	public int getIdEvaluacion() {
-		return idEvaluacion;
+
+	public String getObservacion() {
+		return observacion;
 	}
 
-	public void setIdEvaluacion(int idEvaluacion) {
-		this.idEvaluacion = idEvaluacion;
+
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
 	}
+
 
 	public String getNota() {
 		return nota;
@@ -61,17 +71,21 @@ public class InsertarAlumnoNotaBean implements Serializable {
 		this.nota = nota;
 	}
 
-	public String insertarNotaAlumno(int idAlumnoMatricula, int idMateria,
+	public String insertarNotaAlumno(int idMateria, int idAlumnoMatricula,
 			 String evaluacion, String nota, String observacion) {
+		
 		String pagina = null;
+		
 		AlumnoNotaDAO alumnoNotaDAO = new AlumnoNotaDAO();
-		if (alumnoNotaDAO.insertarNotasAlumnoByIdMatricula(idAlumnoMatricula,
-				 idMateria, evaluacion, nota, observacion)) {
+		
+		if (alumnoNotaDAO.insertarNotasAlumnoByIdMatricula(idMateria,idAlumnoMatricula, evaluacion, nota, observacion)) {
 			pagina = "insertarAlumnoNotaExito";
 		} else {
 			pagina = "insertarAlumnoNotaFallo";
 		}
+		
 		return pagina;
+		
 	}
 
 }
