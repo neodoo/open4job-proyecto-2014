@@ -8,7 +8,9 @@ public interface AlumnoSeguimientoDAOInterfaz {
 
 	public List<AlumnoSeguimiento> getListaAlumnoSeguimiento(int pidMatricula);
 
-	public int actualizarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento);
+	public int insertarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento);
+	
+	public boolean actualizarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento);
 
 	public boolean eliminarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento);
 

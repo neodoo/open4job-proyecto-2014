@@ -1,5 +1,5 @@
 package es.opensigad.model.dao;
-
+/*
 import junit.framework.TestCase;
 import es.opensigad.model.vo.Alumno;
 
@@ -15,6 +15,7 @@ public class AlumnoDAOTest extends TestCase {
 
 	}
 */
+/*
 	public void testGetDetalleAlumno() {
 
 		Alumno alumno = alumnoDAO.getDetalleAlumno(1);
@@ -70,6 +71,7 @@ public class AlumnoDAOTest extends TestCase {
 
 		assertTrue(alumnoDAO.modifyAlumno(alumno));
 	}
+*/	
 /*
 	public void testInsertAlumnoContacto() {
 		int idContacto = 2000;
@@ -142,3 +144,4 @@ public class AlumnoDAOTest extends TestCase {
 	}*/
 
 }
+*/

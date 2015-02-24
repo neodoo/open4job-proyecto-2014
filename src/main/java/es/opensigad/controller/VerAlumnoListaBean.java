@@ -1,5 +1,5 @@
 package es.opensigad.controller;
-
+/*
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 
 import es.opensigad.model.dao.AlumnoDAO;
 import es.opensigad.model.vo.Alumno;
+
 
 @ManagedBean
 @SessionScoped
@@ -55,3 +56,4 @@ public class VerAlumnoListaBean {
 	}
 
 }
+*/

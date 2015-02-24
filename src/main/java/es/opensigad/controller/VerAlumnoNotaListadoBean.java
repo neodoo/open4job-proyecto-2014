@@ -16,18 +16,18 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private List<AlumnoNota> alumnoNotas;
-	private int idMatricula;
+	private int id;
 
 	public VerAlumnoNotaListadoBean() {
 		getAllAlumnoNotas();
 	}
 
-	public int getIdMatricula() {
-		return idMatricula;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdMatricula(int idMatricula) {
-		this.idMatricula = idMatricula;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public List<AlumnoNota> getAlumnoNotas() {
@@ -38,11 +38,11 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 		this.alumnoNotas = alumnNotas;
 	}
 
-	public String getDetalleNotasAlumno(int idMatricula) {
+	public String getDetalleNotasAlumno(int id) {
 		
 		String pagina= "verAlumnoNotaListado";
 		AlumnoNotaDAO notasAlumnoDAO = new AlumnoNotaDAO();
-		alumnoNotas = notasAlumnoDAO.getNotasByIdMatricula(idMatricula);
+		alumnoNotas = notasAlumnoDAO.getNotasByIdMatricula(id);
 	
 		return pagina;
 	

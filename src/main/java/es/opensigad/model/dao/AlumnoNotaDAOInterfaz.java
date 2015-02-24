@@ -10,10 +10,10 @@ public interface AlumnoNotaDAOInterfaz {
 
 	public List<AlumnoNota> getNotasByIdMatricula(int idMatricula);
 
-	public boolean insertarNotasAlumnoByIdMatricula(int idAlumnoMatricula, int idMateria, String evaluacion, String nota, String observacion);
+	public boolean insertarNotasAlumnoByIdMatricula(int idMateria, int idAlumnoMatricula, String evaluacion, String nota, String observacion);
+	
+	public boolean actualizarNotaByIdMatricula(int id,int idAlumnoMatricula, int idMateria, String evaluacion, String nota, String observacion);
 
-	public boolean actualizarNotaByIdMatricula(int idAlumnoMatricula, int idMateria, String evaluacion, String nota, String observacion);
-
-	public boolean borrarNotaByIdMatricula(int idMatricula);
+	public boolean borrarNotaById(int id);
 
 }
