@@ -38,20 +38,19 @@
 				<h:outputLabel id="idCentro"
 					value="#{etqAlmMat['etiquetas.centro']}" />
 			</f:facet>
-    				#{m.centro}
+    				#{m.centro.id}
     		</h:column>
 		<h:column>
 			<f:facet name="header">
 				<h:outputLabel id="idEnseñanza"
 					value="#{etqAlmMat['etiquetas.ensenanza']}" />
 			</f:facet>
-    				#{m.ensenanza}
+    				#{m.ensenanza.id}
     		</h:column>
 		<h:column>
 			<f:facet name="header">
 				<h:outputLabel id="idModulo"
 					value="#{etqAlmMat['etiquetas.modulo']}" />
-    				 Módulo
     			</f:facet>
     				#{m.modulo}
     		</h:column>

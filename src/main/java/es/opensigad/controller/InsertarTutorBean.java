@@ -155,7 +155,7 @@ public class InsertarTutorBean implements Serializable{
 		TutorDAO tutorDAO = new TutorDAO();
 		String pagina= "tutoresPorAlumno.xhtml";
 		
-		List<AlumnoTutor> lista= tutorDAO.getlistaTutor(idAlumno);
+		List<AlumnoTutor> lista= tutorDAO.getListaTutor(idAlumno);
 		
 		return pagina;
 		
