@@ -97,8 +97,7 @@ public class AlumnoSeguimientoBean {
 	public int getJustificante() {
 		return justificante;
 	}
-
-
+	
 	public void setJustificante(int justificante) {
 		this.justificante = justificante;
 	}
