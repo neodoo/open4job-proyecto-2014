@@ -39,9 +39,12 @@ public class TutorDAO implements TutorDAOInterface {
 
 		// Recuperamos el objeto relacion Alumno_tutor para recuperar todos los datos
 		Query q = em
-				.createQuery("SELECT at FROM AlumnoTutor at INNER JOIN Tutor t "
-						+ "ON at.idTutor = t.id "
-						+ "WHERE at.alumno.id = " + idAlumno);
+				.createQuery("SELECT at FROM AlumnoTutor at WHERE at.alumno.id = " + idAlumno);
+						
+						//"SELECT at FROM es.opensigad.model.vo.AlumnoTutor as at "
+						//+ "LEFT OUTER JOIN es.opensigad.model.vo.Tutor as t "
+						//+ "ON at.tutor.id = t.id "
+						//+ "WHERE at.alumno.id = " + idAlumno);
 						 						//= :varAlumno");
 		
 		//q.setParameter("varAlumno", idAlumno);
