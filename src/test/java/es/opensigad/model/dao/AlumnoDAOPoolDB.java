@@ -9,9 +9,9 @@ public class AlumnoDAOPoolDB extends AlumnoDAO {
 	public AlumnoDAOPoolDB() {
 
 		String driver = "com.mysql.jdbc.Driver";
-		String user = "root";
-		String password = "root";
-		String url = "jdbc:mysql://192.168.26.67:3306/opensigad2";
+		String user = "opensigad";
+		String password = ".opensigad8$";
+		String url = "jdbc:mysql://54.154.192.80:3306/opensigad";
 
 		//ds = setupDataSource(driver, user, password, url);
 

@@ -41,7 +41,7 @@ public class TutorDAO implements TutorDAOInterface {
 		Query q = em
 				.createQuery("SELECT at FROM AlumnoTutor at INNER JOIN Tutor t "
 						+ "ON at.idTutor = t.id "
-						+ "WHERE at.alumno.id " + idAlumno);
+						+ "WHERE at.alumno.id = " + idAlumno);
 						 						//= :varAlumno");
 		
 		//q.setParameter("varAlumno", idAlumno);
@@ -177,7 +177,7 @@ public class TutorDAO implements TutorDAOInterface {
 		Tutor tutor = null;
 
 		// Recuperamos los datos de l tabla tutor con el id que nos llega
-		Query q = em.createQuery("SELECT t FROM Tutor t WHERE t.tutor.id " + idTutor); // WHERE t.tutor.id =
+		Query q = em.createQuery("SELECT t FROM Tutor t WHERE t.tutor.id = " + idTutor); // WHERE t.tutor.id =
 																						// :varTutor");
 		//q.setParameter("varTutor", idTutor);
 		tutor = (Tutor) q.getSingleResult();
