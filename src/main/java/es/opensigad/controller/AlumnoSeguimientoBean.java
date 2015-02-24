@@ -34,7 +34,7 @@ public class AlumnoSeguimientoBean {
 
 	
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
