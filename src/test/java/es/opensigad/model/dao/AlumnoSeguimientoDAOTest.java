@@ -86,13 +86,14 @@ public class AlumnoSeguimientoDAOTest extends TestCase {
 	}
 
 	public void test5() {		
+		
 		// Eliminar Seguimiento
 		AlumnoSeguimiento alumnoSeguimiento = new AlumnoSeguimiento();
 		alumnoSeguimiento.setId(idSeguimiento);
 
-		idSeguimiento = alumnoSeguimientoDAO.eliminarAlumnoSeguimiento(alumnoSeguimiento);
+		boolean estado = alumnoSeguimientoDAO.eliminarAlumnoSeguimiento(alumnoSeguimiento);
 
-		assertTrue(idSeguimiento > 0);
+		assertTrue(estado);
 	}
 
 }
