@@ -1,32 +1,21 @@
 package es.opensigad.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.servlet.http.HttpServletRequest;
-import javax.sql.DataSource;
 
 import es.opensigad.model.dao.AlumnoNotaDAO;
 import es.opensigad.model.vo.AlumnoNota;
-
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @ManagedBean
 @RequestScoped
 public class VerAlumnoNotaListadoBean implements Serializable {
 	
-	private ArrayList<AlumnoNota> alumnoNotas;
+	private static final long serialVersionUID = 1L;
+	
+	private List<AlumnoNota> alumnoNotas;
 	private int idMatricula;
 
 	public VerAlumnoNotaListadoBean() {
@@ -41,23 +30,28 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 		this.idMatricula = idMatricula;
 	}
 
-	public ArrayList<AlumnoNota> getAlumnoNotas() {
+	public List<AlumnoNota> getAlumnoNotas() {
 		return alumnoNotas;
 	}
 
-	public void setAlumnoNotas(ArrayList<AlumnoNota> alumnNOtas) {
-		this.alumnoNotas = alumnNOtas;
+	public void setAlumnoNotas(List<AlumnoNota> alumnNotas) {
+		this.alumnoNotas = alumnNotas;
 	}
 
 	public String getDetalleNotasAlumno(int idMatricula) {
+		
 		String pagina= "verAlumnoNotaListado";
 		AlumnoNotaDAO notasAlumnoDAO = new AlumnoNotaDAO();
 		alumnoNotas = notasAlumnoDAO.getNotasByIdMatricula(idMatricula);
+	
 		return pagina;
+	
 	}
 	public void getAllAlumnoNotas() {
-        AlumnoNotaDAO alumnoNotaDao = new AlumnoNotaDAO();
+    
+		AlumnoNotaDAO alumnoNotaDao = new AlumnoNotaDAO();
         alumnoNotas = alumnoNotaDao.getAllAlumnoNotas();
-    }
+    
+	}
 
 }
