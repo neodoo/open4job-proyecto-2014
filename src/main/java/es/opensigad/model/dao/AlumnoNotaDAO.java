@@ -202,7 +202,8 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 			
 			AlumnoNota alumnoNota = new AlumnoNota();
 			alumnoNota.setId(id);
-
+			
+			alumnoNota = em.find(AlumnoNota.class, id);
 			em.remove(alumnoNota);
 
 			em.getTransaction().commit();
