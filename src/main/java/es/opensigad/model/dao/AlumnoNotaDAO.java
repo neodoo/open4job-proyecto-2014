@@ -192,7 +192,7 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 	}
 
-	public boolean borrarNotaByIdMatricula(int id) {
+	public boolean borrarNotaById(int id) {
 
 		boolean estado = false;
 		
@@ -202,14 +202,14 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 			
 			AlumnoNota alumnoNota = new AlumnoNota();
 			alumnoNota.setId(id);
-			
+
 			em.remove(alumnoNota);
 
 			em.getTransaction().commit();
 			
 			estado = true;
 			
-			logger.log(Level.INFO, "AlumnoNotaDAO.borrarNotaByIdMatricula: OK.");
+			logger.log(Level.INFO, "AlumnoNotaDAO.borrarNotaById: OK.");
 
 			
 		} catch (Exception e) {
