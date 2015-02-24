@@ -62,7 +62,7 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 	}
 
 	public boolean insertarNotasAlumnoByIdMatricula(int idAlumnoMatricula,
-			int idMateria, String evaluacion, int nota, String observacion) {
+			int idMateria, String evaluacion, String nota, String observacion) {
 
 		AlumnoMatricula matricula = new AlumnoMatricula();
 		matricula.setId(idAlumnoMatricula);
@@ -74,7 +74,7 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 		alumnonota.setAlumnoMatricula(matricula);
 		alumnonota.setEnsenanzaMateria(ensenanzaMateria);
 		alumnonota.setEvaluacion(evaluacion);
-		// alumnonota.setNota(nota);
+		alumnonota.setNota(nota);
 		alumnonota.setObservacion(observacion);
 
 		EntityManagerFactory emf = Persistence
@@ -105,7 +105,7 @@ public boolean actualizarNotaByIdMatricula(int idAlumnoMatricula,int idMateria, 
 		alumnonota.setObservacion(observacion);
 
 		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory("ENTITY_MANAGER");
+				.createEntityManagerFactory(ENTITY_MANAGER);
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		em.merge(alumnonota);

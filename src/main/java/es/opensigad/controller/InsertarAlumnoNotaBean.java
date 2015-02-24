@@ -15,7 +15,7 @@ public class InsertarAlumnoNotaBean implements Serializable {
 	private int idEnsenanza;
 	private int idMateria;
 	private int idEvaluacion;
-	private int nota;
+	private String nota;
 
 	public InsertarAlumnoNotaBean() {
 
@@ -53,17 +53,16 @@ public class InsertarAlumnoNotaBean implements Serializable {
 		this.idEvaluacion = idEvaluacion;
 	}
 
-	public int getNota() {
+	public String getNota() {
 		return nota;
 	}
 
-	public void setNota(int nota) {
+	public void setNota(String nota) {
 		this.nota = nota;
 	}
 
-
 	public String insertarNotaAlumno(int idAlumnoMatricula, int idMateria,
-			 String evaluacion, int nota, String observacion) {
+			 String evaluacion, String nota, String observacion) {
 		String pagina = null;
 		AlumnoNotaDAO alumnoNotaDAO = new AlumnoNotaDAO();
 		if (alumnoNotaDAO.insertarNotasAlumnoByIdMatricula(idAlumnoMatricula,
