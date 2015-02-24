@@ -11,18 +11,14 @@ import javax.persistence.Persistence;
 
 import es.opensigad.model.vo.AlumnoSeguimiento;
 
-public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz,
-		Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 	public final static String ENTITY_MANAGER = "opensigadUnit";
-	
-	public static final Logger logger = Logger
-			.getLogger(AlumnoSeguimiento.class.getName());
 
-	public EntityManagerFactory emf = null;
-	public EntityManager em = null;
+	public static final Logger logger = Logger.getLogger(AlumnoSeguimientoDAO.class.getName());
+
+	private EntityManagerFactory emf = null;
+	private EntityManager em = null;
 
 	public AlumnoSeguimientoDAO() {
 
@@ -37,23 +33,32 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz,
 		List<AlumnoSeguimiento> seguimientos = null;
 
 		try {
+			
+			em.getTransaction().begin();
+
 			String query = "SELECT alumnoSeguimiento FROM AlumnoSeguimiento alumnoSeguimiento "
 					+ " WHERE alumnoSeguimiento.alumnoMatricula.id = :pidMatricula";
 
-			em.getTransaction().begin();
+
 			seguimientos = em.createQuery(query)
 					.setParameter("pidMatricula", pidMatricula).getResultList();
+			
 			em.getTransaction().commit();
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: OK.");
+			
+			logger.log(Level.INFO, "AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: OK.");
+		
 		} catch (Exception e) {
-			em.getTransaction().rollback();
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: ERROR. "
-							+ e.getMessage());
+		
+			try { em.getTransaction().rollback(); } catch (Exception ex) {}
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: ERROR. " + e.getMessage());
+		
+		} finally {
+		
+			try { em.close(); } catch (Exception e) {}
+			try { emf.close(); } catch (Exception e) {}
+		
 		}
-
-		em.close();
+		
 		return seguimientos;
 
 	}
@@ -61,26 +66,33 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz,
 	// Datos de una falta
 	public AlumnoSeguimiento getDetalleAlumnoSeguimiento(int pnumId) {
 
-		List<AlumnoSeguimiento> seguimiento = null;
-
-		String query = "from AlumnoSeguimiento aseg where aseg.id =" + pnumId;
-		em.getTransaction().begin();
-		seguimiento = em.createQuery(query).getResultList();
-
+		AlumnoSeguimiento seguimiento = null;
+		
 		try {
+			
+			em.getTransaction().begin();
+
+			String query = "from AlumnoSeguimiento aseg where aseg.id =" + pnumId;
+
+			seguimiento = (AlumnoSeguimiento) em.createQuery(query).getSingleResult();
+		
 			em.getTransaction().commit();
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: OK.");
+
+			logger.log(Level.INFO, "AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: OK.");
+	
 		} catch (Exception e) {
-			em.getTransaction().rollback();
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: ERROR. "
-							+ e.getMessage());
+			
+			try { em.getTransaction().rollback(); } catch (Exception ex) {}
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: ERROR. " + e.getMessage());
+		
+		} finally {
+		
+			try { em.close(); } catch (Exception e) {}
+			try { emf.close(); } catch (Exception e) {}
+		
 		}
 
-		em.close();
-
-		return (AlumnoSeguimiento) seguimiento;
+		return seguimiento;
 
 	}
 
@@ -89,50 +101,63 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz,
 
 		int id = 0;
 
-		em.getTransaction().begin();
-		em.merge(alumnoSeguimiento);
-
 		try {
+		
+			em.getTransaction().begin();
+			
+			em.merge(alumnoSeguimiento);
+
 			em.getTransaction().commit();
 			id = alumnoSeguimiento.getId();
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.actualizarAlumnoSeguimiento: OK.");
-		} catch (Exception e) {
-			em.getTransaction().rollback();
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.actualizarAlumnoSeguimiento: ERROR. "
-							+ e.getMessage());
-		}
 
-		em.close();
+			logger.log(Level.INFO, "AlumnoSeguimientoDAO.actualizarAlumnoSeguimiento: OK.");
+			
+		} catch (Exception e) {
+			
+			try { em.getTransaction().rollback(); } catch (Exception ex) {}
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.actualizarAlumnoSeguimiento: ERROR. " + e.getMessage());
+
+		} finally {
+		
+			try { em.close(); } catch (Exception e) {}
+			try { emf.close(); } catch (Exception e) {}
+		
+		}
 
 		return id;
 
 	}
 
 	// Eliminar alumno-seguimiento
-	public int eliminarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento) {
+	public boolean eliminarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento) {
 
-		int ok = 0;
-
-		em.getTransaction().begin();
-		em.remove(alumnoSeguimiento);
+		boolean estado = false;
 
 		try {
+
+			em.getTransaction().begin();
+			
+			em.remove(alumnoSeguimiento);
+			
 			em.getTransaction().commit();
-			ok = 1;
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.eliminarAlumnoSeguimiento: OK.");
+		
+			estado = true;
+			
+			logger.log(Level.INFO, "AlumnoSeguimientoDAO.eliminarAlumnoSeguimiento: OK.");
+		
 		} catch (Exception e) {
-			em.getTransaction().rollback();
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.eliminarAlumnoSeguimiento: ERROR. "
-							+ e.getMessage());
+			
+			try { em.getTransaction().rollback(); } catch (Exception ex) {}
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.eliminarAlumnoSeguimiento: ERROR. " + e.getMessage());
+
+		} finally {
+			try { em.close(); } catch (Exception e) {}
+			try { emf.close(); } catch (Exception e) {}
 		}
 
 		em.close();
 
-		return ok;
+		return estado;
 
 	}
 
