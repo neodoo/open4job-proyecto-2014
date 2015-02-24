@@ -84,7 +84,9 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 	}
 
 	public boolean borrarMatricula(int idMatricula) {
-
+		
+		boolean estado = false;
+		
 		EntityManagerFactory emf = null;
 		EntityManager em = null;
 		
@@ -98,14 +100,12 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			em.getTransaction().begin();
 			AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
 			alumnoMatricula = em.find(AlumnoMatricula.class, idMatricula);
-			
-			if (alumnoMatricula == null){return false;}
 			em.remove(alumnoMatricula);
 			em.getTransaction().commit();
+			
+			estado = true;
 
-			logger.log(Level.INFO, "AlumnoMatriculaDAO.borrarMatricula: OK.");
-
-			return true;
+			logger.log(Level.INFO, "AlumnoMatriculaDAO.borrarMatricula: OK.");	
 
 		} catch (EntityExistsException e) {
 
@@ -119,7 +119,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 		
 		}
 
-		return false;
+		return estado;
 
 	}
 
