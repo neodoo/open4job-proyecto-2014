@@ -19,7 +19,7 @@ public class AlumnoSeguimientoFichaBean {
 	private String sesion;
 	private int idMateria;
 	private String tipo;
-	private String justificado;
+	private int justificante;
 	private String observaciones;
 
 	private AlumnoSeguimiento seguimiento = new AlumnoSeguimiento();
@@ -37,7 +37,7 @@ public class AlumnoSeguimientoFichaBean {
 	}
 
 
-	public long getIdMatricula() {
+	public int getIdMatricula() {
 		return idMatricula;
 	}
 
@@ -67,7 +67,7 @@ public class AlumnoSeguimientoFichaBean {
 	}
 
 
-	public long getIdMateria() {
+	public int getIdMateria() {
 		return idMateria;
 	}
 
@@ -87,13 +87,13 @@ public class AlumnoSeguimientoFichaBean {
 	}
 
 
-	public String getJustificado() {
-		return justificado;
+	public int getJustificante() {
+		return justificante;
 	}
 
 
-	public void setJustificado(String justificado) {
-		this.justificado = justificado;
+	public void setJustificante(int justificante) {
+		this.justificante = justificante;
 	}
 
 
@@ -147,7 +147,7 @@ public class AlumnoSeguimientoFichaBean {
 		String pagina=null;
 		AlumnoSeguimientoDAO alumnoSeguimientoDAO = new AlumnoSeguimientoDAO();
 
-		long count = alumnoSeguimientoDAO.actualizarAlumnoSeguimiento(seguimiento);
+		int count = alumnoSeguimientoDAO.actualizarAlumnoSeguimiento(seguimiento);
 		
 		if (count == 1){
 			pagina = "actualizarAlumnoSeguimientoExito";
@@ -161,7 +161,7 @@ public class AlumnoSeguimientoFichaBean {
 		String pagina=null;
 		AlumnoSeguimientoDAO alumnoSeguimientoDAO = new AlumnoSeguimientoDAO();
 	
-		long count = alumnoSeguimientoDAO.eliminarAlumnoSeguimiento(seguimiento);
+		int count = alumnoSeguimientoDAO.eliminarAlumnoSeguimiento(seguimiento);
 		
 		if (count == 1){
 			pagina = "eliminarAlumnoSeguimientoExito";
