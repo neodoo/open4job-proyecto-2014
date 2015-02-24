@@ -20,41 +20,41 @@
 				cellspacing="5">
 
 				<h:outputLabel id="etiquetaFalta" value="#{etqAlmSeg['etiqueta.seguimiento']}" style="font-weight:bold" />
-				<h:inputText value="#{alumnoSeguimientoFichaBean.alumnoSeguimiento.id}">
+				<h:inputText value="#{alumnoSeguimientoFichaBean.seguimiento.id}">
 				</h:inputText>
 
 				<h:outputLabel id="etiquetaAlumno" value="#{etqAlmSeg['etiqueta.matricula']}" style="font-weight:bold" />
-				<h:inputText value="#{alumnoSeguimientoFichaBean.alumnoSeguimiento.idMatricula}">
+				<h:inputText value="#{alumnoSeguimientoFichaBean.seguimiento.idMatricula}">
 				</h:inputText>
 				
 				<h:outputLabel id="etiquetaFecha" value="#{etqAlmSeg['etiqueta.fecha']}" style="font-weight:bold" />
-				<h:inputText value="#{alumnoSeguimientoFichaBean.alumnoSeguimiento.fecha}">
+				<h:inputText value="#{alumnoSeguimientoFichaBean.seguimiento.fecha}">
 					<f:convertDateTime pattern="dd-MM-yyyy" />
 				</h:inputText>
 				
 				<h:outputLabel id="etiquetaSesion" value="#{etqAlmSeg['etiqueta.sesion']}" style="font-weight:bold" />
-				<h:inputText value="#{alumnoSeguimientoFichaBean.alumnoSeguimiento.sesion}">
+				<h:inputText value="#{alumnoSeguimientoFichaBean.seguimiento.sesion}">
 				</h:inputText>
 				
 				<h:outputLabel id="etiquetaMateria" value="#{etqAlmSeg['etiqueta.materia']}" style="font-weight:bold" />
-				<h:inputText value="#{alumnoSeguimientoFichaBean.alumnoSeguimiento.idMateria}">
+				<h:inputText value="#{alumnoSeguimientoFichaBean.seguimiento.idMateria}">
 				</h:inputText>
 				
 				<h:outputLabel id="etiquetaTipo" value="#{etqAlmSeg['etiqueta.tipo']}" style="font-weight:bold" />
-				<h:selectManyMenu value="#{alumnoSeguimientoFichaBean.alumnoSeguimiento.tipo}">
+				<h:selectManyMenu value="#{alumnoSeguimientoFichaBean.seguimiento.tipo}">
    				<f:selectItem itemValue="Ausencia" itemLabel="#{etqAlmSeg['tipo.ausencia']}" />
    				<f:selectItem itemValue="Retraso" itemLabel="#{etqAlmSeg['tipo.retraso']}" />
 				</h:selectManyMenu>   	
 
 				<h:outputLabel id="etiquetaJustificado" value="#{etqAlmSeg['etiqueta.justificado']}" style="font-weight:bold" />				
-  			<h:selectOneRadio value="#{alumnoSeguimientoFichaBean.alumnoSeguimiento.justificante}">
+  			<h:selectOneRadio value="#{alumnoSeguimientoFichaBean.seguimiento.justificante}">
    				<f:selectItem itemValue="S" itemLabel="#{etqAlmSeg['etiqueta.si']}" />
    				<f:selectItem itemValue="N" itemLabel="#{etqAlmSeg['etiqueta.no']}" />
    			</h:selectOneRadio>
    							
 				<h:outputLabel id="etiquetaObservaciones" value="#{etqAlmSeg['etiqueta.observaciones']}" style="font-weight:bold" />
 				<h:inputTextarea rows="4" cols="50"
-					value="#{alumnoSeguimientoFichaBean.alumnoSeguimiento.observaciones}">
+					value="#{alumnoSeguimientoFichaBean.seguimiento.observaciones}">
 				</h:inputTextarea>
 			</h:panelGrid>
 			
