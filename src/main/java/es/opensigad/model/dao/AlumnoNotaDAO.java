@@ -89,10 +89,30 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 	}
 
-	public boolean actualizarNotaByIdMatricula(int idMatricula,
-			int idEnsenanza, int idMateria, int idEvalucion, int nota) {
-		return false;
+public boolean actualizarNotaByIdMatricula(int idAlumnoMatricula,int idMateria, String evaluacion,String nota, String observacion){
+		
+		AlumnoMatricula matricula = new AlumnoMatricula();
+		matricula.setId(idAlumnoMatricula);
 
+		EnsenanzaMateria ensenanzaMateria = new EnsenanzaMateria();
+		ensenanzaMateria.setId(idMateria);
+
+		AlumnoNota alumnonota = new AlumnoNota();
+		alumnonota.setAlumnoMatricula(matricula);
+		alumnonota.setEnsenanzaMateria(ensenanzaMateria);
+		alumnonota.setEvaluacion(evaluacion);
+		alumnonota.setNota(nota);
+		alumnonota.setObservacion(observacion);
+
+		EntityManagerFactory emf = Persistence
+				.createEntityManagerFactory("ENTITY_MANAGER");
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.merge(alumnonota);
+		em.getTransaction().commit();
+		em.close();
+		return true;
+			
 	}
 
 	public boolean borrarNotaByIdMatricula(int idMatricula) {
