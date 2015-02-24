@@ -2,9 +2,7 @@ package es.opensigad.model.dao;
 
 import java.util.List;
 
-import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.AlumnoNota;
-import es.opensigad.model.vo.EnsenanzaMateria;
 
 public interface AlumnoNotaDAOInterfaz {
 	
@@ -16,6 +14,6 @@ public interface AlumnoNotaDAOInterfaz {
 	
 	public boolean actualizarNotaByIdMatricula(int id,int idAlumnoMatricula, int idMateria, String evaluacion, String nota, String observacion);
 
-	public boolean borrarNotaByIdMatricula(int idMatricula);
+	public boolean borrarNotaById(int id);
 
 }
