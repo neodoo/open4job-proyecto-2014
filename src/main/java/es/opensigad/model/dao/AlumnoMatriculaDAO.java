@@ -28,7 +28,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 	// InsertarMatricula
 	public boolean insertarMatricula(int idAlumno, int cursoEscolar,
-			String centro, String ensenanza, String modulo, int curso) {
+			int centro, int ensenanza, String modulo, int curso) {
 
 		EntityManagerFactory emf = null;
 		EntityManager em = null;
@@ -46,8 +46,8 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			Ensenanza ensenanzaMatricula = new Ensenanza();
 
 			alumno.setId(idAlumno);
-			centroMatricula.setDescripcion(centro);
-			ensenanzaMatricula.setNombre(ensenanza);
+			centroMatricula.setId(centro);
+			ensenanzaMatricula.setId(ensenanza);
 
 			AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
 			alumnoMatricula.setAlumno(alumno);
@@ -58,8 +58,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			alumnoMatricula.setCurso(curso);
 
 			// Guardar matricula
-			// si le paso el objeto en vez de el set persist dará error al estar
-			// creado en la bbdd???
+		
 			em.persist(alumnoMatricula);
 			em.getTransaction().commit();
 
@@ -95,6 +94,8 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			em.getTransaction().begin();
 			AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
 			alumnoMatricula = em.find(AlumnoMatricula.class, idMatricula);
+			
+			if (alumnoMatricula == null){return false;}
 			em.remove(alumnoMatricula);
 			em.getTransaction().commit();
 
@@ -113,8 +114,8 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 	}
 
-	public boolean modificarMatricula(Alumno idAlumno, int cursoEscolar,
-			Centro centro, Ensenanza ensenanza, String modulo, int curso,
+	public boolean modificarMatricula(int idAlumno, int cursoEscolar,
+			int centro, int ensenanza, String modulo, int curso,
 			int idMatricula) {
 
 		EntityManagerFactory emf = null;
@@ -127,10 +128,10 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			em = emf.createEntityManager();
 
 			AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
-			alumnoMatricula.setAlumno(idAlumno);
-			alumnoMatricula.setCursoEscolar(cursoEscolar);
-			alumnoMatricula.setCentro(centro);
-			alumnoMatricula.setEnsenanza(ensenanza);
+			alumnoMatricula.setId(idAlumno);
+			alumnoMatricula.setId(cursoEscolar);
+			alumnoMatricula.setId(centro);
+			alumnoMatricula.setId(ensenanza);
 			alumnoMatricula.setModulo(modulo);
 			alumnoMatricula.setCurso(curso);
 			alumnoMatricula.setId(idMatricula);
@@ -171,7 +172,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			em.getTransaction().begin();
 
 			Query q = em.createQuery("from AlumnoMatricula am");
-			alumnoMatriculaList = q.getResultList();
+			alumnoMatriculaList = q.getResultList();			
 
 			em.getTransaction().commit();
 
