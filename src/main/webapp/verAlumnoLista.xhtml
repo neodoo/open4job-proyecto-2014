@@ -3,107 +3,73 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+</h:head>
+
 <h:body>
 
-	<ui:composition template="/template/common/commonLayout.xhtml">
 
-		<ui:define name="content">
-			<h:form>
+	<h:dataTable value="#{verAlumnoListaBean.alumnoLista}"
+		alumno.numExpediente="alumno" styleClass="order-table"
+		headerClass="order-table-header"
+		rowClasses="order-table-odd-row,order-table-even-row">
 
-				<p:dataTable id="tablaDeAlumnos" var="alumno"
-					value="#{verAlumnoListaBean.alumnoLista}"
-					widgetVar="tablaDeAlumnos"
-					emptyMessage="No hay alumnos con este criterio de filtrado"
-					filteredValue="#{verAlumnoListaBean.alumnoFiltro}" paginator="true"
-					rows="10" style="width:900px">
 
-					<f:facet name="header">
-						<p:outputPanel>
-							<h:outputText value="Buscar en todos: " />
-							<p:inputText id="globalFilter"
-								onkeyup="PF('tablaDeAlumnos').filter()" style="width:150px" />
-						</p:outputPanel>
-					</f:facet>
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="numExpediente"
+					value="#{etqAlm['etiquetas.numExpediente']}" />
+			</f:facet>
+    				#{alumno.numExpediente}
+    		</h:column>
 
-					<!-- 
-		 	<p:column id="idCol" headerText="ID">
-				<h:outputText value="#{alumno.idAlumno}" />
-			</p:column>-->
 
-					<p:column id="numExpCol" filterBy="#{alumno.numExpediente}"
-						headerText="Nº Expediente" filterMatchMode="exact">
-						<h:outputText value="#{alumno.numExpediente}" />
-					</p:column>
 
-					<p:column id="nomCol" headerText="Nombre">
-						<h:outputText value="#{alumno.nombre}" />
-					</p:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="nombre" value="#{etqAlm['etiquetas.nombre']}" />
+			</f:facet>
+    				#{alumno.nombre}
+    		</h:column>
 
-					<p:column id="ap1Col" filterBy="#{alumno.apellido1}"
-						headerText="1º Apellido" filterMatchMode="startsWith">
-						<h:outputText value="#{alumno.apellido1}" />
-					</p:column>
 
-					<p:column id="ap2Col" filterBy="#{alumno.apellido2}"
-						headerText="2º Apellido" filterMatchMode="startsWith">
-						<h:outputText value="#{alumno.apellido2}" />
-					</p:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="apellido1"
+					value="#{etqAlm['etiquetas.apellido1']}" />
+			</f:facet>
+    				#{alumno.apellido1}
+    		</h:column>
 
-					<p:column id="sexCol" filterBy="#{alumno.sexo}" headerText="Sexo"
-						filterMatchMode="startsWith">
-						<h:outputText value="#{alumno.sexo}" />
-					</p:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="apellido2"
+					value="#{etqAlm['etiquetas.apellido2']}" />
+			</f:facet>
+    				#{alumno.apellido2}
+    		</h:column>
 
-					<p:column id="dniCol" headerText="DNI">
-						<h:outputText value="#{alumno.dni}" />
-					</p:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="documento" value="#{etqAlm['etiquetas.dni']}" />
+			</f:facet>
+    				#{alumno.documento}
+    		</h:column>
 
-					<p:column id="fecNacCol" headerText="Fecha Nacimiento">
-						<h:outputText value="#{alumno.fechaNacimiento}" />
-					</p:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel id="sexo" value="#{etqAlm['etiquetas.sexo']}" />
+			</f:facet>
+    				#{alumno.sexo}
+    		</h:column>
 
-					<!--  DATOS DE CONTACTO
-			
-			
-			<p:column id="telCol" headerText="TELEFONO">
-				<h:outputText value="#{alumno.telefono}" />
-			</p:column>
-			
-			<p:column id="paisCol"  headerText="PAIS">
-				<h:outputText value="#{alumno.pais}" />
-			</p:column>
 
-			<p:column id="provCol" filterBy="#{alumno.provincia}"
-				headerText="PROVINCIA" filterMatchMode="startsWith">
-				<h:outputText value="#{alumno.provincia}" />
-			</p:column>
 
-			<p:column id="locCol" filterBy="#{alumno.localidad}"
-				headerText="LOCALIDAD" filterMatchMode="startsWith">
-				<h:outputText value="#{alumno.localidad}" />
-			</p:column>
 
-			<p:column id="domCol" headerText="DOMICILIO">
-				<h:outputText value="#{alumno.domicilio}" />
-			</p:column>
-
-			<p:column id="mailCol" headerText="MAIL">
-				<h:outputText value="#{alumno.email}" />
-			</p:column> 
-			-->
-
-				</p:dataTable>
-			</h:form>
-		</ui:define>
-
-	</ui:composition>
+	</h:dataTable>
 
 </h:body>
 
 </html>
-
-

@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoContacto;
@@ -23,7 +24,26 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 	public List<Alumno> getListAlumno() {
 
-		return null;
+		List<Alumno> alumnoList = null;
+
+		try {
+
+			em.getTransaction().begin();
+
+			Query q = em.createQuery("from Alumno a");
+			alumnoList = q.getResultList();
+
+			em.getTransaction().commit();
+
+		} catch (EntityExistsException e) {
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
+		} finally {
+			em.close();
+			emf.close();
+		}
+
+		return alumnoList;
 
 	}
 

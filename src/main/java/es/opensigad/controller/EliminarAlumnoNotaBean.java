@@ -10,7 +10,8 @@ import es.opensigad.model.dao.AlumnoNotaDAO;
 @ManagedBean
 @RequestScoped
 public class EliminarAlumnoNotaBean implements Serializable {
-	
+
+	private static final long serialVersionUID = 1L;
 	private int id;
 
 	public EliminarAlumnoNotaBean() {
@@ -25,10 +26,10 @@ public class EliminarAlumnoNotaBean implements Serializable {
 		this.id = id;
 	}
 
-	public String borrarNotaByIdMatricula(int id) {
+	public String borrarNotaById(int id) {
 		String pagina=null;
 		AlumnoNotaDAO alumnoNotaDAO = new AlumnoNotaDAO();
-		if (alumnoNotaDAO.borrarNotaByIdMatricula(id)){
+		if (alumnoNotaDAO.borrarNotaById(id)){
 			pagina = "borrarAlumnoNotaExito";
 		}else{
 			pagina = "borrarAlumnoNotaFallo";

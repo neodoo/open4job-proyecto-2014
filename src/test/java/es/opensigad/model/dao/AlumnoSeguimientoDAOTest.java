@@ -42,7 +42,7 @@ public class AlumnoSeguimientoDAOTest extends TestCase {
 		alumnoSeguimiento.setJustificante(0);
 		alumnoSeguimiento.setObservaciones("observaciones_I_TEST");		
 		
-		idSeguimiento = alumnoSeguimientoDAO.actualizarAlumnoSeguimiento(alumnoSeguimiento);
+		idSeguimiento = alumnoSeguimientoDAO.insertarAlumnoSeguimiento(alumnoSeguimiento);
 		
 		assertTrue(idSeguimiento > 0);
 	}
@@ -56,7 +56,7 @@ public class AlumnoSeguimientoDAOTest extends TestCase {
 	}
 
 	public void test3() {
-		// Actualizar Alumno-Seguimiento
+		// Actualizar Alumno-Seguimiento		
 		AlumnoSeguimiento alumnoSeguimiento = new AlumnoSeguimiento();
 	
 		Date fechaSql = null;
@@ -72,9 +72,9 @@ public class AlumnoSeguimientoDAOTest extends TestCase {
 		alumnoSeguimiento.setTipo("tipo_U_TEST");
 		alumnoSeguimiento.setObservaciones("observaciones_U_TEST");		
 		
-		idSeguimiento = alumnoSeguimientoDAO.actualizarAlumnoSeguimiento(alumnoSeguimiento);		
+		boolean estado = alumnoSeguimientoDAO.actualizarAlumnoSeguimiento(alumnoSeguimiento);		
 		
-		assertTrue(idSeguimiento > 0);
+		assertTrue(estado);
 	}
 
 	public void test4() {
