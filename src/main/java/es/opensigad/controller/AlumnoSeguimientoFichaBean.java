@@ -161,9 +161,9 @@ public class AlumnoSeguimientoFichaBean {
 		String pagina=null;
 		AlumnoSeguimientoDAO alumnoSeguimientoDAO = new AlumnoSeguimientoDAO();
 	
-		long count = alumnoSeguimientoDAO.eliminarAlumnoSeguimiento(seguimiento);
+		boolean estado = alumnoSeguimientoDAO.eliminarAlumnoSeguimiento(seguimiento);
 		
-		if (count == 1){
+		if (estado){
 			pagina = "eliminarAlumnoSeguimientoExito";
 		}else{
 			pagina = "eliminarAlumnoSeguimientoFallo";
