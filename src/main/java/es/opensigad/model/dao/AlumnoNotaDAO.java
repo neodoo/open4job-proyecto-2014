@@ -1,6 +1,8 @@
 package es.opensigad.model.dao;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,48 +16,77 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 	public final static String ENTITY_MANAGER = "opensigadUnit";
 
+	public static final Logger logger = Logger.getLogger(AlumnoNotaDAO.class
+			.getName());
+
 	public EntityManagerFactory emf = null;
 	public EntityManager em = null;
 
 	public AlumnoNotaDAO() {
 
-		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory(ENTITY_MANAGER);
-
-		EntityManager em = emf.createEntityManager();
+		emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+		em = emf.createEntityManager();
 
 	}
 
-	public ArrayList<AlumnoNota> getAllAlumnoNotas() {
+	public List<AlumnoNota> getAllAlumnoNotas() {
 
-		em.getTransaction().begin();
-		ArrayList<AlumnoNota> listaNotas = (ArrayList<AlumnoNota>) em
-				.createQuery("from AlumnoNota").getResultList();
-		em.getTransaction().commit();
+		List<AlumnoNota> listaNotas = null;
 
-		em.close();
+		try {
+
+			em.getTransaction().begin();
+
+			listaNotas = em.createQuery("from AlumnoNota").getResultList();
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoNotaDAO.getAllAlumnoNotas: OK.");
+
+		} catch (Exception e) {
+
+			try { em.getTransaction().rollback(); } catch (Exception ex) { }
+			logger.log(Level.SEVERE, "AlumnoNotaDAO.getAllAlumnoNotas: ERROR. "	+ e.getMessage());
+
+		} finally {
+
+			try { em.close(); } catch (Exception e) { }
+			try { emf.close(); } catch (Exception e) { }
+
+		}
 
 		return listaNotas;
 
 	}
 
-	public ArrayList<AlumnoNota> getNotasByIdMatricula(int idMatricula) {
+	public List<AlumnoNota> getNotasByIdMatricula(int idMatricula) {
 
-		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory(ENTITY_MANAGER);
-		EntityManager em = emf.createEntityManager();
+		List<AlumnoNota> alumnos = null;
 
-		// Listar alumnos
-		em.getTransaction().begin();
+		try {
 
-		String query = "SELECT * FROM AlumnoNota an WHERE an.id = "
-				+ idMatricula;
+			em.getTransaction().begin();
 
-		ArrayList<AlumnoNota> alumnos = (ArrayList<AlumnoNota>) em.createQuery(
-				query).getResultList();
+			String query = "SELECT * FROM AlumnoNota an WHERE an.id = "
+					+ idMatricula;
 
-		em.getTransaction().commit();
-		em.close();
+			alumnos = em.createQuery(query).getResultList();
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoNotaDAO.getNotasByIdMatricula: OK.");
+
+		} catch (Exception e) {
+
+			try { em.getTransaction().rollback(); } catch (Exception ex) { }
+			logger.log(Level.SEVERE, "AlumnoNotaDAO.getNotasByIdMatricula: ERROR. " + e.getMessage());
+
+		} finally {
+
+			try { em.close(); } catch (Exception e) { }
+			try { emf.close(); } catch (Exception e) { }
+
+		}
 
 		return alumnos;
 
@@ -64,75 +95,130 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 	public boolean insertarNotasAlumnoByIdMatricula(int idAlumnoMatricula,
 			int idMateria, String evaluacion, String nota, String observacion) {
 
-		AlumnoMatricula matricula = new AlumnoMatricula();
-		matricula.setId(idAlumnoMatricula);
+		boolean estado = false;
+		
+		try {
 
-		EnsenanzaMateria ensenanzaMateria = new EnsenanzaMateria();
-		ensenanzaMateria.setId(idMateria);
+			em.getTransaction().begin();
+				
+			AlumnoMatricula matricula = new AlumnoMatricula();
+			matricula.setId(idAlumnoMatricula);
 
-		AlumnoNota alumnonota = new AlumnoNota();
-		alumnonota.setAlumnoMatricula(matricula);
-		alumnonota.setEnsenanzaMateria(ensenanzaMateria);
-		alumnonota.setEvaluacion(evaluacion);
-		alumnonota.setNota(nota);
-		alumnonota.setObservacion(observacion);
+			EnsenanzaMateria ensenanzaMateria = new EnsenanzaMateria();
+			ensenanzaMateria.setId(idMateria);
 
-		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory(ENTITY_MANAGER);
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(alumnonota);
-		em.getTransaction().commit();
-		em.close();
+			AlumnoNota alumnoNota = new AlumnoNota();
+			alumnoNota.setAlumnoMatricula(matricula);
+			alumnoNota.setEnsenanzaMateria(ensenanzaMateria);
+			alumnoNota.setEvaluacion(evaluacion);
+			alumnoNota.setNota(nota);
+			alumnoNota.setObservacion(observacion);
 
-		return true;
+			em.persist(alumnoNota);
+		
+			em.getTransaction().commit();
+		
+			estado = true;
+			
+			logger.log(Level.INFO, "AlumnoNotaDAO.insertarNotasAlumnoByIdMatricula: OK.");
+
+		} catch (Exception e) {
+
+			try { em.getTransaction().rollback(); } catch (Exception ex) { }
+			logger.log(Level.SEVERE, "AlumnoNotaDAO.insertarNotasAlumnoByIdMatricula: ERROR. "	+ e.getMessage());
+
+		} finally {
+
+			try { em.close(); } catch (Exception e) { }
+			try { emf.close(); } catch (Exception e) { }
+
+		}
+
+		return estado;
 
 	}
 
-public boolean actualizarNotaByIdMatricula(int idAlumnoMatricula,int idMateria, String evaluacion,String nota, String observacion){
+	public boolean actualizarNotaByIdMatricula(int idAlumnoMatricula,
+			int idMateria, String evaluacion, String nota, String observacion) {
+
+		boolean estado = false;
 		
-		AlumnoMatricula matricula = new AlumnoMatricula();
-		matricula.setId(idAlumnoMatricula);
-
-		EnsenanzaMateria ensenanzaMateria = new EnsenanzaMateria();
-		ensenanzaMateria.setId(idMateria);
-
-		AlumnoNota alumnonota = new AlumnoNota();
-		alumnonota.setAlumnoMatricula(matricula);
-		alumnonota.setEnsenanzaMateria(ensenanzaMateria);
-		alumnonota.setEvaluacion(evaluacion);
-		alumnonota.setNota(nota);
-		alumnonota.setObservacion(observacion);
-
-		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory(ENTITY_MANAGER);
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		em.merge(alumnonota);
-		em.getTransaction().commit();
-		em.close();
-		return true;
+		try {
 			
+			em.getTransaction().begin();
+			
+			AlumnoMatricula matricula = new AlumnoMatricula();
+			matricula.setId(idAlumnoMatricula);
+
+			EnsenanzaMateria ensenanzaMateria = new EnsenanzaMateria();
+			ensenanzaMateria.setId(idMateria);
+
+			AlumnoNota alumnoNota = new AlumnoNota();
+			alumnoNota.setAlumnoMatricula(matricula);
+			alumnoNota.setEnsenanzaMateria(ensenanzaMateria);
+			alumnoNota.setEvaluacion(evaluacion);
+			alumnoNota.setNota(nota);
+			alumnoNota.setObservacion(observacion);
+
+			em.merge(alumnoNota);
+
+			em.getTransaction().commit();
+
+			estado = true;
+			
+			logger.log(Level.INFO, "AlumnoNotaDAO.actualizarNotaByIdMatricula: OK.");
+			
+		} catch (Exception e) {
+
+			try { em.getTransaction().rollback(); } catch (Exception ex) { }
+			logger.log(Level.SEVERE, "AlumnoNotaDAO.getAllAlumnoNotas: ERROR. "	+ e.getMessage());
+
+		} finally {
+
+			try { em.close(); } catch (Exception e) { }
+			try { emf.close(); } catch (Exception e) { }
+
+		}
+
+		return estado;
+
 	}
 
 	public boolean borrarNotaByIdMatricula(int idMatricula) {
 
-		AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
-		alumnoMatricula.setId(idMatricula);
-		AlumnoNota alumnoNota = new AlumnoNota();
-		alumnoNota.setAlumnoMatricula(alumnoMatricula);
+		boolean estado = false;
+		
+		try {
 
-		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory(ENTITY_MANAGER);
-		EntityManager em = emf.createEntityManager();
+			em.getTransaction().begin();
+			
+			AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
+			alumnoMatricula.setId(idMatricula);
+			AlumnoNota alumnoNota = new AlumnoNota();
+			alumnoNota.setAlumnoMatricula(alumnoMatricula);
 
-		em.getTransaction().begin();
-		em.remove(alumnoNota);
+			em.remove(alumnoNota);
 
-		em.getTransaction().commit();
-		em.close();
+			em.getTransaction().commit();
+			
+			estado = true;
+			
+			logger.log(Level.INFO, "AlumnoNotaDAO.borrarNotaByIdMatricula: OK.");
 
-		return false;
+			
+		} catch (Exception e) {
+
+			try { em.getTransaction().rollback(); } catch (Exception ex) { }
+			logger.log(Level.SEVERE, "AlumnoNotaDAO.getAllAlumnoNotas: ERROR. "	+ e.getMessage());
+
+		} finally {
+
+			try { em.close(); } catch (Exception e) { }
+			try { emf.close(); } catch (Exception e) { }
+
+		}
+
+		return estado;
 
 	}
 
