@@ -26,7 +26,13 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 		List<Alumno> alumnoList = null;
 
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
 		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
 
 			em.getTransaction().begin();
 
@@ -35,14 +41,20 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 			em.getTransaction().commit();
 
-		} catch (EntityExistsException e) {
-			em.getTransaction().rollback();
-			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
-		} finally {
-			em.close();
-			emf.close();
-		}
+			logger.log(Level.INFO, "AlumnoDAO.getListAlumno: OK.");
 
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE, "AlumnoDAO.getListAlumno: " + e.getMessage());
+
+		} finally {
+
+			try { em.close(); } catch (Exception e) { }
+			try { emf.close(); } catch (Exception e) { }
+
+		}
+		
 		return alumnoList;
 
 	}
