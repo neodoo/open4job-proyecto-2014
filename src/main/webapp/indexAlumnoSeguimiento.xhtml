@@ -16,15 +16,15 @@
 	<h:form>
 		<h:inputText value="#{alumnoSeguimientoBean.id}" />
 		<h:commandButton value="Ver seguimiento"
-			action="#{alumnoSeguimientoBean.getDetalleAlumnoSeguimiento()}"></h:commandButton>
+			action="#{alumnoSeguimientoBean.getDetalleAlumnoSeguimiento}"></h:commandButton>
 	</h:form>
 
 	<h3>Seguimientos del alumno por su idMatricula</h3>
 
 	<h:form>
 		<h:inputText value="#{alumnoSeguimientoBean.idMatricula}" />
-		<h:commandButton value="Ver listado"
-			action="#{alumnoSeguimientoBean.getListaAlumnoSeguimiento()}"></h:commandButton>
+		<h:commandButton value="Ver listado seguimientos"
+			action="#{alumnoSeguimientoBean.getListaAlumnoSeguimiento}"></h:commandButton>
 	</h:form>
 
 
