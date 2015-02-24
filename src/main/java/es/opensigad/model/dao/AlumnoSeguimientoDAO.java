@@ -1,6 +1,5 @@
 package es.opensigad.model.dao;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

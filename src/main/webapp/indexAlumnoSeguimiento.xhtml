@@ -14,17 +14,17 @@
 	<h3>Un seguimiento del alumno</h3>
 
 	<h:form>
-		<h:inputText value="#{alumnoSeguimientoFichaBean.id}" />
+		<h:inputText value="#{alumnoSeguimientoBean.id}" />
 		<h:commandButton value="Ver seguimiento"
-			action="#{alumnoSeguimientoFichaBean.getDetalleAlumnoSeguimiento()}"></h:commandButton>
+			action="#{alumnoSeguimientoBean.getDetalleAlumnoSeguimiento()}"></h:commandButton>
 	</h:form>
 
 	<h3>Seguimientos del alumno por su idMatricula</h3>
 
 	<h:form>
-		<h:inputText value="#{alumnoSeguimientoFichaBean.idMatricula}" />
+		<h:inputText value="#{alumnoSeguimientoBean.idMatricula}" />
 		<h:commandButton value="Ver listado"
-			action="#{alumnoSeguimientoFichaBean.getListaAlumnoSeguimiento()}"></h:commandButton>
+			action="#{alumnoSeguimientoBean.getListaAlumnoSeguimiento()}"></h:commandButton>
 	</h:form>
 
 
