@@ -95,8 +95,8 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 	}
 
-	// Insertar/Actualizar alumno-seguimiento
-	public int actualizarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento) {
+	// Insertar alumno-seguimiento
+	public int insertarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento) {
 
 		int id = 0;
 
@@ -104,10 +104,40 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 		
 			em.getTransaction().begin();
 			
-			em.merge(alumnoSeguimiento);
-
+			em.persist(alumnoSeguimiento);
 			em.getTransaction().commit();
+
 			id = alumnoSeguimiento.getId();
+
+			logger.log(Level.INFO, "AlumnoSeguimientoDAO.insertarAlumnoSeguimiento: OK.");
+			
+		} catch (Exception e) {
+			
+			try { em.getTransaction().rollback(); } catch (Exception ex) {}
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.insertarAlumnoSeguimiento: ERROR. " + e.getMessage());
+
+		} finally {
+		
+			try { em.close(); } catch (Exception e) {}
+			try { emf.close(); } catch (Exception e) {}
+		
+		}
+
+		return id;
+
+	}	
+	
+	// Actualizar alumno-seguimiento
+	public boolean actualizarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento) {
+
+		boolean estado = false;
+
+		try {
+		
+			em.getTransaction().begin();
+			
+			em.merge(alumnoSeguimiento);
+			em.getTransaction().commit();
 
 			logger.log(Level.INFO, "AlumnoSeguimientoDAO.actualizarAlumnoSeguimiento: OK.");
 			
@@ -123,7 +153,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 		
 		}
 
-		return id;
+		return estado;
 
 	}
 
@@ -153,8 +183,6 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 			try { em.close(); } catch (Exception e) {}
 			try { emf.close(); } catch (Exception e) {}
 		}
-
-		em.close();
 
 		return estado;
 

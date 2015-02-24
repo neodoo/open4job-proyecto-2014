@@ -152,15 +152,33 @@ public class AlumnoSeguimientoBean {
 		return pagina;
 	
 	}
+
+	
+	public String insertarAlumnoSeguimiento() {
+		
+		String pagina = null;
+		AlumnoSeguimientoDAO alumnoSeguimientoDAO = new AlumnoSeguimientoDAO();
+
+		int valor = alumnoSeguimientoDAO.insertarAlumnoSeguimiento(seguimiento);
+		
+		if (valor > 0) {
+			pagina = "actualizarAlumnoSeguimientoExito";
+		} else {
+			pagina = "actualizarAlumnoSeguimientoFallo";
+		}
+	
+		return pagina;
+	
+	}	
 	
 	public String actualizarAlumnoSeguimiento() {
 	
 		String pagina = null;
 		AlumnoSeguimientoDAO alumnoSeguimientoDAO = new AlumnoSeguimientoDAO();
 
-		int count = alumnoSeguimientoDAO.actualizarAlumnoSeguimiento(seguimiento);
+		boolean estado = alumnoSeguimientoDAO.actualizarAlumnoSeguimiento(seguimiento);
 		
-		if (count == 1) {
+		if (estado) {
 			pagina = "actualizarAlumnoSeguimientoExito";
 		} else {
 			pagina = "actualizarAlumnoSeguimientoFallo";
