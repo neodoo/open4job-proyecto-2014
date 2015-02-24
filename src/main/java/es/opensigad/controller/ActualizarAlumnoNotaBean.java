@@ -10,12 +10,12 @@ import es.opensigad.model.dao.AlumnoNotaDAO;
 @ManagedBean
 @RequestScoped
 public class ActualizarAlumnoNotaBean implements Serializable {
-	
+	private static final long serialVersionUID = 1L;
 	private int idMatricula;
 	private int idEnsenanza;
 	private int idMateria;
 	private int idEvaluacion;
-	private int nota;
+	private String nota;
 
 	public ActualizarAlumnoNotaBean() {
 
@@ -53,18 +53,18 @@ public class ActualizarAlumnoNotaBean implements Serializable {
 		this.idEvaluacion = idEvaluacion;
 	}
 
-	public int getNota() {
+	public String getNota() {
 		return nota;
 	}
 
-	public void setNota(int nota) {
+	public void setNota(String nota) {
 		this.nota = nota;
 	}
 
-	public String actualizarNotaByIdMatricula(int idMatricula, int idEnsenanza, int idMateria, int idEvalucion, int nota) {
+	public String actualizarNotaByIdMatricula(int idAlumnoMatricula,int idMateria, String evaluacion,String nota, String observacion) {
 		String pagina=null;
 		AlumnoNotaDAO alumnoNotaDAO = new AlumnoNotaDAO();
-		if (alumnoNotaDAO.actualizarNotaByIdMatricula(idMatricula, idEnsenanza, idMateria, idEvalucion, nota)){
+		if (alumnoNotaDAO.actualizarNotaByIdMatricula(idAlumnoMatricula, idMateria, evaluacion, nota,observacion)){
 			pagina = "actualizarAlumnoNotaExito";
 		}else{
 			pagina = "actualizarAlumnoNotaFallo";
