@@ -22,28 +22,28 @@
 			<f:facet name="header">
 			<h:outputLabel id="etiquetaNombre"
 						value="#{etqAlm['etiquetas.nombre']}" />
-			</f:facet> #{tL.nombre}
+			</f:facet> #{tL.tutor.nombre}
     	</h:column>
 
 		<h:column>
 			<f:facet name="header">
 			<h:outputLabel id="etiquetaApellido1"
 						value="#{etqAlm['etiquetas.apellido1']}" />
-			</f:facet> #{tL.apellido1}
+			</f:facet> #{tL.tutor.apellido1}
     	</h:column>
 
 		<h:column>
 			<f:facet name="header">
 			<h:outputLabel id="etiquetaApellido2"
 						value="#{etqAlm['etiquetas.apellido2']}" />
-						</f:facet> #{tL.apellido2}
+						</f:facet> #{tL.tutor.apellido2}
     	</h:column>
 
 		<h:column>
 			<f:facet name="header">
 			<h:outputLabel id="etiquetaDNI"
 						value="#{etqAlm['etiquetas.dni']}" />
-			</f:facet> #{tL.DNI}
+			</f:facet> #{tL.tutor.documento}
     	</h:column>
 
 	</h:dataTable>
@@ -55,8 +55,8 @@
 	    <h:commandButton value="Modificar" action=""></h:commandButton>
 	</h:form>-->
   	<h:form>
-		<h:inputText value="#{eliminarTutorBean.idTutor}"></h:inputText>
-		<br/><h:commandButton value="Borrar el tutor" action="#{eliminarTutorBean.deleteTutor(eliminarTutorBean.idTutor)}"></h:commandButton>
+		<h:inputText value="#{eliminarTutorBean.id}"></h:inputText> 
+		<br/><h:commandButton value="Borrar el tutor" action="#{eliminarTutorBean.deleteTutor(eliminarTutorBean.id)}"></h:commandButton> 
 	</h:form>
    	
    	</h:body>

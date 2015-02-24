@@ -1,7 +1,5 @@
 package es.opensigad.controller;
 
-import java.io.Serializable;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -29,15 +27,14 @@ public class VerAlumnoMatriculaFichaBean {
 	}
 
 
-
-	public AlumnoMatricula getMatriculaVO() {
+	public AlumnoMatricula getMatricula() {
 		return matricula;
 	}
 
 
 
-	public void setMatriculaVO(AlumnoMatricula matriculaVO) {
-		this.matricula = matriculaVO;
+	public void setMatricula(AlumnoMatricula matricula) {
+		this.matricula = matricula;
 	}
 
 
