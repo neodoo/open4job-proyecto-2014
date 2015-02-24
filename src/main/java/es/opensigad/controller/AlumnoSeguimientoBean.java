@@ -195,7 +195,6 @@ public class AlumnoSeguimientoBean {
 
 		boolean estado = alumnoSeguimientoDAO.eliminarAlumnoSeguimiento(seguimiento);
 
-		
 		if (estado) {
 			pagina = "eliminarAlumnoSeguimientoExito";
 		} else {

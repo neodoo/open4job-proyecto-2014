@@ -139,6 +139,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 			em.merge(alumnoSeguimiento);
 			em.getTransaction().commit();
 
+			estado = true;
 			logger.log(Level.INFO, "AlumnoSeguimientoDAO.actualizarAlumnoSeguimiento: OK.");
 			
 		} catch (Exception e) {
@@ -166,7 +167,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 			em.getTransaction().begin();
 			
-			em.remove(alumnoSeguimiento);
+			em.remove(em.merge(alumnoSeguimiento));
 			
 			em.getTransaction().commit();
 		
