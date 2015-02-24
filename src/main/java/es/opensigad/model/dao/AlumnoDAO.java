@@ -1,6 +1,7 @@
 package es.opensigad.model.dao;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
@@ -23,28 +24,43 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 	public AlumnoDAO() {
 
-		EntityManagerFactory emf = Persistence
+		emf = Persistence
 				.createEntityManagerFactory(ENTITY_MANAGER);
-		EntityManager em = emf.createEntityManager();
+		em = emf.createEntityManager();
 
 	}
 
 	public List<Alumno> getListAlumno() {
 
 		return null;
-	
+
 	}
 
 	public Alumno getDetalleAlumno(int numExpediente) {
 
+		try {
+			em.getTransaction().begin();
+			String query = "SELECT a FROM Alumno a WHERE id = "
+					+ numExpediente;
+			
+			Alumno alumno = (Alumno) em.createQuery(query).getSingleResult();
+
+			em.getTransaction().commit();
+			em.close();
+
+			return alumno;
+			
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, "Exception: " + e.getMessage());
+		}
+
 		return null;
-	
 	}
 
 	public boolean insertAlumno(Alumno alumno) {
 
 		return false;
-	
+
 	}
 
 	public boolean deleteAlumno(int idAlumno) {
@@ -80,31 +96,31 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 	public List<AlumnoContacto> getListAlumnoContacto(int idAlumno) {
 
 		return null;
-	
+
 	}
 
 	public boolean insertAlumnoDireccion(AlumnoDireccion alumnoDireccion) {
 
 		return false;
-	
+
 	}
 
 	public boolean deleteAlumnoDireccion(int idDireccion) {
 
 		return false;
-	
+
 	}
 
 	public boolean modifyAlumnoDireccion(AlumnoDireccion alumnoDireccion) {
 
 		return false;
-	
+
 	}
 
 	public AlumnoDireccion getDetalleAlumnoDireccion(int idDireccion) {
 
 		return null;
-	
+
 	}
 
 	public List<AlumnoDireccion> getListAlumnoDireccion(int idAlumno) {
