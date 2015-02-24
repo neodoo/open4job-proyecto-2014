@@ -44,7 +44,7 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 			logger.log(Level.INFO, "AlumnoNotaDAO.getAllAlumnoNotas: OK.");
 
 		} catch (Exception e) {
-
+			
 			try { em.getTransaction().rollback(); } catch (Exception ex) { }
 			logger.log(Level.SEVERE, "AlumnoNotaDAO.getAllAlumnoNotas: ERROR. "	+ e.getMessage());
 
@@ -92,24 +92,31 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 	}
 
-	public boolean insertarNotasAlumnoByIdMatricula(int idAlumnoMatricula,
-			int idMateria, String evaluacion, String nota, String observacion) {
+	public boolean insertarNotasAlumnoByIdMatricula(int idMateria,
+			int idAlumnoMatricula, String evaluacion, String nota, String observacion) {
 
 		boolean estado = false;
+		
+		AlumnoNota alumnoNota = null;
+		
+		AlumnoMatricula alumnoMatricula = null;
+		
+		EnsenanzaMateria ensenanzaMateria = null;
 		
 		try {
 
 			em.getTransaction().begin();
-				
-			AlumnoMatricula matricula = new AlumnoMatricula();
-			matricula.setId(idAlumnoMatricula);
-
-			EnsenanzaMateria ensenanzaMateria = new EnsenanzaMateria();
+			 
+			alumnoNota = new AlumnoNota();
+			
+			ensenanzaMateria = new EnsenanzaMateria();
 			ensenanzaMateria.setId(idMateria);
-
-			AlumnoNota alumnoNota = new AlumnoNota();
-			alumnoNota.setAlumnoMatricula(matricula);
 			alumnoNota.setEnsenanzaMateria(ensenanzaMateria);
+			
+			alumnoMatricula = new AlumnoMatricula();
+			alumnoMatricula.setId(idAlumnoMatricula);
+			alumnoNota.setAlumnoMatricula(alumnoMatricula);
+			
 			alumnoNota.setEvaluacion(evaluacion);
 			alumnoNota.setNota(nota);
 			alumnoNota.setObservacion(observacion);
@@ -138,7 +145,7 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 	}
 
-	public boolean actualizarNotaByIdMatricula(int idAlumnoMatricula,
+	public boolean actualizarNotaByIdMatricula(int id, int idAlumnoMatricula,
 			int idMateria, String evaluacion, String nota, String observacion) {
 
 		boolean estado = false;
@@ -154,6 +161,7 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 			ensenanzaMateria.setId(idMateria);
 
 			AlumnoNota alumnoNota = new AlumnoNota();
+			alumnoNota.setId(id);
 			alumnoNota.setAlumnoMatricula(matricula);
 			alumnoNota.setEnsenanzaMateria(ensenanzaMateria);
 			alumnoNota.setEvaluacion(evaluacion);
@@ -184,7 +192,7 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 	}
 
-	public boolean borrarNotaByIdMatricula(int idMatricula) {
+	public boolean borrarNotaByIdMatricula(int id) {
 
 		boolean estado = false;
 		
@@ -192,11 +200,9 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 			em.getTransaction().begin();
 			
-			AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
-			alumnoMatricula.setId(idMatricula);
 			AlumnoNota alumnoNota = new AlumnoNota();
-			alumnoNota.setAlumnoMatricula(alumnoMatricula);
-
+			alumnoNota.setId(id);
+			
 			em.remove(alumnoNota);
 
 			em.getTransaction().commit();

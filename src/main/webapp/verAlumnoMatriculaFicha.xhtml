@@ -20,33 +20,32 @@
 			</h:inputText>
 			<h:outputLabel value="Curso escolar" style="font-weight:bold" />
 			<h:inputText
-				value="#{verAlumnoMatriculaFichaBean.matriculaVO.cursoEscolar}" disabled="true">
+				value="#{verAlumnoMatriculaFichaBean.matricula.cursoEscolar}" disabled="true">
 			</h:inputText>
 			<h:outputLabel value="Centro: " style="font-weight:bold" />
 			<h:inputText
-				value="#{verAlumnoMatriculaFichaBean.matriculaVO.centro}">
+				value="#{verAlumnoMatriculaFichaBean.matricula.centro.id}">
 			</h:inputText>
 			<h:outputLabel value="Enseñanza: " style="font-weight:bold" />
 			<h:inputText
-				value="#{verAlumnoMatriculaFichaBean.matriculaVO.ensenanza}">
+				value="#{verAlumnoMatriculaFichaBean.matricula.ensenanza.id}">
 			</h:inputText>
 			<h:outputLabel value="Módulo: " style="font-weight:bold" />
 			<h:inputText
-				value="#{verAlumnoMatriculaFichaBean.matriculaVO.modulo}">
+				value="#{verAlumnoMatriculaFichaBean.matricula.modulo}">
 			</h:inputText>
 			<h:outputLabel value="Curso: " style="font-weight:bold" />
-			<h:inputText value="#{verAlumnoMatriculaFichaBean.matriculaVO.curso}">
+			<h:inputText value="#{verAlumnoMatriculaFichaBean.matricula.curso}">
 			</h:inputText>
 			<h:outputLabel value="Id Alumno: " style="font-weight:bold" />
-			<h:inputText
-				value="#{verAlumnoMatriculaFichaBean.matriculaVO.idAlumno}">
+			<h:inputText value="#{verAlumnoMatriculaFichaBean.matricula.alumno.id}" disabled="true">
 			</h:inputText>
 		</h:panelGrid>
 
 
 		<h:commandButton value="Actualizar"
-			action="#{actualizarAlumnoMatriculaBean.modificarMatricula(verAlumnoMatriculaFichaBean.matriculaVO.idAlumno, verAlumnoMatriculaFichaBean.matriculaVO.cursoEscolar,
-		 verAlumnoMatriculaFichaBean.matriculaVO.centro,verAlumnoMatriculaFichaBean.matriculaVO.ensenanza,verAlumnoMatriculaFichaBean.matriculaVO.modulo, verAlumnoMatriculaFichaBean.matriculaVO.curso,verAlumnoMatriculaFichaBean.idMatricula)}" />
+			action="#{actualizarAlumnoMatriculaBean.modificarMatricula(verAlumnoMatriculaFichaBean.matricula.alumno.id,verAlumnoMatriculaFichaBean.matricula.cursoEscolar,
+		 verAlumnoMatriculaFichaBean.matricula.centro.id,verAlumnoMatriculaFichaBean.matricula.ensenanza.id,verAlumnoMatriculaFichaBean.matricula.modulo, verAlumnoMatriculaFichaBean.matricula.curso,verAlumnoMatriculaFichaBean.idMatricula)}" />
 
 	</h:form>
 

@@ -11,7 +11,7 @@ public class TutorDAOTest extends TestCase {
 	{
 		TutorDAOPoolDB tutorDAO = new TutorDAOPoolDB();
 		int idAlumno= 1;
-		List <AlumnoTutor> tutores = tutorDAO.getlistaTutor(idAlumno);
+		List <AlumnoTutor> tutores = tutorDAO.getListaTutor(idAlumno);
 		assertTrue (tutores.size() > 0);
 	}
 }

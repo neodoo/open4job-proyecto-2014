@@ -29,12 +29,12 @@ public class AlumnoNota implements Serializable {
 	//bi-directional many-to-one association to AlumnoMatricula
 	@ManyToOne
 	@JoinColumn(name="id_alumno_matricula")
-	private AlumnoMatricula alumnoMatricula;
+	private AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
 
 	//bi-directional many-to-one association to EnsenanzaMateria
 	@ManyToOne
 	@JoinColumn(name="id_materia")
-	private EnsenanzaMateria ensenanzaMateria;
+	private EnsenanzaMateria ensenanzaMateria = new EnsenanzaMateria();
 
 	public AlumnoNota() {
 	}

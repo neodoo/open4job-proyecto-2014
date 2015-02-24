@@ -1,9 +1,6 @@
 package es.opensigad.model.dao;
 
-import java.util.List;
-
 import junit.framework.TestCase;
-import es.opensigad.model.vo.AlumnoContacto;
 import es.opensigad.model.vo.Alumno;
 
 public class AlumnoDAOTest extends TestCase {
@@ -31,8 +28,8 @@ public class AlumnoDAOTest extends TestCase {
 		
 		Alumno alumno = new Alumno();
 		
-		alumno.setId(200);
-		alumno.setNumExpediente(200);
+		alumno.setId(300);
+		alumno.setNumExpediente(300);
 		alumno.setNombre("carlos");
 		alumno.setApellido1("cano");
 		alumno.setApellido2("perez");
@@ -47,39 +44,33 @@ public class AlumnoDAOTest extends TestCase {
 
 		assertTrue(alum == true);
 	}
-/*
+
 	public void testDeleteAlumno() {
 
-		int id = 200;
-
-		Alumno alumno = alumnoDAO.getDetalleAlumno(id);
-
-		alumnoDAO.deleteAlumno(id);
-
-		// AlumnoVO alumno = alumnoDAO.getDetalleAlumno(id);
-
-		assertTrue(alumno != null);
+		int id = 6;
+		assertTrue(alumnoDAO.deleteAlumno(id));
 	}
 
 	public void testModifyAlumno() {
 
-		int id = 200;
-
 		java.util.Date utilDate = new java.util.Date();
-		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+		Alumno alumno = alumnoDAO.getDetalleAlumno(200);
+		
+		alumno.setNombre("actualizado");
+		alumno.setApellido1("cano");
+		alumno.setApellido2("perez");
+		alumno.setFechaNacimiento(utilDate);
+		alumno.setTipoDocumento("dni");
+		alumno.setDocumento("12345678X");
+		alumno.setSexo("h");
+		alumno.setImagen("image");
+		alumno.setLocalidadNacimiento("tudela");
+		
+		alumnoDAO.modifyAlumno(alumno);
 
-		Alumno alumno1 = alumnoDAO.getDetalleAlumno(id);
-		Alumno alumno2 = new Alumno(id, id, "nombre", "apellido1",
-				"apellido2", "h", "img", "dni", "12345678X", sqlDate,
-				"Tudela", "NA", "ES");
-
-		alumnoDAO.modifyAlumno(alumno2);
-
-		alumno2 = alumnoDAO.getDetalleAlumno(id);
-
-		assertTrue(alumno1.getNombre() != alumno2.getNombre());
+		assertTrue(alumnoDAO.modifyAlumno(alumno));
 	}
-
+/*
 	public void testInsertAlumnoContacto() {
 		int idContacto = 2000;
 

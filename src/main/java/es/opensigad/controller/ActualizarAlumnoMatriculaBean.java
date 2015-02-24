@@ -7,14 +7,15 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import es.opensigad.model.dao.AlumnoMatriculaDAO;
-import es.opensigad.model.vo.Alumno;
-import es.opensigad.model.vo.Centro;
-import es.opensigad.model.vo.Ensenanza;
 
 @ManagedBean
 @SessionScoped
 public class ActualizarAlumnoMatriculaBean implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int idMatricula;
 	private int cursoEscolar;
 	private int centro;

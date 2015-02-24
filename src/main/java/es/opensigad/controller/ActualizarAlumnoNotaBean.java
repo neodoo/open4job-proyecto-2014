@@ -6,51 +6,54 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import es.opensigad.model.dao.AlumnoNotaDAO;
+import es.opensigad.model.vo.AlumnoMatricula;
+import es.opensigad.model.vo.EnsenanzaMateria;
 
 @ManagedBean
 @RequestScoped
 public class ActualizarAlumnoNotaBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int idMatricula;
-	private int idEnsenanza;
-	private int idMateria;
-	private int idEvaluacion;
+	private int id;
+	private AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
+	private EnsenanzaMateria ensenanzaMateria = new EnsenanzaMateria();
+	private int evaluacion;
 	private String nota;
-
+	private String observacion;
+	
 	public ActualizarAlumnoNotaBean() {
 
 	}
 
-	public int getIdMatricula() {
-		return idMatricula;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdMatricula(int idMatricula) {
-		this.idMatricula = idMatricula;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public int getIdEnsenanza() {
-		return idEnsenanza;
+	public AlumnoMatricula getAlumnoMatricula() {
+		return alumnoMatricula;
 	}
 
-	public void setIdEnsenanza(int idEnsenanza) {
-		this.idEnsenanza = idEnsenanza;
+	public void setAlumnoMatricula(AlumnoMatricula alumnoMatricula) {
+		this.alumnoMatricula = alumnoMatricula;
 	}
 
-	public int getIdMateria() {
-		return idMateria;
+	public EnsenanzaMateria getEnsenanzaMateria() {
+		return ensenanzaMateria;
 	}
 
-	public void setIdMateria(int idMateria) {
-		this.idMateria = idMateria;
+	public void setEnsenanzaMateria(EnsenanzaMateria ensenanzaMateria) {
+		this.ensenanzaMateria = ensenanzaMateria;
 	}
 
-	public int getIdEvaluacion() {
-		return idEvaluacion;
+	public int getEvaluacion() {
+		return evaluacion;
 	}
 
-	public void setIdEvaluacion(int idEvaluacion) {
-		this.idEvaluacion = idEvaluacion;
+	public void setEvaluacion(int evaluacion) {
+		this.evaluacion = evaluacion;
 	}
 
 	public String getNota() {
@@ -61,10 +64,18 @@ public class ActualizarAlumnoNotaBean implements Serializable {
 		this.nota = nota;
 	}
 
-	public String actualizarNotaByIdMatricula(int idAlumnoMatricula,int idMateria, String evaluacion,String nota, String observacion) {
+	public String getObservacion() {
+		return observacion;
+	}
+
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
+	}
+
+	public String actualizarNotaByIdMatricula(int id,int idAlumnoMatricula,int idMateria, String evaluacion,String nota, String observacion) {
 		String pagina=null;
 		AlumnoNotaDAO alumnoNotaDAO = new AlumnoNotaDAO();
-		if (alumnoNotaDAO.actualizarNotaByIdMatricula(idAlumnoMatricula, idMateria, evaluacion, nota,observacion)){
+		if (alumnoNotaDAO.actualizarNotaByIdMatricula(id,idAlumnoMatricula, idMateria, evaluacion, nota,observacion)){
 			pagina = "actualizarAlumnoNotaExito";
 		}else{
 			pagina = "actualizarAlumnoNotaFallo";

@@ -48,7 +48,7 @@ public class VerTutorBean {
 		String pagina = "verTutoresPorAlumno";
 
 		TutorDAO tutorDAO = new TutorDAO();
-		tutorLista = tutorDAO.getlistaTutor(id);
+		tutorLista = tutorDAO.getListaTutor(id);
 
 		return pagina;
 
@@ -59,7 +59,7 @@ public class VerTutorBean {
 		String pagina = "verTutoresPorAlumno.xhtml";
 		TutorDAO tutorDAO = new TutorDAO();
 		//tutorLista = new ArrayList<AlumnoTutor>();
-		tutorLista = tutorDAO.getlistaTutor(id);
+		tutorLista = tutorDAO.getListaTutor(id);
 
 		return pagina;
 
