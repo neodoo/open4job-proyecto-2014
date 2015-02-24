@@ -55,8 +55,8 @@
 	    <h:commandButton value="Modificar" action=""></h:commandButton>
 	</h:form>-->
   	<h:form>
-		<!-- <h:inputText value="#{eliminarTutorBean.idTutor}"></h:inputText> -->
-		<br/><h:commandButton value="Borrar el tutor" action="#{eliminarTutorBean.deleteTutor(eliminarTutorBean.idTutor)}"></h:commandButton>
+		<h:inputText value="#{eliminarTutorBean.id}"></h:inputText> 
+		<br/><h:commandButton value="Borrar el tutor" action="#{eliminarTutorBean.deleteTutor(eliminarTutorBean.id)}"></h:commandButton> 
 	</h:form>
    	
    	</h:body>
