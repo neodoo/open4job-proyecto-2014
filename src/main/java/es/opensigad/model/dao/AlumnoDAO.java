@@ -24,8 +24,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 	public AlumnoDAO() {
 
-		emf = Persistence
-				.createEntityManagerFactory(ENTITY_MANAGER);
+		emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
 		em = emf.createEntityManager();
 
 	}
@@ -40,16 +39,15 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 		try {
 			em.getTransaction().begin();
-			String query = "SELECT a FROM Alumno a WHERE id = "
-					+ numExpediente;
-			
+			String query = "SELECT a FROM Alumno a WHERE id = " + numExpediente;
+
 			Alumno alumno = (Alumno) em.createQuery(query).getSingleResult();
 
 			em.getTransaction().commit();
 			em.close();
 
 			return alumno;
-			
+
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception: " + e.getMessage());
 		}
@@ -57,10 +55,23 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 		return null;
 	}
 
-	public boolean insertAlumno(Alumno alumno) {
+	public boolean insertAlumno(Alumno a) {
+
+		try {
+			Alumno alumno = a;
+
+			em.getTransaction().begin();
+			em.merge(alumno);
+			em.getTransaction().commit();
+			em.close();
+
+			return true;
+
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, "Exception: " + e.getMessage());
+		}
 
 		return false;
-
 	}
 
 	public boolean deleteAlumno(int idAlumno) {

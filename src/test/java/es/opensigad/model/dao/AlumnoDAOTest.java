@@ -24,22 +24,30 @@ public class AlumnoDAOTest extends TestCase {
 
 		assertTrue(alumno != null);
 	}
-/*
+
 	public void testInsertAlumno() {
-		int id = 300;
 		java.util.Date utilDate = new java.util.Date();
+		boolean alum;
+		
+		Alumno alumno = new Alumno();
+		
+		alumno.setId(200);
+		alumno.setNumExpediente(200);
+		alumno.setNombre("carlos");
+		alumno.setApellido1("cano");
+		alumno.setApellido2("perez");
+		alumno.setFechaNacimiento(utilDate);
+		alumno.setTipoDocumento("dni");
+		alumno.setDocumento("12345678X");
+		alumno.setSexo("h");
+		alumno.setImagen("image");
+		alumno.setLocalidadNacimiento("tudela");
+		
+		alum = alumnoDAO.insertAlumno(alumno);
 
-		Alumno alumno = new Alumno(id, id, "nom", "ape", "ape", "h", "img",
-				"dni", "12345678X", utilDate, "tudela", "NA", "ES");
-
-		alumnoDAO.insertAlumno(alumno);
-
-		alumno = alumnoDAO.getDetalleAlumno(id);
-
-		//alumno.toString();
-		assertTrue(alumno != null);
+		assertTrue(alum == true);
 	}
-
+/*
 	public void testDeleteAlumno() {
 
 		int id = 200;
