@@ -1,126 +1,152 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
-    <body>
-        <f:event listener="#{verAlumnoNotaListadoBean.allAlumnoNotas}" type="preRenderView" />
+<body>
+	<f:event listener="#{verAlumnoNotaListadoBean.allAlumnoNotas}"
+		type="preRenderView" />
 
-        <ui:composition template="./plantilla/plantillaJSF.xhtml">
+	<ui:composition template="./plantilla/plantillaJSF.xhtml">
 
-            <ui:define name="top">
+		<ui:define name="top">
                 top
             </ui:define>
-            <!-- Contenido de la pagina.-->
-            <ui:define name="content">
-                <!-- Menú de notas-->
-                <p:tabView orientation="left">
-                    <p:tab title="#{etqAlm['titulo.VisualizarNotas']}">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <p:dataTable value="#{verAlumnoNotaListadoBean.alumnoNotas}" var="nota" rows="10"
-                         paginator="true"
-                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10">
-                                <p:column>
-                                    <f:facet name="header">
-                                       <h:outputLabel value="#{etqAlm['titulo.idMatricula']}"/>
-                                    </f:facet>
-                                    #{nota.idMatricula}
+		<!-- Contenido de la pagina.-->
+		<ui:define name="content">
+			<!-- Menú de notas-->
+			<p:tabView orientation="left">
+				<p:tab title="#{etqAlmNotas['titulo.VisualizarNotas']}">
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:dataTable value="#{verAlumnoNotaListadoBean.alumnoNotas}"
+							var="nota" rows="10" paginator="true"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10">
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="#{etqAlmNotas['titulo.id']}" />
+								</f:facet>
+                                    #{nota.id}
+                            </p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="#{etqAlmNotas['titulo.idMatricula']}" />
+								</f:facet>
+                                    #{nota.alumnoMatricula.id}
                                 </p:column>
-                                <p:column>
-                                    <f:facet name="header">
-                                      <h:outputLabel value="#{etqAlm['titulo.idEnsenanza']}"/>
-                                    </f:facet>
-                                    #{nota.idEnsenanza}
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="#{etqAlmNotas['titulo.idMateria']}" />
+								</f:facet>
+                                    #{nota.ensenanzaMateria.id}
                                 </p:column>
-                                <p:column>
-                                    <f:facet name="header">
-                                        <h:outputLabel value="#{etqAlm['titulo.idMateria']}"/>
-                                    </f:facet>
-                                    #{nota.idMateria}
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="#{etqAlmNotas['titulo.idEvaluacion']}" />
+								</f:facet>
+                                    #{nota.evaluacion}
                                 </p:column>
-                                <p:column>
-                                    <f:facet name="header">
-                                       <h:outputLabel value="#{etqAlm['titulo.idEvaluacion']}"/>
-                                    </f:facet>
-                                    #{nota.idEvaluacion}
-                                </p:column>
-                                <p:column>
-                                    <f:facet name="header">
-                                       <h:outputLabel value="#{etqAlm['titulo.nota']}"/>
-                                    </f:facet>
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="#{etqAlmNotas['titulo.nota']}" />
+								</f:facet>
                                     #{nota.nota}
                                 </p:column>
-                            </p:dataTable>
-                        </h:panelGrid>
+							<p:column>
+								<f:facet name="header">
+									<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
+								</f:facet>
+                                    #{nota.observacion}
+                                </p:column>
+						</p:dataTable>
+					</h:panelGrid>
 
-                    </p:tab>
-                    <p:tab title="#{etqAlm['titulo.InsertarNotas']}">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <!-- Formulario de insercción de una nota a una matricula.-->
-                            <h:form>
-                                <div class="ui-grid ui-grid-responsive">
-                                    <div class="ui-grid-row">
-                                        <div class="ui-grid-col-4"><h:outputLabel value="#{etqAlm['etiquetas.IntroducirNota']}"/>
-                                            <h:inputText value="#{insertarAlumnoNotaBean.idMatricula}"></h:inputText></div>
-                                        <div class="ui-grid-col-4"><h:outputLabel value="#{etqAlm['titulo.idEnsenanza']}"/><h:inputText value="#{insertarAlumnoNotaBean.idEnsenanza}"></h:inputText></div>
-                                        <div class="ui-grid-col-4"><h:outputLabel value="#{etqAlm['titulo.idMateria']}"/><h:inputText value="#{insertarAlumnoNotaBean.idMateria}"></h:inputText></div>
-                                        <div class="ui-grid-col-4"><h:outputLabel value="#{etqAlm['titulo.idEvaluacion']}"/><h:inputText value="#{insertarAlumnoNotaBean.idEvaluacion}"></h:inputText></div>
-                                        <div class="ui-grid-col-4"> <h:outputLabel value="#{etqAlm['titulo.nota']}"/><h:inputText value="#{insertarAlumnoNotaBean.nota}"></h:inputText></div>  
-                                        <div class="ui-grid-col-4"><h:commandButton value="Guardar notas del alumno" action="#{insertarAlumnoNotaBean.insertarNotaAlumno(insertarAlumnoNotaBean.idMatricula,insertarAlumnoNotaBean.idEnsenanza,insertarAlumnoNotaBean.idMateria,insertarAlumnoNotaBean.idEvaluacion,insertarAlumnoNotaBean.nota)}"></h:commandButton></div>
+				</p:tab>
+				<p:tab title="#{etqAlmNotas['titulo.InsertarNotas']}">
+					<h:panelGrid columns="2" cellpadding="10">
+						<!-- Formulario de insercción de una nota a una matricula.-->
+						<h:form>
+							<br />
+							<h:outputLabel value="#{etqAlmNotas['etiquetas.IntroducirNota']}" />
+							<br />
+							<h:inputText value="#{insertarAlumnoNotaBean.alumnoMatricula.id}"></h:inputText>
+							<br />
+							<br />
+							<h:outputLabel value="#{etqAlmNotas['titulo.idMateria']}" />
+							<h:inputText
+								value="#{insertarAlumnoNotaBean.ensenanzaMateria.id}"></h:inputText>
+							<br />
+							<h:outputLabel value="#{etqAlmNotas['titulo.idEvaluacion']}" />
+							<h:inputText value="#{insertarAlumnoNotaBean.evaluacion}"></h:inputText>
+							<br />
+							<h:outputLabel value="#{etqAlmNotas['titulo.nota']}" />
+							<h:inputText value="#{insertarAlumnoNotaBean.nota}"></h:inputText>
+							<br />
+							<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
+							<h:inputText value="#{insertarAlumnoNotaBean.observacion}"></h:inputText>
+							<br />
+							<h:commandButton value="Guardar notas del alumno"
+								action="#{insertarAlumnoNotaBean.insertarNotaAlumno(insertarAlumnoNotaBean.ensenanzaMateria.id,insertarAlumnoNotaBean.alumnoMatricula.id,insertarAlumnoNotaBean.evaluacion,insertarAlumnoNotaBean.nota,insertarAlumnoNotaBean.observacion)}"></h:commandButton>
 
-                                    </div>
-                                </div>
-                            </h:form>
-                        </h:panelGrid>
-                    </p:tab>
-                    <p:tab title="#{etqAlm['titulo.verNotasAlumno']}">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <!-- Action visualizar notas de un alumno de momento sin ajax ni ventana modal, sino que redirigue a otra pagina..-->
-                            <h:panelGrid>
-                                <h:form>
-                                    <h:outputLabel value="#{etqAlm['etiquetas.IntroduceMatricula']}"/><h:inputText
-                                        value="#{verAlumnoNotaListadoBean.idMatricula}"></h:inputText>
-                                    <h:commandButton value="Mostrar notas del alumno" action="#{verAlumnoNotaListadoBean.getDetalleNotasAlumno(verAlumnoNotaListadoBean.idMatricula)}"></h:commandButton>
-                                </h:form>
-                            </h:panelGrid>
-                        </h:panelGrid>
-                    </p:tab>
-                    <!-- Actualizar notas de un alumno, el resultado lo muestra en otra ventana de momento.-->
-                    <p:tab title="#{etqAlm['titulo.ActualizarNotasAlumno']}">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <h:form>
-                                <h:outputLabel value="#{etqAlm['etiquetas.ModificarNota']}"/>
-                                <h:inputText value="#{actualizarAlumnoNotaBean.idMatricula}"></h:inputText>
-                                <br/><h:outputLabel value="#{etqAlm['titulo.idEnsenanza']}"/><h:inputText value="#{actualizarAlumnoNotaBean.idEnsenanza}"></h:inputText>
-                                <br/><h:outputLabel value="#{etqAlm['titulo.idMateria']}"/><h:inputText value="#{actualizarAlumnoNotaBean.idMateria}"></h:inputText>
-                                <br/><h:outputLabel value="#{etqAlm['titulo.idEvaluacion']}"/><h:inputText value="#{actualizarAlumnoNotaBean.idEvaluacion}"></h:inputText>
-                                <br/><h:outputLabel value="#{etqAlm['titulo.nota']}"/><h:inputText value="#{actualizarAlumnoNotaBean.nota}"></h:inputText>
-                                <br/><h:commandButton value="Actualizar notas del alumno" action="#{actualizarAlumnoNotaBean.actualizarNotaByIdMatricula(actualizarAlumnoNotaBean.idMatricula,actualizarAlumnoNotaBean.idEnsenanza,actualizarAlumnoNotaBean.idMateria,actualizarAlumnoNotaBean.idEvaluacion,actualizarAlumnoNotaBean.nota)}"></h:commandButton>
-                            </h:form>
-                        </h:panelGrid>
-                    </p:tab>
-                    <!-- Borrar notas de un alumno, el resultado lo muestra en otra ventana de momento.-->
-                    <p:tab title="#{etqAlm['titulo.BorrarNotasAlumno']}">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <h:form>
-                                <h:outputLabel value="#{etqAlm['etiquetas.BorrarNotasAlumno']}"/>
-                                <h:inputText value="#{eliminarAlumnoNotaBean.idMatricula}"></h:inputText>
-                                <br/><h:commandButton value="Borrar notas del alumno" action="#{eliminarAlumnoNotaBean.borrarNotaByIdMatricula(eliminarAlumnoNotaBean.idMatricula)}"></h:commandButton>
-                            </h:form>
-                        </h:panelGrid>
-                    </p:tab>
-                </p:tabView>
-            </ui:define>
 
-            <ui:define name="bottom">
+						</h:form>
+					</h:panelGrid>
+				</p:tab>
+				<!-- Actualizar notas de un alumno, el resultado lo muestra en otra ventana de momento.-->
+				<p:tab title="#{etqAlmNotas['titulo.ActualizarNotasAlumno']}">
+					<h:panelGrid columns="2" cellpadding="10">
+						<h:form>
+							<br />
+							<h:outputLabel value="#{etqAlmNotas['etiquetas.ModificarNota']}" />
+							<h:inputText value="#{actualizarAlumnoNotaBean.id}"></h:inputText>
+							<br />
+							<h:outputLabel value="#{etqAlmNotas['titulo.idMatricula']}" />
+							<h:inputText
+								value="#{actualizarAlumnoNotaBean.alumnoMatricula.id}"></h:inputText>
+							<br />
+							<h:outputLabel value="#{etqAlmNotas['titulo.idMateria']}" />
+							<h:inputText
+								value="#{actualizarAlumnoNotaBean.ensenanzaMateria.id}"></h:inputText>
+							<br />
+							<h:outputLabel value="#{etqAlmNotas['titulo.idEvaluacion']}" />
+							<h:inputText value="#{actualizarAlumnoNotaBean.evaluacion}"></h:inputText>
+							<br />
+							<h:outputLabel value="#{etqAlmNotas['titulo.nota']}" />
+							<h:inputText value="#{actualizarAlumnoNotaBean.nota}"></h:inputText>
+							<br />
+							<br />
+							<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
+							<h:inputText value="#{actualizarAlumnoNotaBean.observacion}"></h:inputText>
+							<br />
+							<h:commandButton value="Actualizar notas del alumno"
+								action="#{actualizarAlumnoNotaBean.actualizarNotaByIdMatricula(actualizarAlumnoNotaBean.id,actualizarAlumnoNotaBean.alumnoMatricula.id,actualizarAlumnoNotaBean.ensenanzaMateria.id,actualizarAlumnoNotaBean.evaluacion,actualizarAlumnoNotaBean.nota,actualizarAlumnoNotaBean.observacion)}"></h:commandButton>
+						</h:form>
+					</h:panelGrid>
+				</p:tab>
+				<!-- Borrar notas de un alumno, el resultado lo muestra en otra ventana de momento.-->
+				<p:tab title="#{etqAlmNotas['titulo.BorrarNotasAlumno']}">
+					<h:panelGrid columns="2" cellpadding="10">
+						<h:form>
+							<h:outputLabel
+								value="#{etqAlmNotas['etiquetas.BorrarNotasAlumno']}" />
+							<h:inputText value="#{eliminarAlumnoNotaBean.id}"></h:inputText>
+							<br />
+							<h:commandButton value="Borrar notas del alumno"
+								action="#{eliminarAlumnoNotaBean.borrarNotaByIdMatricula(eliminarAlumnoNotaBean.id)}"></h:commandButton>
+						</h:form>
+					</h:panelGrid>
+				</p:tab>
+			</p:tabView>
+		</ui:define>
+
+		<ui:define name="bottom">
                 bottom
             </ui:define>
 
-        </ui:composition>
+	</ui:composition>
 
-    </body>
+</body>
 </html>

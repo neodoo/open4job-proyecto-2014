@@ -25,6 +25,11 @@
 			<base-name>es.opensigad.etiquetasAlumnoSeguimiento</base-name>
 			<var>etqAlmSeg</var>
 		</resource-bundle>
+		
+		<resource-bundle>
+			<base-name>es.opensigad.etiquetasNotas</base-name>
+			<var>etqAlmNotas</var>
+		</resource-bundle>
 
 	</application>
 

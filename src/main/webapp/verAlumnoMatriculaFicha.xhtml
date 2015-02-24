@@ -38,13 +38,14 @@
 			<h:inputText value="#{verAlumnoMatriculaFichaBean.matricula.curso}">
 			</h:inputText>
 			<h:outputLabel value="Id Alumno: " style="font-weight:bold" />
-		
+			<h:inputText value="#{verAlumnoMatriculaFichaBean.matricula.alumno.id}" disabled="true">
+			</h:inputText>
 		</h:panelGrid>
 
 
 		<h:commandButton value="Actualizar"
-			action="#{actualizarAlumnoMatriculaBean.modificarMatricula(verAlumnoMatriculaFichaBean.matricula.cursoEscolar,
-		 verAlumnoMatriculaFichaBean.matricula.centro,verAlumnoMatriculaFichaBean.matricula.ensenanza,verAlumnoMatriculaFichaBean.matricula.modulo, verAlumnoMatriculaFichaBean.matricula.curso,verAlumnoMatriculaFichaBean.idMatricula)}" />
+			action="#{actualizarAlumnoMatriculaBean.modificarMatricula(verAlumnoMatriculaFichaBean.matricula.alumno.id,verAlumnoMatriculaFichaBean.matricula.cursoEscolar,
+		 verAlumnoMatriculaFichaBean.matricula.centro.id,verAlumnoMatriculaFichaBean.matricula.ensenanza.id,verAlumnoMatriculaFichaBean.matricula.modulo, verAlumnoMatriculaFichaBean.matricula.curso,verAlumnoMatriculaFichaBean.idMatricula)}" />
 
 	</h:form>
 

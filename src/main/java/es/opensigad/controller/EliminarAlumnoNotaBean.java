@@ -11,24 +11,24 @@ import es.opensigad.model.dao.AlumnoNotaDAO;
 @RequestScoped
 public class EliminarAlumnoNotaBean implements Serializable {
 	
-	private int idMatricula;
+	private int id;
 
 	public EliminarAlumnoNotaBean() {
 
 	}
 
-	public int getIdMatricula() {
-		return idMatricula;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdMatricula(int idMatricula) {
-		this.idMatricula = idMatricula;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String borrarNotaByIdMatricula(int idMatricula) {
+	public String borrarNotaByIdMatricula(int id) {
 		String pagina=null;
 		AlumnoNotaDAO alumnoNotaDAO = new AlumnoNotaDAO();
-		if (alumnoNotaDAO.borrarNotaByIdMatricula(idMatricula)){
+		if (alumnoNotaDAO.borrarNotaByIdMatricula(id)){
 			pagina = "borrarAlumnoNotaExito";
 		}else{
 			pagina = "borrarAlumnoNotaFallo";
