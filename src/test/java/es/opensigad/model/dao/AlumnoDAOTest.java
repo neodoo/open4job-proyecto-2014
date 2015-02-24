@@ -1,9 +1,6 @@
 package es.opensigad.model.dao;
 
-import java.util.List;
-
 import junit.framework.TestCase;
-import es.opensigad.model.vo.AlumnoContacto;
 import es.opensigad.model.vo.Alumno;
 
 public class AlumnoDAOTest extends TestCase {
