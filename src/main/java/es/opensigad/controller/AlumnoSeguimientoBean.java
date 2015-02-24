@@ -11,7 +11,7 @@ import es.opensigad.model.vo.AlumnoSeguimiento;
 
 @ManagedBean
 @RequestScoped
-public class AlumnoSeguimientoFichaBean {
+public class AlumnoSeguimientoBean {
 
 	public static final String TIPO_FALTA = "falta";
 	public static final String TIPO_INCIDENCIA = "incidencia";
