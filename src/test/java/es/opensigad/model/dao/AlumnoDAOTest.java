@@ -28,8 +28,8 @@ public class AlumnoDAOTest extends TestCase {
 		
 		Alumno alumno = new Alumno();
 		
-		alumno.setId(200);
-		alumno.setNumExpediente(200);
+		alumno.setId(300);
+		alumno.setNumExpediente(300);
 		alumno.setNombre("carlos");
 		alumno.setApellido1("cano");
 		alumno.setApellido2("perez");
@@ -44,20 +44,13 @@ public class AlumnoDAOTest extends TestCase {
 
 		assertTrue(alum == true);
 	}
-/*
+
 	public void testDeleteAlumno() {
 
-		int id = 200;
-
-		Alumno alumno = alumnoDAO.getDetalleAlumno(id);
-
-		alumnoDAO.deleteAlumno(id);
-
-		// AlumnoVO alumno = alumnoDAO.getDetalleAlumno(id);
-
-		assertTrue(alumno != null);
+		int id = 6;
+		assertTrue(alumnoDAO.deleteAlumno(id));
 	}
-
+	/*
 	public void testModifyAlumno() {
 
 		int id = 200;

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -39,7 +40,8 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 		try {
 			em.getTransaction().begin();
-			String query = "SELECT a FROM Alumno a WHERE num_expediente = " + numExpediente;
+			String query = "SELECT a FROM Alumno a WHERE num_expediente = "
+					+ numExpediente;
 
 			Alumno alumno = (Alumno) em.createQuery(query).getSingleResult();
 
@@ -75,6 +77,26 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 	}
 
 	public boolean deleteAlumno(int idAlumno) {
+
+		try {
+			em.getTransaction().begin();
+			Alumno alumno = new Alumno();
+			alumno = em.find(Alumno.class, idAlumno);
+			if (alumno == null) {
+				return false;
+			}
+			em.remove(alumno);
+			em.getTransaction().commit();
+			return true;
+
+		} catch (EntityExistsException e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE, "SQLException : " + e.getMessage());
+		} finally {
+			em.close();
+			emf.close();
+		}
 
 		return false;
 	}

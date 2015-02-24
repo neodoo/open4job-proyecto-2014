@@ -14,14 +14,14 @@ import es.opensigad.model.dao.TutorDAO;
 public class EliminarTutorBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	private int idTutor;
 	
-/*	
-	public int getIdTutor() {
-		return idTutor;
+	private int id;
+
+	public int getId() {
+		return id;
 	}
-	public void setIdTutor(int idTutor) {
-		this.idTutor = idTutor;
+	public void setIdTutor(int id) {
+		this.id = id;
 	}
 	
 	//@ManagedProperty(value="#{verTutorBean}")
@@ -37,17 +37,20 @@ public class EliminarTutorBean implements Serializable{
 
 	public String deleteTutor(int idTutor) {
 
-		String pagina = "indexAlumnoTutor";
+		String pagina = "indexAlumnoTutor.xhtml";
 
 		TutorDAO tutorDAO = new TutorDAO();
+		
 		tutorDAO.deleteTutor(idTutor);
+		
 		FacesMessage facesMessage = new FacesMessage(
 				FacesMessage.SEVERITY_INFO,
 				"El Tutor con id " + idTutor
 						+ " ha sido eliminado", null);
 		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+		
 		return pagina;
 
 	}
-	*/
+	
 }
