@@ -6,6 +6,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import es.opensigad.model.dao.TutorDAO;
+import es.opensigad.model.vo.AlumnoTutor;
+import es.opensigad.model.vo.Tutor;
 
 
 @ManagedBean
@@ -13,15 +15,15 @@ import es.opensigad.model.dao.TutorDAO;
 public class VerTutorBean {
 	
 	private int id;
-/*
-	private TutorVO tutorVO;
-	private List<TutorVO> tutorLista;
+
+	private Tutor tutorVO;
+	private List<AlumnoTutor> tutorLista;
 	
-	public List<TutorVO> getTutorLista() {
+	public List<AlumnoTutor> getTutorLista() {
 		return tutorLista;
 	}
 
-	public void setTutorLista(List<TutorVO> tutorLista) {
+	public void setTutorLista(List<AlumnoTutor> tutorLista) {
 		this.tutorLista = tutorLista;
 	}
 
@@ -33,11 +35,11 @@ public class VerTutorBean {
 		this.id = id;
 	}
 
-	public TutorVO getTutorVO() {
+	public Tutor getTutor() {
 		return tutorVO;
 	}
 
-	public void setTutorVO(TutorVO tutorVO) {
+	public void setTutor(Tutor tutorVO) {
 		this.tutorVO = tutorVO;
 	}
 
@@ -56,11 +58,10 @@ public class VerTutorBean {
 
 		String pagina = "verTutoresPorAlumno.xhtml";
 		TutorDAO tutorDAO = new TutorDAO();
-		tutorLista = new ArrayList<TutorVO>();
+		//tutorLista = new ArrayList<AlumnoTutor>();
 		tutorLista = tutorDAO.getlistaTutor(id);
 
 		return pagina;
 
 	}
-	*/
 }

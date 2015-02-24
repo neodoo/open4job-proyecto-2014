@@ -13,6 +13,12 @@ import es.opensigad.model.vo.AlumnoSeguimiento;
 @RequestScoped
 public class AlumnoSeguimientoFichaBean {
 
+	public static final String TIPO_FALTA = "falta";
+	public static final String TIPO_INCIDENCIA = "incidencia";
+
+	//public static final int TIPO_FALTA = 0;
+	//public static final int TIPO_INCIDENCIA = 1;
+
 	private int id;
 	private int idMatricula;
 	private Date fecha;
@@ -23,6 +29,7 @@ public class AlumnoSeguimientoFichaBean {
 	private String observaciones;
 
 	private AlumnoSeguimiento seguimiento = new AlumnoSeguimiento();
+	
 	private List<AlumnoSeguimiento> seguimientos;
 
 	
@@ -128,46 +135,57 @@ public class AlumnoSeguimientoFichaBean {
 
 
 	public String getDetalleAlumnoSeguimiento() {
+
 		String pagina = "alumnoSeguimiento";
 		AlumnoSeguimientoDAO seguimientoDAO = new AlumnoSeguimientoDAO();
 		seguimiento = seguimientoDAO.getDetalleAlumnoSeguimiento(id);
 		
 		return pagina;
+	
 	}
 	
 	public String getListaAlumnoSeguimiento() {
+	
 		String pagina = "alumnoSeguimientoListado";
 		AlumnoSeguimientoDAO seguimientoDAO = new AlumnoSeguimientoDAO();
 		seguimientos = seguimientoDAO.getListaAlumnoSeguimiento(idMatricula);
 
 		return pagina;
+	
 	}
 	
 	public String actualizarAlumnoSeguimiento() {
-		String pagina=null;
+	
+		String pagina = null;
 		AlumnoSeguimientoDAO alumnoSeguimientoDAO = new AlumnoSeguimientoDAO();
 
 		long count = alumnoSeguimientoDAO.actualizarAlumnoSeguimiento(seguimiento);
 		
-		if (count == 1){
+		if (count == 1) {
 			pagina = "actualizarAlumnoSeguimientoExito";
-		}else{
+		} else {
 			pagina = "actualizarAlumnoSeguimientoFallo";
 		}
+	
 		return pagina;
+	
 	}
 
 	public String eliminarAlumnoSeguimiento() {
-		String pagina=null;
+	
+		String pagina = null;
 		AlumnoSeguimientoDAO alumnoSeguimientoDAO = new AlumnoSeguimientoDAO();
 	
-		long count = alumnoSeguimientoDAO.eliminarAlumnoSeguimiento(seguimiento);
+		boolean estado = alumnoSeguimientoDAO.eliminarAlumnoSeguimiento(seguimiento);
 		
-		if (count == 1){
+		if (estado) {
 			pagina = "eliminarAlumnoSeguimientoExito";
-		}else{
+		} else {
 			pagina = "eliminarAlumnoSeguimientoFallo";
 		}
+	
 		return pagina;
+
 	}
+
 }
