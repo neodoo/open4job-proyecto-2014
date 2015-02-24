@@ -58,8 +58,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			alumnoMatricula.setCurso(curso);
 
 			// Guardar matricula
-			// si le paso el objeto en vez de el set persist dará error al estar
-			// creado en la bbdd???
+		
 			em.persist(alumnoMatricula);
 			em.getTransaction().commit();
 
