@@ -1,7 +1,9 @@
 package es.opensigad.model.vo;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -34,11 +36,12 @@ public class Tutor implements Serializable {
 
 	private String nombre;
 
+	@Column(name="sexo", columnDefinition="enum('h','m')")
 	private String sexo;
 
 	private String telefono;
 
-	@Column(name="tipo_documento")
+	@Column(name="tipo_documento", columnDefinition="enum('dni','nif','pasaporte')")
 	private String tipoDocumento;
 
 	//bi-directional many-to-one association to AlumnoTutor

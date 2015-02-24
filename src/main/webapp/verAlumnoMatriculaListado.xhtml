@@ -15,7 +15,7 @@
 			value="#{etqAlmMat['titulo.alumnoMatriculaListado']}" />
 	</h3>
 
-	<h:dataTable value="#{verAlumnoMatriculaListadoBean.listaMatriculaVO}"
+	<h:dataTable value="#{verAlumnoMatriculaListadoBean.listaMatricula}"
 		var="m" styleClass="order-table" headerClass="order-table-header"
 		rowClasses="order-table-odd-row,order-table-even-row">
 
@@ -61,13 +61,14 @@
 			</f:facet>
     				#{m.curso}
     		</h:column>
-		<h:column>
+		<!-- h:column>
 			<f:facet name="header">
 				<h:outputLabel id="idAlumno"
 					value="#{etqAlmMat['etiquetas.idAlumno']}" />
 			</f:facet>
     				#{m.idAlumno}
-    		</h:column>
+    		</h:column -->
+
 	</h:dataTable>
 
 </h:body>

@@ -2,24 +2,30 @@
 <faces-config xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
-    http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd" version="2.0">
-     <application>
-     	   <locale-config>
-     	        <default-locale>es</default-locale>
-     	   </locale-config>
-	   <resource-bundle>
-		<base-name>es.opensigad.etiquetasAlumno</base-name>
-		<var>etqAlm</var>
-	   </resource-bundle>
-	   <resource-bundle>
-		<base-name>es.opensigad.etiquetasAlumnoMatricula</base-name>
-		<var>etqAlmMat</var>
-	   </resource-bundle>
-	   	<resource-bundle>
-			<base-name>es.opensigad.etiquetasAlumnoFalta</base-name>
-			<var>etqFal</var>
-		</resource-bundle>
-     </application>
+    http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+	version="2.0">
+	
+	<application>
 
+		<locale-config>
+			<default-locale>es</default-locale>
+		</locale-config>
+
+		<resource-bundle>
+			<base-name>es.opensigad.etiquetasAlumno</base-name>
+			<var>etqAlm</var>
+		</resource-bundle>
+
+		<resource-bundle>
+			<base-name>es.opensigad.etiquetasAlumnoMatricula</base-name>
+			<var>etqAlmMat</var>
+		</resource-bundle>
+
+		<resource-bundle>
+			<base-name>es.opensigad.etiquetasAlumnoSeguimiento</base-name>
+			<var>etqAlmSeg</var>
+		</resource-bundle>
+
+	</application>
 
 </faces-config>

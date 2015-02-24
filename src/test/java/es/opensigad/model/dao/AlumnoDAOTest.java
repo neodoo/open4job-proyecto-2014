@@ -17,14 +17,14 @@ public class AlumnoDAOTest extends TestCase {
 		assertTrue(alumnos.size() > 0);
 
 	}
-
+*/
 	public void testGetDetalleAlumno() {
 
-		Alumno alumno = alumnoDAO.getDetalleAlumno(200);
+		Alumno alumno = alumnoDAO.getDetalleAlumno(1);
 
 		assertTrue(alumno != null);
 	}
-
+/*
 	public void testInsertAlumno() {
 		int id = 300;
 		java.util.Date utilDate = new java.util.Date();

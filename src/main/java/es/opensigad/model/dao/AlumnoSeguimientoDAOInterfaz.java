@@ -6,9 +6,12 @@ import es.opensigad.model.vo.AlumnoSeguimiento;
 
 public interface AlumnoSeguimientoDAOInterfaz {
 
-	public abstract List<AlumnoSeguimiento> getListaAlumnoSeguimiento(int pidMatricula);
-	public abstract int actualizarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento);
-	public abstract int eliminarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento);
+	public List<AlumnoSeguimiento> getListaAlumnoSeguimiento(int pidMatricula);
+
+	public int actualizarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento);
+
+	public boolean eliminarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento);
+
 	public AlumnoSeguimiento getDetalleAlumnoSeguimiento(int pnumId);
 
 }

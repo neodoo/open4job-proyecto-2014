@@ -10,10 +10,9 @@ public interface AlumnoNotaDAOInterfaz {
 	public ArrayList<AlumnoNota> getNotasByIdMatricula(int idMatricula);
 
 	public boolean insertarNotasAlumnoByIdMatricula(int idAlumnoMatricula,
-			int idMateria, String evaluacion, int nota, String observacion);
+			int idMateria, String evaluacion, String nota, String observacion);
 
-	public boolean actualizarNotaByIdMatricula(int idMatricula,
-			int idEnsenanza, int idMateria, int idEvalucion, int nota);
+	public boolean actualizarNotaByIdMatricula(int idAlumnoMatricula,int idMateria, String evaluacion,String nota, String observacion);
 
 	public boolean borrarNotaByIdMatricula(int idMatricula);
 }

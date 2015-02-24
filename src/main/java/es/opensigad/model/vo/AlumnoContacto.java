@@ -1,6 +1,7 @@
 package es.opensigad.model.vo;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -22,6 +23,7 @@ public class AlumnoContacto implements Serializable {
 
 	private int principal;
 
+	@Column(name="tipo", columnDefinition="enum('telefono','email')")
 	private String tipo;
 
 	//bi-directional many-to-one association to Alumno
