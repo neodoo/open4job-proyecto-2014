@@ -101,7 +101,24 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 		return false;
 	}
 
-	public boolean modifyAlumno(Alumno alumno) {
+	public boolean modifyAlumno(Alumno a) {
+
+		emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+		em = emf.createEntityManager();
+
+		try {
+			Alumno alumno = a;
+
+			em.getTransaction().begin();
+			em.merge(alumno);
+			em.getTransaction().commit();
+			em.close();
+
+			return true;
+
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, "Exception: " + e.getMessage());
+		}
 
 		return false;
 	}
