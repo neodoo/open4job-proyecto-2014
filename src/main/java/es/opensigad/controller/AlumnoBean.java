@@ -1,11 +1,6 @@
 package es.opensigad.controller;
-/*
-import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
+import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -156,4 +151,3 @@ public class AlumnoBean implements Serializable {
 	}
 
 }
-*/
