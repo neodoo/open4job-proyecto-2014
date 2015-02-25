@@ -18,7 +18,8 @@ import es.opensigad.model.vo.AlumnoDireccion;
 
 	public final static String ENTITY_MANAGER = "opensigadUnit";
 
-	public static final Logger logger = Logger.getLogger(Alumno.class.getName());
+	public static final Logger logger = Logger
+			.getLogger(Alumno.class.getName());
 
 	public AlumnoDAO() {
 	}
@@ -47,15 +48,22 @@ import es.opensigad.model.vo.AlumnoDireccion;
 		} catch (Exception e) {
 
 			em.getTransaction().rollback();
-			logger.log(Level.SEVERE, "AlumnoDAO.getListAlumno: " + e.getMessage());
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.getListAlumno: " + e.getMessage());
 
 		} finally {
 
-			try { em.close(); } catch (Exception e) { }
-			try { emf.close(); } catch (Exception e) { }
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
 
 		}
-		
+
 		return alumnoList;
 
 	}
@@ -63,7 +71,7 @@ import es.opensigad.model.vo.AlumnoDireccion;
 	public Alumno getDetalleAlumno(int numExpediente) {
 
 		Alumno alumno = null;
-		
+
 		EntityManagerFactory emf = null;
 		EntityManager em = null;
 
@@ -73,7 +81,7 @@ import es.opensigad.model.vo.AlumnoDireccion;
 			em = emf.createEntityManager();
 
 			em.getTransaction().begin();
-			
+
 			String query = "SELECT a FROM Alumno a WHERE num_expediente = "
 					+ numExpediente;
 
@@ -86,12 +94,19 @@ import es.opensigad.model.vo.AlumnoDireccion;
 		} catch (Exception e) {
 
 			em.getTransaction().rollback();
-			logger.log(Level.SEVERE, "AlumnoDAO.getDetalleAlumno: " + e.getMessage());
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.getDetalleAlumno: " + e.getMessage());
 
 		} finally {
 
-			try { em.close(); } catch (Exception e) { }
-			try { emf.close(); } catch (Exception e) { }
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
 
 		}
 
@@ -99,10 +114,10 @@ import es.opensigad.model.vo.AlumnoDireccion;
 
 	}
 
-	public boolean insertAlumno(Alumno a) {
+	public boolean insertAlumno(Alumno alumno) {
 
 		boolean estado = false;
-		
+
 		EntityManagerFactory emf = null;
 		EntityManager em = null;
 
@@ -113,11 +128,10 @@ import es.opensigad.model.vo.AlumnoDireccion;
 
 			em.getTransaction().begin();
 
-			Alumno alumno = a;
 			em.merge(alumno);
 
 			em.getTransaction().commit();
-			
+
 			logger.log(Level.INFO, "AlumnoDAO.insertAlumno: OK.");
 
 			estado = true;
@@ -125,12 +139,19 @@ import es.opensigad.model.vo.AlumnoDireccion;
 		} catch (Exception e) {
 
 			em.getTransaction().rollback();
-			logger.log(Level.SEVERE, "AlumnoDAO.insertAlumno: " + e.getMessage());
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.insertAlumno: " + e.getMessage());
 
 		} finally {
 
-			try { em.close(); } catch (Exception e) { }
-			try { emf.close(); } catch (Exception e) { }
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
 
 		}
 
@@ -140,7 +161,7 @@ import es.opensigad.model.vo.AlumnoDireccion;
 	public boolean deleteAlumno(int idAlumno) {
 
 		boolean estado = false;
-		
+
 		EntityManagerFactory emf = null;
 		EntityManager em = null;
 
@@ -154,33 +175,40 @@ import es.opensigad.model.vo.AlumnoDireccion;
 			Alumno alumno = new Alumno();
 			alumno = em.find(Alumno.class, idAlumno);
 			em.remove(alumno);
-			
+
 			em.getTransaction().commit();
 
 			logger.log(Level.INFO, "AlumnoDAO.deleteAlumno: OK.");
 
 			estado = true;
-			
+
 		} catch (Exception e) {
 
 			em.getTransaction().rollback();
-			logger.log(Level.SEVERE, "AlumnoDAO.deleteAlumno: " + e.getMessage());
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.deleteAlumno: " + e.getMessage());
 
 		} finally {
 
-			try { em.close(); } catch (Exception e) { }
-			try { emf.close(); } catch (Exception e) { }
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
 
 		}
 
 		return estado;
-		
+
 	}
 
-	public boolean modifyAlumno(Alumno a) {
+	public boolean modifyAlumno(Alumno alumno) {
 
 		boolean estado = false;
-		
+
 		EntityManagerFactory emf = null;
 		EntityManager em = null;
 
@@ -191,11 +219,10 @@ import es.opensigad.model.vo.AlumnoDireccion;
 
 			em.getTransaction().begin();
 
-			Alumno alumno = a;
 			em.merge(alumno);
-			
+
 			em.getTransaction().commit();
-			
+
 			logger.log(Level.INFO, "AlumnoDAO.modifyAlumno: OK.");
 
 			estado = true;
@@ -203,42 +230,239 @@ import es.opensigad.model.vo.AlumnoDireccion;
 		} catch (Exception e) {
 
 			em.getTransaction().rollback();
-			logger.log(Level.SEVERE, "AlumnoDAO.modifyAlumno: " + e.getMessage());
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.modifyAlumno: " + e.getMessage());
 
 		} finally {
 
-			try { em.close(); } catch (Exception e) { }
-			try { emf.close(); } catch (Exception e) { }
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
 
 		}
-		
+
 		return estado;
-	
+
 	}
 
 	public boolean insertAlumnoContacto(AlumnoContacto alumnoContacto) {
 
-		return false;
+		boolean estado = false;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			em.merge(alumnoContacto);
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.insertAlumnoContacto: OK.");
+
+			estado = true;
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.insertAlumnoContacto: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return estado;
 	}
 
 	public boolean deleteAlumnoContacto(int idContacto) {
 
-		return false;
+		boolean estado = false;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+			AlumnoContacto alumnoContacto = new AlumnoContacto();
+			alumnoContacto = em.find(AlumnoContacto.class, idContacto);
+
+			em.remove(alumnoContacto);
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.deleteAlumnoContacto: OK.");
+
+			estado = true;
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.deleteAlumnoContacto: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return estado;
 	}
 
 	public boolean modifyAlumnoContacto(AlumnoContacto alumnoContacto) {
+		boolean estado = false;
 
-		return false;
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			em.merge(alumnoContacto);
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.modifyAlumnoContacto: OK.");
+
+			estado = true;
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.modifyAlumnoContacto: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+		}
+
+		return estado;
 	}
 
 	public AlumnoContacto getDetalleAlumnoContacto(int idContacto) {
 
-		return null;
+		AlumnoContacto alumnoContacto = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			alumnoContacto = em.find(AlumnoContacto.class, idContacto);
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.getDetalleAlumnoContacto: OK.");
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.getDetalleAlumnoContacto: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return alumnoContacto;
 	}
 
 	public List<AlumnoContacto> getListAlumnoContacto(int idAlumno) {
 
-		return null;
+		List<AlumnoContacto> alumnoContactoList = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			Query q = em.createQuery("from AlumnoContacto a");
+			alumnoContactoList = q.getResultList();
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.getListAlumnoContacto: OK.");
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.getListAlumnoContacto: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return alumnoContactoList;
 
 	}
 
