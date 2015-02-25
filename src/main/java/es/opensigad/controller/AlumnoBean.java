@@ -1,11 +1,7 @@
 package es.opensigad.controller;
 
-import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
+import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -22,30 +18,27 @@ public class AlumnoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int idAlumno;
+	
+	private FacesMessage facesMessage;
 
 	private Alumno alumno = new Alumno();
-
-	private String fecha;
 	
 	private Territorio territorioProvincia = new Territorio();
 	
 	private Territorio territorioPais = new Territorio();
+	
+
+	// MÉTODOS
 
 	public String getDetalleAlumno() {
-		
-		
-		// MÉTODOS
 
 		String pagina = "verAlumnoFicha";
-		FacesMessage facesMessage;
 		AlumnoDAO alumnoDAO = new AlumnoDAO();
 		alumno = alumnoDAO.getDetalleAlumno(this.idAlumno);
 
 		if (alumno != null) {
-			DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-
-			fecha = format.format(alumno.getFechaNacimiento());
-
+			setTerritorioPais(alumno.getTerritorio2());
+			setTerritorioProvincia(alumno.getTerritorio1());
 			return pagina;
 		}
 
@@ -61,26 +54,10 @@ public class AlumnoBean implements Serializable {
 	public String modifyAlumno() {
 
 		String pagina = "indexAlumno";
-		FacesMessage facesMessage;
 		AlumnoDAO alumnoDAO = new AlumnoDAO();
-		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		Date utilDate = null;
+		alumno.setTerritorio1(territorioProvincia);
+		alumno.setTerritorio2(territorioPais);
 
-		try {
-			utilDate = (Date) format.parse(fecha);
-		} catch (ParseException e) {
-
-			facesMessage = new FacesMessage(
-					FacesMessage.SEVERITY_INFO,
-					"La fecha insertada no tiene el formato correcto 'dd/MM/yyyy'",
-					null);
-
-			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-			pagina = "verAlumnoFicha";
-			return pagina;
-		}
-
-		alumno.setFechaNacimiento(utilDate);
 
 		if (alumnoDAO.modifyAlumno(alumno))
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -101,10 +78,8 @@ public class AlumnoBean implements Serializable {
 	public String deleteAlumno() {
 
 		String pagina = "indexAlumno";
-		FacesMessage facesMessage;
 		AlumnoDAO alumnoDAO = new AlumnoDAO();
-
-		if (alumnoDAO.deleteAlumno(idAlumno))
+		if (alumnoDAO.deleteAlumno(alumno.getId()))
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"El alumno con numero de expediente "
 							+ alumno.getNumExpediente()
@@ -121,19 +96,9 @@ public class AlumnoBean implements Serializable {
 	
 	public String insertAlumno() {
 		String pagina = "indexAlumno";
-		FacesMessage facesMessage;
 		AlumnoDAO alumnoDAO = new AlumnoDAO();
-		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		Date utilDate = null;
-
-		try {
-			utilDate = (Date) format.parse(fecha);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-
-		alumno.setFechaNacimiento(utilDate);
-
+		alumno.setTerritorio1(territorioProvincia);
+		alumno.setTerritorio2(territorioPais);
 		if (alumnoDAO.insertAlumno(alumno)) {
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"El alumno con numero de expediente "
@@ -153,13 +118,6 @@ public class AlumnoBean implements Serializable {
 
 	//GETTERS Y SETTERS
 	
-	public String getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
-	}
 
 	public int getIdAlumno() {
 		return idAlumno;

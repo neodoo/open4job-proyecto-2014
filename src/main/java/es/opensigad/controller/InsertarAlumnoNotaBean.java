@@ -89,13 +89,5 @@ public class InsertarAlumnoNotaBean implements Serializable {
 		return pagina;
 		
 	}
-	public List<EnsenanzaMateria> listMateriaCombo(){
-	
-		AlumnoNotaDAO alumnoNotaDAO = new AlumnoNotaDAO();
-		List<EnsenanzaMateria> listMateria=alumnoNotaDAO.listMateriaCombo();
-	
-		return listMateria;
-		
-	}
 
 }

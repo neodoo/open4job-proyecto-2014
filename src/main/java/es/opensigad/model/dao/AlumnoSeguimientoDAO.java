@@ -62,7 +62,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 	}
 
-	// Datos de una falta
+	// Datos de un seguimiento
 	public AlumnoSeguimiento getDetalleAlumnoSeguimiento(int pnumId) {
 
 		AlumnoSeguimiento seguimiento = null;
@@ -105,6 +105,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 			em.getTransaction().begin();
 			
 			em.persist(alumnoSeguimiento);
+			
 			em.getTransaction().commit();
 
 			id = alumnoSeguimiento.getId();
@@ -127,7 +128,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 	}	
 	
-	// Actualizar alumno-seguimiento
+	// Actualizar alumnos
 	public boolean actualizarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento) {
 
 		boolean estado = false;
@@ -137,9 +138,11 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 			em.getTransaction().begin();
 			
 			em.merge(alumnoSeguimiento);
+			
 			em.getTransaction().commit();
 
 			estado = true;
+			
 			logger.log(Level.INFO, "AlumnoSeguimientoDAO.actualizarAlumnoSeguimiento: OK.");
 			
 		} catch (Exception e) {
@@ -168,7 +171,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 			em.getTransaction().begin();
 			
 			em.remove(em.merge(alumnoSeguimiento));
-			
+
 			em.getTransaction().commit();
 		
 			estado = true;

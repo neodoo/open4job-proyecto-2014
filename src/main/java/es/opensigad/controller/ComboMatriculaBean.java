@@ -9,15 +9,17 @@ import javax.faces.model.SelectItem;
 
 import es.opensigad.model.dao.AlumnoMatriculaDAO;
 import es.opensigad.model.vo.Centro;
+import es.opensigad.model.vo.Ensenanza;
 
 @ManagedBean
 @ApplicationScoped
-public class CentroComboMatriculaBean implements Serializable{
+public class ComboMatriculaBean implements Serializable{
 
 	private static final long serialVersionUID = -2851132432891443585L;
 	
 	private ArrayList<SelectItem> centroItem = null;
-
+	private ArrayList<SelectItem> ensenanzaItem = null;
+	
 	public ArrayList<SelectItem> getDataCentroItem() {
 
 		this.centroItem = new ArrayList();
@@ -42,6 +44,32 @@ public class CentroComboMatriculaBean implements Serializable{
 
 	public void setCentroItem(ArrayList<SelectItem> centroItem) {
 		this.centroItem = centroItem;
+	}
+	
+	public ArrayList<SelectItem> getDataEnsenanzaItem(){
+	
+		this.ensenanzaItem = new ArrayList();
+		AlumnoMatriculaDAO alumnoMatriculaDAO = new AlumnoMatriculaDAO();
+		ArrayList<Ensenanza> ensenanzaList = (ArrayList<Ensenanza>) alumnoMatriculaDAO.getEnsenanzaList();
+		
+		for(Ensenanza e:ensenanzaList){
+			ensenanzaItem.add(new SelectItem(e.getId(),e.getNombre()));
+		}
+		
+		return ensenanzaItem;
+		
+	} 
+	
+	public ArrayList<SelectItem> getEnsenanzaItem() {
+		
+		if (ensenanzaItem == null)
+			ensenanzaItem = this.getDataEnsenanzaItem(); 
+		
+		return ensenanzaItem;
+	}
+
+	public void setEnsenanzaItem(ArrayList<SelectItem> ensenanzaItem) {
+		this.ensenanzaItem = ensenanzaItem;
 	}
 	
 }
