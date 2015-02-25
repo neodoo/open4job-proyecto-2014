@@ -1,8 +1,15 @@
 package es.opensigad.model.dao;
 
+import java.util.List;
+
+import es.opensigad.model.vo.AlumnoTutor;
 import es.opensigad.model.vo.Tutor;
 
 public interface TutorDAOInterface {
+	
+
+	// Recoge un idAlumno y devuelve los tutores asignados a ese alumno
+	public List<AlumnoTutor> getListaAlumnoTutor(int idAlumno);
 
 	// recibe 1 idtutor y devuelve ese tutor
 	public Tutor getDetalleTutor(int id);

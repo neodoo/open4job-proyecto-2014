@@ -1,22 +1,29 @@
 package es.opensigad.controller;
 
 import java.util.ArrayList;
+
+import java.io.Serializable;
+
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.RequestScoped;
 
 import es.opensigad.model.dao.AlumnoDAO;
 import es.opensigad.model.vo.Alumno;
 
+
 @ManagedBean
-@SessionScoped
-public class VerAlumnoListaBean {
+@RequestScoped
+public class VerAlumnoListaBean implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private List<Alumno> alumnoLista;
 	private List<Alumno> alumnoFiltro;
+
+	public VerAlumnoListaBean() {
+		getListAlumno();
+	}
 
 	public List<Alumno> getAlumnoFiltro() {
 		return alumnoFiltro;
@@ -34,24 +41,10 @@ public class VerAlumnoListaBean {
 		this.alumnoLista = alumnoLista;
 	}
 
-	public String getListAlumno() {
+	public void getListAlumno() {
 
-		String pagina = "verAlumnoLista";
 		AlumnoDAO alumnoDAO = new AlumnoDAO();
-		alumnoLista = new ArrayList<Alumno>();
 		alumnoLista = alumnoDAO.getListAlumno();
-
-		if (alumnoLista == null) {
-			pagina = "indexAlumno";
-			FacesMessage facesMessage;
-
-			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
-					"No hay campos para listar", null);
-			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-			return pagina;
-		}
-		return pagina;
-
 	}
 
 }

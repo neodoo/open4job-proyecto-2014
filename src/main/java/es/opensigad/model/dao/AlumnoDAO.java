@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -13,13 +12,15 @@ import javax.persistence.Query;
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoContacto;
 import es.opensigad.model.vo.AlumnoDireccion;
+import es.opensigad.model.vo.Territorio;
+
 
 public class AlumnoDAO implements AlumnoDAOInterfaz {
 
+
 	public final static String ENTITY_MANAGER = "opensigadUnit";
 
-	public static final Logger logger = Logger
-			.getLogger(Alumno.class.getName());
+	public static final Logger logger = Logger.getLogger(Alumno.class.getName());
 
 	public AlumnoDAO() {
 	}
@@ -218,7 +219,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			em = emf.createEntityManager();
 
 			em.getTransaction().begin();
-			
+
 			em.merge(alumno);
 
 			em.getTransaction().commit();
@@ -382,43 +383,395 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 	public AlumnoContacto getDetalleAlumnoContacto(int idContacto) {
 
-		return null;
+		AlumnoContacto alumnoContacto = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			alumnoContacto = em.find(AlumnoContacto.class, idContacto);
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.getDetalleAlumnoContacto: OK.");
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.getDetalleAlumnoContacto: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return alumnoContacto;
 	}
 
 	public List<AlumnoContacto> getListAlumnoContacto(int idAlumno) {
 
-		return null;
+		List<AlumnoContacto> alumnoContactoList = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			Query q = em.createQuery("from AlumnoContacto a");
+			alumnoContactoList = q.getResultList();
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.getListAlumnoContacto: OK.");
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.getListAlumnoContacto: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return alumnoContactoList;
 
 	}
 
 	public boolean insertAlumnoDireccion(AlumnoDireccion alumnoDireccion) {
 
-		return false;
+		boolean estado = false;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			em.merge(alumnoDireccion);
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.insertAlumnoDireccion: OK.");
+
+			estado = true;
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.insertAlumnoDireccion: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return estado;
 
 	}
 
 	public boolean deleteAlumnoDireccion(int idDireccion) {
 
-		return false;
+		boolean estado = false;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+			AlumnoDireccion alumnoDireccion = new AlumnoDireccion();
+			alumnoDireccion = em.find(AlumnoDireccion.class, idDireccion);
+
+			em.remove(alumnoDireccion);
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.deleteAlumnoDireccion: OK.");
+
+			estado = true;
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.deleteAlumnoDireccion: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return estado;
 
 	}
 
 	public boolean modifyAlumnoDireccion(AlumnoDireccion alumnoDireccion) {
 
-		return false;
+		boolean estado = false;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			em.merge(alumnoDireccion);
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.modifyAlumnoDireccion: OK.");
+
+			estado = true;
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.modifyAlumnoDireccion: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+		}
+
+		return estado;
 
 	}
 
 	public AlumnoDireccion getDetalleAlumnoDireccion(int idDireccion) {
 
-		return null;
+		AlumnoDireccion alumnoDireccion = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			alumnoDireccion = em.find(AlumnoDireccion.class, idDireccion);
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.getDetalleAlumnoDireccion: OK.");
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.getDetalleAlumnoDireccion: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return alumnoDireccion;
 
 	}
 
 	public List<AlumnoDireccion> getListAlumnoDireccion(int idAlumno) {
 
-		return null;
+		List<AlumnoDireccion> alumnoDireccionList = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			Query q = em.createQuery("from AlumnoDireccion a");
+			alumnoDireccionList = q.getResultList();
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.getListAlumnoDireccion: OK.");
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.getListAlumnoDireccion: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return alumnoDireccionList;
 
 	}
 
+
+	public List<Territorio> getListPais() {
+		List<Territorio> territorioList = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			Query q = em.createQuery("SELECT t FROM Territorio t WHERE LENGTH(codigo) = 2");
+
+			territorioList = q.getResultList();
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.getListPais: OK.");
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.getListPais: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return territorioList;
+	}
+
+	public List<Territorio> getListProvincia(){
+		List<Territorio> territorioList = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			Query q = em.createQuery("SELECT t FROM Territorio t WHERE LENGTH(codigo) > 2");
+
+			territorioList = q.getResultList();
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.getListPais: OK.");
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.getListPais: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return territorioList;
+	}
 }

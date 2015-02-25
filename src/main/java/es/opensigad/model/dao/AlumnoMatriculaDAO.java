@@ -84,10 +84,10 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 	}
 	
-	public ArrayList<int[]> getCentroList(){
+	public ArrayList<Centro> getCentroList(){
 		
-		//List<Centro> idCentro = new List<Centro>();
-		ArrayList<Integer>  centroLista= new ArrayList<Integer>();
+		ArrayList<Centro> centroList = new ArrayList<Centro>();
+		//ArrayList<Integer>  centroLista= new ArrayList<Integer>();
 		
 		EntityManagerFactory emf = null;
 		EntityManager em = null;
@@ -100,17 +100,15 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			em.getTransaction().begin();
 
 			Query q = em.createQuery("select c from Centro c");
-			//alumnoMatriculaList = q.getResultList();
-			//idCentro = q.getResultList();
-			//centroLista.add(e);
+			centroList = (ArrayList<Centro>) q.getResultList();
 			em.getTransaction().commit();
 
-			logger.log(Level.INFO, "AlumnoMatriculaDAO.getListadoMatricula: OK.");
+			logger.log(Level.INFO, "AlumnoMatriculaDAO.getCentroList: OK.");
 
 		} catch (EntityExistsException e) {
 			
 			em.getTransaction().rollback();
-			logger.log(Level.SEVERE, "AlumnoMatriculaDAO.getListadoMatricula:" + e.getMessage());
+			logger.log(Level.SEVERE, "AlumnoMatriculaDAO.getCentroList:" + e.getMessage());
 
 		} finally {
 			
@@ -119,7 +117,44 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 		
 		}
 		
-		return null;
+		return centroList;
+	}
+	
+	public ArrayList<Ensenanza> getEnsenanzaList() {
+		
+		ArrayList<Ensenanza> ensenanzaList = new ArrayList<Ensenanza>();
+		
+		
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			Query q = em.createQuery("select e from Ensenanza e");
+			ensenanzaList = (ArrayList<Ensenanza>) q.getResultList();
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoMatriculaDAO.getEnsenanzaList: OK.");
+
+		} catch (EntityExistsException e) {
+			
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE, "AlumnoMatriculaDAO.getEnsenanzaList:" + e.getMessage());
+
+		} finally {
+			
+			try { em.close(); } catch (Exception e) {}
+			try { emf.close(); } catch (Exception e) {}
+		
+		}
+		
+		return ensenanzaList;
+	
 	}
 
 	public boolean borrarMatricula(int idMatricula) {
@@ -293,5 +328,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 		return alumnoMatricula;
 
 	}
+
+
 
 }
