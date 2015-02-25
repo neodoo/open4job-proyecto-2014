@@ -1,12 +1,14 @@
 package es.opensigad.controller;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+
 import es.opensigad.model.dao.TutorDAO;
 
 @ManagedBean
@@ -15,15 +17,16 @@ public class EliminarTutorBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int id;
+	private int idAlumnoTutor;
 
-	public int getId() {
-		return id;
+	public int getIdAlumnoTutor() {
+		return idAlumnoTutor;
 	}
-	public void setIdTutor(int id) {
-		this.id = id;
+
+	public void setIdAlumnoTutor(int idAlumnoTutor) {
+		this.idAlumnoTutor = idAlumnoTutor;
 	}
-	
+
 	//@ManagedProperty(value="#{verTutorBean}")
 	private VerTutorBean verTutorBean;
 	
@@ -35,21 +38,16 @@ public class EliminarTutorBean implements Serializable{
 		this.verTutorBean = verTutorBean;
 	}
 
-	public String deleteTutor(int idTutor) {
+	public String deleteTutor() {
 
 		String pagina = "indexAlumnoTutor.xhtml";
 
 		TutorDAO tutorDAO = new TutorDAO();
 		
-		tutorDAO.deleteTutor(idTutor);
-		
-		FacesMessage facesMessage = new FacesMessage(
-				FacesMessage.SEVERITY_INFO,
-				"El Tutor con id " + idTutor
-						+ " ha sido eliminado", null);
-		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-		
-		return pagina;
+		if(tutorDAO.deleteAlumnoTutor(idAlumnoTutor))
+			return pagina;
+		else
+			return "index.xhtml";
 
 	}
 	

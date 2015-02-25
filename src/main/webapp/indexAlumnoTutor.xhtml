@@ -3,24 +3,25 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
-<h:head>
-	<h:outputLabel id="tituloTutores"
-						value="#{etqAlm['titulo.fichaTutor']}" />
-</h:head>
 <h:body>
 
-		<h:outputLabel id="tituloTutores2"
+<ui:composition template="/template/common/commonLayout.xhtml">
+		<ui:define name="content">
+		<h:messages style="margin:8px;" />
+			<br />
+			<h3>
+				<h:outputLabel id="tituloTutores"
 						value="#{etqAlm['titulo.fichaTutor']}" />
-
+			</h3>
 	<h:form>
 		<h:inputText value="#{verTutorBean.idAlumno}" />
 		<h:commandButton value="Mostrar tutor"
 			action="#{verTutorBean.getListaAlumnoTutor}"></h:commandButton>
 	</h:form>
-
-	<br></br>
-
+</ui:define>
+</ui:composition>
 </h:body>
 </html>
