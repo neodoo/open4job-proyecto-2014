@@ -76,7 +76,7 @@ public class TutorDAO implements TutorDAOInterface {
 	}
 
 	// borra 1 tutor con el idTutor recibido
-	public boolean deleteTutor(int id) {
+	public boolean deleteAlumnoTutor(int idAlumnoTutor) {
 
 		boolean estado = false;
 		
@@ -90,13 +90,23 @@ public class TutorDAO implements TutorDAOInterface {
 
 			em.getTransaction().begin();
 
-			AlumnoTutor alumnoTutor = new AlumnoTutor();
+			/*
+			// Inicio: Ej 1
 			Tutor tutor = new Tutor();
 			tutor.setId(id);
-			alumnoTutor.setTutor(tutor);
-
-
-	em.remove(alumnoTutor);
+			
+			// DELETE FROM tutor WHERE id = ?
+			em.remove(tutor);
+			// Fin: Ej 1
+			 * */
+			 
+			// Inicio: Ej 2
+			AlumnoTutor alumnoTutor = new AlumnoTutor();
+			alumnoTutor.setId(idAlumnoTutor);
+			
+			// DELETE FROM alumno_tutor WHERE id = ?
+			em.remove(alumnoTutor);
+			// Fin: Ej 2
 
 			em.getTransaction().commit();
 

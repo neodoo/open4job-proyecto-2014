@@ -15,7 +15,7 @@ public interface TutorDAOInterface {
 	public Tutor getDetalleTutor(int id);
 
 	// borra 1 tutor con el id recibido
-	public boolean deleteTutor(int id);
+	public boolean deleteAlumnoTutor(int idAlumnoTutor);
 
 	// modifica un tutor con el id recibido
 	public boolean updateTutor(int idAlumno, int idTutor, String nombre, String apellido1, String apellido2, String tipoDocumento, 
