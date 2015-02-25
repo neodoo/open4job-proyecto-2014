@@ -18,23 +18,33 @@
 			value="#{etqAlmMat['etiquetas.idAlumno']}" />
 		<h:inputText value="#{insertarAlumnoMatriculaBean.idAlumno}"></h:inputText>
 		<br />
+		
 		<h:outputLabel id="idCursoEscolar"
 			value="#{etqAlmMat['etiquetas.cursoEscolar']}" />
 		<h:inputText value="#{insertarAlumnoMatriculaBean.cursoEscolar}"></h:inputText>
 		<br />
+		
+		<h:selectOneMenu value = "#{insertarAlumnoMatriculaBean.centro}">
+			<f:selectItems value = "#{centroComboMatriculasBean.centro}"></f:selectItems> 
+		</h:selectOneMenu>
+		
 		<h:outputLabel id="idCentro" value="#{etqAlmMat['etiquetas.centro']}" />
 		<h:inputText value="#{insertarAlumnoMatriculaBean.centro}"></h:inputText>
 		<br />
+		
 		<h:outputLabel id="idEnseñanza"
 			value="#{etqAlmMat['etiquetas.ensenanza']}" />
 		<h:inputText value="#{insertarAlumnoMatriculaBean.ensenanza}"></h:inputText>
 		<br />
+		
 		<h:outputLabel id="idModulo" value="#{etqAlmMat['etiquetas.modulo']}" />
 		<h:inputText value="#{insertarAlumnoMatriculaBean.modulo}"></h:inputText>
 		<br />
+		
 		<h:outputLabel id="idCurso" value="#{etqAlmMat['etiquetas.curso']}" />
 		<h:inputText value="#{insertarAlumnoMatriculaBean.curso}"></h:inputText>
 		<br />
+		
 		<h:commandButton value="#{etqAlmMat['boton.guardarMatriculaAlumno']}"
 			action="#{insertarAlumnoMatriculaBean.insertarAlumnoMatricula(insertarAlumnoMatriculaBean.idAlumno,
 				 insertarAlumnoMatriculaBean.cursoEscolar, insertarAlumnoMatriculaBean.centro, insertarAlumnoMatriculaBean.ensenanza, insertarAlumnoMatriculaBean.modulo, insertarAlumnoMatriculaBean.curso)}"></h:commandButton>

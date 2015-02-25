@@ -1,5 +1,6 @@
 package es.opensigad.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,6 +82,44 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 		return estado;
 
+	}
+	
+	public ArrayList<int[]> getCentroList(){
+		
+		//List<Centro> idCentro = new List<Centro>();
+		ArrayList<Integer>  centroLista= new ArrayList<Integer>();
+		
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			Query q = em.createQuery("select c from Centro c");
+			//alumnoMatriculaList = q.getResultList();
+			//idCentro = q.getResultList();
+			//centroLista.add(e);
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoMatriculaDAO.getListadoMatricula: OK.");
+
+		} catch (EntityExistsException e) {
+			
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE, "AlumnoMatriculaDAO.getListadoMatricula:" + e.getMessage());
+
+		} finally {
+			
+			try { em.close(); } catch (Exception e) {}
+			try { emf.close(); } catch (Exception e) {}
+		
+		}
+		
+		return null;
 	}
 
 	public boolean borrarMatricula(int idMatricula) {
