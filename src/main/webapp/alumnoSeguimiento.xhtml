@@ -3,7 +3,9 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<h:outputStylesheet library="css" name="table-style.css" />
 </h:head>
@@ -30,12 +32,14 @@
 				value="#{alumnoSeguimientoBean.seguimiento.alumnoMatricula.id}">
 			</h:inputText>
 
-			<h:outputLabel id="etiquetaFecha"
+			<!-- h:outputLabel id="etiquetaFecha"
 				value="#{etqAlmSeg['etiqueta.fecha']}" style="font-weight:bold" />
 			<h:inputText value="#{alumnoSeguimientoBean.seguimiento.fecha}">
 				<f:convertDateTime pattern="dd-MM-yyyy" locale="es" type="date"
 					timeZone="CET" />
-			</h:inputText>
+			</h:inputText -->
+
+			<p:calendar value="#{alumnoSeguimientoBean.seguimiento.fecha}" mode="inline" />
 
 			<h:outputLabel id="etiquetaSesion"
 				value="#{etqAlmSeg['etiqueta.sesion']}" style="font-weight:bold" />
@@ -48,17 +52,27 @@
 				value="#{alumnoSeguimientoBean.seguimiento.ensenanzaMateria.id}">
 			</h:inputText>
 
-			<h:outputLabel id="etiquetaTipo"
+			<!-- h:outputLabel id="etiquetaTipo"
 				value="#{etqAlmSeg['etiqueta.tipo']}" style="font-weight:bold" />
 			<h:inputText value="#{alumnoSeguimientoBean.seguimiento.tipo}">
-			</h:inputText>
+			</h:inputText -->
 
-			<h:outputLabel id="etiquetaJustificante"
+			<h:selectOneMenu value="#{alumnoSeguimientoBean.seguimiento.tipo}">
+   				<f:selectItem itemValue="falta" itemLabel="Falta" />
+   				<f:selectItem itemValue="incidencia" itemLabel="Incidencia" />
+   			</h:selectOneMenu>
+
+			<!--  h:outputLabel id="etiquetaJustificante"
 				value="#{etqAlmSeg['etiqueta.justificante']}"
 				style="font-weight:bold" />
 			<h:inputText
 				value="#{alumnoSeguimientoBean.seguimiento.justificante}">
-			</h:inputText>
+			</h:inputText -->
+			
+			<h:selectOneMenu value="#{alumnoSeguimientoBean.seguimiento.justificante}">
+   				<f:selectItem itemValue="1" itemLabel="SI" />
+   				<f:selectItem itemValue="0" itemLabel="NO" />
+   			</h:selectOneMenu>
 
 			<h:outputLabel id="etiquetaObservaciones"
 				value="#{etqAlmSeg['etiqueta.observaciones']}"
