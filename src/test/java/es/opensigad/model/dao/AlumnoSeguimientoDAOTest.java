@@ -30,7 +30,7 @@ public class AlumnoSeguimientoDAOTest extends TestCase {
 	
 		Date fechaSql = null;
 		try {
-			fechaSql = new SimpleDateFormat("dd/MM/yyy").parse("01/01/1901");
+			fechaSql = new SimpleDateFormat("dd/MM/yyyy").parse("01/01/1901");
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}				
