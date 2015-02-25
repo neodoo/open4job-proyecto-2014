@@ -14,11 +14,9 @@ import es.opensigad.model.vo.AlumnoContacto;
 import es.opensigad.model.vo.AlumnoDireccion;
 import es.opensigad.model.vo.Territorio;
 
-<<<<<<< HEAD
 
-=======
 public class AlumnoDAO implements AlumnoDAOInterfaz {
->>>>>>> 55b29601e27598ae7520bcc3cf4f89125ff90650
+
 
 	public final static String ENTITY_MANAGER = "opensigadUnit";
 
@@ -690,9 +688,6 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 	}
 
-<<<<<<< HEAD
-}
-=======
 
 	public List<Territorio> getListPais() {
 		List<Territorio> territorioList = null;
@@ -779,6 +774,4 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 		return territorioList;
 	}
-	
 }
->>>>>>> 55b29601e27598ae7520bcc3cf4f89125ff90650

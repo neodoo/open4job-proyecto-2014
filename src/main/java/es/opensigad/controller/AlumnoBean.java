@@ -1,13 +1,5 @@
 package es.opensigad.controller;
-<<<<<<< HEAD
 
-import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-=======
->>>>>>> 55b29601e27598ae7520bcc3cf4f89125ff90650
 
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;

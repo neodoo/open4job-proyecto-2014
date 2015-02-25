@@ -1,13 +1,9 @@
 package es.opensigad.controller;
-<<<<<<< HEAD
 
-import java.util.ArrayList;
-
-=======
 import java.util.ArrayList;
 
 import java.io.Serializable;
->>>>>>> 55b29601e27598ae7520bcc3cf4f89125ff90650
+
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
