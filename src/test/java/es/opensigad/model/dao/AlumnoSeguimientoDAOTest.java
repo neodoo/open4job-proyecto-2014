@@ -56,7 +56,7 @@ public class AlumnoSeguimientoDAOTest extends TestCase {
 	}
 
 	public void test2() {
-<<<<<<< HEAD
+
 		// Visualizar un seguimiento
 		//AlumnoSeguimiento alumnoSeguimiento = alumnoSeguimiento.getDetalleFalta(idFalta);
 
@@ -66,9 +66,8 @@ public class AlumnoSeguimientoDAOTest extends TestCase {
 
 	public void test3() {
 		// Actualizar Alumno-Seguimiento		
-=======
 		// Visualizar una falta
->>>>>>> 47c02b0c287eb433d54606f16ace03d3d37cc065
+
 		AlumnoSeguimiento alumnoSeguimiento = new AlumnoSeguimiento();
 		alumnoSeguimiento = alumnoSeguimientoDAO.getDetalleAlumnoSeguimiento(idSeguimiento);
 		
@@ -89,22 +88,6 @@ public class AlumnoSeguimientoDAOTest extends TestCase {
 		boolean estado = alumnoSeguimientoDAO.actualizarAlumnoSeguimiento(alumnoSeguimiento);		
 		
 		assertTrue(estado);
-	}
-
-<<<<<<< HEAD
-	public void test4() {
-		// Visualizar seguimientos por Matricula del Alumno
-		//List<AlumnoSeguimiento> alumnoFaltasVO = alumnoSeguimientoDAO
-		//		.getListaFaltas(idAlumno);
-
-		//assertNotNull(alumnoFaltasVO);
-=======
-	public void test3() {
-		// Visualizar faltas por matricula
-		List<AlumnoSeguimiento> alumnoSeguimiento = alumnoSeguimientoDAO.getListaAlumnoSeguimiento(idMatricula);
-		
-		assertNotNull(alumnoSeguimiento);
->>>>>>> 47c02b0c287eb433d54606f16ace03d3d37cc065
 	}
 
 	public void test4() {		

@@ -1,10 +1,7 @@
 package es.opensigad.model.dao;
-/*
-=======
 
 import java.util.List;
 
->>>>>>> 6fd41193c877b7929a479afa4a9a13f35eb7f8d3
 import junit.framework.TestCase;
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoContacto;
@@ -15,17 +12,6 @@ public class AlumnoDAOTest extends TestCase {
 
 	AlumnoDAOPoolDB alumnoDAO = new AlumnoDAOPoolDB();
 
-<<<<<<< HEAD
-	/*public void testGetListAlumno() {
-
-		List<Alumno> alumnos = alumnoDAO.getListAlumno();
-
-		assertTrue(alumnos.size() > 0);
-
-	}
-*/
-/*
-=======
 	/*
 	 * public void testGetListAlumno() {
 	 * 
@@ -35,7 +21,6 @@ public class AlumnoDAOTest extends TestCase {
 	 * 
 	 * }
 	 */
->>>>>>> 47c02b0c287eb433d54606f16ace03d3d37cc065
 	public void testGetDetalleAlumno() {
 
 		Alumno alumno = alumnoDAO.getDetalleAlumno(1);
@@ -94,13 +79,6 @@ public class AlumnoDAOTest extends TestCase {
 
 		assertTrue(alumnoDAO.modifyAlumno(alumno));
 	}
-<<<<<<< HEAD
-*/	
-/*
-	public void testInsertAlumnoContacto() {
-		int idContacto = 2000;
-=======
->>>>>>> 6fd41193c877b7929a479afa4a9a13f35eb7f8d3
 
 	public void testInsertAlumnoContacto() {
 
@@ -226,9 +204,6 @@ public class AlumnoDAOTest extends TestCase {
 	}
 
 	public void testGetListAlumnoDireccion() {
-<<<<<<< HEAD
-		fail("Not yet implemented");
-=======
 		
 		int idAlumno = 1;
 
@@ -236,8 +211,6 @@ public class AlumnoDAOTest extends TestCase {
 				.getListAlumnoDireccion(idAlumno);
 
 		assertTrue(alumnosDireccion.size() > 0);
->>>>>>> 47c02b0c287eb433d54606f16ace03d3d37cc065
 	}
 
 }
-*/
