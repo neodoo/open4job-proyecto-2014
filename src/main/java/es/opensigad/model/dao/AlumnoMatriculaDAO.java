@@ -84,10 +84,10 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 	}
 	
-	public ArrayList<int[]> getCentroList(){
+	public ArrayList<Centro> getCentroList(){
 		
-		//List<Centro> idCentro = new List<Centro>();
-		ArrayList<Integer>  centroLista= new ArrayList<Integer>();
+		ArrayList<Centro> centroList = new ArrayList<Centro>();
+		//ArrayList<Integer>  centroLista= new ArrayList<Integer>();
 		
 		EntityManagerFactory emf = null;
 		EntityManager em = null;
@@ -100,9 +100,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			em.getTransaction().begin();
 
 			Query q = em.createQuery("select c from Centro c");
-			//alumnoMatriculaList = q.getResultList();
-			//idCentro = q.getResultList();
-			//centroLista.add(e);
+			centroList = (ArrayList<Centro>) q.getResultList();
 			em.getTransaction().commit();
 
 			logger.log(Level.INFO, "AlumnoMatriculaDAO.getListadoMatricula: OK.");
@@ -119,7 +117,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 		
 		}
 		
-		return null;
+		return centroList;
 	}
 
 	public boolean borrarMatricula(int idMatricula) {
