@@ -1,51 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
 <h:head>
 	<title>Insertar Matriculas Alumno</title>
 </h:head>
 <h:body>
+
+	<ui:composition template="/template/common/commonLayout.xhtml">
+
+		<ui:define name="content">
 	<h3>
 		<h:outputLabel id="tituloIntroducirMatriculaAlumno"
 			value="#{etqAlmMat['titulo.insertarAlumnoMatricula']}" />
 	</h3>
 
 	<h:form>
+	<p:panelGrid id="panel" columns="2" border="0" cellpadding="0"
+			cellspacing="5">
 		<h:outputLabel id="idAlumno"
 			value="#{etqAlmMat['etiquetas.idAlumno']}" />
 		<h:inputText value="#{insertarAlumnoMatriculaBean.idAlumno}"></h:inputText>
 		<br />
-		
+
 		<h:outputLabel id="idCursoEscolar"
 			value="#{etqAlmMat['etiquetas.cursoEscolar']}" />
 		<h:inputText value="#{insertarAlumnoMatriculaBean.cursoEscolar}"></h:inputText>
 		<br />
-		
-		<h:selectOneMenu  id = "idCentro" value = "#{insertarAlumnoMatriculaBean.idCentro}">
-			<f:selectItems value = "#{comboMatriculaBean.centroItem}"></f:selectItems> 
-		</h:selectOneMenu>
+
+		<p:selectOneMenu id="idCentro"
+			value="#{insertarAlumnoMatriculaBean.idCentro}">
+			<f:selectItems value="#{comboMatriculaBean.centroItem}"></f:selectItems>
+		</p:selectOneMenu>
 		<br />
-		
-		<h:selectOneMenu id="idEnsenanza" value = "#{insertarAlumnoMatriculaBean.idEnsenanza}">
-			<f:selectItems value = "#{comboMatriculaBean.ensenanzaItem}"></f:selectItems> 
-		</h:selectOneMenu>
-		
+
+		<p:selectOneMenu id="idEnsenanza"
+			value="#{insertarAlumnoMatriculaBean.idEnsenanza}">
+			<f:selectItems value="#{comboMatriculaBean.ensenanzaItem}"></f:selectItems>
+		</p:selectOneMenu>
+
 		<br />
-		
+
 		<h:outputLabel id="idModulo" value="#{etqAlmMat['etiquetas.modulo']}" />
 		<h:inputText value="#{insertarAlumnoMatriculaBean.modulo}"></h:inputText>
 		<br />
-		
+
 		<h:outputLabel id="idCurso" value="#{etqAlmMat['etiquetas.curso']}" />
 		<h:inputText value="#{insertarAlumnoMatriculaBean.curso}"></h:inputText>
 		<br />
-		
+
 		<h:commandButton value="#{etqAlmMat['boton.guardarMatriculaAlumno']}"
 			action="#{insertarAlumnoMatriculaBean.insertarAlumnoMatricula(insertarAlumnoMatriculaBean.idAlumno,
 				 insertarAlumnoMatriculaBean.cursoEscolar, insertarAlumnoMatriculaBean.idCentro, insertarAlumnoMatriculaBean.idEnsenanza, insertarAlumnoMatriculaBean.modulo, insertarAlumnoMatriculaBean.curso)}"></h:commandButton>
+	</p:panelGrid>
 	</h:form>
+	
+	</ui:define>
+
+	</ui:composition>
 </h:body>
 </html>
