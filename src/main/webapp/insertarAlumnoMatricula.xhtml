@@ -24,17 +24,13 @@
 		<h:inputText value="#{insertarAlumnoMatriculaBean.cursoEscolar}"></h:inputText>
 		<br />
 		
-		<h:selectOneMenu value = "#{insertarAlumnoMatriculaBean.centro}">
-			<f:selectItems value = "#{centroComboMatriculasBean.centro}"></f:selectItems> 
+		<h:selectOneMenu value = "#{insertarAlumnoMatriculaBean.idCentro}">
+			<f:selectItems value = "#{centroComboMatriculaBean.centroItem}"></f:selectItems> 
 		</h:selectOneMenu>
-		
-		<h:outputLabel id="idCentro" value="#{etqAlmMat['etiquetas.centro']}" />
-		<h:inputText value="#{insertarAlumnoMatriculaBean.centro}"></h:inputText>
-		<br />
 		
 		<h:outputLabel id="idEnseñanza"
 			value="#{etqAlmMat['etiquetas.ensenanza']}" />
-		<h:inputText value="#{insertarAlumnoMatriculaBean.ensenanza}"></h:inputText>
+		<h:inputText value="#{insertarAlumnoMatriculaBean.idEnsenanza}"></h:inputText>
 		<br />
 		
 		<h:outputLabel id="idModulo" value="#{etqAlmMat['etiquetas.modulo']}" />
@@ -47,7 +43,7 @@
 		
 		<h:commandButton value="#{etqAlmMat['boton.guardarMatriculaAlumno']}"
 			action="#{insertarAlumnoMatriculaBean.insertarAlumnoMatricula(insertarAlumnoMatriculaBean.idAlumno,
-				 insertarAlumnoMatriculaBean.cursoEscolar, insertarAlumnoMatriculaBean.centro, insertarAlumnoMatriculaBean.ensenanza, insertarAlumnoMatriculaBean.modulo, insertarAlumnoMatriculaBean.curso)}"></h:commandButton>
+				 insertarAlumnoMatriculaBean.cursoEscolar, insertarAlumnoMatriculaBean.idCentro, insertarAlumnoMatriculaBean.idEnsenanza, insertarAlumnoMatriculaBean.modulo, insertarAlumnoMatriculaBean.curso)}"></h:commandButton>
 	</h:form>
 </h:body>
 </html>

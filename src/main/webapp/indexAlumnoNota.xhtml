@@ -74,11 +74,17 @@
 							<br />
 							<h:inputText value="#{insertarAlumnoNotaBean.alumnoMatricula.id}"></h:inputText>
 							<br />
+							
 							<br />
 							<h:outputLabel value="#{etqAlmNotas['titulo.idMateria']}" />
+							<p:selectOneMenu id="materia" value="#{insertarAlumnoNotaBean.ensenanzaMateria.id}" >
+							<f:selectItems value="#{insertarAlumnoNotaBean.listMateriaCombo()}" var="em" itemLabel="#{em.materia}" itemValue="#{em.id}" />
+							</p:selectOneMenu>
+							<!--  
 							<h:inputText
 								value="#{insertarAlumnoNotaBean.ensenanzaMateria.id}"></h:inputText>
 							<br />
+							-->
 							<h:outputLabel value="#{etqAlmNotas['titulo.idEvaluacion']}" />
 							<h:inputText value="#{insertarAlumnoNotaBean.evaluacion}"></h:inputText>
 							<br />

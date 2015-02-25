@@ -211,7 +211,6 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 			
 			logger.log(Level.INFO, "AlumnoNotaDAO.borrarNotaById: OK.");
 
-			
 		} catch (Exception e) {
 
 			try { em.getTransaction().rollback(); } catch (Exception ex) { }
@@ -227,5 +226,30 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 		return estado;
 
 	}
+	public List<EnsenanzaMateria> listMateriaCombo() {
+		
+		List<EnsenanzaMateria> listMateria = null;
+		try {
+			em.getTransaction().begin();
+			listMateria= em.createQuery("select em from EnsenanzaMateria em").getResultList();
+			em.getTransaction().commit();
+			
+			logger.log(Level.INFO, "AlumnoNotaDAO.listMateriaCombo: OK.");
+		} catch (Exception e) {
+			
+			try { em.getTransaction().rollback(); } catch (Exception ex) { }
+			logger.log(Level.SEVERE, "AlumnoNotaDAO.getAllAlumnoNotas: ERROR. "	+ e.getMessage());
+
+		} finally {
+
+			try { em.close(); } catch (Exception e) { }
+			try { emf.close(); } catch (Exception e) { }
+
+		}	
+		
+		return listMateria;
+		
+	}
+	
 
 }
