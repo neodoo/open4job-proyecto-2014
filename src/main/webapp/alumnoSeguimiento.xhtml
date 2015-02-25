@@ -32,12 +32,14 @@
 				value="#{alumnoSeguimientoBean.seguimiento.alumnoMatricula.id}">
 			</h:inputText>
 
-			<h:outputLabel id="etiquetaFecha"
+			<!-- h:outputLabel id="etiquetaFecha"
 				value="#{etqAlmSeg['etiqueta.fecha']}" style="font-weight:bold" />
 			<h:inputText value="#{alumnoSeguimientoBean.seguimiento.fecha}">
 				<f:convertDateTime pattern="dd-MM-yyyy" locale="es" type="date"
 					timeZone="CET" />
-			</h:inputText>
+			</h:inputText -->
+
+			<p:calendar value="#{alumnoSeguimientoBean.seguimiento.fecha}" mode="inline" />
 
 			<h:outputLabel id="etiquetaSesion"
 				value="#{etqAlmSeg['etiqueta.sesion']}" style="font-weight:bold" />
@@ -50,25 +52,22 @@
 				value="#{alumnoSeguimientoBean.seguimiento.ensenanzaMateria.id}">
 			</h:inputText>
 
+
 			<h:outputLabel id="etiquetaTipo"
 				value="#{etqAlmSeg['etiqueta.tipo']}" style="font-weight:bold" />
-			<h:selectManyMenu
-				value="#{alumnoSeguimientoFichaBean.seguimiento.tipo}">
-				<f:selectItem itemValue="Falta"
-					itemLabel="#{etqAlmSeg['tipo.falta']}" />
-				<f:selectItem itemValue="Incidencia"
-					itemLabel="#{etqAlmSeg['tipo.incidencia']}" />
-			</h:selectManyMenu>
+				
+			<h:selectOneMenu value="#{alumnoSeguimientoBean.seguimiento.tipo}">
+   				<f:selectItem itemValue="falta" itemLabel="#{etqAlmSeg['tipo.falta']}" />
+   				<f:selectItem itemValue="incidencia" itemLabel="#{etqAlmSeg['tipo.incidencia']}" />
+   			</h:selectOneMenu>
 
 			<h:outputLabel id="etiquetaJustificante"
-				value="#{etqAlmSeg['etiqueta.justificante']}"
-				style="font-weight:bold" />
-			<h:selectOneRadio
-				value="#{alumnoSeguimientoFichaBean.seguimiento.justificante}">
-				<f:selectItem itemValue="1" itemLabel="#{etqAlmSeg['tipo.si']}" />
-				<f:selectItem itemValue="0" itemLabel="#{etqAlmSeg['tipo.no']}" />
-			</h:selectOneRadio>
-			</h:inputText>
+				value="#{etqAlmSeg['etiqueta.justificante']}" style="font-weight:bold" />
+				
+			<h:selectOneMenu value="#{alumnoSeguimientoBean.seguimiento.justificante}">
+   				<f:selectItem itemValue="1" itemLabel="#{etqAlmSeg['tipo.si']}" />
+   				<f:selectItem itemValue="0" itemLabel="#{etqAlmSeg['tipo.no']}" />
+   			</h:selectOneMenu>
 
 			<h:outputLabel id="etiquetaObservaciones"
 				value="#{etqAlmSeg['etiqueta.observaciones']}" style="font-weight:bold" />
