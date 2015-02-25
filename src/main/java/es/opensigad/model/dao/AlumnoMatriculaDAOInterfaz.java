@@ -18,6 +18,6 @@ public interface AlumnoMatriculaDAOInterfaz {
 
 	public AlumnoMatricula getListaFichaMatricula(int idMatricula);
 	
-	public ArrayList<int[]> getCentroList();
+	public ArrayList<Centro> getCentroList();
 
 }
