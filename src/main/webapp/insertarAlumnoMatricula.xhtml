@@ -24,13 +24,15 @@
 		<h:inputText value="#{insertarAlumnoMatriculaBean.cursoEscolar}"></h:inputText>
 		<br />
 		
-		<h:selectOneMenu value = "#{insertarAlumnoMatriculaBean.idCentro}">
-			<f:selectItems value = "#{centroComboMatriculaBean.centroItem}"></f:selectItems> 
+		<h:selectOneMenu  id = "idCentro" value = "#{insertarAlumnoMatriculaBean.idCentro}">
+			<f:selectItems value = "#{comboMatriculaBean.centroItem}"></f:selectItems> 
+		</h:selectOneMenu>
+		<br />
+		
+		<h:selectOneMenu id="idEnsenanza" value = "#{insertarAlumnoMatriculaBean.idEnsenanza}">
+			<f:selectItems value = "#{comboMatriculaBean.ensenanzaItem}"></f:selectItems> 
 		</h:selectOneMenu>
 		
-		<h:outputLabel id="idEnseñanza"
-			value="#{etqAlmMat['etiquetas.ensenanza']}" />
-		<h:inputText value="#{insertarAlumnoMatriculaBean.idEnsenanza}"></h:inputText>
 		<br />
 		
 		<h:outputLabel id="idModulo" value="#{etqAlmMat['etiquetas.modulo']}" />

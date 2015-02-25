@@ -12,8 +12,13 @@ import javax.persistence.Query;
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoContacto;
 import es.opensigad.model.vo.AlumnoDireccion;
+import es.opensigad.model.vo.Territorio;
 
+<<<<<<< HEAD
 
+=======
+public class AlumnoDAO implements AlumnoDAOInterfaz {
+>>>>>>> 55b29601e27598ae7520bcc3cf4f89125ff90650
 
 	public final static String ENTITY_MANAGER = "opensigadUnit";
 
@@ -685,4 +690,95 @@ import es.opensigad.model.vo.AlumnoDireccion;
 
 	}
 
+<<<<<<< HEAD
 }
+=======
+
+	public List<Territorio> getListPais() {
+		List<Territorio> territorioList = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			Query q = em.createQuery("SELECT t FROM Territorio t WHERE LENGTH(codigo) = 2");
+
+			territorioList = q.getResultList();
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.getListPais: OK.");
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.getListPais: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return territorioList;
+	}
+
+	public List<Territorio> getListProvincia(){
+		List<Territorio> territorioList = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			Query q = em.createQuery("SELECT t FROM Territorio t WHERE LENGTH(codigo) > 2");
+
+			territorioList = q.getResultList();
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.getListPais: OK.");
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.getListPais: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return territorioList;
+	}
+	
+}
+>>>>>>> 55b29601e27598ae7520bcc3cf4f89125ff90650
