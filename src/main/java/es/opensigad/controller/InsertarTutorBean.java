@@ -137,7 +137,7 @@ public class InsertarTutorBean implements Serializable{
 		
 		TutorDAO tutorDAO = new TutorDAO();
 		
-		if(tutorDAO.insertarTutor(idAlumno, nombre, apellido1, apellido2, tipoDocumento, documento, fechaNac, parentesco, sexo, tlf, email))
+		if(tutorDAO.insertarTutor(1, nombre, apellido1, apellido2, tipoDocumento, documento, fechaNac, parentesco, sexo, tlf, email))
 			pagina = "insertarTutorExito.xhtml";
 		else
 			pagina = "insertarTutorFallo.xhtml";
