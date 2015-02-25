@@ -4,6 +4,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import org.hibernate.Session;
+
 import es.opensigad.model.dao.TutorDAO;
 import es.opensigad.model.vo.AlumnoTutor;
 import es.opensigad.model.vo.Tutor;
@@ -15,7 +17,10 @@ public class VerTutorBean {
 	
 	private int id;
 
+	private int idAlumno;
+
 	private Tutor tutor;
+
 	private List<AlumnoTutor> tutorLista;
 	
 	public List<AlumnoTutor> getTutorLista() {
@@ -34,6 +39,14 @@ public class VerTutorBean {
 		this.id = id;
 	}
 
+	public int getIdAlumno() {
+		return idAlumno;
+	}
+
+	public void setIdAlumno(int idAlumno) {
+		this.idAlumno = idAlumno;
+	}
+
 	public Tutor getTutor() {
 		return tutor;
 	}
@@ -47,20 +60,19 @@ public class VerTutorBean {
 		String pagina = "verTutoresPorAlumno";
 
 		TutorDAO tutorDAO = new TutorDAO();
-		tutorLista = tutorDAO.getListaTutor(id);
-
+		tutor = tutorDAO.getDetalleTutor(idTutor);
+		
 		return pagina;
 
 	}
 	
-	public  String getListaTutor() {
-
-		String pagina = "verTutoresPorAlumno.xhtml";
+	public  String getListaAlumnoTutor() {
+		
+		String pagina = "verListaAlumnoTutor";
 		
 		TutorDAO tutorDAO = new TutorDAO();
-		//tutorLista = new ArrayList<AlumnoTutor>();
-		tutorLista = tutorDAO.getListaTutor(id);
-
+		tutorLista = tutorDAO.getListaAlumnoTutor(idAlumno);
+		
 		return pagina;
 
 	}

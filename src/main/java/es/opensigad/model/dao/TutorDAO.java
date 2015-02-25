@@ -27,7 +27,7 @@ public class TutorDAO implements TutorDAOInterface {
 
 	}
 
-	public List<AlumnoTutor> getListaTutor(int idAlumno) {
+	public List<AlumnoTutor> getListaAlumnoTutor(int idAlumno) {
 
 		List<AlumnoTutor> listAlumnoTutor = null;
 
