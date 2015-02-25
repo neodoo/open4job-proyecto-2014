@@ -2,6 +2,7 @@ package es.opensigad.model.dao;
 
 import junit.framework.TestCase;
 import es.opensigad.model.vo.Alumno;
+import es.opensigad.model.vo.AlumnoContacto;
 
 public class AlumnoDAOTest extends TestCase {
 
@@ -29,7 +30,7 @@ public class AlumnoDAOTest extends TestCase {
 		Alumno alumno = new Alumno();
 		
 		alumno.setId(300);
-		alumno.setNumExpediente(300);
+		alumno.setNumExpediente(200);
 		alumno.setNombre("carlos");
 		alumno.setApellido1("cano");
 		alumno.setApellido2("perez");
@@ -54,9 +55,12 @@ public class AlumnoDAOTest extends TestCase {
 	public void testModifyAlumno() {
 
 		java.util.Date utilDate = new java.util.Date();
-		Alumno alumno = alumnoDAO.getDetalleAlumno(200);
+		//Alumno alumno = alumnoDAO.getDetalleAlumno(200);
+		Alumno alumno = new Alumno();
 		
-		alumno.setNombre("actualizado");
+		alumno.setId(10);
+		alumno.setNumExpediente(10);
+		alumno.setNombre("carlitos");
 		alumno.setApellido1("cano");
 		alumno.setApellido2("perez");
 		alumno.setFechaNacimiento(utilDate);
@@ -70,39 +74,44 @@ public class AlumnoDAOTest extends TestCase {
 
 		assertTrue(alumnoDAO.modifyAlumno(alumno));
 	}
-/*
-	public void testInsertAlumnoContacto() {
-		int idContacto = 2000;
 
-		AlumnoContacto alumnoContacto = new AlumnoContacto(idContacto, 10,
-				"telefono", "999888777", 0);
+	public void testInsertAlumnoContacto() {
+		
+		AlumnoContacto alumnoContacto = new AlumnoContacto();
+		Alumno alumno = new Alumno();
+		alumno.setId(1);
+		alumnoContacto.setAlumno(alumno);
+		alumnoContacto.setTipo("email");
+		alumnoContacto.setContacto("hola@open4job.com");
+		alumnoContacto.setPrincipal(0);
 		
 		assertTrue(alumnoDAO.insertAlumnoContacto(alumnoContacto));
 	}
 
 	public void testDeleteAlumnoContacto() {
-		int id = 16;
 		
-		assertTrue(alumnoDAO.deleteAlumnoContacto(id));
+		assertTrue(alumnoDAO.deleteAlumnoContacto(2));
 	}
 
 	public void testModifyAlumnoContacto() {
-		int idContacto = 15;
-
-		java.util.Date utilDate = new java.util.Date();
-
-		// cargo dos objetos. El original y el modificado
-		AlumnoContacto alumnoContacto1 = alumnoDAO.getDetalleAlumnoContacto(idContacto);
-		AlumnoContacto alumnoContacto2 = new AlumnoContacto(idContacto, 10,
-				"telefono", "999888777", 0);
-
-		alumnoDAO.modifyAlumnoContacto(alumnoContacto2);
-
-		alumnoContacto2 = alumnoDAO.getDetalleAlumnoContacto(idContacto);
-
-		assertTrue(alumnoContacto1 != alumnoContacto2);
+		
+		AlumnoContacto alumnoContacto = new AlumnoContacto();
+		Alumno alumno = new Alumno();
+		
+		//hay que pasarle el id_alumno. Pase el que pase, se cambiará en el contacto.
+		alumno.setId(1);
+		
+		//id del contacto que deseamos modificar
+		alumnoContacto.setId(3);
+		alumnoContacto.setAlumno(alumno);
+		alumnoContacto.setTipo("telefono");
+		alumnoContacto.setContacto("999888777");
+		alumnoContacto.setPrincipal(1);
+		
+		assertTrue(alumnoDAO.modifyAlumnoContacto(alumnoContacto));
+		
 	}
-
+/*
 	public void testGetDetalleAlumnoContacto() {
 		
 		int idContacto = 15;
