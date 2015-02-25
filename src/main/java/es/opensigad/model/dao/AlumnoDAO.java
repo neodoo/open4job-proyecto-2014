@@ -467,19 +467,135 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 	public boolean insertAlumnoDireccion(AlumnoDireccion alumnoDireccion) {
 
-		return false;
+		boolean estado = false;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			em.merge(alumnoDireccion);
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.insertAlumnoDireccion: OK.");
+
+			estado = true;
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.insertAlumnoDireccion: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return estado;
 
 	}
 
 	public boolean deleteAlumnoDireccion(int idDireccion) {
 
-		return false;
+		boolean estado = false;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+			AlumnoDireccion alumnoDireccion = new AlumnoDireccion();
+			alumnoDireccion = em.find(AlumnoDireccion.class, idDireccion);
+
+			em.remove(alumnoDireccion);
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.deleteAlumnoDireccion: OK.");
+
+			estado = true;
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.deleteAlumnoDireccion: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return estado;
 
 	}
 
 	public boolean modifyAlumnoDireccion(AlumnoDireccion alumnoDireccion) {
 
-		return false;
+		boolean estado = false;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			em.merge(alumnoDireccion);
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.modifyAlumnoDireccion: OK.");
+
+			estado = true;
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.modifyAlumnoDireccion: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+		}
+
+		return estado;
 
 	}
 
