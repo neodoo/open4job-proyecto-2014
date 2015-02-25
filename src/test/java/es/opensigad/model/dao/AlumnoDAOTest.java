@@ -141,7 +141,7 @@ public class AlumnoDAOTest extends TestCase {
 
 	public void testGetListAlumnoDireccion() {
 		fail("Not yet implemented");
-	}*/
+	}
 
 }
 */

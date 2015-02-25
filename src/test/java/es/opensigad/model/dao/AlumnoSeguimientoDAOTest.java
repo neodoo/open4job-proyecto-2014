@@ -48,7 +48,7 @@ public class AlumnoSeguimientoDAOTest extends TestCase {
 	}
 
 	public void test2() {
-		// Visualizar una falta
+		// Visualizar un seguimiento
 		//AlumnoSeguimiento alumnoSeguimiento = alumnoSeguimiento.getDetalleFalta(idFalta);
 
 		//assertTrue(alumnoSeguimiento != null);
@@ -78,7 +78,7 @@ public class AlumnoSeguimientoDAOTest extends TestCase {
 	}
 
 	public void test4() {
-		// Visualizar faltas por alumno
+		// Visualizar seguimientos por Matricula del Alumno
 		//List<AlumnoSeguimiento> alumnoFaltasVO = alumnoSeguimientoDAO
 		//		.getListaFaltas(idAlumno);
 
