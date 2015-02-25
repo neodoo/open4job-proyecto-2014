@@ -48,14 +48,26 @@
 
 	</h:dataTable>
 	<h:form>
-	    <h:commandButton value="Insertar" action="insertarTutor"></h:commandButton>
+	    <h:inputHidden value="#{verTutorBean.idAlumno}"></h:inputHidden> 
+  		<h:commandButton value="Insertar" action="insertarTutor"></h:commandButton>
 	</h:form>
+	XXX
+	<h:commandLink action="insertarTutor" value="insert">
+    	<f:param name="idAlumno" value="#{verTutorBean.idAlumno}" />
+	</h:commandLink>
+
+VVVV
+
+<h:link value="insert" outcome="insertarTutor" >
+	<f:param name="idAlumno" value="#{verTutorBean.idAlumno}" />
+</h:link>
+
 	<!-- <h:form>
 		<h:inputText value="#{modificarTutorBean.idTutor}"></h:inputText>
 	    <h:commandButton value="Modificar" action=""></h:commandButton>
 	</h:form>-->
   	<h:form>
-		<h:inputText value="#{eliminarTutorBean.id}"></h:inputText> 
+  		<h:inputText value="#{eliminarTutorBean.id}"></h:inputText> 
 		<br/><h:commandButton value="Borrar el tutor" action="#{eliminarTutorBean.deleteTutor(eliminarTutorBean.id)}"></h:commandButton> 
 	</h:form>
    	

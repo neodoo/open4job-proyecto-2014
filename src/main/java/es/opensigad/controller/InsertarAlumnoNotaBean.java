@@ -1,12 +1,14 @@
 package es.opensigad.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import es.opensigad.model.dao.AlumnoNotaDAO;
 import es.opensigad.model.vo.AlumnoMatricula;
+import es.opensigad.model.vo.AlumnoNota;
 import es.opensigad.model.vo.EnsenanzaMateria;
 
 @ManagedBean
@@ -85,6 +87,14 @@ public class InsertarAlumnoNotaBean implements Serializable {
 		}
 		
 		return pagina;
+		
+	}
+	public List<EnsenanzaMateria> listMateriaCombo(){
+	
+		AlumnoNotaDAO alumnoNotaDAO = new AlumnoNotaDAO();
+		List<EnsenanzaMateria> listMateria=alumnoNotaDAO.listMateriaCombo();
+	
+		return listMateria;
 		
 	}
 
