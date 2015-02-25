@@ -3,6 +3,7 @@ package es.opensigad.model.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.Centro;
 
@@ -20,4 +21,5 @@ public interface AlumnoMatriculaDAOInterfaz {
 	
 	public ArrayList<Centro> getCentroList();
 
+	public ArrayList<Alumno> getAlumnoList();
 }

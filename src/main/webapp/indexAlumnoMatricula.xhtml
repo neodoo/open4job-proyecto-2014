@@ -49,13 +49,14 @@
 				<br />
 				
 					
-					<p:tab title="#{etqAlmMat['titulo.insertarMatricula']}" >
+					<p:tab title="#{etqAlmMat['titulo.insertarMatricula']}" action = "insertarAlumnoMatricula">
 						<h:panelGrid columns="2" cellpadding="10">
-							<h:form>
+							<!--<h:form>
+							<h:commandLink actionListener="insertarAlumnoMatricula" ></h:commandLink>
 								<h:commandButton value="#{etqAlmMat['boton.ir']}"
 									action="insertarAlumnoMatricula">
 								</h:commandButton>
-							</h:form>
+							</h:form>-->
 						</h:panelGrid>
 					</p:tab>
 				<br />
