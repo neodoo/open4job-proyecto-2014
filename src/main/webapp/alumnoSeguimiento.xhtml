@@ -66,14 +66,13 @@
 				style="font-weight:bold" />
 			<h:selectOneRadio
 				value="#{alumnoSeguimientoFichaBean.seguimiento.justificante}">
-				<f:selectItem itemValue="S" itemLabel="#{etqAlmSeg['tipo.si']}" />
-				<f:selectItem itemValue="N" itemLabel="#{etqAlmSeg['tipo.no']}" />
+				<f:selectItem itemValue="1" itemLabel="#{etqAlmSeg['tipo.si']}" />
+				<f:selectItem itemValue="0" itemLabel="#{etqAlmSeg['tipo.no']}" />
 			</h:selectOneRadio>
 			</h:inputText>
 
 			<h:outputLabel id="etiquetaObservaciones"
-				value="#{etqAlmSeg['etiqueta.observaciones']}"
-				style="font-weight:bold" />
+				value="#{etqAlmSeg['etiqueta.observaciones']}" style="font-weight:bold" />
 			<h:inputTextarea rows="4" cols="50"
 				value="#{alumnoSeguimientoBean.seguimiento.observaciones}">
 			</h:inputTextarea>

@@ -1,5 +1,5 @@
 package es.opensigad.controller;
-/*
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -156,4 +156,3 @@ public class AlumnoBean implements Serializable {
 	}
 
 }
-*/

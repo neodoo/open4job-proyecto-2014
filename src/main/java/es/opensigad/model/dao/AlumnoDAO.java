@@ -13,13 +13,11 @@ import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoContacto;
 import es.opensigad.model.vo.AlumnoDireccion;
 
-/*
- 
+
 
 	public final static String ENTITY_MANAGER = "opensigadUnit";
 
-	public static final Logger logger = Logger
-			.getLogger(Alumno.class.getName());
+	public static final Logger logger = Logger.getLogger(Alumno.class.getName());
 
 	public AlumnoDAO() {
 	}
@@ -688,4 +686,3 @@ import es.opensigad.model.vo.AlumnoDireccion;
 	}
 
 }
-*/
