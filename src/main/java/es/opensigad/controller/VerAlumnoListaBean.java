@@ -1,11 +1,7 @@
 package es.opensigad.controller;
-<<<<<<< HEAD
-/*
 import java.util.ArrayList;
-=======
 
 import java.io.Serializable;
->>>>>>> c2b8c9ba47b72a3d86ba7b7b570ba42ecbcd6ff4
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -50,4 +46,3 @@ public class VerAlumnoListaBean implements Serializable {
 	}
 
 }
-*/

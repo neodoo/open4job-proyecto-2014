@@ -1,5 +1,4 @@
 package es.opensigad.model.dao;
-/*
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
@@ -31,4 +30,3 @@ public class AlumnoDAOPoolDB extends AlumnoDAO {
 	}
 
 }
-*/
