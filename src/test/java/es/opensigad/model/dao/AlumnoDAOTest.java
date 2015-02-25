@@ -1,5 +1,7 @@
 package es.opensigad.model.dao;
 
+import java.util.List;
+
 import junit.framework.TestCase;
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoContacto;
@@ -111,10 +113,10 @@ public class AlumnoDAOTest extends TestCase {
 		assertTrue(alumnoDAO.modifyAlumnoContacto(alumnoContacto));
 		
 	}
-/*
+
 	public void testGetDetalleAlumnoContacto() {
 		
-		int idContacto = 15;
+		int idContacto = 3;
 		
 		AlumnoContacto alumnoContacto = alumnoDAO.getDetalleAlumnoContacto(idContacto);
 
@@ -123,13 +125,13 @@ public class AlumnoDAOTest extends TestCase {
 
 	public void testGetListAlumnoContacto() {
 		
-		//sin acabar
+		int idAlumno = 1;
 		
-		List<AlumnoContacto> alumnosContacto = alumnoDAO.getListAlumnoContacto(10);
+		List<AlumnoContacto> alumnosContacto = alumnoDAO.getListAlumnoContacto(idAlumno);
 
 		assertTrue(alumnosContacto.size() > 0);
 	}
-
+/*
 	public void testInsertAlumnoDireccion() {
 		fail("Not yet implemented");
 	}

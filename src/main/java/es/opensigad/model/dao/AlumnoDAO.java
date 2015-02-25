@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -218,7 +217,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			em = emf.createEntityManager();
 
 			em.getTransaction().begin();
-			
+
 			em.merge(alumno);
 
 			em.getTransaction().commit();
@@ -382,12 +381,87 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 	public AlumnoContacto getDetalleAlumnoContacto(int idContacto) {
 
-		return null;
+		AlumnoContacto alumnoContacto = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			alumnoContacto = em.find(AlumnoContacto.class, idContacto);
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.getDetalleAlumnoContacto: OK.");
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.getDetalleAlumnoContacto: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return alumnoContacto;
 	}
 
 	public List<AlumnoContacto> getListAlumnoContacto(int idAlumno) {
 
-		return null;
+		List<AlumnoContacto> alumnoContactoList = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			Query q = em.createQuery("from AlumnoContacto a");
+			alumnoContactoList = q.getResultList();
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.getListAlumnoContacto: OK.");
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.getListAlumnoContacto: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return alumnoContactoList;
 
 	}
 
