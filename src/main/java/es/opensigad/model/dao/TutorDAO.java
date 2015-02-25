@@ -95,7 +95,8 @@ public class TutorDAO implements TutorDAOInterface {
 			tutor.setId(id);
 			alumnoTutor.setTutor(tutor);
 
-			em.remove(alumnoTutor);
+
+	em.remove(alumnoTutor);
 
 			em.getTransaction().commit();
 
@@ -232,7 +233,7 @@ public class TutorDAO implements TutorDAOInterface {
 
 			em.getTransaction().commit();
 		
-			estado = false;
+			estado = true;
 
 			logger.log(Level.INFO, "TutorDAO.insertarTutor: OK.");
 			

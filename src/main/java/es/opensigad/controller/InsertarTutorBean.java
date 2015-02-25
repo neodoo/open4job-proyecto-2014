@@ -15,10 +15,8 @@ import es.opensigad.model.vo.AlumnoTutor;
 public class InsertarTutorBean implements Serializable{
 
 	
-	
 	private static final long serialVersionUID = 1L;
 	
-	private int idAlumno;
 	private int idTutor;
 	private String nombre;
 	private String apellido1;
@@ -32,20 +30,13 @@ public class InsertarTutorBean implements Serializable{
 	private String email;
 	
 	
-	public String getTipoDocumento() {
-		return tipoDocumento;
+	private int idAlumno;
+	public int getIdAlumno() {
+		return idAlumno;
 	}
 
-	public void setTipoDocumento(String tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
-	}
-
-	public String getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
+	public void setIdAlumno(int idAlumno) {
+		this.idAlumno = idAlumno;
 	}
 
 	public int getIdTutor() {
@@ -54,14 +45,6 @@ public class InsertarTutorBean implements Serializable{
 
 	public void setIdTutor(int idTutor) {
 		this.idTutor = idTutor;
-	}
-
-	public int getIdAlumno() {
-		return idAlumno;
-	}
-
-	public void setIdAlumno(int idAlumno) {
-		this.idAlumno = idAlumno;
 	}
 
 	public String getNombre() {
@@ -88,6 +71,14 @@ public class InsertarTutorBean implements Serializable{
 		this.apellido2 = apellido2;
 	}
 
+	public String getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(String tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
 	public String getDocumento() {
 		return documento;
 	}
@@ -95,14 +86,12 @@ public class InsertarTutorBean implements Serializable{
 	public void setDocumento(String documento) {
 		this.documento = documento;
 	}
-	
+
 	public Date getFechaNac() {
-		
 		return fechaNac;
 	}
 
 	public void setFechaNac(Date fechaNac) {
-		
 		this.fechaNac = fechaNac;
 	}
 
@@ -112,6 +101,14 @@ public class InsertarTutorBean implements Serializable{
 
 	public void setParentesco(String parentesco) {
 		this.parentesco = parentesco;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 
 	public String getTlf() {
@@ -129,13 +126,13 @@ public class InsertarTutorBean implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	
 	public String insertarTutor() {
 		
 		String pagina = null;
-		
 		TutorDAO tutorDAO = new TutorDAO();
+		
 		
 		if(tutorDAO.insertarTutor(1, nombre, apellido1, apellido2, tipoDocumento, documento, fechaNac, parentesco, sexo, tlf, email))
 			pagina = "insertarTutorExito.xhtml";
@@ -147,15 +144,6 @@ public class InsertarTutorBean implements Serializable{
 		
 	}
 	
-	public String getListaAlumnoTutor() {
-		
-		TutorDAO tutorDAO = new TutorDAO();
-		String pagina= "tutoresPorAlumno.xhtml";
-		
-		List<AlumnoTutor> lista= tutorDAO.getListaAlumnoTutor(idAlumno);
-		
-		return pagina;
-		
-	}
+
 		 
 }
