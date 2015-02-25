@@ -68,7 +68,6 @@ public class AlumnoSeguimientoBean {
 		return sesion;
 	}
 
-
 	public void setSesion(String sesion) {
 		this.sesion = sesion;
 	}
@@ -108,7 +107,7 @@ public class AlumnoSeguimientoBean {
 	}
 
 
-	public void setObservaciones(String observaciones) {
+	public void setObse0rvaciones(String observaciones) {
 		this.observaciones = observaciones;		
 	}
 
@@ -146,6 +145,7 @@ public class AlumnoSeguimientoBean {
 	public String getListaAlumnoSeguimiento() {
 	
 		String pagina = "alumnoSeguimientoListado";
+		//String pagina = "alumnoSeguimientoListado?faces-redirect=true";
 		AlumnoSeguimientoDAO seguimientoDAO = new AlumnoSeguimientoDAO();
 		seguimientos = seguimientoDAO.getListaAlumnoSeguimiento(idMatricula);
 
