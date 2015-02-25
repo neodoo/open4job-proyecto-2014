@@ -601,13 +601,88 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 	public AlumnoDireccion getDetalleAlumnoDireccion(int idDireccion) {
 
-		return null;
+		AlumnoDireccion alumnoDireccion = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			alumnoDireccion = em.find(AlumnoDireccion.class, idDireccion);
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.getDetalleAlumnoDireccion: OK.");
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.getDetalleAlumnoDireccion: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return alumnoDireccion;
 
 	}
 
 	public List<AlumnoDireccion> getListAlumnoDireccion(int idAlumno) {
 
-		return null;
+		List<AlumnoDireccion> alumnoDireccionList = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			Query q = em.createQuery("from AlumnoDireccion a");
+			alumnoDireccionList = q.getResultList();
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "AlumnoDAO.getListAlumnoDireccion: OK.");
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE,
+					"AlumnoDAO.getListAlumnoDireccion: " + e.getMessage());
+
+		} finally {
+
+			try {
+				em.close();
+			} catch (Exception e) {
+			}
+			try {
+				emf.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return alumnoDireccionList;
 
 	}
 

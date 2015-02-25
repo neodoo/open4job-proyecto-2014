@@ -194,11 +194,23 @@ public class AlumnoDAOTest extends TestCase {
 	}
 
 	public void testGetDetalleAlumnoDireccion() {
-		fail("Not yet implemented");
+		
+		int idDireccion = 3;
+
+		AlumnoDireccion alumnoDireccion = alumnoDAO
+				.getDetalleAlumnoDireccion(idDireccion);
+
+		assertTrue(alumnoDireccion != null);
 	}
 
 	public void testGetListAlumnoDireccion() {
-		fail("Not yet implemented");
+		
+		int idAlumno = 1;
+
+		List<AlumnoDireccion> alumnosDireccion = alumnoDAO
+				.getListAlumnoDireccion(idAlumno);
+
+		assertTrue(alumnosDireccion.size() > 0);
 	}
 
 }
