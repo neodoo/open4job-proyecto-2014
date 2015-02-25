@@ -41,7 +41,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 			seguimientos = em.createQuery(query)
 					.setParameter("pidMatricula", pidMatricula).getResultList();
-			
+
 			em.getTransaction().commit();
 			
 			logger.log(Level.INFO, "AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: OK.");
@@ -53,11 +53,11 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 		
 		} finally {
 		
-			try { em.close(); } catch (Exception e) {}
-			try { emf.close(); } catch (Exception e) {}
+			//try { em.close(); } catch (Exception e) {}
+			//try { emf.close(); } catch (Exception e) {}
 		
 		}
-		
+
 		return seguimientos;
 
 	}
@@ -86,8 +86,8 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 		
 		} finally {
 		
-			try { em.close(); } catch (Exception e) {}
-			try { emf.close(); } catch (Exception e) {}
+			//try { em.close(); } catch (Exception e) {}
+			//try { emf.close(); } catch (Exception e) {}
 		
 		}
 
@@ -118,8 +118,8 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 		} finally {
 		
-			try { em.close(); } catch (Exception e) {}
-			try { emf.close(); } catch (Exception e) {}
+			//try { em.close(); } catch (Exception e) {}
+			//try { emf.close(); } catch (Exception e) {}
 		
 		}
 
@@ -149,8 +149,8 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 		} finally {
 		
-			try { em.close(); } catch (Exception e) {}
-			try { emf.close(); } catch (Exception e) {}
+			//try { em.close(); } catch (Exception e) {}
+			//try { emf.close(); } catch (Exception e) {}
 		
 		}
 
@@ -181,8 +181,8 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.eliminarAlumnoSeguimiento: ERROR. " + e.getMessage());
 
 		} finally {
-			try { em.close(); } catch (Exception e) {}
-			try { emf.close(); } catch (Exception e) {}
+			//try { em.close(); } catch (Exception e) {}
+			//try { emf.close(); } catch (Exception e) {}
 		}
 
 		return estado;
