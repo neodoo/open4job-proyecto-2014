@@ -13,13 +13,13 @@
 <h:body>
 
 	<ui:composition template="/template/common/commonLayout.xhtml">
-		
 		<ui:define name="content">
-		<h:messages style="margin:8px;" /><br />
+			<h:messages style="margin:8px;" />
+			<br />
 			<p:tabView orientation="left">
 
 				<!-- Listar matriculas por IdAlumno -->
-				
+
 				<p:tab title="#{etqAlmMat['titulo.matriculaAlumno']}">
 
 					<h:panelGrid columns="2" cellpadding="10">
@@ -108,9 +108,9 @@
 					</h:panelGrid>
 				</p:tab>
 				<br />
-				
+
 				<!-- Eliminar Matricula de Alumno -->
-				
+
 				<p:tab title="#{etqAlmMat['titulo.eliminarMatricula']}">
 					<h:panelGrid columns="2" cellpadding="10">
 						<h:form>
