@@ -3,8 +3,10 @@ package es.opensigad.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import es.opensigad.model.dao.AlumnoMatriculaDAO;
@@ -22,6 +24,8 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 	private int idEnsenanza;
 	private String modulo;
 	private int curso;
+
+	private FacesMessage facesMessage;
 
 	public InsertarAlumnoMatriculaBean() {
 
@@ -77,15 +81,22 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 
 	public String insertarAlumnoMatricula(int idAlumno, int cursoEscolar,
 			int centro, int ensenanza, String modulo, int curso) {
-		String pagina = null;
+
+		String pagina = "indexAlumnoMatricula";
 		AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
 
 		if (matriculaDAO.insertarMatricula(idAlumno, cursoEscolar, centro,
 				ensenanza, modulo, curso)) {
-			pagina = "insertarAlumnoMatriculaExito";
+
+			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"La matricula se ha insertado correctamente ", null);
+
 		} else {
-			pagina = "insertarAlumnoMatriculaFallo";
+			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"La matricula no se ha insertado correctamente ", null);
+
 		}
+		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 
 		return pagina;
 	}

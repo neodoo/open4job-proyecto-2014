@@ -2,9 +2,11 @@ package es.opensigad.controller;
 
 import java.io.Serializable;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import es.opensigad.model.dao.AlumnoMatriculaDAO;
 
@@ -12,9 +14,7 @@ import es.opensigad.model.dao.AlumnoMatriculaDAO;
 @SessionScoped
 public class ActualizarAlumnoMatriculaBean implements Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private int idMatricula;
 	private int cursoEscolar;
@@ -23,6 +23,7 @@ public class ActualizarAlumnoMatriculaBean implements Serializable {
 	private String modulo;
 	private int curso;
 	private int idAlumno;
+	private FacesMessage facesMessage;
 
 	@ManagedProperty(value = "#{verAlumnoMatriculaFichaBean}")
 	private VerAlumnoMatriculaFichaBean verAlumnoMatriculaFichaBean;
@@ -95,14 +96,17 @@ public class ActualizarAlumnoMatriculaBean implements Serializable {
 	public String modificarMatricula(int idAlumno, int cursoEscolar,
 			int centro, int ensenanza, String modulo, int curso,
 			int idMatricula) {
-		String pagina = null;
+		String pagina = "indexAlumnoMatricula";
 		AlumnoMatriculaDAO alumnoMatriculaDAO = new AlumnoMatriculaDAO();
 		if (alumnoMatriculaDAO.modificarMatricula(idAlumno, cursoEscolar,
 			centro, ensenanza, modulo, curso, idMatricula)) {
-			pagina = "actualizarAlumnoMatriculaExito";
+			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"La matricula se ha actualizado correctamente ", null);
 		} else {
-			pagina = "actualizarAlumnoMatriculaFallo";
+			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"La matricula no se ha insertado correctamente ", null);
 		}
+		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 		return pagina;
 	}
 

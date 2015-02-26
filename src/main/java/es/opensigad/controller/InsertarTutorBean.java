@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import es.opensigad.model.dao.TutorDAO;
+import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoTutor;
 
 
@@ -17,6 +18,7 @@ public class InsertarTutorBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	private Alumno alumno = new Alumno();
 	private int idTutor;
 	private String nombre;
 	private String apellido1;
@@ -28,15 +30,14 @@ public class InsertarTutorBean implements Serializable{
 	private String sexo;
 	private String tlf;
 	private String email;
+
 	
-	
-	private int idAlumno;
-	public int getIdAlumno() {
-		return idAlumno;
+	public Alumno getAlumno() {
+		return alumno;
 	}
 
-	public void setIdAlumno(int idAlumno) {
-		this.idAlumno = idAlumno;
+	public void setAlumno(Alumno alumno) {
+		this.alumno = alumno;
 	}
 
 	public int getIdTutor() {
@@ -128,13 +129,13 @@ public class InsertarTutorBean implements Serializable{
 	}
 
 	
-	public String insertarTutor() {
+	public String insertarTutor(int id, String nombre, String apellido1, String apellido2, String tipoDocumento, String documento, Date fechaNac, String parentesco, String sexo, String tlf, String email) {
 		
 		String pagina = null;
 		TutorDAO tutorDAO = new TutorDAO();
 		
 		
-		if(tutorDAO.insertarTutor(1, nombre, apellido1, apellido2, tipoDocumento, documento, fechaNac, parentesco, sexo, tlf, email))
+		if(tutorDAO.insertarTutor(id, nombre, apellido1, apellido2, tipoDocumento, documento, fechaNac, parentesco, sexo, tlf, email))
 			pagina = "insertarTutorExito.xhtml";
 		else
 			pagina = "insertarTutorFallo.xhtml";

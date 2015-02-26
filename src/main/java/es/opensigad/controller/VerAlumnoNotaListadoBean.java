@@ -7,8 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import es.opensigad.model.dao.AlumnoNotaDAO;
-import es.opensigad.model.vo.AlumnoNota;
-
+import es.opensigad.model.vo.*;
 @ManagedBean
 @RequestScoped
 public class VerAlumnoNotaListadoBean implements Serializable {
@@ -17,10 +16,6 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 	
 	private List<AlumnoNota> alumnoNotas;
 	private int id;
-
-	public VerAlumnoNotaListadoBean() {
-		getAllAlumnoNotas();
-	}
 
 	public int getId() {
 		return id;
@@ -39,10 +34,10 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 	}
 
 	public String getDetalleNotasAlumno(int id) {
-		
+		//recoger el id del alumno en este metodo
 		String pagina= "verAlumnoNotaListado";
 		AlumnoNotaDAO notasAlumnoDAO = new AlumnoNotaDAO();
-		alumnoNotas = notasAlumnoDAO.getNotasByIdMatricula(id);
+		alumnoNotas = notasAlumnoDAO.getNotasByIdAlumno(id);
 	
 		return pagina;
 	

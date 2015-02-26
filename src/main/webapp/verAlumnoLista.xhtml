@@ -12,7 +12,7 @@
 </h:head>
 
 <h:body>
-	<f:event listener="#{verAlumnoListaBean.getListAlumno}"
+	<f:event listener="#{alumnoBean.getListAlumno}"
 		type="preRenderView" />
 
 	<ui:composition template="/template/common/commonLayout.xhtml">
@@ -21,10 +21,10 @@
 			<h:form>
 
 				<p:dataTable id="tablaDeAlumnos" var="alumno"
-					value="#{verAlumnoListaBean.alumnoLista}"
+					value="#{alumnoBean.alumnoLista}"
 					widgetVar="tablaDeAlumnos"
 					emptyMessage="No hay alumnos con este criterio de filtrado"
-					filteredValue="#{verAlumnoListaBean.alumnoFiltro}" paginator="true"
+					filteredValue="#{alumnoBean.alumnoFiltro}" paginator="true"
 					rows="10" style="width:900px">
 
 					<f:facet name="header">

@@ -14,60 +14,69 @@
 		value="#{etqAlm['titulo.nuevoTutor']}" />
 	<h:form>
 		<br />
+		<h:outputLabel value="ID Tutor" />
+		<p:selectOneMenu id="tutor"
+			value="#{actualizarTutorBean.idTutor}">
+			<f:selectItems value="#{combosAlumnoBean.getListTutores()}"
+				var="tutor" itemLabel="#{tutor.nombre}"
+				itemValue="#{tutor.id}" />
+		</p:selectOneMenu>
 		<h:outputLabel value="ID Alumno" />
 		<p:selectOneMenu id="alumno"
-			value="#{insertarTutorBean.alumno.id}">
+			value="#{actualizarTutorBean.alumno.id}">
 			<f:selectItems value="#{combosAlumnoBean.getListAlumnos()}"
 				var="alumno" itemLabel="#{alumno.nombre}"
 				itemValue="#{alumno.id}" />
 		</p:selectOneMenu>
+		
+		<br></br>
 		<!-- Aqui se ingresa el nombre y se valida -->
 		<h:outputLabel id="etiquetaNombre"
 			value="#{etqAlm['etiquetas.nombre']}" />
-		<h:inputText value="#{insertarTutorBean.nombre}" label="nombre"></h:inputText>
+		<h:inputText value="#{actualizarTutorBean.nombre}" label="nombre"></h:inputText>
 
 		<br> </br>
 
 		<!-- Aqui se ingresa el apellido1 y se valida -->
 		<h:outputLabel id="etiquetaApellido1"
 			value="#{etqAlm['etiquetas.apellido1']}" />
-		<h:inputText value="#{insertarTutorBean.apellido1}" label="apellido1"></h:inputText>
+		<h:inputText value="#{actualizarTutorBean.apellido1}" label="apellido1"></h:inputText>
 
 		<br> </br>
 
 		<!-- Aqui se ingresa el apellido2 y se valida -->
 		<h:outputLabel id="etiquetaApellido2"
 			value="#{etqAlm['etiquetas.apellido2']}" />
-		<h:inputText value="#{insertarTutorBean.apellido2}" label="apellido2"></h:inputText>
+		<h:inputText value="#{actualizarTutorBean.apellido2}" label="apellido2"></h:inputText>
 
 		<br> </br>
 
 		<!-- Aqui se ingresa el tipo de Documento y se valida -->
 		<h:outputLabel id="etiquetaTipoDocumento"
 			value="#{etqAlm['etiquetas.tipoDocumento']}" />
-		<h:inputText value="#{insertarTutorBean.tipoDocumento}"
+		<h:inputText value="#{actualizarTutorBean.tipoDocumento}"
 			label="apellido2"></h:inputText>
 
 		<br> </br>
 
 		<!-- Aqui se ingresa el DNI y se valida -->
 		<h:outputLabel id="etiquetaDni" value="#{etqAlm['etiquetas.dni']}" />
-		<h:inputText value="#{insertarTutorBean.documento}" label="documento"></h:inputText>
+		<h:inputText value="#{actualizarTutorBean.documento}" label="documento"></h:inputText>
 
 		<br> </br>
 
 		<!-- Aqui se ingresa el Fecha Nacimiento y se valida -->
 		<h:outputLabel id="etiquetaFechaNacimiento"
 			value="#{etqAlm['etiquetas.fechaNacimiento']}" />
-		<!--  <h:inputText id="fechaNac" value="#{insertarTutorBean.fechaNac}">-->
-		<p:calendar id="calendar" value="#{insertarTutorBean.fechaNac}" mode="popup" showOn0="focus" />
+		<!--  <h:inputText id="fechaNac" value="#{actualizarTutorBean.fechaNac}">-->
+		<p:calendar id="calendar" value="#{actualizarTutorBean.fechaNac}" mode="popup" showOn0="focus" />
 
 		<br> </br>
 
 		<!-- Aqui se ingresa el parentesco-->
 		<h:outputLabel id="etiquetaParentesco"
 			value="#{etqAlm['etiquetas.parentesco']}" />
-		<h:inputText value="#{insertarTutorBean.parentesco}"
+		<h:inputText value="#{actualizarTutorBean.parentesco}"
 			label="parentesco"></h:inputText>
 
 		<br> </br>
@@ -75,7 +84,7 @@
 		<!-- Aqui se ingresa el sexo-->
 		<h:outputLabel id="sexo"
 			value="sexo" />
-		<h:inputText value="#{insertarTutorBean.sexo}"
+		<h:inputText value="#{actualizarTutorBean.sexo}"
 			label="sexo"></h:inputText>
 
 		<br> </br>
@@ -83,17 +92,17 @@
 		<!-- Aqui se ingresa el telefono y se valida -->
 		<h:outputLabel id="etiquetaTelefono"
 			value="#{etqAlm['etiquetas.telefono']}" />
-		<h:inputText value="#{insertarTutorBean.tlf}" label="tlf"></h:inputText>
+		<h:inputText value="#{actualizarTutorBean.tlf}" label="tlf"></h:inputText>
 
 		<br> </br>
 		<!-- Aqui se ingresa el email y se valida -->
 		<h:outputLabel id="etiquetaEmail" value="#{etqAlm['etiquetas.email']}" />
-		<h:inputText value="#{insertarTutorBean.email}" label="email"></h:inputText>
+		<h:inputText value="#{actualizarTutorBean.email}" label="email"></h:inputText>
 
 		<br> </br>
 
-		<h:commandButton value="Registrar"
-			action="#{insertarTutorBean.insertarTutor(insertarTutorBean.alumno.id,insertarTutorBean.nombre,insertarTutorBean.apellido1,insertarTutorBean.apellido2,insertarTutorBean.tipoDocumento,insertarTutorBean.documento,insertarTutorBean.fechaNac,insertarTutorBean.parentesco,insertarTutorBean.sexo,insertarTutorBean.tlf,insertarTutorBean.email)}"></h:commandButton>
+		<h:commandButton value="Actualizar"
+			action="#{actualizarTutorBean.actualizarTutor(actualizarTutorBean.alumno.id,actualizarTutorBean.idTutor, actualizarTutorBean.nombre,actualizarTutorBean.apellido1,actualizarTutorBean.apellido2,actualizarTutorBean.tipoDocumento,actualizarTutorBean.documento,actualizarTutorBean.fechaNac,actualizarTutorBean.parentesco,actualizarTutorBean.sexo,actualizarTutorBean.tlf,actualizarTutorBean.email)}"></h:commandButton>
 
 	</h:form>
 </h:body>

@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.AlumnoNota;
 import es.opensigad.model.vo.EnsenanzaMateria;
@@ -59,7 +60,7 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 	}
 
-	public List<AlumnoNota> getNotasByIdMatricula(int id) {
+	public List<AlumnoNota> getNotasByIdAlumno(int id) {
 
 		List<AlumnoNota> alumnos = null;
 	
@@ -67,18 +68,46 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 			em.getTransaction().begin();
 
-			String query = "FROM AlumnoNota an WHERE an.id = " + id;
+			//String query = "FROM AlumnoNota an WHERE an.id = " + id;
+			
+			// TODO
+			String query = " SELECT an FROM AlumnoNota an";
+			//+ " FROM Alumno a, AlumnoNota an, AlumnoMatricula am WHERE "
+			//+ " a.id=am.alumno.id "
+			//+ " and am.alumno.alumnoNotas.id = an.id"
+			//+ " and a.id= " + id;
+			
+			/*String query= " SELECT an"
+					+ " FROM Alumno a, AlumnoNota an, AlumnoMatricula am, EnsenanzaMateria em WHERE "
+					+ " a.id=am.alumno.id "
+					+ " and am.alumno.alumnoNotas.id = an.id"
+					+ " and em.id=ensenanzaMateria "
+					+ " and a.id= " + id;
+			
+			String query= " SELECT an "
+					+ " FROM Alumno a, AlumnoMatricula am, AlumnoNota an "
+					+ " a.id = am.alumno.id "
+					+ " AND am.alumno.alumnoNotas.id = an.id "
+					+ " AND a.id = " + id;*/
+			
+			/*SELECT 
+			em.materia,an.nota, an.evaluacion, an.observacion 
+			FROM opensigad.alumno a , opensigad.alumno_nota an , opensigad.alumno_matricula  am,
+			opensigad.ensenanza_materia em
+			WHERE 
+			a.id=am.id_alumno and am.id=an.id_alumno_matricula and em.id=an.id_materia and
+			a.id=1*/
 
 			alumnos = em.createQuery(query).getResultList();
 
 			em.getTransaction().commit();
 
-			logger.log(Level.INFO, "AlumnoNotaDAO.getNotasByIdMatricula: OK.");
+			logger.log(Level.INFO, "AlumnoNotaDAO.getNotasByIdAlumno: OK.");
 
 		} catch (Exception e) {
 
 			try { em.getTransaction().rollback(); } catch (Exception ex) { }
-			logger.log(Level.SEVERE, "AlumnoNotaDAO.getNotasByIdMatricula: ERROR. " + e.getMessage());
+			logger.log(Level.SEVERE, "AlumnoNotaDAO.getNotasByIdAlumno: ERROR. " + e.getMessage());
 
 		} finally {
 

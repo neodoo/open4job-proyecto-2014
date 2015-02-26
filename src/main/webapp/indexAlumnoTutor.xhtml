@@ -5,23 +5,35 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:body>
 
-<ui:composition template="/template/common/commonLayout.xhtml">
+	<ui:composition template="/template/common/commonLayout.xhtml">
 		<ui:define name="content">
-		<h:messages style="margin:8px;" />
+			<h:messages style="margin:8px;" />
 			<br />
 			<h3>
 				<h:outputLabel id="tituloTutores"
-						value="#{etqAlm['titulo.fichaTutor']}" />
+					value="#{etqAlm['titulo.fichaTutor']}" />
 			</h3>
-	<h:form>
-		<h:inputText value="#{verTutorBean.idAlumno}" />
-		<h:commandButton value="Mostrar tutor"
-			action="#{verTutorBean.getListaAlumnoTutor}"></h:commandButton>
-	</h:form>
-</ui:define>
-</ui:composition>
+			<h:form>
+				<h3>Eliminar Tutor</h3>
+			Id Alumno-Tutor para eliminar.
+			<p:selectOneMenu id="alumno" value="#{eliminarTutorBean.alumnoTutor.id}">
+					<f:selectItems value="#{combosAlumnoBean.getListAlumnoTutor()}"
+						var="alumno" itemLabel="#{alumno.alumno.id}-#{alumno.tutor.id}" itemValue="#{alumno.id}" />
+				</p:selectOneMenu>
+				<h:commandButton
+					action="#{eliminarTutorBean.deleteTutor(eliminarTutorBean.alumnoTutor.id)}"
+					value="Eliminar Relación" />
+				<h3>Insertar Tutor / Tutor-Alumno</h3>
+				<a href="insertarTutor.xhtml">Insertar Tutor</a>
+				<h3>Mostrar Tutores</h3>
+				<h:commandButton action="#{verTutorBean.getListaTutor}"
+					value="Mostrar Tutores" />
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

@@ -27,7 +27,47 @@ public class TutorDAO implements TutorDAOInterface {
 
 	}
 
-	public List<AlumnoTutor> getListaAlumnoTutor(int idAlumno) {
+	public List<Tutor> getListaTutor() {
+
+		List<Tutor> listAlumnoTutor = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			// Recuperamos el objeto relacion Alumno_tutor para recuperar todos
+			// los datos
+			Query q = em.createQuery("SELECT at FROM Tutor at");
+			
+			listAlumnoTutor = q.getResultList();
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "TutorDAO.getListaTutor: OK.");
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE, "TutorDAO.getListaTutor: " + e.getMessage());
+
+		} finally {
+
+			try { em.close(); } catch (Exception e) { }
+			try { emf.close(); } catch (Exception e) { }
+
+		}
+
+		return listAlumnoTutor;
+
+	}
+	
+	public List<AlumnoTutor> getListaAlumnoTutor() {
 
 		List<AlumnoTutor> listAlumnoTutor = null;
 
@@ -43,16 +83,8 @@ public class TutorDAO implements TutorDAOInterface {
 
 			// Recuperamos el objeto relacion Alumno_tutor para recuperar todos
 			// los datos
-			Query q = em.createQuery("SELECT at FROM AlumnoTutor at WHERE at.alumno.id = "
-				+ idAlumno);
-
-			// "SELECT at FROM es.opensigad.model.vo.AlumnoTutor as at "
-			// + "LEFT OUTER JOIN es.opensigad.model.vo.Tutor as t "
-			// + "ON at.tutor.id = t.id "
-			// + "WHERE at.alumno.id = " + idAlumno);
-			// = :varAlumno");
-
-			// q.setParameter("varAlumno", idAlumno);
+			Query q = em.createQuery("SELECT at FROM AlumnoTutor at");
+			
 			listAlumnoTutor = q.getResultList();
 
 			em.getTransaction().commit();
@@ -62,7 +94,7 @@ public class TutorDAO implements TutorDAOInterface {
 		} catch (Exception e) {
 
 			em.getTransaction().rollback();
-			logger.log(Level.SEVERE, "TutorDAO.getListaTutor: " + e.getMessage());
+			logger.log(Level.SEVERE, "TutorDAO.getListaAlumnoTutor: " + e.getMessage());
 
 		} finally {
 
@@ -90,23 +122,11 @@ public class TutorDAO implements TutorDAOInterface {
 
 			em.getTransaction().begin();
 
-			/*
-			// Inicio: Ej 1
-			Tutor tutor = new Tutor();
-			tutor.setId(id);
+			AlumnoTutor alumnoTutor; //= new AlumnoTutor();
+			//alumnoTutor.setId(idAlumnoTutor);
+			alumnoTutor=em.find(AlumnoTutor.class, idAlumnoTutor);
 			
-			// DELETE FROM tutor WHERE id = ?
-			em.remove(tutor);
-			// Fin: Ej 1
-			 * */
-			 
-			// Inicio: Ej 2
-			AlumnoTutor alumnoTutor = new AlumnoTutor();
-			alumnoTutor.setId(idAlumnoTutor);
-			
-			// DELETE FROM alumno_tutor WHERE id = ?
 			em.remove(alumnoTutor);
-			// Fin: Ej 2
 
 			em.getTransaction().commit();
 
@@ -169,9 +189,10 @@ public class TutorDAO implements TutorDAOInterface {
 			alumnoTutor.setAlumno(alumno);
 			alumnoTutor.setTutor(tutor);
 			alumnoTutor.setParentesco(parentesco);
-
+			
+			em.merge(tutor);
+			
 			em.merge(alumnoTutor);
-
 			// em.persist(alumnoTutor);
 
 			em.getTransaction().commit();
@@ -196,7 +217,7 @@ public class TutorDAO implements TutorDAOInterface {
 
 	}
 
-	public boolean insertarTutor(int idAlumno, String nombre, String apellido1,
+	public boolean insertarTutor(int id, String nombre, String apellido1,
 			String apellido2, String tipoDocumento, String documento,
 			java.util.Date fechaNac, String parentesco, String sexo,
 			String telefono, String email) {
@@ -214,10 +235,8 @@ public class TutorDAO implements TutorDAOInterface {
 			em.getTransaction().begin();
 
 			AlumnoTutor alumnoTutor = new AlumnoTutor();
-			Tutor tutor = new Tutor();
 			Alumno alumno = new Alumno();
-
-			alumno.setId(idAlumno);
+			Tutor tutor = new Tutor();
 			// rellenamos el objeto Tutor
 
 			tutor.setNombre(nombre);
@@ -234,7 +253,7 @@ public class TutorDAO implements TutorDAOInterface {
 			em.persist(tutor);
 
 			// Rellenamos el objeto AlumnoTutor
-
+			alumno.setId(id);
 			alumnoTutor.setAlumno(alumno);
 			alumnoTutor.setTutor(tutor);
 			alumnoTutor.setParentesco(parentesco);

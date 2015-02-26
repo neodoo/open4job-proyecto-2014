@@ -29,9 +29,11 @@
 	</h3>
 
 	<h:form>
-		<h:inputText value="#{alumnoSeguimientoBean.idMatricula}" />
-		<h:commandButton value="#{etqAlmSeg['boton.verListadoSeguimiento']}"
-			action="#{alumnoSeguimientoBean.getListaAlumnoSeguimiento}"></h:commandButton>
+		 <h:inputText id="Matricula" value="#{sesionBean.idMatricula}" /> 
+		
+			<h:commandButton value="#{etqAlmSeg['boton.verListadoSeguimiento']}"
+			action="alumnoSeguimientoListado">
+			</h:commandButton>
 	</h:form>
 
 
