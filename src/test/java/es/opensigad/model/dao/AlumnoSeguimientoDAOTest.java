@@ -3,8 +3,6 @@ package es.opensigad.model.dao;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-
 import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.AlumnoSeguimiento;
 import es.opensigad.model.vo.EnsenanzaMateria;
@@ -22,7 +20,7 @@ public class AlumnoSeguimientoDAOTest extends TestCase {
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
 	public void test1() {
-		// Alumno-Seguimiento
+		// Insertar Alumno-Seguimiento
 		AlumnoSeguimiento alumnoSeguimiento = new AlumnoSeguimiento();
 
 		// Alumno-Matricula
@@ -56,17 +54,7 @@ public class AlumnoSeguimientoDAOTest extends TestCase {
 	}
 
 	public void test2() {
-
-		// Visualizar un seguimiento
-		//AlumnoSeguimiento alumnoSeguimiento = alumnoSeguimiento.getDetalleFalta(idFalta);
-
-		//assertTrue(alumnoSeguimiento != null);
-
-	}
-
-	public void test3() {
 		// Actualizar Alumno-Seguimiento		
-		// Visualizar una falta
 
 		AlumnoSeguimiento alumnoSeguimiento = new AlumnoSeguimiento();
 		alumnoSeguimiento = alumnoSeguimientoDAO.getDetalleAlumnoSeguimiento(idSeguimiento);
@@ -90,7 +78,7 @@ public class AlumnoSeguimientoDAOTest extends TestCase {
 		assertTrue(estado);
 	}
 
-	public void test4() {		
+	public void test3() {		
 		
 		// Eliminar Seguimiento
 		AlumnoSeguimiento alumnoSeguimiento = new AlumnoSeguimiento();
