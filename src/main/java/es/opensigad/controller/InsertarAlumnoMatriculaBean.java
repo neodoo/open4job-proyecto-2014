@@ -24,7 +24,7 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 	private int idEnsenanza;
 	private String modulo;
 	private int curso;
-	
+
 	private FacesMessage facesMessage;
 
 	public InsertarAlumnoMatriculaBean() {
@@ -81,25 +81,23 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 
 	public String insertarAlumnoMatricula(int idAlumno, int cursoEscolar,
 			int centro, int ensenanza, String modulo, int curso) {
-		
+
 		String pagina = "indexAlumnoMatricula";
 		AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
-		
+
 		if (matriculaDAO.insertarMatricula(idAlumno, cursoEscolar, centro,
 				ensenanza, modulo, curso)) {
-			
+
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
-					"La matricula se ha insertado correctamente ",
-					null);
-			//FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-			
+					"La matricula se ha insertado correctamente ", null);
+
 		} else {
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"La matricula no se ha insertado correctamente ", null);
-			//FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+
 		}
 		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-		
+
 		return pagina;
 	}
 

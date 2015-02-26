@@ -61,7 +61,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 			// Guardar matricula
 
-			em.persist(alumnoMatricula);
+			em.merge(alumnoMatricula);
 
 			em.getTransaction().commit();
 
