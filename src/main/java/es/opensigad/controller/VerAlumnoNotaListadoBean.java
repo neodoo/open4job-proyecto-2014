@@ -38,15 +38,15 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 		this.alumnoNotas = alumnNotas;
 	}
 
-/*	public String getDetalleNotasAlumno(int id) {
+	public String getDetalleNotasAlumno(int id) {
 		
-		//String pagina= "indexAlumnoNota";
+		String pagina= "indexAlumnoNota";
 		AlumnoNotaDAO notasAlumnoDAO = new AlumnoNotaDAO();
-		alumnoNotas = notasAlumnoDAO.getNotasByIdMatricula(id);
+		alumnoNotas = notasAlumnoDAO.getNotasByIdAlumno(id);
 	
 		return pagina;
 	
-	}*/
+	}
 	public void getAllAlumnoNotas() {
     
 		AlumnoNotaDAO alumnoNotaDao = new AlumnoNotaDAO();
