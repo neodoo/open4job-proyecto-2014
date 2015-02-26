@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+
+	<ui:composition template="/template/common/commonLayout.xhtml">
+
+		<ui:define name="content">
+			<h1>
+				<p:outputLabel value="#{etqAlm['titulo.insertarAlumnocontacto']}" />
+			</h1>
+
+
+			<h:form>
+				<h:panelGrid columns="2" cellspacing="10">
+
+					<p:outputLabel id="numExpediente"
+						value="#{etqAlm['etiquetas.numExpediente']}" />
+					<p:inputText value="#{alumnoBean.alumno.numExpediente}" disabled="true">
+					</p:inputText>
+
+
+					<p:outputLabel id="tipo"
+						value="#{etqAlm['etiquetas.tipoContacto']}" />
+					<p:selectOneMenu value="#{alumnoBean.alumnoContacto.tipo}">
+						<f:selectItem itemValue="telefono"
+							itemLabel="#{etqAlm['tipo.Telefono']}" />
+						<f:selectItem itemValue="email"
+							itemLabel="#{etqAlm['tipo.Email']}" />
+					</p:selectOneMenu>
+
+
+					<p:outputLabel id="principalSiNo"
+						value="#{etqAlm['tipo.Principal']}" />
+					<p:selectOneRadio value="#{alumnoBean.alumnoContacto.principal}">
+						<f:selectItem itemValue="1"
+							itemLabel="#{etqAlm['tipo.Principal.Si']}" />
+						<f:selectItem itemValue="0"
+							itemLabel="#{etqAlm['tipo.Principal.No']}" />
+					</p:selectOneRadio>
+
+
+					<p:outputLabel id="descripcionContacto"
+						value="#{etqAlm['contacto.Descripcion']}" />
+					<h:inputText value="#{alumnoBean.alumnoContacto.contacto}">
+					</h:inputText>
+
+
+
+				</h:panelGrid>
+				<h:inputHidden id="idAlumno" value="#{alumnoBean.alumno.id}"></h:inputHidden>
+				<h:inputHidden id="numExpediente2" value="#{alumnoBean.alumno.numExpediente}"></h:inputHidden>
+
+				<h:commandButton value="Insertar Contacto"
+					action="#{alumnoBean.insertAlumnoContacto()}"></h:commandButton>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>

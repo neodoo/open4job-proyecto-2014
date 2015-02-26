@@ -2,6 +2,7 @@ package es.opensigad.controller;
 
 
 import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -9,6 +10,7 @@ import javax.faces.context.FacesContext;
 
 import es.opensigad.model.dao.AlumnoDAO;
 import es.opensigad.model.vo.Alumno;
+import es.opensigad.model.vo.AlumnoContacto;
 import es.opensigad.model.vo.Territorio;
 
 @ManagedBean
@@ -27,7 +29,8 @@ public class AlumnoBean implements Serializable {
 	
 	private Territorio territorioPais = new Territorio();
 	
-
+	private AlumnoContacto alumnoContacto = new AlumnoContacto();
+	
 	// MÉTODOS
 
 	public String getDetalleAlumno() {
@@ -116,6 +119,26 @@ public class AlumnoBean implements Serializable {
 
 	}
 
+	public String insertAlumnoContacto(){
+		String pagina = "indexAlumno";
+		AlumnoDAO alumnoDAO = new AlumnoDAO();
+		alumnoContacto.setAlumno(alumno);
+		if (alumnoDAO.insertAlumnoContacto(alumnoContacto)) {
+			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"El alumno con numero de expediente "
+							+ alumno.getNumExpediente() + " ha sido insertado",
+					null);
+			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+		} else {
+			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"ERROR: El alumno con numero de expediente "
+							+ alumno.getNumExpediente()
+							+ " no se ha sido insertado", null);
+			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+		}
+		return pagina;
+	}
+	
 	//GETTERS Y SETTERS
 	
 
@@ -151,4 +174,14 @@ public class AlumnoBean implements Serializable {
 		this.territorioProvincia = territorioProvincia;
 	}
 
+	public AlumnoContacto getAlumnoContacto() {
+		return alumnoContacto;
+	}
+
+	public void setAlumnoContacto(AlumnoContacto alumnoContacto) {
+		this.alumnoContacto = alumnoContacto;
+	}
+
+	
+	
 }
