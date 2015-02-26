@@ -4,13 +4,16 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import es.opensigad.model.dao.AlumnoSeguimientoDAO;
 import es.opensigad.model.vo.AlumnoSeguimiento;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
+
 public class AlumnoSeguimientoBean {
 
 	public static final String TIPO_FALTA = "falta";
@@ -31,18 +34,26 @@ public class AlumnoSeguimientoBean {
 	private AlumnoSeguimiento seguimiento = new AlumnoSeguimiento();
 	
 	private List<AlumnoSeguimiento> seguimientos;
-
+	private List<AlumnoSeguimiento> seguimientosFiltro;
 	
+	@ManagedProperty(value="#{sesionBean}")
+	private SesionBean sesionBean;
+	
+	public SesionBean getSesionBean() {
+		return sesionBean;
+	}
+
+	public void setSesionBean(SesionBean sesionBean) {
+		this.sesionBean = sesionBean;
+	}
 
 	public int getId() {
 		return id;
 	}
-
-
+	
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public int getIdMatricula() {
 		return idMatricula;
@@ -52,7 +63,6 @@ public class AlumnoSeguimientoBean {
 	public void setIdMatricula(int idMatricula) {
 		this.idMatricula = idMatricula;
 	}
-
 
 	public Date getFecha() {
 		return fecha;
@@ -71,7 +81,6 @@ public class AlumnoSeguimientoBean {
 	public void setSesion(String sesion) {
 		this.sesion = sesion;
 	}
-
 
 	public int getIdMateria() {
 		return idMateria;
@@ -110,7 +119,6 @@ public class AlumnoSeguimientoBean {
 	public void setObse0rvaciones(String observaciones) {
 		this.observaciones = observaciones;		
 	}
-
 	
 	public AlumnoSeguimiento getSeguimiento() {
 		return seguimiento;
@@ -130,7 +138,20 @@ public class AlumnoSeguimientoBean {
 	public void setSeguimientos(List<AlumnoSeguimiento> seguimientos) {
 		this.seguimientos = seguimientos;
 	}
+	
+	public List<AlumnoSeguimiento> getSeguimientosFiltro() {
+		return seguimientosFiltro;
+	}
 
+
+	public void setSeguimientosFiltro(List<AlumnoSeguimiento> seguimientosFiltro) {
+		this.seguimientosFiltro = seguimientosFiltro;
+	}
+	
+	//public AlumnoSeguimientoBean(){
+	//	getListaAlumnoSeguimiento(sesionBean.getIdMatricula());
+	//}
+	
 
 	public String getDetalleAlumnoSeguimiento() {
 
@@ -139,20 +160,23 @@ public class AlumnoSeguimientoBean {
 		seguimiento = seguimientoDAO.getDetalleAlumnoSeguimiento(id);
 		
 		return pagina;
+	}	
 	
-	}
+	public void getListaAlumnoSeguimiento(int idMatricula) {
 	
-	public String getListaAlumnoSeguimiento() {
-	
-		String pagina = "alumnoSeguimientoListado";
-		//String pagina = "alumnoSeguimientoListado?faces-redirect=true";
 		AlumnoSeguimientoDAO seguimientoDAO = new AlumnoSeguimientoDAO();
 		seguimientos = seguimientoDAO.getListaAlumnoSeguimiento(idMatricula);
 
-		return pagina;
+	}	
 	
-	}
+	/* OTRA FORMA, SIN PASAR EL PARAMETRO, INVOCANDO DIRECTAMENTE DEL SESIONBEAN
+	 * public void getListaAlumnoSeguimiento() {
+		
+		AlumnoSeguimientoDAO seguimientoDAO = new AlumnoSeguimientoDAO();
+		seguimientos = seguimientoDAO.getListaAlumnoSeguimiento(sesionBean.getIdMatricula());
 
+	}	*/
+		
 	
 	public String insertarAlumnoSeguimiento() {
 		
