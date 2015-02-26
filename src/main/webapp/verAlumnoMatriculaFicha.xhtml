@@ -53,6 +53,8 @@
 			action="#{actualizarAlumnoMatriculaBean.modificarMatricula(verAlumnoMatriculaFichaBean.matricula.alumno.id,verAlumnoMatriculaFichaBean.matricula.cursoEscolar,
 		 verAlumnoMatriculaFichaBean.matricula.centro.id,verAlumnoMatriculaFichaBean.matricula.ensenanza.id,verAlumnoMatriculaFichaBean.matricula.modulo, verAlumnoMatriculaFichaBean.matricula.curso,verAlumnoMatriculaFichaBean.idMatricula)}" />
 
+		<p:commandButton value="Eliminar" action="#{eliminarAlumnoMatriculaBean.borrarMatricula(verAlumnoMatriculaFichaBean.idMatricula)}"></p:commandButton>
+
 	</h:form>
 </ui:define>
 
