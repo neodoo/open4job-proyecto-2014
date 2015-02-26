@@ -59,7 +59,7 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 	}
 
-	public List<AlumnoNota> getNotasByIdMatricula(int id) {
+	public List<AlumnoNota> getNotasByIdAlumno(int id) {
 
 		List<AlumnoNota> alumnos = null;
 	
@@ -67,18 +67,31 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 			em.getTransaction().begin();
 
-			String query = "FROM AlumnoNota an WHERE an.id = " + id;
+			//String query = "FROM AlumnoNota an WHERE an.id = " + id;
+			
+			String query= "SELECT em.materia,an.nota,an.evaluacion, an.observacion"
+					+ "FROM Alumno a, AlumnoNota an, AlumnoMatricula am, EnsenanzaMateria am WHERE"
+					+ "a.id=am.alumno and am.id=alumnoMatricula and em.id=ensenanzaMateria and a.id="
+					+ id;
+			
+			/*SELECT 
+			em.materia,an.nota, an.evaluacion, an.observacion 
+			FROM opensigad.alumno a , opensigad.alumno_nota an , opensigad.alumno_matricula  am,
+			opensigad.ensenanza_materia em
+			WHERE 
+			a.id=am.id_alumno and am.id=an.id_alumno_matricula and em.id=an.id_materia and
+			a.id=1*/
 
 			alumnos = em.createQuery(query).getResultList();
 
 			em.getTransaction().commit();
 
-			logger.log(Level.INFO, "AlumnoNotaDAO.getNotasByIdMatricula: OK.");
+			logger.log(Level.INFO, "AlumnoNotaDAO.getNotasByIdAlumno: OK.");
 
 		} catch (Exception e) {
 
 			try { em.getTransaction().rollback(); } catch (Exception ex) { }
-			logger.log(Level.SEVERE, "AlumnoNotaDAO.getNotasByIdMatricula: ERROR. " + e.getMessage());
+			logger.log(Level.SEVERE, "AlumnoNotaDAO.getNotasByIdAlumno: ERROR. " + e.getMessage());
 
 		} finally {
 

@@ -40,9 +40,9 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 
 	public String getDetalleNotasAlumno(int id) {
 		
-		String pagina= "verAlumnoNotaListado";
+		String pagina= "indexAlumnoNota";
 		AlumnoNotaDAO notasAlumnoDAO = new AlumnoNotaDAO();
-		alumnoNotas = notasAlumnoDAO.getNotasByIdMatricula(id);
+		alumnoNotas = notasAlumnoDAO.getNotasByIdAlumno(id);
 	
 		return pagina;
 	

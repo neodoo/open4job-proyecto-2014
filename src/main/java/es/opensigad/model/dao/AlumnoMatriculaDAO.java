@@ -278,12 +278,20 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
 			em = emf.createEntityManager();
-
+			
+			Alumno alumno = new Alumno();
+			Centro centro = new Centro();
+			Ensenanza ensenanza = new Ensenanza();
+			
+			alumno.setId(idAlumno);
+			centro.setId(idCentro);
+			ensenanza.setId(idEnsenanza);
+			
 			AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
-			alumnoMatricula.setId(idAlumno);
-			alumnoMatricula.setId(cursoEscolar);
-			alumnoMatricula.setId(idCentro);
-			alumnoMatricula.setId(idEnsenanza);
+			alumnoMatricula.setAlumno(alumno);
+			alumnoMatricula.setCursoEscolar(cursoEscolar);
+			alumnoMatricula.setCentro(centro);
+			alumnoMatricula.setEnsenanza(ensenanza);
 			alumnoMatricula.setModulo(modulo);
 			alumnoMatricula.setCurso(curso);
 			alumnoMatricula.setId(idMatricula);
