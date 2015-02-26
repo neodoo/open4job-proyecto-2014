@@ -10,6 +10,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import es.opensigad.model.dao.TutorDAO;
+import es.opensigad.model.vo.AlumnoTutor;
 
 @ManagedBean
 @RequestScoped
@@ -17,37 +18,26 @@ public class EliminarTutorBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int idAlumnoTutor;
+	private AlumnoTutor alumnoTutor = new AlumnoTutor();
 
-	public int getIdAlumnoTutor() {
-		return idAlumnoTutor;
+	public AlumnoTutor getAlumnoTutor() {
+		return alumnoTutor;
 	}
 
-	public void setIdAlumnoTutor(int idAlumnoTutor) {
-		this.idAlumnoTutor = idAlumnoTutor;
+	public void setAlumnoTutor(AlumnoTutor alumnoTutor) {
+		this.alumnoTutor = alumnoTutor;
 	}
 
-	//@ManagedProperty(value="#{verTutorBean}")
-	private VerTutorBean verTutorBean;
-	
-	public VerTutorBean getVerTutorBean() {
-		return verTutorBean;
-	}
+	public String deleteTutor(int idTutor) {
 
-	public void setVerAlumnoFichaBean(VerTutorBean verTutorBean) {
-		this.verTutorBean = verTutorBean;
-	}
-
-	public String deleteTutor() {
-
-		String pagina = "indexAlumnoTutor.xhtml";
+		String pagina = "indexAlumnoTutor";
 
 		TutorDAO tutorDAO = new TutorDAO();
 		
-		if(tutorDAO.deleteAlumnoTutor(idAlumnoTutor))
+		if(tutorDAO.deleteAlumnoTutor(idTutor))
 			return pagina;
 		else
-			return "index.xhtml";
+			return "indexAlumnoTutor";
 
 	}
 	
