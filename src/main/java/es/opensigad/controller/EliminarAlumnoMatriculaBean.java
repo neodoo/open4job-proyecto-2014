@@ -13,6 +13,8 @@ import es.opensigad.model.dao.AlumnoMatriculaDAO;
 @RequestScoped
 public class EliminarAlumnoMatriculaBean implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
 	private int idMatricula;
 	
 	private FacesMessage facesMessage;
