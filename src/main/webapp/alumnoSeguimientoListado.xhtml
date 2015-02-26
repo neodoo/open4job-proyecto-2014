@@ -11,64 +11,19 @@
 
 <h:body>
 
-	<!-- <<<<<<< HEAD
+	 <f:event listener="#{alumnoSeguimientoBean.getListaAlumnoSeguimiento(sesionBean.idMatricula)}"
+		type="preRenderView" />
+		
 
-	<f:event listener="#{verAlumnoListaBean.getListAlumno(idatricula)}"
-			type="preRenderView" >
-			<f:attribute name="idMatricula" value="#{verAlumnoListaBean.idMatricula}" />   
-		</f:event>
-	 -->
 	<h1>
 		<h:outputLabel id="tituloListaSeguimiento"
 			value="#{etqAlmSeg['titulo.listaSeguimiento']}" />
 	</h1>
 
-	<!-- 
-	<h:dataTable value="#{alumnoSeguimientoFichaBean.seguimiento}" var="se"
-=======
-	<h1>
-		<h:outputLabel id="tituloListaSeguimiento"
-			value="#{etqAlmSeg['titulo.listaSeguimiento']}" />
-	</h1>	
-
-	<h:dataTable value="#{alumnoSeguimientoBean.seguimientos}" var="se"
->>>>>>> b3eabeb0251238be285d76edda66d94beeec340f
-		styleClass="order-table" headerClass="order-table-header"
-		rowClasses="order-table-odd-row,order-table-even-row">
-
-		<h:column>
-			<f:facet name="header">#{etqAlmSeg['etiqueta.seguimiento']}</f:facet> #{se.id}
-    </h:column>
-
-		<h:column>
-			<f:facet name="header">#{etqAlmSeg['etiqueta.fecha']}</f:facet> #{se.fecha}
-    </h:column>
-    
-    	<h:column>
-			<f:facet name="header">#{etqAlmSeg['etiqueta.sesion']}</f:facet> #{se.sesion}
-    </h:column>
-
-		<h:column>
-			<f:facet name="header">#{etqAlmSeg['etiqueta.materia']}</f:facet> #{se.ensenanzaMateria.id}
-    </h:column>
-   
-		<h:column>
-			<f:facet name="header">#{etqAlmSeg['etiqueta.tipo']}</f:facet> #{se.tipo}
-    </h:column>
-    
-    <h:column>
-			<f:facet name="header">#{etqAlmSeg['etiqueta.justificante']}</f:facet> #{se.justificante}
-    </h:column>
-    
-    <h:column>
-			<f:facet name="header">#{etqAlmSeg['etiqueta.observaciones']}</f:facet> #{se.observaciones}
-    </h:column>
-
-	</h:dataTable>
- -->
+	
 
 	<p:dataTable var="seg" value="#{alumnoSeguimientoBean.seguimientos}"
-		paginator="true" rows="10">
+		paginator="true" rows="1">
 
 		<p:column>
 			<f:facet name="header">
