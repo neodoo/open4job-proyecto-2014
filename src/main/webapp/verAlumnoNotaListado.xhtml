@@ -14,38 +14,26 @@
         <p>#{Notas.idMatricula}</p>
         <h:dataTable value="#{verAlumnoNotaListadoBean.alumnoNotas}" var="nota"
                      styleClass="order-table" headerClass="order-table-header"
-                     rowClasses="order-table-odd-row,order-table-even-row">
-           		 	<h:column>
-						<f:facet name="header">
-							<h:outputLabel value="#{etqAlmNotas['titulo.id']}" />
-						</f:facet>
-                        #{nota.id}
-                  	</h:column>
-					<h:column>
-						<f:facet name="header">
-							<h:outputLabel value="#{etqAlmNotas['titulo.idMatricula']}" />
-						</f:facet>
-	                                 #{nota.alumnoMatricula.id}
-	                             </h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputLabel value="#{etqAlmNotas['titulo.idMateria']}" />
-								</f:facet>
-                                    #{nota.ensenanzaMateria.id}
-                                </h:column>
-							<h:column>
+                     rowClasses="order-table-odd-row,order-table-even-row">						
+						<h:column>
+							<f:facet name="header">
+								<h:outputLabel value="#{etqAlmNotas['titulo.nota']}" />
+							</f:facet>
+						#{nota.ensenanzaMateria.materia}
+                         </h:column>						
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputLabel value="#{etqAlmNotas['titulo.nota']}" />
+							</f:facet>
+                                #{nota.nota}
+                         </h:column>
+							<h:column><h:column>
 								<f:facet name="header">
 									<h:outputLabel value="#{etqAlmNotas['titulo.idEvaluacion']}" />
 								</f:facet>
                                     #{nota.evaluacion}
                                 </h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputLabel value="#{etqAlmNotas['titulo.nota']}" />
-								</f:facet>
-                                    #{nota.nota}
-                                </h:column>
-							<h:column>
 								<f:facet name="header">
 									<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
 								</f:facet>
