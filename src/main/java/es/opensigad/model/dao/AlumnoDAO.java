@@ -14,13 +14,12 @@ import es.opensigad.model.vo.AlumnoContacto;
 import es.opensigad.model.vo.AlumnoDireccion;
 import es.opensigad.model.vo.Territorio;
 
-
 public class AlumnoDAO implements AlumnoDAOInterfaz {
-
 
 	public final static String ENTITY_MANAGER = "opensigadUnit";
 
-	public static final Logger logger = Logger.getLogger(Alumno.class.getName());
+	public static final Logger logger = Logger
+			.getLogger(Alumno.class.getName());
 
 	public AlumnoDAO() {
 	}
@@ -774,4 +773,5 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 		return territorioList;
 	}
+	
 }
