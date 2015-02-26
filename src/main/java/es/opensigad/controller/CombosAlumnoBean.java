@@ -14,6 +14,7 @@ import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoTutor;
 import es.opensigad.model.vo.EnsenanzaMateria;
 import es.opensigad.model.vo.Territorio;
+import es.opensigad.model.vo.Tutor;
 
 @ManagedBean
 @ApplicationScoped
@@ -21,6 +22,7 @@ public class CombosAlumnoBean {
 
 	public List<EnsenanzaMateria> listEnsenanzaMateria = null;
 	public List<Alumno> listAlumnos = null;
+	public List<Tutor> listTutor = null;
 	public List<AlumnoTutor> listAlumnoTutor = null;
 
 	private ArrayList<SelectItem> paisItem = null;
@@ -127,4 +129,18 @@ public class CombosAlumnoBean {
 	public void setProvinciaItem(ArrayList<SelectItem> provinciaItem) {
 		this.provinciaItem = provinciaItem;
 	}
+	
+	public List<Tutor> getDataListTutores() {
+		TutorDAO tutorDAO = new TutorDAO();
+		listTutor = tutorDAO.getListaTutor();
+		return listTutor;
+	}
+
+	public List<Tutor> getListTutores() {
+		if (listTutor == null) {
+			listTutor = this.getDataListTutores();
+		}
+		return listTutor;
+	}
+	
 }

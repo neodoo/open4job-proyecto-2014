@@ -189,9 +189,10 @@ public class TutorDAO implements TutorDAOInterface {
 			alumnoTutor.setAlumno(alumno);
 			alumnoTutor.setTutor(tutor);
 			alumnoTutor.setParentesco(parentesco);
-
+			
+			em.merge(tutor);
+			
 			em.merge(alumnoTutor);
-
 			// em.persist(alumnoTutor);
 
 			em.getTransaction().commit();
