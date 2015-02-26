@@ -2,6 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
@@ -9,58 +11,69 @@
 </h:head>
 
 <h:body>
+	<ui:composition template="/template/common/commonLayout.xhtml">
 
-	<h3>
-		<h:outputLabel id="idMatricula"
-			value="#{etqAlmMat['titulo.alumnoMatriculaListado']}" />
-	</h3>
-
-	<h:dataTable value="#{verAlumnoMatriculaListadoBean.listaMatricula}"
-		var="m" styleClass="order-table" headerClass="order-table-header"
-		rowClasses="order-table-odd-row,order-table-even-row">
-
-		<h:column>
-			<f:facet name="header">
+		<!-- Contenido de la pagina.-->
+		<ui:define name="content">
+			
+			<h3>
 				<h:outputLabel id="idMatricula"
-					value="#{etqAlmMat['etiquetas.idMatricula']}" />
-			</f:facet>
+					value="#{etqAlmMat['titulo.alumnoMatriculaListado']}" />
+			</h3>
+			<p>
+				<h:commandButton value="Nueva Matricula" action="#"></h:commandButton>
+			</p>
+
+			<p:dataTable value="#{verAlumnoMatriculaListadoBean.listaMatricula}"
+				var="m" styleClass="order-table" headerClass="order-table-header"
+				rowClasses="order-table-odd-row,order-table-even-row" rows="10" paginator="true"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10">
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputLabel id="idMatricula"
+							value="#{etqAlmMat['etiquetas.idMatricula']}" />
+					</f:facet>
     				#{m.id}
-    		</h:column>
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="idCursoEscolar"
-					value="#{etqAlmMat['etiquetas.cursoEscolar']}" />
-			</f:facet>
+    			</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputLabel id="idCursoEscolar"
+							value="#{etqAlmMat['etiquetas.cursoEscolar']}" />
+					</f:facet>
     				#{m.cursoEscolar}
-    		</h:column>
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="idCentro"
-					value="#{etqAlmMat['etiquetas.centro']}" />
-			</f:facet>
+    		</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputLabel id="idCentro"
+							value="#{etqAlmMat['etiquetas.centro']}" />
+					</f:facet>
     				#{m.centro.id}
-    		</h:column>
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="idEnseñanza"
-					value="#{etqAlmMat['etiquetas.ensenanza']}" />
-			</f:facet>
+    		</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputLabel id="idEnseñanza"
+							value="#{etqAlmMat['etiquetas.ensenanza']}" />
+					</f:facet>
     				#{m.ensenanza.id}
-    		</h:column>
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="idModulo"
-					value="#{etqAlmMat['etiquetas.modulo']}" />
-    			</f:facet>
+    		</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputLabel id="idModulo"
+							value="#{etqAlmMat['etiquetas.modulo']}" />
+					</f:facet>
     				#{m.modulo}
-    		</h:column>
-		<h:column>
-			<f:facet name="header">
-				<h:outputLabel id="idCurso" value="#{etqAlmMat['etiquetas.curso']}" />
-			</f:facet>
+    		</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputLabel id="idCurso"
+							value="#{etqAlmMat['etiquetas.curso']}" />
+					</f:facet>
     				#{m.curso}
-    		</h:column>
-		<!-- h:column>
+    		</p:column>
+
+				<!-- h:column>
 			<f:facet name="header">
 				<h:outputLabel id="idAlumno"
 					value="#{etqAlmMat['etiquetas.idAlumno']}" />
@@ -68,8 +81,10 @@
     				#{m.idAlumno}
     		</h:column -->
 
-	</h:dataTable>
+			</p:dataTable>
+		</ui:define>
 
+	</ui:composition>
 </h:body>
 
 </html>

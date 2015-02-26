@@ -17,25 +17,30 @@
 		<ui:define name="content">
 			<p:tabView orientation="left">
 
-				<p:tab title="#{etqAlmMat['titulo.matriculaAlumno']}">
+				<!-- Listar matriculas por IdAlumno -->
 				
+				<p:tab title="#{etqAlmMat['titulo.matriculaAlumno']}">
+
 					<h:panelGrid columns="2" cellpadding="10">
-	
+
 						<h:form>
 							<h:outputLabel id="idAlumno"
 								value="#{etqAlmMat['etiquetas.idAlumno']}" />
 							<h:inputText value="#{verAlumnoMatriculaListadoBean.id}" />
-							<h:commandButton value="#{etqAlmMat['boton.verMatriculasAlumno']}"
+							<h:commandButton
+								value="#{etqAlmMat['boton.verMatriculasAlumno']}"
 								action="#{verAlumnoMatriculaListadoBean.getListaMatricula(verAlumnoMatriculaListadoBean.id)}"></h:commandButton>
-	
+
 						</h:form>
 					</h:panelGrid>
 				</p:tab>
 
+				<!-- Listar matriculas por IdMatricula -->
+
 				<p:tab title="#{etqAlmMat['titulo.matriculaPorIdMatricula']}">
-				
+
 					<h:panelGrid columns="2" cellpadding="10">
-				
+
 						<h:form>
 							<h:outputLabel id="idMatricula"
 								value="#{etqAlmMat['etiquetas.idMatricula']}" />
@@ -45,34 +50,77 @@
 						</h:form>
 					</h:panelGrid>
 				</p:tab>
-				
+
+				<br />
+
+				<!-- Insertar Matricula de Alumno -->
+
+				<p:tab title="#{etqAlmMat['titulo.insertarMatricula']}">
+					<h:panelGrid columns="2" cellpadding="10">
+						<h:form>
+							<p:panelGrid id="panel" columns="2" border="0" cellpadding="0"
+								cellspacing="5">
+								<h:outputLabel id="alumno"
+									value="#{etqAlmMat['etiquetas.idAlumno']}" />
+
+								<p:selectOneMenu id="idalumno"
+									value="#{insertarAlumnoMatriculaBean.idAlumno}">
+									<f:selectItems value="#{comboMatriculaBean.alumnoItem}"></f:selectItems>
+								</p:selectOneMenu>
+
+								<h:outputLabel id="idCursoEscolar"
+									value="#{etqAlmMat['etiquetas.cursoEscolar']}" />
+								<h:inputText value="#{insertarAlumnoMatriculaBean.cursoEscolar}"></h:inputText>
+
+								<h:outputLabel id="centro"
+									value="#{etqAlmMat['etiquetas.centro']}" />
+								<p:selectOneMenu id="idCentro"
+									value="#{insertarAlumnoMatriculaBean.idCentro}">
+									<f:selectItems value="#{comboMatriculaBean.centroItem}"></f:selectItems>
+								</p:selectOneMenu>
+
+								<h:outputLabel id="ensenanza"
+									value="#{etqAlmMat['etiquetas.ensenanza']}" />
+								<p:selectOneMenu id="idEnsenanza"
+									value="#{insertarAlumnoMatriculaBean.idEnsenanza}">
+									<f:selectItems value="#{comboMatriculaBean.ensenanzaItem}"></f:selectItems>
+								</p:selectOneMenu>
+
+
+
+								<h:outputLabel id="idModulo"
+									value="#{etqAlmMat['etiquetas.modulo']}" />
+								<h:inputText value="#{insertarAlumnoMatriculaBean.modulo}"></h:inputText>
+
+
+								<h:outputLabel id="idCurso"
+									value="#{etqAlmMat['etiquetas.curso']}" />
+								<h:inputText value="#{insertarAlumnoMatriculaBean.curso}"></h:inputText>
+
+
+								<h:commandButton
+									value="#{etqAlmMat['boton.guardarMatriculaAlumno']}"
+									action="#{insertarAlumnoMatriculaBean.insertarAlumnoMatricula(insertarAlumnoMatriculaBean.idAlumno,
+						 insertarAlumnoMatriculaBean.cursoEscolar, insertarAlumnoMatriculaBean.idCentro, insertarAlumnoMatriculaBean.idEnsenanza, insertarAlumnoMatriculaBean.modulo, insertarAlumnoMatriculaBean.curso)}"></h:commandButton>
+							</p:panelGrid>
+						</h:form>
+					</h:panelGrid>
+				</p:tab>
 				<br />
 				
-					
-					<p:tab title="#{etqAlmMat['titulo.insertarMatricula']}" action = "insertarAlumnoMatricula">
-						<h:panelGrid columns="2" cellpadding="10">
-							<h:form>
-							<!--<h:commandLink actionListener="insertarAlumnoMatricula" ></h:commandLink>-->
-								<h:commandButton value="#{etqAlmMat['boton.ir']}"
-									action="insertarAlumnoMatricula">
-								</h:commandButton>
-							</h:form>
-						</h:panelGrid>
-					</p:tab>
-				<br />
+				<!-- Eliminar Matricula de Alumno -->
 				
-				
-					<p:tab title="#{etqAlmMat['titulo.eliminarMatricula']}" >
-						<h:panelGrid columns="2" cellpadding="10">
-							<h:form>
-								<h:outputLabel id="idMatricula"
-									value="#{etqAlmMat['etiquetas.idMatricula']}" />
-								<h:inputText value="#{eliminarAlumnoMatriculaBean.idMatricula}" />
-								<h:commandButton value="#{etqAlmMat['boton.borrar']}"
-									action="#{eliminarAlumnoMatriculaBean.borrarMatricula(eliminarAlumnoMatriculaBean.idMatricula)}"></h:commandButton>
-							</h:form>
-						</h:panelGrid>
-					</p:tab>	
+				<p:tab title="#{etqAlmMat['titulo.eliminarMatricula']}">
+					<h:panelGrid columns="2" cellpadding="10">
+						<h:form>
+							<h:outputLabel id="idMatricula"
+								value="#{etqAlmMat['etiquetas.idMatricula']}" />
+							<h:inputText value="#{eliminarAlumnoMatriculaBean.idMatricula}" />
+							<h:commandButton value="#{etqAlmMat['boton.borrar']}"
+								action="#{eliminarAlumnoMatriculaBean.borrarMatricula(eliminarAlumnoMatriculaBean.idMatricula)}"></h:commandButton>
+						</h:form>
+					</h:panelGrid>
+				</p:tab>
 				<br />
 			</p:tabView>
 		</ui:define>
