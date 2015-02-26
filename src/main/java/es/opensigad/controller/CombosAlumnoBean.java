@@ -19,17 +19,14 @@ import es.opensigad.model.vo.Territorio;
 @ApplicationScoped
 public class CombosAlumnoBean {
 
-<<<<<<< HEAD
 	public List<EnsenanzaMateria> listEnsenanzaMateria = null;
 	public List<Alumno> listAlumnos = null;
 	public List<AlumnoTutor> listAlumnoTutor = null;
-=======
-	private List<EnsenanzaMateria> listEnsenanzaMateria = null;
 
 	private ArrayList<SelectItem> paisItem = null;
 
 	private ArrayList<SelectItem> provinciaItem = null;
->>>>>>> 22f456886e40320ef791796053f72517277b9091
+
 
 	public List<EnsenanzaMateria> getDataListEnsenanzaMateria() {
 
@@ -47,7 +44,6 @@ public class CombosAlumnoBean {
 
 		return listEnsenanzaMateria;
 
-<<<<<<< HEAD
 	}
 
 	public List<Alumno> getDataListAlumnos() {
@@ -75,8 +71,7 @@ public class CombosAlumnoBean {
 		}
 		return listAlumnoTutor;
 	}
-=======
-	}
+	
 
 	public ArrayList<SelectItem> getDataComboPais() {
 
@@ -132,6 +127,4 @@ public class CombosAlumnoBean {
 	public void setProvinciaItem(ArrayList<SelectItem> provinciaItem) {
 		this.provinciaItem = provinciaItem;
 	}
-
->>>>>>> 22f456886e40320ef791796053f72517277b9091
 }
