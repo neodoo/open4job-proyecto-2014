@@ -1,86 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      >
-    <h:head>
-    	<h:outputStylesheet library="css" name="table-style.css"  />
-    </h:head>
- 
-    <h:body>
-    	<h:outputLabel id="etiquetaNuevoTutor"
-						value="#{etqAlm['titulo.nuevoTutor']}" />
-		<h:form>
-    	   <!-- Aqui se ingresa el nombre y se valida -->
-    	   <h:outputLabel id="etiquetaNombre"
-						value="#{etqAlm['etiquetas.nombre']}" />
-    	   <h:inputText value="#{insertarTutorBean.nombre}" label="nombre"></h:inputText>
-    	   
-    	   <br> </br>
-    	   
-    	   <!-- Aqui se ingresa el apellido1 y se valida -->
-    	   <h:outputLabel id="etiquetaApellido1"
-						value="#{etqAlm['etiquetas.apellido1']}" />
-		   <h:inputText value="#{insertarTutorBean.apellido1}" label="apellido1"></h:inputText>
-		   
-    	   <br> </br>
-    	   
-    	   <!-- Aqui se ingresa el apellido2 y se valida -->
-    	    <h:outputLabel id="etiquetaApellido2"
-						value="#{etqAlm['etiquetas.apellido2']}" />
-		   <h:inputText value="#{insertarTutorBean.apellido2}" label="apellido2"></h:inputText>
-   
-    	   <br> </br>
-    	   
-    	   <!-- Aqui se ingresa el tipo de Documento y se valida -->
-    	    <h:outputLabel id="etiquetaTipoDocumento"
-						value="#{etqAlm['etiquetas.tipoDocumento']}" />
-		   <h:inputText value="#{insertarTutorBean.tipoDocumento}" label="apellido2"></h:inputText>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+</h:head>
 
-    	   <br> </br>
-    	   
-    	   <!-- Aqui se ingresa el DNI y se valida -->
-    	     <h:outputLabel id="etiquetaDni"
-						value="#{etqAlm['etiquetas.dni']}" />
-		   <h:inputText value="#{insertarTutorBean.documento}" label="documento"></h:inputText>
+<h:body>
+	<h:outputLabel id="etiquetaNuevoTutor"
+		value="#{etqAlm['titulo.nuevoTutor']}" />
+	<h:form>
+		<br />
+		<h:outputLabel value="ID Alumno" />
+		<p:selectOneMenu id="alumno"
+			value="#{insertarTutorBean.alumno.id}">
+			<f:selectItems value="#{combosAlumnoBean.getListAlumnos()}"
+				var="alumno" itemLabel="#{alumno.nombre}"
+				itemValue="#{alumno.id}" />
+		</p:selectOneMenu>
+		<!-- Aqui se ingresa el nombre y se valida -->
+		<h:outputLabel id="etiquetaNombre"
+			value="#{etqAlm['etiquetas.nombre']}" />
+		<h:inputText value="#{insertarTutorBean.nombre}" label="nombre"></h:inputText>
 
-    	   <br> </br>
-    	   
-    	   <!-- Aqui se ingresa el Fecha Nacimiento y se valida -->  
-    	     <h:outputLabel id="etiquetaFechaNacimiento"
-						value="#{etqAlm['etiquetas.fechaNacimiento']}" />
-			<h:inputText id="fechaNac" value="#{insertarTutorBean.fechaNac}"> 
-			<f:validateLength size="20" required="true"/>
-			<f:convertDateTime pattern="dd-MM-yyyy"/>
-			</h:inputText>
-			
-			<br> </br>
-			
-			<!-- Aqui se ingresa el parentesco-->
-    	    <h:outputLabel id="etiquetaParentesco"
-						value="#{etqAlm['etiquetas.parentesco']}" />
-    	    <h:inputText value="#{insertarTutorBean.parentesco}" label="parentesco"></h:inputText>
-    	    
-    	    <br> </br>
-    	    
-    	    <!-- Aqui se ingresa el telefono y se valida -->
-    	    <h:outputLabel id="etiquetaTelefono"
-						value="#{etqAlm['etiquetas.telefono']}"/>
-    	    <h:inputText value="#{insertarTutorBean.tlf}" label="tlf"></h:inputText>
+		<br> </br>
 
-    	    <br> </br>
-    	    <!-- Aqui se ingresa el email y se valida -->
-    	    <h:outputLabel id="etiquetaEmail"
-						value="#{etqAlm['etiquetas.email']}" />
-    	    <h:inputText value="#{insertarTutorBean.email}" label="email"></h:inputText>
+		<!-- Aqui se ingresa el apellido1 y se valida -->
+		<h:outputLabel id="etiquetaApellido1"
+			value="#{etqAlm['etiquetas.apellido1']}" />
+		<h:inputText value="#{insertarTutorBean.apellido1}" label="apellido1"></h:inputText>
 
-    	    <br> </br>
-    	    
-    	    <h:commandButton value="Registrar" action="#{insertarTutorBean.insertarTutor()}"></h:commandButton>
-    	    
-    	</h:form>
-    </h:body>
- </html>
+		<br> </br>
+
+		<!-- Aqui se ingresa el apellido2 y se valida -->
+		<h:outputLabel id="etiquetaApellido2"
+			value="#{etqAlm['etiquetas.apellido2']}" />
+		<h:inputText value="#{insertarTutorBean.apellido2}" label="apellido2"></h:inputText>
+
+		<br> </br>
+
+		<!-- Aqui se ingresa el tipo de Documento y se valida -->
+		<h:outputLabel id="etiquetaTipoDocumento"
+			value="#{etqAlm['etiquetas.tipoDocumento']}" />
+		<h:inputText value="#{insertarTutorBean.tipoDocumento}"
+			label="apellido2"></h:inputText>
+
+		<br> </br>
+
+		<!-- Aqui se ingresa el DNI y se valida -->
+		<h:outputLabel id="etiquetaDni" value="#{etqAlm['etiquetas.dni']}" />
+		<h:inputText value="#{insertarTutorBean.documento}" label="documento"></h:inputText>
+
+		<br> </br>
+
+		<!-- Aqui se ingresa el Fecha Nacimiento y se valida -->
+		<h:outputLabel id="etiquetaFechaNacimiento"
+			value="#{etqAlm['etiquetas.fechaNacimiento']}" />
+		<!--  <h:inputText id="fechaNac" value="#{insertarTutorBean.fechaNac}">-->
+		<p:calendar id="calendar" value="#{insertarTutorBean.fechaNac}" mode="popup" showOn0="focus" />
+
+		<br> </br>
+
+		<!-- Aqui se ingresa el parentesco-->
+		<h:outputLabel id="etiquetaParentesco"
+			value="#{etqAlm['etiquetas.parentesco']}" />
+		<h:inputText value="#{insertarTutorBean.parentesco}"
+			label="parentesco"></h:inputText>
+
+		<br> </br>
+		
+		<!-- Aqui se ingresa el sexo-->
+		<h:outputLabel id="sexo"
+			value="sexo" />
+		<h:inputText value="#{insertarTutorBean.sexo}"
+			label="sexo"></h:inputText>
+
+		<br> </br>
+
+		<!-- Aqui se ingresa el telefono y se valida -->
+		<h:outputLabel id="etiquetaTelefono"
+			value="#{etqAlm['etiquetas.telefono']}" />
+		<h:inputText value="#{insertarTutorBean.tlf}" label="tlf"></h:inputText>
+
+		<br> </br>
+		<!-- Aqui se ingresa el email y se valida -->
+		<h:outputLabel id="etiquetaEmail" value="#{etqAlm['etiquetas.email']}" />
+		<h:inputText value="#{insertarTutorBean.email}" label="email"></h:inputText>
+
+		<br> </br>
+
+		<h:commandButton value="Registrar"
+			action="#{insertarTutorBean.insertarTutor(insertarTutorBean.alumno.id,insertarTutorBean.nombre,insertarTutorBean.apellido1,insertarTutorBean.apellido2,insertarTutorBean.tipoDocumento,insertarTutorBean.documento,insertarTutorBean.fechaNac,insertarTutorBean.parentesco,insertarTutorBean.sexo,insertarTutorBean.tlf,insertarTutorBean.email)}"></h:commandButton>
+
+	</h:form>
+</h:body>
+</html>

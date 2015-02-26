@@ -1,89 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      >
-    <h:head>
-    	<h:outputStylesheet library="css" name="table-style.css"  />
-    	<h:outputLabel id="etiquetaTutor"
-						value="#{etqAlm['titulo.tutores']}" />
-    </h:head>
-    <h:body>
-    <h:outputLabel id="etiquetaListatutor"
-						value="#{etqAlm['titulo.ListaTutores']}" />
-	<h:dataTable value="#{verTutorBean.tutorLista}" var="tL"
-		styleClass="order-table" headerClass="order-table-header"
-		rowClasses="order-table-odd-row,order-table-even-row">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
 
-		<h:column>
-		
+</h:head>
+<h:body>
+	<p:dataTable value="#{verTutorBean.tutorLista}" var="tutor" rows="10"
+		paginator="true"
+		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+		rowsPerPageTemplate="5,10">
+		<p:column>
 			<f:facet name="header">
-			<h:outputLabel id="etiquetaNombre"
-						value="#{etqAlm['etiquetas.nombre']}" />
-			</f:facet> #{tL.tutor.nombre}
-    	</h:column>
-
-		<h:column>
+			<h:outputLabel value="#{etqAlmNotas['titulo.id']}" />
+			</f:facet>
+             #{tutor.id}
+        </p:column>
+		<p:column>
 			<f:facet name="header">
-			<h:outputLabel id="etiquetaApellido1"
-						value="#{etqAlm['etiquetas.apellido1']}" />
-			</f:facet> #{tL.tutor.apellido1}
-    	</h:column>
-
-		<h:column>
+			<h:outputLabel value="#{etqAlmNotas['titulo.idMatricula']}" />
+			</f:facet>
+             #{tutor.nombre}
+        </p:column>
+		<p:column>
 			<f:facet name="header">
-			<h:outputLabel id="etiquetaApellido2"
-						value="#{etqAlm['etiquetas.apellido2']}" />
-						</f:facet> #{tL.tutor.apellido2}
-    	</h:column>
-
-		<h:column>
+				<h:outputLabel value="#{etqAlmNotas['titulo.idMateria']}" />
+			</f:facet>
+             #{tutor.apellido1}
+        </p:column>
+		<p:column>
 			<f:facet name="header">
-			<h:outputLabel id="etiquetaDNI"
-						value="#{etqAlm['etiquetas.dni']}" />
-			</f:facet> #{tL.tutor.documento}
-    	</h:column>
+			<h:outputLabel value="#{etqAlmNotas['titulo.idEvaluacion']}" />
+			</f:facet>
+            #{tutor.apellido2}
+        </p:column>
+		<p:column>
+			<f:facet name="header">
+			<h:outputLabel value="#{etqAlmNotas['titulo.nota']}" />
+			</f:facet>
+             #{tutor.tipoDocumento}
+        </p:column>
+		<p:column>
+			<f:facet name="header">
+			<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
+			</f:facet>
+             #{tutor.documento}
+        </p:column>
+		<p:column>
+			<f:facet name="header">
+			<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
+			</f:facet>
+              #{tutor.fechaNacimiento}
+        </p:column>
+		<p:column>
+			<f:facet name="header">
+			<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
+			</f:facet>
+             #{tutor.sexo}
+        </p:column>
+		<p:column>
+			<f:facet name="header">
+			<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
+			</f:facet>
+             #{tutor.telefono}
+        </p:column>
+		<p:column>
+			<f:facet name="header">
+			<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
+			</f:facet>
+           #{tutor.email}
+         </p:column>
+	</p:dataTable>
 
-	</h:dataTable>
-	<h:form>
-	    <h:inputHidden value="#{verTutorBean.idAlumno}"></h:inputHidden> 
-  		<h:commandButton value="Insertar" action="insertarTutor"></h:commandButton>
-	</h:form>
-	XXX
-	<h:commandLink action="insertarTutor" value="insert">
-    	<f:param name="idAlumno" value="#{verTutorBean.idAlumno}" />
-	</h:commandLink>
+</h:body>
+</html>
 
-VVVV
 
-<h:link value="insert" outcome="insertarTutor" >
-	<f:param name="idAlumno" value="#{verTutorBean.idAlumno}" />
-</h:link>
 
-	<!-- <h:form>
-		<h:inputText value="#{modificarTutorBean.idTutor}"></h:inputText>
-	    <h:commandButton value="Modificar" action=""></h:commandButton>
-	</h:form>-->
-  	<h:form>
-  		<h:inputText value="#{eliminarTutorBean.idAlumnoTutor}"></h:inputText> 
-		<br/><h:commandButton value="Borrar el tutor" action="#{eliminarTutorBean.deleteTutor()}"></h:commandButton> 
-	</h:form>
-   	
-   	</h:body>
- </html>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
+
+
+
+
