@@ -21,7 +21,9 @@
 					value="#{etqAlmMat['titulo.alumnoMatriculaListado']}" />
 			</h3>
 			<p>
-				<h:commandButton value="Nueva Matricula" action="#"></h:commandButton>
+				<h:form>
+					<h:commandButton value="Nueva Matricula" action="insertarAlumnoMatricula"></h:commandButton>
+				</h:form>
 			</p>
 
 			<p:dataTable value="#{verAlumnoMatriculaListadoBean.listaMatricula}"
