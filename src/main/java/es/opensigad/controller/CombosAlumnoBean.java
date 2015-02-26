@@ -9,6 +9,9 @@ import javax.faces.model.SelectItem;
 
 import es.opensigad.model.dao.AlumnoDAO;
 import es.opensigad.model.dao.AlumnoNotaDAO;
+import es.opensigad.model.dao.TutorDAO;
+import es.opensigad.model.vo.Alumno;
+import es.opensigad.model.vo.AlumnoTutor;
 import es.opensigad.model.vo.EnsenanzaMateria;
 import es.opensigad.model.vo.Territorio;
 
@@ -16,11 +19,17 @@ import es.opensigad.model.vo.Territorio;
 @ApplicationScoped
 public class CombosAlumnoBean {
 
+<<<<<<< HEAD
+	public List<EnsenanzaMateria> listEnsenanzaMateria = null;
+	public List<Alumno> listAlumnos = null;
+	public List<AlumnoTutor> listAlumnoTutor = null;
+=======
 	private List<EnsenanzaMateria> listEnsenanzaMateria = null;
 
 	private ArrayList<SelectItem> paisItem = null;
 
 	private ArrayList<SelectItem> provinciaItem = null;
+>>>>>>> 22f456886e40320ef791796053f72517277b9091
 
 	public List<EnsenanzaMateria> getDataListEnsenanzaMateria() {
 
@@ -38,6 +47,35 @@ public class CombosAlumnoBean {
 
 		return listEnsenanzaMateria;
 
+<<<<<<< HEAD
+	}
+
+	public List<Alumno> getDataListAlumnos() {
+		AlumnoDAO alumnoDAO = new AlumnoDAO();
+		listAlumnos = alumnoDAO.getListAlumno();
+		return listAlumnos;
+	}
+
+	public List<Alumno> getListAlumnos() {
+		if (listAlumnos == null) {
+			listAlumnos = this.getDataListAlumnos();
+		}
+		return listAlumnos;
+	}
+	
+	public List<AlumnoTutor> getDataListAlumnoTutor(){
+		TutorDAO tutorDAO = new TutorDAO();
+		listAlumnoTutor = tutorDAO.getListaAlumnoTutor();
+		return listAlumnoTutor;
+	}
+
+	public List<AlumnoTutor> getListAlumnoTutor(){
+		if (listAlumnoTutor == null){
+			listAlumnoTutor = this.getDataListAlumnoTutor();
+		}
+		return listAlumnoTutor;
+	}
+=======
 	}
 
 	public ArrayList<SelectItem> getDataComboPais() {
@@ -95,4 +133,5 @@ public class CombosAlumnoBean {
 		this.provinciaItem = provinciaItem;
 	}
 
+>>>>>>> 22f456886e40320ef791796053f72517277b9091
 }

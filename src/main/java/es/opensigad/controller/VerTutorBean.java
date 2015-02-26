@@ -21,13 +21,13 @@ public class VerTutorBean {
 
 	private Tutor tutor;
 
-	private List<AlumnoTutor> tutorLista;
+	private List<Tutor> tutorLista;
 	
-	public List<AlumnoTutor> getTutorLista() {
+	public List<Tutor> getTutorLista() {
 		return tutorLista;
 	}
 
-	public void setTutorLista(List<AlumnoTutor> tutorLista) {
+	public void setTutorLista(List<Tutor> tutorLista) {
 		this.tutorLista = tutorLista;
 	}
 
@@ -66,12 +66,12 @@ public class VerTutorBean {
 
 	}
 	
-	public  String getListaAlumnoTutor() {
+	public  String getListaTutor() {
 		
 		String pagina = "verListaAlumnoTutor";
 		
 		TutorDAO tutorDAO = new TutorDAO();
-		tutorLista = tutorDAO.getListaAlumnoTutor(idAlumno);
+		tutorLista = tutorDAO.getListaTutor();
 		
 		return pagina;
 
