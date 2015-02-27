@@ -61,7 +61,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 			// Guardar matricula
 
-			em.persist(alumnoMatricula);
+			em.merge(alumnoMatricula);
 
 			em.getTransaction().commit();
 
@@ -93,9 +93,9 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 	}
 
 	public ArrayList<Alumno> getAlumnoList() {
-		
+
 		ArrayList<Alumno> alumnoList = new ArrayList<Alumno>();
-		
+
 		EntityManagerFactory emf = null;
 		EntityManager em = null;
 
@@ -237,13 +237,16 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			em.getTransaction().begin();
 			AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
 			alumnoMatricula = em.find(AlumnoMatricula.class, idMatricula);
-			em.remove(alumnoMatricula);
-			em.getTransaction().commit();
+			if (alumnoMatricula != null) {
 
-			estado = true;
+				em.remove(alumnoMatricula);
+				em.getTransaction().commit();
 
-			logger.log(Level.INFO, "AlumnoMatriculaDAO.borrarMatricula: OK.");
+				estado = true;
 
+				logger.log(Level.INFO,
+						"AlumnoMatriculaDAO.borrarMatricula: OK.");
+			}
 		} catch (EntityExistsException e) {
 
 			em.getTransaction().rollback();
@@ -278,15 +281,15 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
 			em = emf.createEntityManager();
-			
+
 			Alumno alumno = new Alumno();
 			Centro centro = new Centro();
 			Ensenanza ensenanza = new Ensenanza();
-			
+
 			alumno.setId(idAlumno);
 			centro.setId(idCentro);
 			ensenanza.setId(idEnsenanza);
-			
+
 			AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
 			alumnoMatricula.setAlumno(alumno);
 			alumnoMatricula.setCursoEscolar(cursoEscolar);

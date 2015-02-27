@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.AlumnoNota;
 import es.opensigad.model.vo.EnsenanzaMateria;
@@ -67,20 +68,19 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 			em.getTransaction().begin();
 
-			//String query = "FROM AlumnoNota an WHERE an.id = " + id;
+			/*
+			 * SELECT an.id, an.nota FROM AlumnoNota an, AlumnoMatricula am, Alumno a
+				 WHERE an.alumnoMatricula.id = am.id
+				 AND am.alumno.id = a.id
+				 AND a.id = :idAlumno" 
+			 */
 			
-			String query= "SELECT em.materia,an.nota,an.evaluacion, an.observacion"
-					+ "FROM Alumno a, AlumnoNota an, AlumnoMatricula am, EnsenanzaMateria am WHERE"
-					+ "a.id=am.alumno and am.id=alumnoMatricula and em.id=ensenanzaMateria and a.id="
-					+ id;
 			
-			/*SELECT 
-			em.materia,an.nota, an.evaluacion, an.observacion 
-			FROM opensigad.alumno a , opensigad.alumno_nota an , opensigad.alumno_matricula  am,
-			opensigad.ensenanza_materia em
-			WHERE 
-			a.id=am.id_alumno and am.id=an.id_alumno_matricula and em.id=an.id_materia and
-			a.id=1*/
+			String query = "SELECT an FROM AlumnoNota an, AlumnoMatricula am, Alumno a"
+					+ "WHERE an.alumnoMatricula.id = am.id "
+					+ "AND am.alumno.id = a.id "
+					+ "AND a.id =" + id;
+			
 
 			alumnos = em.createQuery(query).getResultList();
 

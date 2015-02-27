@@ -40,32 +40,35 @@
 					</p:selectOneMenu>
 					<h:outputLabel value="#{etqAlmMat['etiquetas.ensenanza']}"
 						style="font-weight:bold" />
-					<p:selectOneMenu
+					<h:selectOneMenu
 						value="#{verAlumnoMatriculaFichaBean.matricula.ensenanza.id}">
 						<f:selectItems value="#{comboMatriculaBean.ensenanzaItem}"></f:selectItems>
-						</p:selectOneMenu>
-						<h:outputLabel value="#{etqAlmMat['etiquetas.modulo']}"
-							style="font-weight:bold" />
-						<p:inputText
-							value="#{verAlumnoMatriculaFichaBean.matricula.modulo}">
-						</p:inputText>
-						<h:outputLabel value="#{etqAlmMat['etiquetas.curso']}"
-							style="font-weight:bold" />
-						<p:inputText
-							value="#{verAlumnoMatriculaFichaBean.matricula.curso}">
-						</p:inputText>
-						<h:outputLabel value="#{etqAlmMat['etiquetas.idAlumno']}"
-							style="font-weight:bold" />
-						<p:inputText
-							value="#{verAlumnoMatriculaFichaBean.matricula.alumno.id}"
-							disabled="true">
-						</p:inputText>					
+					</h:selectOneMenu>
+					<h:outputLabel value="#{etqAlmMat['etiquetas.modulo']}"
+						style="font-weight:bold" />
+					<p:inputText
+						value="#{verAlumnoMatriculaFichaBean.matricula.modulo}">
+					</p:inputText>
+					<h:outputLabel value="#{etqAlmMat['etiquetas.curso']}"
+						style="font-weight:bold" />
+					<p:inputText value="#{verAlumnoMatriculaFichaBean.matricula.curso}">
+					</p:inputText>
+					<h:outputLabel value="#{etqAlmMat['etiquetas.idAlumno']}"
+						style="font-weight:bold" />
+					<p:inputText
+						value="#{verAlumnoMatriculaFichaBean.matricula.alumno.id}"
+						disabled="true">
+					</p:inputText>
 				</p:panelGrid>
+
 				<br />
 
 				<p:commandButton value="Actualizar"
 					action="#{actualizarAlumnoMatriculaBean.modificarMatricula(verAlumnoMatriculaFichaBean.matricula.alumno.id,verAlumnoMatriculaFichaBean.matricula.cursoEscolar,
 		 verAlumnoMatriculaFichaBean.matricula.centro.id,verAlumnoMatriculaFichaBean.matricula.ensenanza.id,verAlumnoMatriculaFichaBean.matricula.modulo, verAlumnoMatriculaFichaBean.matricula.curso,verAlumnoMatriculaFichaBean.idMatricula)}" />
+
+				<p:commandButton value="Eliminar"
+					action="#{eliminarAlumnoMatriculaBean.borrarMatricula(verAlumnoMatriculaFichaBean.idMatricula)}"></p:commandButton>
 
 			</h:form>
 		</ui:define>

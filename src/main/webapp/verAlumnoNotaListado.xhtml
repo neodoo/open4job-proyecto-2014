@@ -1,56 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Lista Notas Alumno</title>
+	<h:outputStylesheet library="css" name="table-style.css" />
 </h:head>
 <h:body>
+	<ui:composition template="/template/common/commonLayout.xhtml">
+
+		<ui:define name="content">
+			<h:form>
+
+				<p:dataTable id="tablaDeAlumnosNota" var="nota"
+					value="#{verAlumnoNotaListadoBean.alumnoNotas}"
+					widgetVar="tablaDeAlumnosNota" paginator="true" rows="10"
+					style="width:900px">
+
+					<f:facet name="header">
+						<p:outputPanel>
+							<h:outputText value="Buscar en todos: " />
+							<p:inputText id="globalFilter"
+								onkeyup="PF('tablaDeAlumnos').filter()" style="width:150px" />
+						</p:outputPanel>
+					</f:facet>
+					<p:column id="enMatCol"
+						headerText="#{etqAlmNotas['titulo.idMateria']}"
+						filterMatchMode="exact">
+						<h:outputText value="#{nota.ensenanzaMateria.materia}" />
+					</p:column>
+
+					<p:column id="notCol" headerText="#{etqAlmNotas['titulo.nota']}">
+						<h:outputText value="#{nota.nota}" />
+					</p:column>
 
 
-	<h1>Notas del alumno</h1>
-        <p>#{Notas.idMatricula}</p>
-        <h:dataTable value="#{verAlumnoNotaListadoBean.alumnoNotas}" var="nota"
-                     styleClass="order-table" headerClass="order-table-header"
-                     rowClasses="order-table-odd-row,order-table-even-row">
-           		 	<h:column>
-						<f:facet name="header">
-							<h:outputLabel value="#{etqAlmNotas['titulo.id']}" />
-						</f:facet>
-                        #{nota.id}
-                  	</h:column>
-					<h:column>
-						<f:facet name="header">
-							<h:outputLabel value="#{etqAlmNotas['titulo.idMatricula']}" />
-						</f:facet>
-	                                 #{nota.alumnoMatricula.id}
-	                             </h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputLabel value="#{etqAlmNotas['titulo.idMateria']}" />
-								</f:facet>
-                                    #{nota.ensenanzaMateria.id}
-                                </h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputLabel value="#{etqAlmNotas['titulo.idEvaluacion']}" />
-								</f:facet>
-                                    #{nota.evaluacion}
-                                </h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputLabel value="#{etqAlmNotas['titulo.nota']}" />
-								</f:facet>
-                                    #{nota.nota}
-                                </h:column>
-							<h:column>
-								<f:facet name="header">
-									<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
-								</f:facet>
-                                    #{nota.observacion}
-                                </h:column>
-	</h:dataTable>
+					<p:column id="evaCol"
+						headerText="#{etqAlmNotas['titulo.idEvaluacion']}">
+						<h:outputText value="#{nota.evaluacion}" />
+					</p:column>
+
+					<p:column id="obserCol"
+						headerText="#{etqAlmNotas['titulo.observacion']}">
+						<h:outputText value="#{nota.observacion}" />
+					</p:column>
+				</p:dataTable>
+				<br />
+				<h:commandButton value="Insertar Nota"
+					action="insertarAlumnoNota.xhtml"></h:commandButton>
+				<h:commandButton value="Modificar Nota"
+					action="#{modificarNota.xhtml}"></h:commandButton>
+				<h:commandButton value="Eliminar Nota"
+					action="borrarAlumnoNota.xhtml"></h:commandButton>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
 </h:body>
 </html>
