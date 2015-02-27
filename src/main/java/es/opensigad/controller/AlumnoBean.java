@@ -132,13 +132,34 @@ public class AlumnoBean implements Serializable {
 		alumnoContacto.setAlumno(alumno);
 		if (alumnoDAO.insertAlumnoContacto(alumnoContacto)) {
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
-					"El alumno con numero de expediente "
+					"El contacto del alumno con numero de expediente "
 							+ alumno.getNumExpediente() + " ha sido insertado",
 					null);
 			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 		} else {
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
-					"ERROR: El alumno con numero de expediente "
+					"ERROR: El contacto del alumno con numero de expediente "
+							+ alumno.getNumExpediente()
+							+ " no se ha sido insertado", null);
+			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+		}
+		return pagina;
+	}
+	
+	
+	public String modifyAlumnoContacto(){
+		String pagina = "indexAlumno";
+		AlumnoDAO alumnoDAO = new AlumnoDAO();
+		alumnoContacto.setAlumno(alumno);
+		if (alumnoDAO.modifyAlumnoContacto(alumnoContacto)) {
+			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"El contacto del alumno con numero de expediente "
+							+ alumno.getNumExpediente() + " ha sido insertado",
+					null);
+			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+		} else {
+			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"ERROR: El contacto del alumno con numero de expediente "
 							+ alumno.getNumExpediente()
 							+ " no se ha sido insertado", null);
 			FacesContext.getCurrentInstance().addMessage(null, facesMessage);

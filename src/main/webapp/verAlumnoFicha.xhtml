@@ -97,7 +97,12 @@
 			<h:form>
 				<h:inputHidden id="idAlumno" value="#{alumnoBean.alumno.id}"></h:inputHidden>
 				<h:inputHidden id="numExpediente" value="#{alumnoBean.alumno.numExpediente}"></h:inputHidden>
-				<h:commandButton value="Insertar Contacto" action="#{alumnoBean.insertAlumnoContacto()}"></h:commandButton>
+				<h:commandButton value="Insertar Contacto" action="insertarAlumnoContacto"></h:commandButton>
+			</h:form>
+			<h:form>
+				<h:inputHidden id="idAlumno" value="#{alumnoBean.alumno.id}"></h:inputHidden>
+				<h:inputHidden id="numExpediente" value="#{alumnoBean.alumno.numExpediente}"></h:inputHidden>
+				<h:commandButton value="Modificar Contacto" action="actualizarAlumnoContacto"></h:commandButton>
 			</h:form>
 			<h:form>
 				<h:inputHidden id="idAlumnoEliminar" value="#{alumnoBean.alumno.id}"></h:inputHidden>
