@@ -10,10 +10,7 @@
 </h:head>
 
 <h:body>
-
-	 <f:event listener="#{alumnoSeguimientoBean.getListaAlumnoSeguimiento(sesionBean.idMatricula)}"
-		type="preRenderView" />
-		
+	
 
 	<h1>
 		<h:outputLabel id="tituloListaSeguimiento"
@@ -22,7 +19,7 @@
 
 	
 
-	<p:dataTable var="seg" value="#{alumnoSeguimientoBean.seguimientos}"
+	<p:dataTable var="seg" value="#{seguimientoBean.seguimientos}"
 		paginator="true" rows="1">
 
 		<p:column>
