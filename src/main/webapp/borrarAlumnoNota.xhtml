@@ -8,11 +8,17 @@
 	<title>Lista Notas Alumno</title>
 </h:head>
 <h:body>
-	<h1>Notas del alumno</h1>
-	<h:form>
-		Introduce el idMatricula para borrar la nota asociada: 
-		<h:inputText value="#{eliminarAlumnoNotaBean.idMatricula}"></h:inputText>
-		<br/><h:commandButton value="Actualizar notas del alumno" action="#{eliminarAlumnoNotaBean.borrarNotaByIdMatricula(eliminarAlumnoNotaBean.idMatricula)}"></h:commandButton>
-	</h:form>
+	<!-- Borrar notas de un alumno, el resultado lo muestra en otra ventana de momento.-->
+	<p:tab title="#{etqAlmNotas['titulo.BorrarNotasAlumno']}">
+		<h:panelGrid columns="2" cellpadding="10">
+			<h:form>
+				<h:outputLabel value="#{etqAlmNotas['etiquetas.BorrarNotasAlumno']}" />
+				<h:inputText value="#{eliminarAlumnoNotaBean.id}"></h:inputText>
+				<br />
+				<h:commandButton value="Borrar notas del alumno"
+					action="#{eliminarAlumnoNotaBean.borrarNotaById(eliminarAlumnoNotaBean.id)}"></h:commandButton>
+			</h:form>
+		</h:panelGrid>
+	</p:tab>
 </h:body>
 </html>
