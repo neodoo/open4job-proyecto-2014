@@ -233,13 +233,13 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			em = emf.createEntityManager();
 
 			// Borrar matricula
-
+ 
 			em.getTransaction().begin();
 			AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
 			alumnoMatricula = em.find(AlumnoMatricula.class, idMatricula);
 			if (alumnoMatricula != null) {
 
-				em.remove(alumnoMatricula);
+				em.remove(em.merge(alumnoMatricula));
 				em.getTransaction().commit();
 
 				estado = true;
