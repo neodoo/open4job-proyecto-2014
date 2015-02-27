@@ -3,6 +3,7 @@ package es.opensigad.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -11,7 +12,7 @@ import javax.faces.bean.ViewScoped;
 import es.opensigad.model.dao.AlumnoSeguimientoDAO;
 import es.opensigad.model.vo.AlumnoSeguimiento;
 
-@ManagedBean
+@ManagedBean(name="seguimientoBean")
 @ViewScoped
 
 public class AlumnoSeguimientoBean {
@@ -148,9 +149,10 @@ public class AlumnoSeguimientoBean {
 		this.seguimientosFiltro = seguimientosFiltro;
 	}
 	
-	//public AlumnoSeguimientoBean(){
-	//	getListaAlumnoSeguimiento(sesionBean.getIdMatricula());
-	//}
+	@PostConstruct
+	public void init(){
+		getListaAlumnoSeguimiento(sesionBean.getIdMatricula());
+	}
 	
 
 	public String getDetalleAlumnoSeguimiento() {
@@ -168,15 +170,7 @@ public class AlumnoSeguimientoBean {
 		seguimientos = seguimientoDAO.getListaAlumnoSeguimiento(idMatricula);
 
 	}	
-	
-	/* OTRA FORMA, SIN PASAR EL PARAMETRO, INVOCANDO DIRECTAMENTE DEL SESIONBEAN
-	 * public void getListaAlumnoSeguimiento() {
-		
-		AlumnoSeguimientoDAO seguimientoDAO = new AlumnoSeguimientoDAO();
-		seguimientos = seguimientoDAO.getListaAlumnoSeguimiento(sesionBean.getIdMatricula());
 
-	}	*/
-		
 	
 	public String insertarAlumnoSeguimiento() {
 		

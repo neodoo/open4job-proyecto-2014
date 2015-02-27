@@ -11,8 +11,7 @@
 
 <h:body>
 
-	 <f:event listener="#{alumnoSeguimientoBean.getListaAlumnoSeguimiento(sesionBean.idMatricula)}"
-		type="preRenderView" />
+	<!--<f:event listener="#{alumnoSeguimientoBean.getListaAlumnoSeguimiento(sesionBean.idMatricula)}"type="preRenderView" />-->
 		
 
 	<h1>
@@ -22,8 +21,11 @@
 
 	
 
-	<p:dataTable var="seg" value="#{alumnoSeguimientoBean.seguimientos}"
-		paginator="true" rows="1">
+	<p:dataTable var="seg" value="#{seguimientoBean.seguimientos}"
+		paginator="true" rows="2"
+		paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+         rowsPerPageTemplate="5,10,15" lazy="true">
+        
 
 		<p:column>
 			<f:facet name="header">
