@@ -12,52 +12,66 @@
 </h:head>
 
 <h:body>
-<ui:composition template="/template/common/commonLayout.xhtml">
+	<ui:composition template="/template/common/commonLayout.xhtml">
 
 		<ui:define name="content">
-		
-	<h1>Matrícula</h1>
 
-	<h:form>
-		<p:panelGrid id="panel" columns="2" border="0" cellpadding="0"
-			cellspacing="5">
-			<h:outputLabel value="#{etqAlmMat['etiquetas.idMatricula']}" style="font-weight:bold" />
-			<p:inputText value="#{verAlumnoMatriculaFichaBean.idMatricula}" disabled="true">
-			</p:inputText>
-			<h:outputLabel value="#{etqAlmMat['etiquetas.cursoEscolar']}" style="font-weight:bold" />
-			<p:inputText
-				value="#{verAlumnoMatriculaFichaBean.matricula.cursoEscolar}" disabled="true">
-			</p:inputText>
-			<h:outputLabel value="#{etqAlmMat['etiquetas.centro']}" style="font-weight:bold" />
-			<p:selectOneMenu value = "#{verAlumnoMatriculaFichaBean.matricula.centro.id}">
-			<f:selectItems value = "#{comboMatriculaBean.centroItem}"></f:selectItems> 
-		</p:selectOneMenu>
-			<h:outputLabel value="#{etqAlmMat['etiquetas.ensenanza']}" style="font-weight:bold" />
-			<h:selectOneMenu value = "#{verAlumnoMatriculaFichaBean.matricula.ensenanza.id}">
-			<f:selectItems value = "#{comboMatriculaBean.ensenanzaItem}"></f:selectItems> 
-		</h:selectOneMenu>
-			<h:outputLabel value="#{etqAlmMat['etiquetas.modulo']}" style="font-weight:bold" />
-			<p:inputText
-				value="#{verAlumnoMatriculaFichaBean.matricula.modulo}">
-			</p:inputText>
-			<h:outputLabel value="#{etqAlmMat['etiquetas.curso']}" style="font-weight:bold" />
-			<p:inputText value="#{verAlumnoMatriculaFichaBean.matricula.curso}">
-			</p:inputText>
-			<h:outputLabel value="#{etqAlmMat['etiquetas.idAlumno']}" style="font-weight:bold" />
-			<p:inputText value="#{verAlumnoMatriculaFichaBean.matricula.alumno.id}" disabled="true">
-			</p:inputText>
-		</p:panelGrid>
-<br />
+			<h1>Matrícula</h1>
 
-		<p:commandButton value="Actualizar"
-			action="#{actualizarAlumnoMatriculaBean.modificarMatricula(verAlumnoMatriculaFichaBean.matricula.alumno.id,verAlumnoMatriculaFichaBean.matricula.cursoEscolar,
+			<h:form>
+				<p:panelGrid id="panel" columns="2" border="0" cellpadding="0"
+					cellspacing="5">
+					<h:outputLabel value="#{etqAlmMat['etiquetas.idMatricula']}"
+						style="font-weight:bold" />
+					<p:inputText value="#{verAlumnoMatriculaFichaBean.idMatricula}"
+						disabled="true">
+					</p:inputText>
+					<h:outputLabel value="#{etqAlmMat['etiquetas.cursoEscolar']}"
+						style="font-weight:bold" />
+					<p:inputText
+						value="#{verAlumnoMatriculaFichaBean.matricula.cursoEscolar}"
+						disabled="true">
+					</p:inputText>
+					<h:outputLabel value="#{etqAlmMat['etiquetas.centro']}"
+						style="font-weight:bold" />
+					<p:selectOneMenu
+						value="#{verAlumnoMatriculaFichaBean.matricula.centro.id}">
+						<f:selectItems value="#{comboMatriculaBean.centroItem}"></f:selectItems>
+					</p:selectOneMenu>
+					<h:outputLabel value="#{etqAlmMat['etiquetas.ensenanza']}"
+						style="font-weight:bold" />
+					<p:selectOneMenu
+						value="#{verAlumnoMatriculaFichaBean.matricula.ensenanza.id}">
+						<f:selectItems value="#{comboMatriculaBean.ensenanzaItem}"></f:selectItems>
+						</p:selectOneMenu>
+						<h:outputLabel value="#{etqAlmMat['etiquetas.modulo']}"
+							style="font-weight:bold" />
+						<p:inputText
+							value="#{verAlumnoMatriculaFichaBean.matricula.modulo}">
+						</p:inputText>
+						<h:outputLabel value="#{etqAlmMat['etiquetas.curso']}"
+							style="font-weight:bold" />
+						<p:inputText
+							value="#{verAlumnoMatriculaFichaBean.matricula.curso}">
+						</p:inputText>
+						<h:outputLabel value="#{etqAlmMat['etiquetas.idAlumno']}"
+							style="font-weight:bold" />
+						<p:inputText
+							value="#{verAlumnoMatriculaFichaBean.matricula.alumno.id}"
+							disabled="true">
+						</p:inputText>					
+				</p:panelGrid>
+				<br />
+
+				<p:commandButton value="Actualizar"
+					action="#{actualizarAlumnoMatriculaBean.modificarMatricula(verAlumnoMatriculaFichaBean.matricula.alumno.id,verAlumnoMatriculaFichaBean.matricula.cursoEscolar,
 		 verAlumnoMatriculaFichaBean.matricula.centro.id,verAlumnoMatriculaFichaBean.matricula.ensenanza.id,verAlumnoMatriculaFichaBean.matricula.modulo, verAlumnoMatriculaFichaBean.matricula.curso,verAlumnoMatriculaFichaBean.idMatricula)}" />
 
-	</h:form>
-</ui:define>
+			</h:form>
+		</ui:define>
 
 	</ui:composition>
-	
+
 </h:body>
 
 </html>
