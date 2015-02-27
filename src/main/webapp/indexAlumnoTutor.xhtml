@@ -30,7 +30,10 @@
 				<h3>Insertar Tutor / Tutor-Alumno</h3>
 				<a href="insertarTutor.xhtml">Insertar Tutor</a>
 				<h3>Mostrar Tutores</h3>
-				<h:commandButton action="#{verTutorBean.getListaTutor}"
+				<!-- ofe -->
+				<h:inputText value="#{verTutorBean.idAlumno}" name="idTutor" />
+				
+				<h:commandButton action="#{verTutorBean.getListaTutor()}"
 					value="Mostrar Tutores" />
 			</h:form>
 		</ui:define>

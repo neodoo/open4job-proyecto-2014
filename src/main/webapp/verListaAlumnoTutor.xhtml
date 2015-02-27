@@ -10,7 +10,7 @@
 
 </h:head>
 <h:body>
-	<p:dataTable value="#{verTutorBean.tutorLista}" var="tutor" rows="10"
+	<p:dataTable value="#{verTutorBean.alumnoTutorLista}" var="tutor" rows="10"
 		paginator="true"
 		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 		rowsPerPageTemplate="5,10">
@@ -18,61 +18,61 @@
 			<f:facet name="header">
 			<h:outputLabel value="#{etqAlmNotas['titulo.id']}" />
 			</f:facet>
-             #{tutor.id}
+             #{tutor.tutor.id}
         </p:column>
 		<p:column>
 			<f:facet name="header">
 			<h:outputLabel value="#{etqAlmNotas['titulo.idMatricula']}" />
 			</f:facet>
-             #{tutor.nombre}
+             #{tutor.tutor.nombre}
         </p:column>
 		<p:column>
 			<f:facet name="header">
 				<h:outputLabel value="#{etqAlmNotas['titulo.idMateria']}" />
 			</f:facet>
-             #{tutor.apellido1}
+             #{tutor.tutor.apellido1}
         </p:column>
 		<p:column>
 			<f:facet name="header">
 			<h:outputLabel value="#{etqAlmNotas['titulo.idEvaluacion']}" />
 			</f:facet>
-            #{tutor.apellido2}
+            #{tutor.tutor.apellido2}
         </p:column>
 		<p:column>
 			<f:facet name="header">
 			<h:outputLabel value="#{etqAlmNotas['titulo.nota']}" />
 			</f:facet>
-             #{tutor.tipoDocumento}
+             #{tutor.tutor.tipoDocumento}
         </p:column>
 		<p:column>
 			<f:facet name="header">
 			<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
 			</f:facet>
-             #{tutor.documento}
+             #{tutor.tutor.documento}
         </p:column>
 		<p:column>
 			<f:facet name="header">
 			<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
 			</f:facet>
-              #{tutor.fechaNacimiento}
+              #{tutor.tutor.fechaNacimiento}
         </p:column>
 		<p:column>
 			<f:facet name="header">
 			<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
 			</f:facet>
-             #{tutor.sexo}
+             #{tutor.tutor.sexo}
         </p:column>
 		<p:column>
 			<f:facet name="header">
 			<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
 			</f:facet>
-             #{tutor.telefono}
+             #{tutor.tutor.telefono}
         </p:column>
 		<p:column>
 			<f:facet name="header">
 			<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
 			</f:facet>
-           #{tutor.email}
+           #{tutor.tutor.email}
          </p:column>
 	</p:dataTable>
 

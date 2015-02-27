@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -107,6 +108,56 @@ public class TutorDAO implements TutorDAOInterface {
 
 	}
 
+	public List<AlumnoTutor> getListaAlumnoTutor2() {
+
+		List<AlumnoTutor> listAlumnoTutor = null;
+
+		EntityManagerFactory emf = null;
+		EntityManager em = null;
+
+		try {
+			
+			FacesContext context = FacesContext.getCurrentInstance();
+			int idAlumno= (int)context.getExternalContext().getSessionMap().get("idAlumno");
+
+			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			em = emf.createEntityManager();
+
+			em.getTransaction().begin();
+
+			// Recuperamos el objeto relacion Alumno_tutor para recuperar todos
+			// los datos
+			Query q = em.createQuery("SELECT at FROM AlumnoTutor at WHERE at.alumno.id = "
+				+ idAlumno);
+
+			// "SELECT at FROM es.opensigad.model.vo.AlumnoTutor as at "
+			// + "LEFT OUTER JOIN es.opensigad.model.vo.Tutor as t "
+			// + "ON at.tutor.id = t.id "
+			// + "WHERE at.alumno.id = " + idAlumno);
+			// = :varAlumno");
+
+			// q.setParameter("varAlumno", idAlumno);
+			listAlumnoTutor = q.getResultList();
+
+			em.getTransaction().commit();
+
+			logger.log(Level.INFO, "TutorDAO.getListaTutor: OK.");
+
+		} catch (Exception e) {
+
+			em.getTransaction().rollback();
+			logger.log(Level.SEVERE, "TutorDAO.getListaTutor: " + e.getMessage());
+
+		} finally {
+
+			try { em.close(); } catch (Exception e) { }
+			try { emf.close(); } catch (Exception e) { }
+
+		}
+
+		return listAlumnoTutor;
+
+	}
 	// borra 1 tutor con el idTutor recibido
 	public boolean deleteAlumnoTutor(int idAlumnoTutor) {
 

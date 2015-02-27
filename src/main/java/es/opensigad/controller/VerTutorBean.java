@@ -3,6 +3,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import org.hibernate.Session;
 
@@ -23,6 +24,18 @@ public class VerTutorBean {
 
 	private List<Tutor> tutorLista;
 	
+	private List<AlumnoTutor> alumnoTutorLista;
+	
+	
+	
+	public List<AlumnoTutor> getAlumnoTutorLista() {
+		return alumnoTutorLista;
+	}
+
+	public void setAlumnoTutorLista(List<AlumnoTutor> alumnoTutorLista) {
+		this.alumnoTutorLista = alumnoTutorLista;
+	}
+
 	public List<Tutor> getTutorLista() {
 		return tutorLista;
 	}
@@ -70,8 +83,11 @@ public class VerTutorBean {
 		
 		String pagina = "verListaAlumnoTutor";
 		
+		//ofe
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getSessionMap().put("idAlumno", idAlumno);
 		TutorDAO tutorDAO = new TutorDAO();
-		tutorLista = tutorDAO.getListaTutor();
+		alumnoTutorLista = tutorDAO.getListaAlumnoTutor2();
 		
 		return pagina;
 
