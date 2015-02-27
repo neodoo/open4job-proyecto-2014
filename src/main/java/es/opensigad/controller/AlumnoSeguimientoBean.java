@@ -170,15 +170,7 @@ public class AlumnoSeguimientoBean {
 		seguimientos = seguimientoDAO.getListaAlumnoSeguimiento(idMatricula);
 
 	}	
-	
-	/* OTRA FORMA, SIN PASAR EL PARAMETRO, INVOCANDO DIRECTAMENTE DEL SESIONBEAN
-	 * public void getListaAlumnoSeguimiento() {
-		
-		AlumnoSeguimientoDAO seguimientoDAO = new AlumnoSeguimientoDAO();
-		seguimientos = seguimientoDAO.getListaAlumnoSeguimiento(sesionBean.getIdMatricula());
 
-	}	*/
-		
 	
 	public String insertarAlumnoSeguimiento() {
 		

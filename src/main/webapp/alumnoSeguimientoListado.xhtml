@@ -10,7 +10,6 @@
 </h:head>
 
 <h:body>
-	
 
 	<h1>
 		<h:outputLabel id="tituloListaSeguimiento"
@@ -19,8 +18,11 @@
 
 	
 
-	<p:dataTable var="seg" value="#{seguimientoBean.seguimientos}"
-		paginator="true" rows="1">
+	<p:dataTable var="seg" value="#{seguimientoBean.seguimientos}" 
+	paginator="true" rows="1">
+
+
+	
 
 		<p:column>
 			<f:facet name="header">
