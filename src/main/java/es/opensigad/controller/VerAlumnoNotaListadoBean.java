@@ -3,8 +3,12 @@ package es.opensigad.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.RowEditEvent;
 
 import es.opensigad.model.dao.AlumnoNotaDAO;
 import es.opensigad.model.vo.*;
@@ -48,5 +52,15 @@ public class VerAlumnoNotaListadoBean implements Serializable {
         alumnoNotas = alumnoNotaDao.getAllAlumnoNotas();
     
 	}
+	 public void onRowEdit(RowEditEvent event) {
+		 FacesMessage msg = new FacesMessage("Editar Alumno");
+		 // FacesMessage msg = new FacesMessage("Editar Alumno", ((AlumnoNota) event.getObject()).getId());
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+	    }
+	     
+	    public void onRowCancel(RowEditEvent event) {
+	        FacesMessage msg = new FacesMessage("Cancelar Edicion");
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+	    }
 
 }
