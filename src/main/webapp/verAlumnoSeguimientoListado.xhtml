@@ -3,7 +3,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<h:outputStylesheet library="css" name="table-style.css" />
 </h:head>
@@ -15,28 +16,65 @@
 			value="#{etqAlmSeg['titulo.listaSeguimiento']}" />
 	</h1>
 
-	<h:dataTable value="#{verAlumnoFaltaListadoBean.faltasVO}" var="se"
-		styleClass="order-table" headerClass="order-table-header"
-		rowClasses="order-table-odd-row,order-table-even-row">
+	<p:dataTable var="seg" value="#{alumnoSeguimientoBean.seguimientos}"
+		paginator="true" rows="1">
 
-		<h:column>
-			<f:facet name="header">Falta</f:facet> #{se.id}
-    </h:column>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="#{etqAlmSeg['etiqueta.id']}" />
+			</f:facet>
+			<h:outputText value="#{seg.id}" />
+		</p:column>
 
-		<h:column>
-			<f:facet name="header">Fecha</f:facet> #{se.fecha}
-    </h:column>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="#{etqAlmSeg['etiqueta.matricula']}" />
+			</f:facet>
+			<h:outputText value="#{seg.alumnoMatricula.id}" />
+		</p:column>
 
-		<h:column>
-			<f:facet name="header">Materia</f:facet> #{se.materia}
-    </h:column>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="#{etqAlmSeg['etiqueta.fecha']}" />
+			</f:facet>
+			<h:outputText value="#{seg.fecha}" />
+		</p:column>
 
-		<h:column>
-			<f:facet name="header">Tipo falta</f:facet> #{se.tipo}
-    </h:column>
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="#{etqAlmSeg['etiqueta.sesion']}" />
+			</f:facet>
+			<h:outputText value="#{seg.sesion}" />
+		</p:column>
 
-	</h:dataTable>
+		<p:column>
+			<f:facet name="header">
+				http://www.msn.com/es-es/?OCID=mailsignoutes<h:outputText value="#{etqAlmSeg['etiqueta.materia']}" />
+			</f:facet>
+			<h:outputText value="#{seg.ensenanzaMateria.id}" />
+		</p:column>
 
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="#{etqAlmSeg['etiqueta.tipo']}" />
+			</f:facet>
+			<h:outputText value="#{seg.tipo}" />
+		</p:column>
+
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="#{etqAlmSeg['etiqueta.justificante']}" />
+			</f:facet>
+			<h:outputText value="#{seg.justificante}" />
+		</p:column>
+
+		<p:column>
+			<f:facet name="header">
+				<h:outputText value="#{etqAlmSeg['etiqueta.observaciones']}" />
+			</f:facet>
+			<h:outputText value="#{seg.observaciones}" />
+		</p:column>
+	</p:dataTable>
 
 </h:body>
 

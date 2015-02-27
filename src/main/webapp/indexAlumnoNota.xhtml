@@ -7,9 +7,6 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <body>
-	<f:event listener="#{verAlumnoNotaListadoBean.allAlumnoNotas}"
-		type="preRenderView" />
-
 	<ui:composition template="/template/common/commonLayout.xhtml">
 
 		<!-- Contenido de la pagina.-->
@@ -18,7 +15,7 @@
 			<h:panelGrid>
 				<h:form>
 					<h3>#{etqAlmNotas['etiquetas.IntroduceIdAlumno']}</h3>
-					<h:inputText value="#{verAlumnoNotaListadoBean.id}"></h:inputText>
+					<h:inputText value="#{verAlumnoNotaListadoBean.id}"/>
 					<h:commandButton value="Ver Notas"
 						action="#{verAlumnoNotaListadoBean.getDetalleNotasAlumno(verAlumnoNotaListadoBean.id)}"></h:commandButton>
 				</h:form>

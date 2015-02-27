@@ -2,6 +2,7 @@ package es.opensigad.model.dao;
 
 import java.util.List;
 
+import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoNota;
 
 public interface AlumnoNotaDAOInterfaz {
