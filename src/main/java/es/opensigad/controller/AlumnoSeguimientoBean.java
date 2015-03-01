@@ -1,12 +1,12 @@
 package es.opensigad.controller;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 import es.opensigad.model.dao.AlumnoSeguimientoDAO;
@@ -15,7 +15,7 @@ import es.opensigad.model.vo.AlumnoSeguimiento;
 @ManagedBean(name="seguimientoBean")
 @ViewScoped
 
-public class AlumnoSeguimientoBean {
+public class AlumnoSeguimientoBean implements Serializable{
 
 	public static final String TIPO_FALTA = "falta";
 	public static final String TIPO_INCIDENCIA = "incidencia";
@@ -39,6 +39,11 @@ public class AlumnoSeguimientoBean {
 	
 	@ManagedProperty(value="#{sesionBean}")
 	private SesionBean sesionBean;
+	
+	@PostConstruct
+	public void init(){
+		getListaAlumnoSeguimiento(sesionBean.getIdMatricula());
+	}
 	
 	public SesionBean getSesionBean() {
 		return sesionBean;
@@ -148,13 +153,7 @@ public class AlumnoSeguimientoBean {
 	public void setSeguimientosFiltro(List<AlumnoSeguimiento> seguimientosFiltro) {
 		this.seguimientosFiltro = seguimientosFiltro;
 	}
-	
-	@PostConstruct
-	public void init(){
-		getListaAlumnoSeguimiento(sesionBean.getIdMatricula());
-	}
-	
-
+ 
 	public String getDetalleAlumnoSeguimiento() {
 
 		String pagina = "alumnoSeguimiento";
@@ -171,7 +170,6 @@ public class AlumnoSeguimientoBean {
 
 	}	
 
-	
 	public String insertarAlumnoSeguimiento() {
 		
 		String pagina = null;

@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import es.opensigad.model.dao.AlumnoDAO;
@@ -14,7 +14,7 @@ import es.opensigad.model.vo.AlumnoContacto;
 import es.opensigad.model.vo.Territorio;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class AlumnoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

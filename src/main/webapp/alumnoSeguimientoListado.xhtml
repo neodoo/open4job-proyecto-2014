@@ -16,71 +16,70 @@
 			value="#{etqAlmSeg['titulo.listaSeguimiento']}" />
 	</h1>
 
-	
+	<h:form>
 
-	<p:dataTable var="seg" value="#{seguimientoBean.seguimientos}" 
-	paginator="true" rows="1">
+		<p:dataTable var="seg" value="#{seguimientoBean.seguimientos}"
+			paginator="true" rows="1">
 
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{etqAlmSeg['etiqueta.id']}" />
+				</f:facet>
+				<h:outputText value="#{seg.id}" />
+			</p:column>
 
-	
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{etqAlmSeg['etiqueta.matricula']}" />
+				</f:facet>
+				<h:outputText value="#{seg.alumnoMatricula.id}" />
+			</p:column>
 
-		<p:column>
-			<f:facet name="header">
-				<h:outputText value="#{etqAlmSeg['etiqueta.id']}" />
-			</f:facet>
-			<h:outputText value="#{seg.id}" />
-		</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{etqAlmSeg['etiqueta.fecha']}" />
+				</f:facet>
+				<h:outputText value="#{seg.fecha}" />
+			</p:column>
 
-		<p:column>
-			<f:facet name="header">
-				<h:outputText value="#{etqAlmSeg['etiqueta.matricula']}" />
-			</f:facet>
-			<h:outputText value="#{seg.alumnoMatricula.id}" />
-		</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{etqAlmSeg['etiqueta.sesion']}" />
+				</f:facet>
+				<h:outputText value="#{seg.sesion}" />
+			</p:column>
 
-		<p:column>
-			<f:facet name="header">
-				<h:outputText value="#{etqAlmSeg['etiqueta.fecha']}" />
-			</f:facet>
-			<h:outputText value="#{seg.fecha}" />
-		</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{etqAlmSeg['etiqueta.materia']}" />
+				</f:facet>
+				<h:outputText value="#{seg.ensenanzaMateria.id}" />
+			</p:column>
 
-		<p:column>
-			<f:facet name="header">
-				<h:outputText value="#{etqAlmSeg['etiqueta.sesion']}" />
-			</f:facet>
-			<h:outputText value="#{seg.sesion}" />
-		</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{etqAlmSeg['etiqueta.tipo']}" />
+				</f:facet>
+				<h:outputText value="#{seg.tipo}" />
+			</p:column>
 
-		<p:column>
-			<f:facet name="header">
-				<h:outputText value="#{etqAlmSeg['etiqueta.materia']}" />
-			</f:facet>
-			<h:outputText value="#{seg.ensenanzaMateria.id}" />
-		</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{etqAlmSeg['etiqueta.justificante']}" />
+				</f:facet>
+				<h:outputText value="#{seg.justificante}" />
+			</p:column>
 
-		<p:column>
-			<f:facet name="header">
-				<h:outputText value="#{etqAlmSeg['etiqueta.tipo']}" />
-			</f:facet>
-			<h:outputText value="#{seg.tipo}" />
-		</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{etqAlmSeg['etiqueta.observaciones']}" />
+				</f:facet>
+				<h:outputText value="#{seg.observaciones}" />
+			</p:column>
 
-		<p:column>
-			<f:facet name="header">
-				<h:outputText value="#{etqAlmSeg['etiqueta.justificante']}" />
-			</f:facet>
-			<h:outputText value="#{seg.justificante}" />
-		</p:column>
+		</p:dataTable>
 
-		<p:column>
-			<f:facet name="header">
-				<h:outputText value="#{etqAlmSeg['etiqueta.observaciones']}" />
-			</f:facet>
-			<h:outputText value="#{seg.observaciones}" />
-		</p:column>
-	</p:dataTable>
+	</h:form>
 
 </h:body>
-
 </html>
