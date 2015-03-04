@@ -2,9 +2,10 @@ package es.opensigad.model.dao;
 
 import java.util.List;
 
-import es.opensigad.model.vo.Alumno;
-import es.opensigad.model.vo.AlumnoNota;
+import javax.ejb.Remote;
 
+import es.opensigad.model.vo.AlumnoNota;
+@Remote
 public interface AlumnoNotaDAOInterfaz {
 	
 	public List<AlumnoNota> getAllAlumnoNotas();
