@@ -1,4 +1,5 @@
-# proyecto-open4Job-2014
+# proyecto-open4Job-2014 - Branch WIldFly
 
-Proyecto Open4Job 2014.
+Proyecto clonado para su migración a WildFly
+
 .
