@@ -3,36 +3,14 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
-	<persistence-unit name="opensigadUnit" transaction-type="RESOURCE_LOCAL">
-		
-		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		
-		<class>es.opensigad.model.vo.Alumno</class>
-		<class>es.opensigad.model.vo.AlumnoContacto</class>
-		<class>es.opensigad.model.vo.AlumnoDireccion</class>
-		<class>es.opensigad.model.vo.AlumnoMatricula</class>
-		<class>es.opensigad.model.vo.AlumnoNota</class>
-		<class>es.opensigad.model.vo.AlumnoSeguimiento</class>
-		<class>es.opensigad.model.vo.AlumnoTutor</class>
-		<class>es.opensigad.model.vo.Centro</class>
-		<class>es.opensigad.model.vo.Ensenanza</class>
-		<class>es.opensigad.model.vo.EnsenanzaCiclo</class>
-		<class>es.opensigad.model.vo.EnsenanzaCurso</class>
-		<class>es.opensigad.model.vo.EnsenanzaMateria</class>
-		<class>es.opensigad.model.vo.EnsenanzaTipo</class>
-		<class>es.opensigad.model.vo.Profesor</class>
-		<class>es.opensigad.model.vo.Territorio</class>
-		<class>es.opensigad.model.vo.Tutor</class>
+	<persistence-unit name="opensigadDS">
+	
+		<jta-data-source>java:jboss/datasources/openSigadDS</jta-data-source>
 		
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://54.154.192.80:3306/opensigad" />
-			<property name="javax.persistence.jdbc.user" value="opensigad" />
-			<property name="javax.persistence.jdbc.password" value=".opensigad8$" />
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="validate" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<!-- Configuring Connection Pool -->
 			<property name="hibernate.c3p0.min_size" value="5" />
 			<property name="hibernate.c3p0.max_size" value="20" />
