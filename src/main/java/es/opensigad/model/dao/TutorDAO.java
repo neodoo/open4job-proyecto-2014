@@ -27,7 +27,7 @@ public class TutorDAO implements TutorDAOInterface {
 
 	public static final Logger logger = Logger.getLogger(TutorDAO.class.getName());
 	
-	@PersistenceContext(unitName = "JPADB")
+	@PersistenceContext(unitName = "opensigadUnit")
 	private EntityManager ENTITY_MANAGER;
 
 	public TutorDAO() {
