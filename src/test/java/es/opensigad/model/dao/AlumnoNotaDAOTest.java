@@ -10,7 +10,7 @@ public class AlumnoNotaDAOTest extends TestCase {
 	public void testGetNotasByIdMatricula() {
 		
 		AlumnoNotaDaoPoolDB alumnoDao = new AlumnoNotaDaoPoolDB();
-		List<AlumnoNota> alumnoNotas = alumnoDao.getNotasByIdAlumno(1);
+		List<AlumnoNota> alumnoNotas = alumnoDao.getNotasByIdMatricula(1);
 	
 		assertTrue(alumnoNotas.size() > 0);
 	

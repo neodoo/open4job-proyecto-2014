@@ -50,24 +50,18 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 	}
 
-	public List<AlumnoNota> getNotasByIdAlumno(int id) {
+	public List<AlumnoNota> getNotasByIdMatricula(int id) {
 
 		List<AlumnoNota> alumnos = null;
 	
-		try {
-
-			/*
-			 * SELECT an.id, an.nota FROM AlumnoNota an, AlumnoMatricula am, Alumno a
-				 WHERE an.alumnoMatricula.id = am.id
-				 AND am.alumno.id = a.id
-				 AND a.id = :idAlumno" 
-			 */
+		try{
 			
+			 String query = "FROM AlumnoNota an WHERE an.id = " + id;
 			
-			String query = "SELECT an FROM AlumnoNota an, AlumnoMatricula am, Alumno a"
+			/*String query = "SELECT an FROM AlumnoNota an, AlumnoMatricula am, Alumno a"
 					+ "WHERE an.alumnoMatricula.id = am.id "
 					+ "AND am.alumno.id = a.id "
-					+ "AND a.id =" + id;
+					+ "AND a.id =" + id;*/
 			
 
 			alumnos = em.createQuery(query).getResultList();
