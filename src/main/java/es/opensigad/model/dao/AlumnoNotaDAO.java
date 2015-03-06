@@ -18,6 +18,13 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 	@PersistenceContext(unitName = "opensigadUnit")
 	public EntityManager em = null;
 
+	public EntityManager getEm() {
+		return em;
+	}
+
+	public void setEm(EntityManager em) {
+		this.em = em;
+	}
 	public static final Logger logger = Logger.getLogger(AlumnoNotaDAO.class
 			.getName());
 
