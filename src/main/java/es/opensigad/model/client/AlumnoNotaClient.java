@@ -1,10 +1,12 @@
 package es.opensigad.model.client;
 
+import java.util.List;
+
 import javax.naming.Context;
 import javax.naming.NamingException;
 
-import es.opensigad.model.dao.AlumnoNotaDAO;
 import es.opensigad.model.vo.AlumnoNota;
+import es.opensigad.model.dao.AlumnoNotaDAO;
 import es.opensigad.model.dao.AlumnoNotaDAOInterfaz;
  
 public class AlumnoNotaClient {
@@ -12,18 +14,10 @@ public class AlumnoNotaClient {
 	   public static void main(String[] args) {
 		   
 	        AlumnoNotaDAOInterfaz bean = doLookup();
-	         
-	        AlumnoNota p1 = new AlumnoNota();
-	        
-	         
-	        AlumnoNota p2 = new AlumnoNota();
-	       
-	 
-	       System.out.println("List of Projects:");
-	        /*List<AlumnoNota> projects = bean.retrieveAllProjects();
-	        for(AlumnoNota project : projects)
-	            System.out.println(project);
-	            */
+
+
+	        List<AlumnoNota> AlNota2 = bean.getNotasByIdAlumno(1);
+	        System.out.println(AlNota2);
 	         
 	    }
 	 
@@ -37,12 +31,24 @@ public class AlumnoNotaClient {
 	            context = JNDILookupClass.getInitialContext();
 
 	            String lookupName = getLookupName();
-	    
+	    	            
+	            /*
+	        	java:global/proyecto_open4job_2014_wildfly/AlumnoNotaDAO!es.opensigad.model.dao.AlumnoNotaDAOInterfaz
+	        	java:app/proyecto_open4job_2014_wildfly/AlumnoNotaDAO!es.opensigad.model.dao.AlumnoNotaDAOInterfaz
+	        	java:module/AlumnoNotaDAO!es.opensigad.model.dao.AlumnoNotaDAOInterfaz
+	        	java:jboss/exported/proyecto_open4job_2014_wildfly/AlumnoNotaDAO!es.opensigad.model.dao.AlumnoNotaDAOInterfaz
+	        	java:global/proyecto_open4job_2014_wildfly/AlumnoNotaDAO
+	        	java:app/proyecto_open4job_2014_wildfly/AlumnoNotaDAO
+	        	java:module/AlumnoNotaDAO
+	        	*/
+	        	
 	            bean = (AlumnoNotaDAOInterfaz) context.lookup(lookupName);
 	 
 	        } catch (NamingException e) {
 	            e.printStackTrace();
 	        }
+	         
+
 	        
 	        return bean;
 	    
@@ -62,6 +68,8 @@ public class AlumnoNotaClient {
 
 	        String name = "ejb:" + appName + "/" + moduleName + "/" +
 	                distinctName    + "/" + beanName + "!" + interfaceName;
+
+	        name = "ejb://proyecto_open4job_2014_wildfly/AlumnoNotaDAO!es.opensigad.model.dao.AlumnoNotaDAOInterfaz";
 	        
 	        return name;
 	    }

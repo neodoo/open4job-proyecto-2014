@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.AlumnoNota;
 import es.opensigad.model.vo.EnsenanzaMateria;
+
 @Stateless
 public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 	
