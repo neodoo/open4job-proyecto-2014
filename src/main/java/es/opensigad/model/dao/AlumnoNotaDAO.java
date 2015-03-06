@@ -49,7 +49,10 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 	
 		try{
 			
-			 String query = "FROM AlumnoNota an WHERE an.id = " + id;
+			 String query = "SELECT an "
+			 		+ " FROM AlumnoNota an, AlumnoMatricula am"
+			 		+ " WHERE an.alumnoMatricula.id = am.id"
+			 		+ " AND am.id = " + id;
 			
 			/*String query = "SELECT an FROM AlumnoNota an, AlumnoMatricula am, Alumno a"
 					+ "WHERE an.alumnoMatricula.id = am.id "
