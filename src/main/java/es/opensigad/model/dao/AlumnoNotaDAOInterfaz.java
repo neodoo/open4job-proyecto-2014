@@ -9,8 +9,6 @@ import es.opensigad.model.vo.AlumnoNota;
 @Local
 public interface AlumnoNotaDAOInterfaz {
 
-	public List<AlumnoNota> getAllAlumnoNotas();
-
 	public List<AlumnoNota> getNotasByIdMatricula(int id);
 
 	public boolean insertarNotasAlumnoByIdMatricula(int idMateria,

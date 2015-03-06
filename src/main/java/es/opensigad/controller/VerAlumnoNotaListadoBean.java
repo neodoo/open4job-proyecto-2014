@@ -57,12 +57,5 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 		return pagina;
 
 	}
-
-	public void getAllAlumnoNotas() {
-
-		// AlumnoNotaDAO alumnoNotaDAO = new AlumnoNotaDAO();
-		alumnoNotas = alumnoNotaDAO.getAllAlumnoNotas();
-
-	}
 	
 }
