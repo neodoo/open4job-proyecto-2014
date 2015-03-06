@@ -11,7 +11,7 @@ public interface AlumnoNotaDAOInterfaz {
 
 	public List<AlumnoNota> getAllAlumnoNotas();
 
-	public List<AlumnoNota> getNotasByIdAlumno(int id);
+	public List<AlumnoNota> getNotasByIdMatricula(int id);
 
 	public boolean insertarNotasAlumnoByIdMatricula(int idMateria,
 			int idAlumnoMatricula, String evaluacion, String nota,

@@ -16,7 +16,7 @@ public class AlumnoNotaClient {
 	        AlumnoNotaDAOInterfaz bean = doLookup();
 
 
-	        List<AlumnoNota> AlNota2 = bean.getNotasByIdAlumno(1);
+	        List<AlumnoNota> AlNota2 = bean.getNotasByIdMatricula(2);
 	        System.out.println(AlNota2);
 	         
 	    }

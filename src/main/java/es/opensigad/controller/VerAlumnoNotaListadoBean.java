@@ -4,12 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
-
-import org.primefaces.event.RowEditEvent;
 
 import es.opensigad.model.dao.AlumnoNotaDAOInterfaz;
 
@@ -56,7 +52,7 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 		// recoger el id del alumno en este metodo
 		String pagina = "verAlumnoNotaListado";
 		// AlumnoNotaDAO alumnoNotaDAO = new AlumnoNotaDAO();
-		alumnoNotas = alumnoNotaDAO.getNotasByIdAlumno(id);
+		alumnoNotas = alumnoNotaDAO.getNotasByIdMatricula(id);
 
 		return pagina;
 
