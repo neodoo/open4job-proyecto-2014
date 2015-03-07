@@ -1,23 +1,25 @@
 package es.opensigad.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 
-import es.opensigad.model.dao.AlumnoMatriculaDAO;
-import es.opensigad.model.vo.Alumno;
-import es.opensigad.model.vo.Centro;
-import es.opensigad.model.vo.Ensenanza;
+import es.opensigad.model.dao.AlumnoMatriculaDAOInterfaz;
 
 @ManagedBean
 @RequestScoped
 public class InsertarAlumnoMatriculaBean implements Serializable {
 
+
+	private static final long serialVersionUID = 1L;
+
+	@EJB
+	private AlumnoMatriculaDAOInterfaz matriculaDAO = null;
+	
 	private int idAlumno;
 	private int cursoEscolar;
 	private int idCentro;
@@ -83,7 +85,7 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 			int centro, int ensenanza, String modulo, int curso) {
 
 		String pagina = "indexAlumnoMatricula";
-		AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
+		//AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
 
 		if (matriculaDAO.insertarMatricula(idAlumno, cursoEscolar, centro,
 				ensenanza, modulo, curso)) {
