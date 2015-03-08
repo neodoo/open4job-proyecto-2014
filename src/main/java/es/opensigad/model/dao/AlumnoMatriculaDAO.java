@@ -259,8 +259,6 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 		try {
 
-			em.getTransaction().begin();
-
 			alumnoMatricula = em.find(AlumnoMatricula.class, idMatricula);
 
 			logger.log(Level.INFO,
