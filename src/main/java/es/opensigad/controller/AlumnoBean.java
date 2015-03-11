@@ -3,13 +3,14 @@ package es.opensigad.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import es.opensigad.model.dao.AlumnoDAO;
 import es.opensigad.model.dao.AlumnoDAOInterfaz;
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoContacto;
@@ -21,15 +22,6 @@ public class AlumnoBean implements Serializable {
 	
 	@EJB
 	private AlumnoDAOInterfaz alumnoDAO = null;
-	
-
-	public AlumnoDAOInterfaz getAlumnoDAO() {
-		return alumnoDAO;
-	}
-
-	public void setAlumnoDAO(AlumnoDAOInterfaz alumnoDAO) {
-		this.alumnoDAO = alumnoDAO;
-	}
 
 	private static final long serialVersionUID = 1L;
 
@@ -45,13 +37,15 @@ public class AlumnoBean implements Serializable {
 	
 	private AlumnoContacto alumnoContacto = new AlumnoContacto();
 	
-
+	@PostConstruct
+	public void init(){
+		getListAlumno();
+	}
 	private List<Alumno> alumnoLista;
 
 	private List<Alumno> alumnoFiltro;
 
 	public AlumnoBean() {
-		getListAlumno();
 	}
 
 	// MÉTODOS
@@ -74,6 +68,12 @@ public class AlumnoBean implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 		return pagina;
 
+	}
+	
+
+	public void getListAlumno() {
+
+		alumnoLista = alumnoDAO.getListAlumno();
 	}
 
 	public String modifyAlumno() {
@@ -193,11 +193,6 @@ public class AlumnoBean implements Serializable {
 		this.alumnoLista = alumnoLista;
 	}
 
-	public void getListAlumno() {
-
-		AlumnoDAO alumnoDAO = new AlumnoDAO();
-		alumnoLista = alumnoDAO.getListAlumno();
-	}
 
 	public int getIdAlumno() {
 		return idAlumno;
