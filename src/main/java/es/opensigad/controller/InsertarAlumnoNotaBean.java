@@ -1,19 +1,19 @@
 package es.opensigad.controller;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import es.opensigad.model.dao.AlumnoNotaDAO;
 import es.opensigad.model.vo.AlumnoMatricula;
-import es.opensigad.model.vo.AlumnoNota;
 import es.opensigad.model.vo.EnsenanzaMateria;
 
 @ManagedBean
 @RequestScoped
 public class InsertarAlumnoNotaBean implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
 	private EnsenanzaMateria ensenanzaMateria = new EnsenanzaMateria();

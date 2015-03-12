@@ -4,43 +4,53 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoTutor;
 import es.opensigad.model.vo.Tutor;
 
-@ManagedBean
-@SessionScoped
+//@ManagedBean
+//@SessionScoped
+@Stateless
 public class TutorDAO implements TutorDAOInterface {
 
-	public final static String ENTITY_MANAGER = "opensigadUnit";
+	@PersistenceContext(unitName = "opensigadUnit")
+	private EntityManager em = null;
+
+	public EntityManager getEm() {
+		return em;
+	}
+
+	public void setEm(EntityManager em) {
+		this.em = em;
+	}
 
 	public static final Logger logger = Logger.getLogger(TutorDAO.class.getName());
-
+	
 	public TutorDAO() {
 
 	}
 
+	@Override
 	public List<Tutor> getListaTutor() {
 
 		List<Tutor> listAlumnoTutor = null;
 
-		EntityManagerFactory emf = null;
-		EntityManager em = null;
+		//EntityManagerFactory emf = null;
+		//EntityManager em = null;
 
 		try {
 
-			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-			em = emf.createEntityManager();
+			//emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			//em = emf.createEntityManager();
 
-			em.getTransaction().begin();
+			//em.getTransaction().begin();
 
 			// Recuperamos el objeto relacion Alumno_tutor para recuperar todos
 			// los datos
@@ -48,19 +58,19 @@ public class TutorDAO implements TutorDAOInterface {
 			
 			listAlumnoTutor = q.getResultList();
 
-			em.getTransaction().commit();
+			//em.getTransaction().commit();
 
 			logger.log(Level.INFO, "TutorDAO.getListaTutor: OK.");
 
 		} catch (Exception e) {
 
-			em.getTransaction().rollback();
+			//em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "TutorDAO.getListaTutor: " + e.getMessage());
 
 		} finally {
 
-			try { em.close(); } catch (Exception e) { }
-			try { emf.close(); } catch (Exception e) { }
+			//try { em.close(); } catch (Exception e) { }
+			//try { emf.close(); } catch (Exception e) { }
 
 		}
 
@@ -68,19 +78,20 @@ public class TutorDAO implements TutorDAOInterface {
 
 	}
 	
+	@Override
 	public List<AlumnoTutor> getListaAlumnoTutor() {
 
 		List<AlumnoTutor> listAlumnoTutor = null;
 
-		EntityManagerFactory emf = null;
-		EntityManager em = null;
+		//EntityManagerFactory emf = null;
+		//EntityManager em = null;
 
 		try {
 
-			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-			em = emf.createEntityManager();
+			//emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			//em = emf.createEntityManager();
 
-			em.getTransaction().begin();
+			//em.getTransaction().begin();
 
 			// Recuperamos el objeto relacion Alumno_tutor para recuperar todos
 			// los datos
@@ -88,19 +99,19 @@ public class TutorDAO implements TutorDAOInterface {
 			
 			listAlumnoTutor = q.getResultList();
 
-			em.getTransaction().commit();
+			//em.getTransaction().commit();
 
 			logger.log(Level.INFO, "TutorDAO.getListaTutor: OK.");
 
 		} catch (Exception e) {
 
-			em.getTransaction().rollback();
+			//em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "TutorDAO.getListaAlumnoTutor: " + e.getMessage());
 
 		} finally {
 
-			try { em.close(); } catch (Exception e) { }
-			try { emf.close(); } catch (Exception e) { }
+			//try { em.close(); } catch (Exception e) { }
+			//try { emf.close(); } catch (Exception e) { }
 
 		}
 
@@ -108,22 +119,23 @@ public class TutorDAO implements TutorDAOInterface {
 
 	}
 
+	@Override
 	public List<AlumnoTutor> getListaAlumnoTutor2() {
 
 		List<AlumnoTutor> listAlumnoTutor = null;
 
-		EntityManagerFactory emf = null;
-		EntityManager em = null;
+		//EntityManagerFactory emf = null;
+		//EntityManager em = null;
 
 		try {
 			
 			FacesContext context = FacesContext.getCurrentInstance();
 			int idAlumno= (int)context.getExternalContext().getSessionMap().get("idAlumno");
 
-			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-			em = emf.createEntityManager();
+			//emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			//em = emf.createEntityManager();
 
-			em.getTransaction().begin();
+			//em.getTransaction().begin();
 
 			// Recuperamos el objeto relacion Alumno_tutor para recuperar todos
 			// los datos
@@ -139,19 +151,19 @@ public class TutorDAO implements TutorDAOInterface {
 			// q.setParameter("varAlumno", idAlumno);
 			listAlumnoTutor = q.getResultList();
 
-			em.getTransaction().commit();
+			//em.getTransaction().commit();
 
 			logger.log(Level.INFO, "TutorDAO.getListaTutor: OK.");
 
 		} catch (Exception e) {
 
-			em.getTransaction().rollback();
+			//em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "TutorDAO.getListaTutor: " + e.getMessage());
 
 		} finally {
 
-			try { em.close(); } catch (Exception e) { }
-			try { emf.close(); } catch (Exception e) { }
+			//try { em.close(); } catch (Exception e) { }
+			//try { emf.close(); } catch (Exception e) { }
 
 		}
 
@@ -159,19 +171,20 @@ public class TutorDAO implements TutorDAOInterface {
 
 	}
 	// borra 1 tutor con el idTutor recibido
+	@Override
 	public boolean deleteAlumnoTutor(int idAlumnoTutor) {
 
 		boolean estado = false;
 		
-		EntityManagerFactory emf = null;
-		EntityManager em = null;
+		//EntityManagerFactory emf = null;
+		//EntityManager em = null;
 
 		try {
 
-			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-			em = emf.createEntityManager();
+			//emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			//em = emf.createEntityManager();
 
-			em.getTransaction().begin();
+			//em.getTransaction().begin();
 
 			AlumnoTutor alumnoTutor; //= new AlumnoTutor();
 			//alumnoTutor.setId(idAlumnoTutor);
@@ -179,20 +192,20 @@ public class TutorDAO implements TutorDAOInterface {
 			
 			em.remove(alumnoTutor);
 
-			em.getTransaction().commit();
+			//em.getTransaction().commit();
 
 			estado = true;
 			logger.log(Level.INFO, "TutorDAO.deleteTutor: OK.");
 
 		} catch (Exception e) {
 
-			em.getTransaction().rollback();
+			//em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "TutorDAO.deleteTutor: " + e.getMessage());
 
 		} finally {
 
-			try { em.close(); } catch (Exception e) { }
-			try { emf.close(); } catch (Exception e) { }
+			//try { em.close(); } catch (Exception e) { }
+			//try { emf.close(); } catch (Exception e) { }
 
 		}
 		
@@ -201,6 +214,7 @@ public class TutorDAO implements TutorDAOInterface {
 	}
 
 	// modifica un tutor con el id recibido
+	@Override
 	public boolean updateTutor(int idAlumno, int idTutor, String nombre,
 			String apellido1, String apellido2, String tipoDocumento,
 			String documento, java.util.Date fechaNac, String parentesco,
@@ -208,15 +222,15 @@ public class TutorDAO implements TutorDAOInterface {
 
 		boolean estado = false;
 		
-		EntityManagerFactory emf = null;
-		EntityManager em = null;
+		//EntityManagerFactory emf = null;
+		//EntityManager em = null;
 
 		try {
 
-			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-			em = emf.createEntityManager();
+			//emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			//em = emf.createEntityManager();
 
-			em.getTransaction().begin();
+			//em.getTransaction().begin();
 
 			AlumnoTutor alumnoTutor = new AlumnoTutor();
 			Tutor tutor = new Tutor();
@@ -246,7 +260,7 @@ public class TutorDAO implements TutorDAOInterface {
 			em.merge(alumnoTutor);
 			// em.persist(alumnoTutor);
 
-			em.getTransaction().commit();
+			//em.getTransaction().commit();
 
 			estado = true;
 			
@@ -254,13 +268,13 @@ public class TutorDAO implements TutorDAOInterface {
 
 		} catch (Exception e) {
 
-			em.getTransaction().rollback();
+			//em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "TutorDAO.updateTutor: " + e.getMessage());
 
 		} finally {
 
-			try { em.close(); } catch (Exception e) { }
-			try { emf.close(); } catch (Exception e) { }
+			//try { em.close(); } catch (Exception e) { }
+			//try { emf.close(); } catch (Exception e) { }
 
 		}
 		
@@ -268,6 +282,7 @@ public class TutorDAO implements TutorDAOInterface {
 
 	}
 
+	@Override
 	public boolean insertarTutor(int id, String nombre, String apellido1,
 			String apellido2, String tipoDocumento, String documento,
 			java.util.Date fechaNac, String parentesco, String sexo,
@@ -275,15 +290,15 @@ public class TutorDAO implements TutorDAOInterface {
 
 		boolean estado = false;
 		
-		EntityManagerFactory emf = null;
-		EntityManager em = null;
+		//EntityManagerFactory emf = null;
+		//EntityManager em = null;
 
 		try {
 
-			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-			em = emf.createEntityManager();
+			//emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			//em = emf.createEntityManager();
 
-			em.getTransaction().begin();
+			//em.getTransaction().begin();
 
 			AlumnoTutor alumnoTutor = new AlumnoTutor();
 			Alumno alumno = new Alumno();
@@ -311,7 +326,7 @@ public class TutorDAO implements TutorDAOInterface {
 
 			em.persist(alumnoTutor);
 
-			em.getTransaction().commit();
+			//em.getTransaction().commit();
 		
 			estado = true;
 
@@ -319,13 +334,13 @@ public class TutorDAO implements TutorDAOInterface {
 			
 		} catch (Exception e) {
 
-			em.getTransaction().rollback();
+			//em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "TutorDAO.insertarTutor: " + e.getMessage());
 
 		} finally {
 
-			try { em.close(); } catch (Exception e) { }
-			try { emf.close(); } catch (Exception e) { }
+			//try { em.close(); } catch (Exception e) { }
+			//try { emf.close(); } catch (Exception e) { }
 
 		}
 		
@@ -333,20 +348,21 @@ public class TutorDAO implements TutorDAOInterface {
 		
 	}
 
+	@Override
 	public Tutor getDetalleTutor(int idTutor) {
 
 		Tutor tutor = null;
 		
-		EntityManagerFactory emf = null;
-		EntityManager em = null;
+		//EntityManagerFactory emf = null;
+		//EntityManager em = null;
 
 		try {
 
-			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
+			//emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
 
-			em = emf.createEntityManager();
+			//em = emf.createEntityManager();
 
-			em.getTransaction().begin();
+			//em.getTransaction().begin();
 
 			// Recuperamos los datos de l tabla tutor con el id que nos llega
 			Query q = em
@@ -361,13 +377,13 @@ public class TutorDAO implements TutorDAOInterface {
 
 		} catch (Exception e) {
 
-			em.getTransaction().rollback();
+			//em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "TutorDAO.getDetalleTutor: " + e.getMessage());
 
 		} finally {
 
-			try { em.close(); } catch (Exception e) { }
-			try { emf.close(); } catch (Exception e) { }
+			//try { em.close(); } catch (Exception e) { }
+			//try { emf.close(); } catch (Exception e) { }
 
 		}
 

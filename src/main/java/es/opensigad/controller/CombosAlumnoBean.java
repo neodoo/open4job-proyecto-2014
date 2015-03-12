@@ -3,11 +3,12 @@ package es.opensigad.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.model.SelectItem;
 
-import es.opensigad.model.dao.AlumnoDAO;
+import es.opensigad.model.dao.AlumnoDAOInterfaz;
 import es.opensigad.model.dao.AlumnoNotaDAO;
 import es.opensigad.model.dao.TutorDAO;
 import es.opensigad.model.vo.Alumno;
@@ -19,6 +20,9 @@ import es.opensigad.model.vo.Tutor;
 @ManagedBean
 @ApplicationScoped
 public class CombosAlumnoBean {
+	
+	@EJB
+	private AlumnoDAOInterfaz alumnoDAO = null;
 
 	public List<EnsenanzaMateria> listEnsenanzaMateria = null;
 	public List<Alumno> listAlumnos = null;
@@ -49,7 +53,6 @@ public class CombosAlumnoBean {
 	}
 
 	public List<Alumno> getDataListAlumnos() {
-		AlumnoDAO alumnoDAO = new AlumnoDAO();
 		listAlumnos = alumnoDAO.getListAlumno();
 		return listAlumnos;
 	}
@@ -79,8 +82,7 @@ public class CombosAlumnoBean {
 
 		this.paisItem = new ArrayList();
 
-		AlumnoDAO alumno = new AlumnoDAO();
-		ArrayList<Territorio> paisList = (ArrayList<Territorio>) alumno
+		ArrayList<Territorio> paisList = (ArrayList<Territorio>) alumnoDAO
 				.getListPais();
 
 		for (Territorio t : paisList) {
@@ -94,8 +96,7 @@ public class CombosAlumnoBean {
 
 		this.provinciaItem = new ArrayList();
 
-		AlumnoDAO alumno = new AlumnoDAO();
-		ArrayList<Territorio> provinciaList = (ArrayList<Territorio>) alumno
+		ArrayList<Territorio> provinciaList = (ArrayList<Territorio>) alumnoDAO
 				.getListProvincia();
 
 		for (Territorio t : provinciaList) {

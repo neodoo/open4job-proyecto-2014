@@ -3,11 +3,13 @@ package es.opensigad.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.model.SelectItem;
 
 import es.opensigad.model.dao.AlumnoMatriculaDAO;
+import es.opensigad.model.dao.AlumnoMatriculaDAOInterfaz;
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.Centro;
 import es.opensigad.model.vo.Ensenanza;
@@ -18,17 +20,18 @@ public class ComboMatriculaBean implements Serializable {
 
 	private static final long serialVersionUID = -2851132432891443585L;
 
+	@EJB
+	private AlumnoMatriculaDAOInterfaz alumnoMatriculaDAO = null;
+
 	private ArrayList<SelectItem> alumnoItem = null;
 	private ArrayList<SelectItem> centroItem = null;
 	private ArrayList<SelectItem> ensenanzaItem = null;
-
-
 
 	public ArrayList<SelectItem> getDataAlumnoItem() {
 
 		this.alumnoItem = new ArrayList();
 
-		AlumnoMatriculaDAO alumnoMatriculaDAO = new AlumnoMatriculaDAO();
+		// AlumnoMatriculaDAO alumnoMatriculaDAO = new AlumnoMatriculaDAO();
 		ArrayList<Alumno> alumnoList = (ArrayList<Alumno>) alumnoMatriculaDAO
 				.getAlumnoList();
 
@@ -40,8 +43,8 @@ public class ComboMatriculaBean implements Serializable {
 	}
 
 	public ArrayList<SelectItem> getAlumnoItem() {
-		
-		if (this.alumnoItem == null){
+
+		if (this.alumnoItem == null) {
 			this.alumnoItem = this.getDataAlumnoItem();
 		}
 		return alumnoItem;
@@ -50,12 +53,12 @@ public class ComboMatriculaBean implements Serializable {
 	public void setAlumnoItem(ArrayList<SelectItem> alumnoItem) {
 		this.alumnoItem = alumnoItem;
 	}
-	
+
 	public ArrayList<SelectItem> getDataCentroItem() {
 
 		this.centroItem = new ArrayList();
 
-		AlumnoMatriculaDAO alumnoMatriculaDAO = new AlumnoMatriculaDAO();
+		// AlumnoMatriculaDAO alumnoMatriculaDAO = new AlumnoMatriculaDAO();
 		ArrayList<Centro> centroList = (ArrayList<Centro>) alumnoMatriculaDAO
 				.getCentroList();
 
@@ -65,6 +68,7 @@ public class ComboMatriculaBean implements Serializable {
 
 		return centroItem;
 	}
+
 	public ArrayList<SelectItem> getCentroItem() {
 
 		if (centroItem == null)
@@ -80,9 +84,8 @@ public class ComboMatriculaBean implements Serializable {
 	public ArrayList<SelectItem> getDataEnsenanzaItem() {
 
 		this.ensenanzaItem = new ArrayList();
-		AlumnoMatriculaDAO alumnoMatriculaDAO = new AlumnoMatriculaDAO();
-		ArrayList<Ensenanza> ensenanzaList = (ArrayList<Ensenanza>) alumnoMatriculaDAO
-				.getEnsenanzaList();
+		// AlumnoMatriculaDAO alumnoMatriculaDAO = new AlumnoMatriculaDAO();
+		ArrayList<Ensenanza> ensenanzaList = (ArrayList<Ensenanza>)  alumnoMatriculaDAO.getEnsenanzaList();
 
 		for (Ensenanza e : ensenanzaList) {
 			ensenanzaItem.add(new SelectItem(e.getId(), e.getNombre()));

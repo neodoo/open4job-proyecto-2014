@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import es.opensigad.model.vo.Alumno;
@@ -16,14 +18,24 @@ import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.Centro;
 import es.opensigad.model.vo.Ensenanza;
 
+@Stateless
 public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
-	public final static String ENTITY_MANAGER = "opensigadUnit";
+	@PersistenceContext(unitName = "opensigadUnit")
+	private EntityManager em = null;
 
 	public static final Logger logger = Logger
 			.getLogger(AlumnoMatriculaDAO.class.getName());
 
 	public AlumnoMatriculaDAO() {
+	}
+
+	public EntityManager getEm() {
+		return em;
+	}
+
+	public void setEm(EntityManager em) {
+		this.em = em;
 	}
 
 	// InsertarMatricula
@@ -32,15 +44,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 		boolean estado = false;
 
-		EntityManagerFactory emf = null;
-		EntityManager em = null;
-
 		try {
-
-			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-			em = emf.createEntityManager();
-
-			em.getTransaction().begin();
 
 			Alumno alumno = new Alumno();
 
@@ -63,28 +67,16 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 			em.merge(alumnoMatricula);
 
-			em.getTransaction().commit();
-
 			estado = true;
 
 			logger.log(Level.INFO, "AlumnoMatriculaDAO.insertarMatricula: OK.");
 
 		} catch (Exception e) {
 
-			em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "AlumnoMatriculaDAO.insertarMatricula: "
 					+ e.getMessage());
 
 		} finally {
-
-			try {
-				em.close();
-			} catch (Exception e) {
-			}
-			try {
-				emf.close();
-			} catch (Exception e) {
-			}
 
 		}
 
@@ -96,38 +88,19 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 		ArrayList<Alumno> alumnoList = new ArrayList<Alumno>();
 
-		EntityManagerFactory emf = null;
-		EntityManager em = null;
-
 		try {
-
-			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-			em = emf.createEntityManager();
-
-			em.getTransaction().begin();
 
 			Query q = em.createQuery("select a from Alumno a");
 			alumnoList = (ArrayList<Alumno>) q.getResultList();
-			em.getTransaction().commit();
 
 			logger.log(Level.INFO, "AlumnoMatriculaDAO.getAlumnoList: OK.");
 
 		} catch (EntityExistsException e) {
 
-			em.getTransaction().rollback();
 			logger.log(Level.SEVERE,
 					"AlumnoMatriculaDAO.getAlumnoList:" + e.getMessage());
 
 		} finally {
-
-			try {
-				em.close();
-			} catch (Exception e) {
-			}
-			try {
-				emf.close();
-			} catch (Exception e) {
-			}
 
 		}
 
@@ -137,40 +110,20 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 	public ArrayList<Centro> getCentroList() {
 
 		ArrayList<Centro> centroList = new ArrayList<Centro>();
-		// ArrayList<Integer> centroLista= new ArrayList<Integer>();
-
-		EntityManagerFactory emf = null;
-		EntityManager em = null;
 
 		try {
 
-			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-			em = emf.createEntityManager();
-
-			em.getTransaction().begin();
-
 			Query q = em.createQuery("select c from Centro c");
 			centroList = (ArrayList<Centro>) q.getResultList();
-			em.getTransaction().commit();
 
 			logger.log(Level.INFO, "AlumnoMatriculaDAO.getCentroList: OK.");
 
 		} catch (EntityExistsException e) {
 
-			em.getTransaction().rollback();
 			logger.log(Level.SEVERE,
 					"AlumnoMatriculaDAO.getCentroList:" + e.getMessage());
 
 		} finally {
-
-			try {
-				em.close();
-			} catch (Exception e) {
-			}
-			try {
-				emf.close();
-			} catch (Exception e) {
-			}
 
 		}
 
@@ -181,38 +134,19 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 		ArrayList<Ensenanza> ensenanzaList = new ArrayList<Ensenanza>();
 
-		EntityManagerFactory emf = null;
-		EntityManager em = null;
-
 		try {
-
-			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-			em = emf.createEntityManager();
-
-			em.getTransaction().begin();
 
 			Query q = em.createQuery("select e from Ensenanza e");
 			ensenanzaList = (ArrayList<Ensenanza>) q.getResultList();
-			em.getTransaction().commit();
 
 			logger.log(Level.INFO, "AlumnoMatriculaDAO.getEnsenanzaList: OK.");
 
 		} catch (EntityExistsException e) {
 
-			em.getTransaction().rollback();
 			logger.log(Level.SEVERE,
 					"AlumnoMatriculaDAO.getEnsenanzaList:" + e.getMessage());
 
 		} finally {
-
-			try {
-				em.close();
-			} catch (Exception e) {
-			}
-			try {
-				emf.close();
-			} catch (Exception e) {
-			}
 
 		}
 
@@ -224,23 +158,13 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 		boolean estado = false;
 
-		EntityManagerFactory emf = null;
-		EntityManager em = null;
-
 		try {
 
-			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-			em = emf.createEntityManager();
-
-			// Borrar matricula
- 
-			em.getTransaction().begin();
 			AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
 			alumnoMatricula = em.find(AlumnoMatricula.class, idMatricula);
 			if (alumnoMatricula != null) {
 
 				em.remove(em.merge(alumnoMatricula));
-				em.getTransaction().commit();
 
 				estado = true;
 
@@ -249,20 +173,10 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			}
 		} catch (EntityExistsException e) {
 
-			em.getTransaction().rollback();
 			logger.log(Level.SEVERE,
 					"AlumnoMatriculaDAO.borrarMatricula: " + e.getMessage());
 
 		} finally {
-
-			try {
-				em.close();
-			} catch (Exception e) {
-			}
-			try {
-				emf.close();
-			} catch (Exception e) {
-			}
 
 		}
 
@@ -274,13 +188,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			int idCentro, int idEnsenanza, String modulo, int curso,
 			int idMatricula) {
 
-		EntityManagerFactory emf = null;
-		EntityManager em = null;
-
 		try {
-
-			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-			em = emf.createEntityManager();
 
 			Alumno alumno = new Alumno();
 			Centro centro = new Centro();
@@ -300,11 +208,8 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 			alumnoMatricula.setId(idMatricula);
 
 			// Modificar alumno
-			em.getTransaction().begin();
 
 			em.merge(alumnoMatricula);
-
-			em.getTransaction().commit();
 
 			logger.log(Level.INFO, "AlumnoMatriculaDAO.modificarMatricula: OK.");
 
@@ -312,20 +217,10 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 		} catch (Exception e) {
 
-			em.getTransaction().rollback();
 			logger.log(Level.SEVERE,
 					"AlumnoMatriculaDAO.modificarMatricula: OK.");
 
 		} finally {
-
-			try {
-				em.close();
-			} catch (Exception e) {
-			}
-			try {
-				emf.close();
-			} catch (Exception e) {
-			}
 
 		}
 
@@ -337,40 +232,20 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 		List<AlumnoMatricula> alumnoMatriculaList = null;
 
-		EntityManagerFactory emf = null;
-		EntityManager em = null;
-
 		try {
-
-			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-			em = emf.createEntityManager();
-
-			em.getTransaction().begin();
 
 			Query q = em.createQuery("from AlumnoMatricula am");
 			alumnoMatriculaList = q.getResultList();
-
-			em.getTransaction().commit();
 
 			logger.log(Level.INFO,
 					"AlumnoMatriculaDAO.getListadoMatricula: OK.");
 
 		} catch (EntityExistsException e) {
 
-			em.getTransaction().rollback();
 			logger.log(Level.SEVERE, "AlumnoMatriculaDAO.getListadoMatricula:"
 					+ e.getMessage());
 
 		} finally {
-
-			try {
-				em.close();
-			} catch (Exception e) {
-			}
-			try {
-				emf.close();
-			} catch (Exception e) {
-			}
 
 		}
 
@@ -382,50 +257,19 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 		AlumnoMatricula alumnoMatricula = null;
 
-		EntityManagerFactory emf = null;
-		EntityManager em = null;
-
 		try {
 
-			emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-			em = emf.createEntityManager();
-
-			// String query = "from AlumnoMatricula m where m.id = "+
-			// idMatricula;
-
-			// String query =
-			// "from AlumnoMatricula m where m.id = :idMatricula";
-
-			em.getTransaction().begin();
-
 			alumnoMatricula = em.find(AlumnoMatricula.class, idMatricula);
-
-			/*
-			 * alumnMatricula = (AlumnoMatricula) em.createQuery(query)
-			 * .setParameter(":idMatricula", idMatricula) .getSingleResult();
-			 */
-
-			em.getTransaction().commit();
 
 			logger.log(Level.INFO,
 					"AlumnoMatriculaDAO.getListaFichaMatricula: OK.");
 
 		} catch (EntityExistsException e) {
 
-			em.getTransaction().rollback();
 			logger.log(Level.SEVERE,
 					"AlumnoMatriculaDAO.getListadoMatricula: OK.");
 
 		} finally {
-
-			try {
-				em.close();
-			} catch (Exception e) {
-			}
-			try {
-				emf.close();
-			} catch (Exception e) {
-			}
 
 		}
 
