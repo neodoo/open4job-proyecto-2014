@@ -1,13 +1,12 @@
 package es.opensigad.controller;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import org.hibernate.Session;
-
-import es.opensigad.model.dao.TutorDAO;
+import es.opensigad.model.dao.TutorDAOInterface;
 import es.opensigad.model.vo.AlumnoTutor;
 import es.opensigad.model.vo.Tutor;
 
@@ -16,6 +15,17 @@ import es.opensigad.model.vo.Tutor;
 @RequestScoped
 public class VerTutorBean {
 	
+	@EJB
+	private TutorDAOInterface tutorDAOInterface =null;
+	
+	public TutorDAOInterface getTutorDAOInterface() {
+		return tutorDAOInterface;
+	}
+
+	public void setTutorDAOInterface(TutorDAOInterface tutorDAOInterface) {
+		this.tutorDAOInterface = tutorDAOInterface;
+	}
+
 	private int id;
 
 	private int idAlumno;
@@ -72,8 +82,8 @@ public class VerTutorBean {
 
 		String pagina = "verTutoresPorAlumno";
 
-		TutorDAO tutorDAO = new TutorDAO();
-		tutor = tutorDAO.getDetalleTutor(idTutor);
+		//TutorDAO tutorDAO = new TutorDAO();
+		tutor = tutorDAOInterface.getDetalleTutor(idTutor);
 		
 		return pagina;
 
@@ -83,11 +93,10 @@ public class VerTutorBean {
 		
 		String pagina = "verListaAlumnoTutor";
 		
-		//ofe
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().getSessionMap().put("idAlumno", idAlumno);
-		TutorDAO tutorDAO = new TutorDAO();
-		alumnoTutorLista = tutorDAO.getListaAlumnoTutor2();
+		//TutorDAO tutorDAO = new TutorDAO();
+		alumnoTutorLista = tutorDAOInterface.getListaAlumnoTutor2();
 		
 		return pagina;
 
