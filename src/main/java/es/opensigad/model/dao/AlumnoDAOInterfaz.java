@@ -2,14 +2,14 @@ package es.opensigad.model.dao;
 
 import java.util.List;
 
-import javax.ejb.Remote;
+import javax.ejb.Local;
 
 import es.opensigad.model.vo.AlumnoContacto;
 import es.opensigad.model.vo.AlumnoDireccion;
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.Territorio;
 
-@Remote
+@Local
 public interface AlumnoDAOInterfaz {
 
 	public List<Alumno> getListAlumno();
