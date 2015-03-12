@@ -16,8 +16,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 	// public final static String ENTITY_MANAGER = "opensigadUnit";
 
-	public static final Logger logger = Logger
-			.getLogger(AlumnoSeguimientoDAO.class.getName());
+	public static final Logger logger = Logger.getLogger(AlumnoSeguimientoDAO.class.getName());
 
 	@PersistenceContext(unitName = "opensigadUnit")
 	private EntityManager em;
@@ -50,17 +49,13 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 			String query = "SELECT alumnoSeguimiento FROM AlumnoSeguimiento alumnoSeguimiento "
 					+ " WHERE alumnoSeguimiento.alumnoMatricula.id = :pidMatricula";
 
-			seguimientos = em.createQuery(query)
-					.setParameter("pidMatricula", pidMatricula).getResultList();
+			seguimientos = em.createQuery(query).setParameter("pidMatricula", pidMatricula).getResultList();
 
-			logger.log(Level.INFO,
-					"AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: OK.");
+			logger.log(Level.INFO,"AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: OK.");
 
 		} catch (Exception e) {
 
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: ERROR. "
-							+ e.getMessage());
+			logger.log(Level.SEVERE,"AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: ERROR. " + e.getMessage());
 
 		}
 
@@ -72,30 +67,19 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 	public AlumnoSeguimiento getDetalleAlumnoSeguimiento(int pnumId) {
 
 		AlumnoSeguimiento seguimiento = null;
-		/**<<<<<<< HEAD
-=======
 
-		 * 
-		 */
 		try {
 
-			String query = "from AlumnoSeguimiento aseg where aseg.id ="
-					+ pnumId;
+			String query = "from AlumnoSeguimiento aseg where aseg.id =" + pnumId;
 
-			seguimiento = (AlumnoSeguimiento) em.createQuery(query)
-					.getSingleResult();
+			seguimiento = (AlumnoSeguimiento) em.createQuery(query).getSingleResult();
 
-			logger.log(Level.INFO,
-					"AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: OK.");
+			logger.log(Level.INFO, "AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: OK.");
 
 		} catch (Exception e) {
 
-			try {
-			} catch (Exception ex) {
-			}
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: ERROR. "
-							+ e.getMessage());
+			
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: ERROR. " + e.getMessage());
 
 		}
 
@@ -114,17 +98,11 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 			id = alumnoSeguimiento.getId();
 
-			logger.log(Level.INFO,
-					"AlumnoSeguimientoDAO.insertarAlumnoSeguimiento: OK.");
+			logger.log(Level.INFO, "AlumnoSeguimientoDAO.insertarAlumnoSeguimiento: OK.");
 
 		} catch (Exception e) {
 
-			try {
-			} catch (Exception ex) {
-			}
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.insertarAlumnoSeguimiento: ERROR. "
-							+ e.getMessage());
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.insertarAlumnoSeguimiento: ERROR. " + e.getMessage());
 
 		}
 
@@ -144,17 +122,11 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 			estado = true;
 
-			logger.log(Level.INFO,
-					"AlumnoSeguimientoDAO.actualizarAlumnoSeguimiento: OK.");
+			logger.log(Level.INFO, "AlumnoSeguimientoDAO.actualizarAlumnoSeguimiento: OK.");
 
 		} catch (Exception e) {
 
-			try {
-			} catch (Exception ex) {
-			}
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.actualizarAlumnoSeguimiento: ERROR. "
-							+ e.getMessage());
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.actualizarAlumnoSeguimiento: ERROR. " + e.getMessage());
 
 		}
 
@@ -173,17 +145,11 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 			estado = true;
 
-			logger.log(Level.INFO,
-					"AlumnoSeguimientoDAO.eliminarAlumnoSeguimiento: OK.");
+			logger.log(Level.INFO, "AlumnoSeguimientoDAO.eliminarAlumnoSeguimiento: OK.");
 
 		} catch (Exception e) {
 
-			try {
-			} catch (Exception ex) {
-			}
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.eliminarAlumnoSeguimiento: ERROR. "
-							+ e.getMessage());
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.eliminarAlumnoSeguimiento: ERROR. " + e.getMessage());
 
 		}
 

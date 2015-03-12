@@ -14,7 +14,6 @@ import es.opensigad.model.dao.AlumnoSeguimientoDAOInterfaz;
 import es.opensigad.model.vo.AlumnoSeguimiento;
 
 @ManagedBean
-// (name="seguimientoBean")
 @ViewScoped
 public class AlumnoSeguimientoBean implements Serializable {
 
@@ -130,7 +129,7 @@ public class AlumnoSeguimientoBean implements Serializable {
 		return observaciones;
 	}
 
-	public void setObse0rvaciones(String observaciones) {
+	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
 	}
 
@@ -161,36 +160,23 @@ public class AlumnoSeguimientoBean implements Serializable {
 	public String getDetalleAlumnoSeguimiento() {
 
 		String pagina = "alumnoSeguimiento";
-		/*
-		 * AlumnoSeguimientoDAO seguimientoDAO = new AlumnoSeguimientoDAO();
-		 * seguimiento = seguimientoDAO.getDetalleAlumnoSeguimiento(id);
-		 */
 
-		seguimiento = alumnoSeguimientoDAOInterfaz
-				.getDetalleAlumnoSeguimiento(id);
+		seguimiento = alumnoSeguimientoDAOInterfaz.getDetalleAlumnoSeguimiento(id);
 
 		return pagina;
 	}
 
 	public void getListaAlumnoSeguimiento(int idMatricula) {
 
-		// AlumnoSeguimientoDAO seguimientoDAO = new AlumnoSeguimientoDAO();
-		// seguimientos = seguimientoDAO.getListaAlumnoSeguimiento(idMatricula);
-
-		seguimientos = alumnoSeguimientoDAOInterfaz
-				.getListaAlumnoSeguimiento(idMatricula);
-		// se hace asi, con la version de la inyeccion de ejb
+		seguimientos = alumnoSeguimientoDAOInterfaz.getListaAlumnoSeguimiento(idMatricula);
 
 	}
 
 	public String insertarAlumnoSeguimiento() {
 
 		String pagina = null;
-		// AlumnoSeguimientoDAO alumnoSeguimientoDAO = new
-		// AlumnoSeguimientoDAO();
 
-		int valor = alumnoSeguimientoDAOInterfaz
-				.insertarAlumnoSeguimiento(seguimiento);
+		int valor = alumnoSeguimientoDAOInterfaz.insertarAlumnoSeguimiento(seguimiento);
 
 		if (valor > 0) {
 			pagina = "actualizarAlumnoSeguimientoExito";
@@ -205,11 +191,8 @@ public class AlumnoSeguimientoBean implements Serializable {
 	public String actualizarAlumnoSeguimiento() {
 
 		String pagina = null;
-		// AlumnoSeguimientoDAO alumnoSeguimientoDAO = new
-		// AlumnoSeguimientoDAO();
 
-		boolean estado = alumnoSeguimientoDAOInterfaz
-				.actualizarAlumnoSeguimiento(seguimiento);
+		boolean estado = alumnoSeguimientoDAOInterfaz.actualizarAlumnoSeguimiento(seguimiento);
 
 		if (estado) {
 			pagina = "actualizarAlumnoSeguimientoExito";
@@ -224,11 +207,8 @@ public class AlumnoSeguimientoBean implements Serializable {
 	public String eliminarAlumnoSeguimiento() {
 
 		String pagina = null;
-		// AlumnoSeguimientoDAO alumnoSeguimientoDAO = new
-		// AlumnoSeguimientoDAO();
 
-		boolean estado = alumnoSeguimientoDAOInterfaz
-				.eliminarAlumnoSeguimiento(seguimiento);
+		boolean estado = alumnoSeguimientoDAOInterfaz.eliminarAlumnoSeguimiento(seguimiento);
 
 		if (estado) {
 			pagina = "eliminarAlumnoSeguimientoExito";
