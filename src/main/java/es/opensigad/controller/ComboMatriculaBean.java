@@ -85,8 +85,7 @@ public class ComboMatriculaBean implements Serializable {
 
 		this.ensenanzaItem = new ArrayList();
 		// AlumnoMatriculaDAO alumnoMatriculaDAO = new AlumnoMatriculaDAO();
-		ArrayList<Ensenanza> ensenanzaList = (ArrayList<Ensenanza>) ((AlumnoMatriculaDAO) alumnoMatriculaDAO)
-				.getEnsenanzaList();
+		ArrayList<Ensenanza> ensenanzaList = (ArrayList<Ensenanza>)  alumnoMatriculaDAO.getEnsenanzaList();
 
 		for (Ensenanza e : ensenanzaList) {
 			ensenanzaItem.add(new SelectItem(e.getId(), e.getNombre()));

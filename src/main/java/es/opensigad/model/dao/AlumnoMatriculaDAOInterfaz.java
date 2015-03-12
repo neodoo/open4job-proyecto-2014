@@ -8,6 +8,7 @@ import javax.ejb.Local;
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.Centro;
+import es.opensigad.model.vo.Ensenanza;
 
 @Local
 public interface AlumnoMatriculaDAOInterfaz {
@@ -25,4 +26,6 @@ public interface AlumnoMatriculaDAOInterfaz {
 	public ArrayList<Centro> getCentroList();
 
 	public ArrayList<Alumno> getAlumnoList();
+	
+	public ArrayList<Ensenanza> getEnsenanzaList();
 }
