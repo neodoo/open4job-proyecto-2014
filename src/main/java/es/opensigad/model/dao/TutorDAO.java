@@ -20,12 +20,9 @@ import es.opensigad.model.vo.Tutor;
 @Stateless
 public class TutorDAO implements TutorDAOInterface {
 
-	
-	@PersistenceContext(unitName="opensigadUnit" , type=PersistenceContextType.EXTENDED)
-	private EntityManager em;
-	
-	public static final Logger logger = Logger.getLogger(TutorDAO.class.getName());
-	
+	@PersistenceContext(unitName = "opensigadUnit")
+	private EntityManager em = null;
+
 	public EntityManager getEm() {
 		return em;
 	}
@@ -34,6 +31,8 @@ public class TutorDAO implements TutorDAOInterface {
 		this.em = em;
 	}
 
+	public static final Logger logger = Logger.getLogger(TutorDAO.class.getName());
+	
 	public TutorDAO() {
 
 	}
