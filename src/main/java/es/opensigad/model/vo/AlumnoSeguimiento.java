@@ -11,10 +11,12 @@ import java.util.Date;
  * The persistent class for the alumno_seguimiento database table.
  * 
  */
+
 @Entity
 @Table(name="alumno_seguimiento")
 @NamedQuery(name="AlumnoSeguimiento.findAll", query="SELECT a FROM AlumnoSeguimiento a")
 public class AlumnoSeguimiento implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -44,6 +46,7 @@ public class AlumnoSeguimiento implements Serializable {
 	private EnsenanzaMateria ensenanzaMateria = new EnsenanzaMateria();
 
 	public AlumnoSeguimiento() {
+		super();
 	}
 
 	public int getId() {
