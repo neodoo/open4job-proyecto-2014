@@ -3,19 +3,25 @@ package es.opensigad.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import es.opensigad.model.dao.AlumnoDAO;
+import es.opensigad.model.dao.AlumnoDAOInterfaz;
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoContacto;
 import es.opensigad.model.vo.Territorio;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class AlumnoBean implements Serializable {
+	
+	@EJB
+	private AlumnoDAOInterfaz alumnoDAO = null;
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,13 +37,15 @@ public class AlumnoBean implements Serializable {
 	
 	private AlumnoContacto alumnoContacto = new AlumnoContacto();
 	
-
+	@PostConstruct
+	public void init(){
+		getListAlumno();
+	}
 	private List<Alumno> alumnoLista;
 
 	private List<Alumno> alumnoFiltro;
 
 	public AlumnoBean() {
-		getListAlumno();
 	}
 
 	// MÉTODOS
@@ -45,7 +53,6 @@ public class AlumnoBean implements Serializable {
 	public String getDetalleAlumno() {
 
 		String pagina = "verAlumnoFicha";
-		AlumnoDAO alumnoDAO = new AlumnoDAO();
 		alumno = alumnoDAO.getDetalleAlumno(this.idAlumno);
 
 		if (alumno != null) {
@@ -62,11 +69,16 @@ public class AlumnoBean implements Serializable {
 		return pagina;
 
 	}
+	
+
+	public void getListAlumno() {
+
+		alumnoLista = alumnoDAO.getListAlumno();
+	}
 
 	public String modifyAlumno() {
 
 		String pagina = "indexAlumno";
-		AlumnoDAO alumnoDAO = new AlumnoDAO();
 		alumno.setTerritorio1(territorioProvincia);
 		alumno.setTerritorio2(territorioPais);
 
@@ -89,7 +101,6 @@ public class AlumnoBean implements Serializable {
 	public String deleteAlumno() {
 
 		String pagina = "indexAlumno";
-		AlumnoDAO alumnoDAO = new AlumnoDAO();
 		if (alumnoDAO.deleteAlumno(alumno.getId()))
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"El alumno con numero de expediente "
@@ -106,7 +117,6 @@ public class AlumnoBean implements Serializable {
 
 	public String insertAlumno() {
 		String pagina = "indexAlumno";
-		AlumnoDAO alumnoDAO = new AlumnoDAO();
 		alumno.setTerritorio1(territorioProvincia);
 		alumno.setTerritorio2(territorioPais);
 		if (alumnoDAO.insertAlumno(alumno)) {
@@ -128,7 +138,6 @@ public class AlumnoBean implements Serializable {
 
 	public String insertAlumnoContacto(){
 		String pagina = "indexAlumno";
-		AlumnoDAO alumnoDAO = new AlumnoDAO();
 		alumnoContacto.setAlumno(alumno);
 		if (alumnoDAO.insertAlumnoContacto(alumnoContacto)) {
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -149,7 +158,6 @@ public class AlumnoBean implements Serializable {
 	
 	public String modifyAlumnoContacto(){
 		String pagina = "indexAlumno";
-		AlumnoDAO alumnoDAO = new AlumnoDAO();
 		alumnoContacto.setAlumno(alumno);
 		if (alumnoDAO.modifyAlumnoContacto(alumnoContacto)) {
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -185,11 +193,6 @@ public class AlumnoBean implements Serializable {
 		this.alumnoLista = alumnoLista;
 	}
 
-	public void getListAlumno() {
-
-		AlumnoDAO alumnoDAO = new AlumnoDAO();
-		alumnoLista = alumnoDAO.getListAlumno();
-	}
 
 	public int getIdAlumno() {
 		return idAlumno;
