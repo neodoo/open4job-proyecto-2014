@@ -5,14 +5,16 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import es.opensigad.model.dao.AlumnoSeguimientoDAO;
+import es.opensigad.model.dao.AlumnoSeguimientoDAOInterfaz;
 import es.opensigad.model.vo.AlumnoSeguimiento;
 
-@ManagedBean(name="seguimientoBean")
+@ManagedBean //(name="seguimientoBean")
 @ViewScoped
 
 public class AlumnoSeguimientoBean implements Serializable{
@@ -32,6 +34,21 @@ public class AlumnoSeguimientoBean implements Serializable{
 	private int justificante;
 	private String observaciones;
 
+	
+	private static final long serialVersionUID = 1L;
+	
+	@EJB
+	private AlumnoSeguimientoDAOInterfaz alumnoSeguimientoDAOInterfaz = null;
+	
+	public AlumnoSeguimientoDAOInterfaz getAlumnoSeguimientoDAO() {
+	return alumnoSeguimientoDAOInterfaz;
+	}
+	
+	public void setAlumnoSeguimientoDAO(AlumnoSeguimientoDAOInterfaz alumnoSeguimientoDAOInterfaz) {
+	this.alumnoSeguimientoDAOInterfaz = alumnoSeguimientoDAOInterfaz;
+	}
+	
+	
 	private AlumnoSeguimiento seguimiento = new AlumnoSeguimiento();
 	
 	private List<AlumnoSeguimiento> seguimientos;
@@ -44,6 +61,7 @@ public class AlumnoSeguimientoBean implements Serializable{
 	public void init(){
 		getListaAlumnoSeguimiento(sesionBean.getIdMatricula());
 	}
+	
 	
 	public SesionBean getSesionBean() {
 		return sesionBean;
@@ -61,19 +79,19 @@ public class AlumnoSeguimientoBean implements Serializable{
 		this.id = id;
 	}
 
+	
 	public int getIdMatricula() {
 		return idMatricula;
 	}
-
 
 	public void setIdMatricula(int idMatricula) {
 		this.idMatricula = idMatricula;
 	}
 
+	
 	public Date getFecha() {
 		return fecha;
 	}		
-
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
@@ -88,10 +106,10 @@ public class AlumnoSeguimientoBean implements Serializable{
 		this.sesion = sesion;
 	}
 
+	
 	public int getIdMateria() {
 		return idMateria;
 	}
-
 
 	public void setIdMateria(int idMateria) {
 		this.idMateria = idMateria;
@@ -101,7 +119,6 @@ public class AlumnoSeguimientoBean implements Serializable{
 	public String getTipo() {
 		return tipo;
 	}
-
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
@@ -121,15 +138,14 @@ public class AlumnoSeguimientoBean implements Serializable{
 		return observaciones;
 	}
 
-
 	public void setObse0rvaciones(String observaciones) {
 		this.observaciones = observaciones;		
 	}
 	
+	
 	public AlumnoSeguimiento getSeguimiento() {
 		return seguimiento;
 	}
-
 
 	public void setSeguimiento(AlumnoSeguimiento seguimiento) {
 		this.seguimiento = seguimiento;
@@ -140,42 +156,51 @@ public class AlumnoSeguimientoBean implements Serializable{
 		return seguimientos;
 	}
 
-
 	public void setSeguimientos(List<AlumnoSeguimiento> seguimientos) {
 		this.seguimientos = seguimientos;
 	}
+	
 	
 	public List<AlumnoSeguimiento> getSeguimientosFiltro() {
 		return seguimientosFiltro;
 	}
 
-
 	public void setSeguimientosFiltro(List<AlumnoSeguimiento> seguimientosFiltro) {
 		this.seguimientosFiltro = seguimientosFiltro;
 	}
  
+	
 	public String getDetalleAlumnoSeguimiento() {
 
 		String pagina = "alumnoSeguimiento";
-		AlumnoSeguimientoDAO seguimientoDAO = new AlumnoSeguimientoDAO();
+		/*AlumnoSeguimientoDAO seguimientoDAO = new AlumnoSeguimientoDAO();
 		seguimiento = seguimientoDAO.getDetalleAlumnoSeguimiento(id);
+		*/
+		
+		seguimiento = alumnoSeguimientoDAOInterfaz.getDetalleAlumnoSeguimiento(id);
+
 		
 		return pagina;
 	}	
 	
+	
 	public void getListaAlumnoSeguimiento(int idMatricula) {
 	
-		AlumnoSeguimientoDAO seguimientoDAO = new AlumnoSeguimientoDAO();
+		/*AlumnoSeguimientoDAO seguimientoDAO = new AlumnoSeguimientoDAO();
 		seguimientos = seguimientoDAO.getListaAlumnoSeguimiento(idMatricula);
+		*/
+		
+		seguimientos = alumnoSeguimientoDAOInterfaz.getListaAlumnoSeguimiento(idMatricula);
 
 	}	
 
+	
 	public String insertarAlumnoSeguimiento() {
 		
 		String pagina = null;
-		AlumnoSeguimientoDAO alumnoSeguimientoDAO = new AlumnoSeguimientoDAO();
+		//AlumnoSeguimientoDAO alumnoSeguimientoDAO = new AlumnoSeguimientoDAO();
 
-		int valor = alumnoSeguimientoDAO.insertarAlumnoSeguimiento(seguimiento);
+		int valor = alumnoSeguimientoDAOInterfaz.insertarAlumnoSeguimiento(seguimiento);
 		
 		if (valor > 0) {
 			pagina = "actualizarAlumnoSeguimientoExito";
@@ -187,12 +212,13 @@ public class AlumnoSeguimientoBean implements Serializable{
 	
 	}	
 	
+	
 	public String actualizarAlumnoSeguimiento() {
 	
 		String pagina = null;
-		AlumnoSeguimientoDAO alumnoSeguimientoDAO = new AlumnoSeguimientoDAO();
+		//AlumnoSeguimientoDAO alumnoSeguimientoDAO = new AlumnoSeguimientoDAO();
 
-		boolean estado = alumnoSeguimientoDAO.actualizarAlumnoSeguimiento(seguimiento);
+		boolean estado = alumnoSeguimientoDAOInterfaz.actualizarAlumnoSeguimiento(seguimiento);
 		
 		if (estado) {
 			pagina = "actualizarAlumnoSeguimientoExito";
@@ -204,12 +230,13 @@ public class AlumnoSeguimientoBean implements Serializable{
 	
 	}
 
+	
 	public String eliminarAlumnoSeguimiento() {
 	
 		String pagina = null;
-		AlumnoSeguimientoDAO alumnoSeguimientoDAO = new AlumnoSeguimientoDAO();
+		//AlumnoSeguimientoDAO alumnoSeguimientoDAO = new AlumnoSeguimientoDAO();
 
-		boolean estado = alumnoSeguimientoDAO.eliminarAlumnoSeguimiento(seguimiento);
+		boolean estado = alumnoSeguimientoDAOInterfaz.eliminarAlumnoSeguimiento(seguimiento);
 
 		if (estado) {
 			pagina = "eliminarAlumnoSeguimientoExito";

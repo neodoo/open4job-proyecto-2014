@@ -18,7 +18,7 @@
 
 	<h:form>
 
-		<p:dataTable var="seg" value="#{seguimientoBean.seguimientos}"
+		<p:dataTable var="seg" value="#{alumnoSeguimientoBean.seguimientos}"
 			paginator="true" rows="1">
 
 			<p:column>
@@ -37,7 +37,7 @@
 
 			<p:column>
 				<f:facet name="header">
-					<h:outputText value="#{etqAlmSeg['etiqueta.fecha']}" />
+					<h:outputText va0lue="#{etqAlmSeg['etiqueta.fecha']}" />
 				</f:facet>
 				<h:outputText value="#{seg.fecha}" />
 			</p:column>
