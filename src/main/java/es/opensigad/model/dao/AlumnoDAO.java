@@ -62,7 +62,9 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 		Alumno alumno = null;
 
 		try {
-			alumno = entityManager.find(Alumno.class, numExpediente);
+			String query = "SELECT a FROM Alumno a WHERE num_expediente = "
+					+ numExpediente;
+			alumno = (Alumno) entityManager.createQuery(query).getSingleResult();
 			logger.log(Level.INFO, "AlumnoDAO.getDetalleAlumno: OK.");
 
 		} catch (Exception e) {

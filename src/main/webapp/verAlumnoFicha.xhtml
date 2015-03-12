@@ -53,8 +53,11 @@
 
 					<h:outputLabel id="etiquetaPaisNacimiento"
 						value="#{etqAlm['etiquetas.paisNacimiento']}" />
-					<h:inputText value="#{alumnoBean.territorioPais.codigo}">
-					</h:inputText>
+					<p:selectOneMenu value="#{alumnoBean.territorioPais.codigo}">
+						<f:selectItem itemLabel="#{etqAlm['etiquetas.paisNacimiento']}"
+							itemValue="" />
+						<f:selectItems value="#{combosAlumnoBean.paisItem}" />
+					</p:selectOneMenu>
 
 					<h:outputLabel id="etiquetaApellido2"
 						value="#{etqAlm['etiquetas.apellido2']}" />
@@ -62,9 +65,12 @@
 					</h:inputText>
 
 					<h:outputLabel id="etiquetaProvinciaNacimiento"
-						value="#{etqAlm['etiquetas.provinciaNacimiento']}" />
-					<h:inputText value="#{alumnoBean.territorioProvincia.codigo}">
-					</h:inputText>
+						value="#{etqAlm['etiquetas.provinciaNacimiento']}" />	
+					<p:selectOneMenu value="#{alumnoBean.territorioProvincia.codigo}">
+						<f:selectItem
+							itemValue="#{alumnoBean.territorioProvincia.codigo}" />
+						<f:selectItems value="#{combosAlumnoBean.provinciaItem}" />
+					</p:selectOneMenu>
 
 					<h:outputLabel id="etiquetaTipoDocumento"
 						value="#{etqAlm['etiquetas.tipoDocumento']}" />
