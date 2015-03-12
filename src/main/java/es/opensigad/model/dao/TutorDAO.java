@@ -5,13 +5,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 
 import es.opensigad.model.vo.Alumno;
@@ -23,13 +20,19 @@ import es.opensigad.model.vo.Tutor;
 @Stateless
 public class TutorDAO implements TutorDAOInterface {
 
-	//public final static String ENTITY_MANAGER = "opensigadUnit";
+	@PersistenceContext(unitName = "opensigadUnit")
+	private EntityManager em = null;
+
+	public EntityManager getEm() {
+		return em;
+	}
+
+	public void setEm(EntityManager em) {
+		this.em = em;
+	}
 
 	public static final Logger logger = Logger.getLogger(TutorDAO.class.getName());
 	
-	@PersistenceContext(unitName = "opensigadUnit")
-	private EntityManager ENTITY_MANAGER;
-
 	public TutorDAO() {
 
 	}
@@ -51,7 +54,7 @@ public class TutorDAO implements TutorDAOInterface {
 
 			// Recuperamos el objeto relacion Alumno_tutor para recuperar todos
 			// los datos
-			Query q = ENTITY_MANAGER.createQuery("SELECT at FROM Tutor at");
+			Query q = em.createQuery("SELECT at FROM Tutor at");
 			
 			listAlumnoTutor = q.getResultList();
 
@@ -92,7 +95,7 @@ public class TutorDAO implements TutorDAOInterface {
 
 			// Recuperamos el objeto relacion Alumno_tutor para recuperar todos
 			// los datos
-			Query q = ENTITY_MANAGER.createQuery("SELECT at FROM AlumnoTutor at");
+			Query q = em.createQuery("SELECT at FROM AlumnoTutor at");
 			
 			listAlumnoTutor = q.getResultList();
 
@@ -136,7 +139,7 @@ public class TutorDAO implements TutorDAOInterface {
 
 			// Recuperamos el objeto relacion Alumno_tutor para recuperar todos
 			// los datos
-			Query q = ENTITY_MANAGER.createQuery("SELECT at FROM AlumnoTutor at WHERE at.alumno.id = "
+			Query q = em.createQuery("SELECT at FROM AlumnoTutor at WHERE at.alumno.id = "
 				+ idAlumno);
 
 			// "SELECT at FROM es.opensigad.model.vo.AlumnoTutor as at "
@@ -185,9 +188,9 @@ public class TutorDAO implements TutorDAOInterface {
 
 			AlumnoTutor alumnoTutor; //= new AlumnoTutor();
 			//alumnoTutor.setId(idAlumnoTutor);
-			alumnoTutor=ENTITY_MANAGER.find(AlumnoTutor.class, idAlumnoTutor);
+			alumnoTutor=em.find(AlumnoTutor.class, idAlumnoTutor);
 			
-			ENTITY_MANAGER.remove(alumnoTutor);
+			em.remove(alumnoTutor);
 
 			//em.getTransaction().commit();
 
@@ -252,9 +255,9 @@ public class TutorDAO implements TutorDAOInterface {
 			alumnoTutor.setTutor(tutor);
 			alumnoTutor.setParentesco(parentesco);
 			
-			ENTITY_MANAGER.merge(tutor);
+			em.merge(tutor);
 			
-			ENTITY_MANAGER.merge(alumnoTutor);
+			em.merge(alumnoTutor);
 			// em.persist(alumnoTutor);
 
 			//em.getTransaction().commit();
@@ -313,7 +316,7 @@ public class TutorDAO implements TutorDAOInterface {
 			tutor.setTelefono(telefono);
 			tutor.setEmail(email);
 
-			ENTITY_MANAGER.persist(tutor);
+			em.persist(tutor);
 
 			// Rellenamos el objeto AlumnoTutor
 			alumno.setId(id);
@@ -321,7 +324,7 @@ public class TutorDAO implements TutorDAOInterface {
 			alumnoTutor.setTutor(tutor);
 			alumnoTutor.setParentesco(parentesco);
 
-			ENTITY_MANAGER.persist(alumnoTutor);
+			em.persist(alumnoTutor);
 
 			//em.getTransaction().commit();
 		
@@ -362,7 +365,7 @@ public class TutorDAO implements TutorDAOInterface {
 			//em.getTransaction().begin();
 
 			// Recuperamos los datos de l tabla tutor con el id que nos llega
-			Query q = ENTITY_MANAGER
+			Query q = em
 					.createQuery("SELECT t FROM Tutor t WHERE t.tutor.id = "
 							+ idTutor); // WHERE t.tutor.id =
 										// :varTutor");
