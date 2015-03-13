@@ -28,6 +28,8 @@ public class AlumnoBean implements Serializable {
 	private FacesMessage facesMessage;
 
 	private Alumno alumno = new Alumno();
+	
+	private Alumno alumnoSeleccionado = new Alumno();
 
 	private Territorio territorioProvincia = new Territorio();
 
@@ -38,6 +40,8 @@ public class AlumnoBean implements Serializable {
 	private List<Alumno> alumnoLista;
 
 	private List<Alumno> alumnoFiltro;
+	
+	
 	
 	@PostConstruct
 	public void init(){
@@ -51,9 +55,10 @@ public class AlumnoBean implements Serializable {
 	}
 	// MÉTODOS
 
-	public String getDetalleAlumno() {
+	public String getDetalleAlumno(int numExpediente) {
 
 		String pagina = "verAlumnoFicha";
+		sesionBean.setNumExpediente(numExpediente);
 		alumno = alumnoDAO.getDetalleAlumno(sesionBean.getNumExpediente());
 
 		if (alumno != null) {
@@ -234,6 +239,15 @@ public class AlumnoBean implements Serializable {
 		this.alumnoContacto = alumnoContacto;
 	}
 
+	public Alumno getAlumnoSeleccionado() {
+		return alumnoSeleccionado;
+	}
+
+	public void setAlumnoSeleccionado(Alumno alumnoSeleccionado) {
+		this.alumnoSeleccionado = alumnoSeleccionado;
+	}
+
+	
 	
 	
 }
