@@ -7,8 +7,36 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class SesionBean {
 
-	private int idSeguimiento;
+	private int idAlumno;
+	private int numExpediente;
 	private int idMatricula;
+	private int idSeguimiento;
+	
+	// GETTERS Y SETTERS
+	
+	public int getIdMatricula() {
+		return idMatricula;
+	}
+
+	public void setIdMatricula(int idMatricula) {
+		this.idMatricula = idMatricula;
+	}
+
+	public int getIdAlumno() {
+		return idAlumno;
+	}
+
+	public void setIdAlumno(int idAlumno) {
+		this.idAlumno = idAlumno;
+	}
+
+	public int getNumExpediente() {
+		return numExpediente;
+	}
+
+	public void setNumExpediente(int numExpediente) {
+		this.numExpediente = numExpediente;
+	}
 
 	public int getIdSeguimiento() {
 		return idSeguimiento;
@@ -17,12 +45,5 @@ public class SesionBean {
 	public void setIdSeguimiento(int idSeguimiento) {
 		this.idSeguimiento = idSeguimiento;
 	}
-
-	public int getIdMatricula() {
-		return idMatricula;
-	}
-
-	public void setIdMatricula(int idMatricula) {
-		this.idMatricula = idMatricula;
-	}
+	
 }

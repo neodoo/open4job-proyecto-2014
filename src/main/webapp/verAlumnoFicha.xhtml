@@ -53,8 +53,11 @@
 
 					<h:outputLabel id="etiquetaPaisNacimiento"
 						value="#{etqAlm['etiquetas.paisNacimiento']}" />
-					<h:inputText value="#{alumnoBean.territorioPais.codigo}">
-					</h:inputText>
+					<p:selectOneMenu value="#{alumnoBean.territorioPais.codigo}">
+						<f:selectItem itemLabel="#{etqAlm['etiquetas.paisNacimiento']}"
+							itemValue="" />
+						<f:selectItems value="#{combosAlumnoBean.paisItem}" />
+					</p:selectOneMenu>
 
 					<h:outputLabel id="etiquetaApellido2"
 						value="#{etqAlm['etiquetas.apellido2']}" />
@@ -63,8 +66,10 @@
 
 					<h:outputLabel id="etiquetaProvinciaNacimiento"
 						value="#{etqAlm['etiquetas.provinciaNacimiento']}" />
-					<h:inputText value="#{alumnoBean.territorioProvincia.codigo}">
-					</h:inputText>
+					<p:selectOneMenu value="#{alumnoBean.territorioProvincia.codigo}">
+						<f:selectItem itemValue="#{alumnoBean.territorioProvincia.codigo}" />
+						<f:selectItems value="#{combosAlumnoBean.provinciaItem}" />
+					</p:selectOneMenu>
 
 					<h:outputLabel id="etiquetaTipoDocumento"
 						value="#{etqAlm['etiquetas.tipoDocumento']}" />
@@ -96,18 +101,26 @@
 			</h:form>
 			<h:form>
 				<h:inputHidden id="idAlumno" value="#{alumnoBean.alumno.id}"></h:inputHidden>
-				<h:inputHidden id="numExpediente" value="#{alumnoBean.alumno.numExpediente}"></h:inputHidden>
-				<h:commandButton value="Insertar Contacto" action="insertarAlumnoContacto"></h:commandButton>
+				<h:inputHidden id="numExpediente"
+					value="#{alumnoBean.alumno.numExpediente}"></h:inputHidden>
+				<h:commandButton value="Insertar Contacto"
+					action="insertarAlumnoContacto"></h:commandButton>
 			</h:form>
 			<h:form>
 				<h:inputHidden id="idAlumno" value="#{alumnoBean.alumno.id}"></h:inputHidden>
-				<h:inputHidden id="numExpediente" value="#{alumnoBean.alumno.numExpediente}"></h:inputHidden>
-				<h:commandButton value="Modificar Contacto" action="actualizarAlumnoContacto"></h:commandButton>
+				<h:inputHidden id="numExpediente"
+					value="#{alumnoBean.alumno.numExpediente}"></h:inputHidden>
+				<h:commandButton value="Modificar Contacto"
+					action="actualizarAlumnoContacto"></h:commandButton>
 			</h:form>
 			<h:form>
 				<h:inputHidden id="idAlumnoEliminar" value="#{alumnoBean.alumno.id}"></h:inputHidden>
-				<h:inputHidden id="numExpedienteEliminar" value="#{alumnoBean.alumno.numExpediente}"></h:inputHidden>
-				<h:commandButton value="Borrar Alumno" action="#{alumnoBean.deleteAlumno()}"></h:commandButton>
+				<h:inputHidden id="numExpedienteEliminar"
+					value="#{alumnoBean.alumno.numExpediente}"></h:inputHidden>
+				<h:commandButton value="Borrar Alumno"
+					action="#{alumnoBean.deleteAlumno()}" />
+				<h:commandButton action="#{verTutorBean.getListaTutor()}"
+					value="Mostrar Tutores" />
 			</h:form>
 		</ui:define>
 

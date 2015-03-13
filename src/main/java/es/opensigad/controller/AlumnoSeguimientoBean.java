@@ -119,7 +119,7 @@ public class AlumnoSeguimientoBean implements Serializable {
 		return observaciones;
 	}
 
-	public void setObse0rvaciones(String observaciones) {
+	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
 	}
 
@@ -131,15 +131,15 @@ public class AlumnoSeguimientoBean implements Serializable {
 		this.seguimiento = seguimiento;
 	}
 
+
 	public void getDetalleAlumnoSeguimiento(int id) {
 		seguimiento = alumnoSeguimientoDAOInterfaz.getDetalleAlumnoSeguimiento(id);
 	}
-	
 
 	public String insertarAlumnoSeguimiento() {
 		
 		String pagina = null;
-		
+
 		int valor = alumnoSeguimientoDAOInterfaz.insertarAlumnoSeguimiento(seguimiento);
 
 		if (valor > 0) {

@@ -177,9 +177,15 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 		List<EnsenanzaMateria> listMateria = null;
 		try {
 			
-			String query = " from EnsenanzaMateria em";
-			listMateria = em.createQuery("from EnsenanzaMateria em")
-					.getResultList();
+
+ //listaNotas = em.createQuery("from AlumnoNota").getResultList();
+ 
+			String query = "FROM EnsenanzaMateria em";
+ 			listMateria = em.createQuery(query).getResultList();
+ 
+			//String query = " from EnsenanzaMateria em";
+			//listMateria = em.createQuery("from EnsenanzaMateria em")
+				//	.getResultList();
 			logger.log(Level.INFO, "AlumnoNotaDAO.listMateriaCombo: OK.");
 
 		} catch (Exception e) {
