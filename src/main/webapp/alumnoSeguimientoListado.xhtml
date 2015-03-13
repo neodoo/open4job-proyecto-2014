@@ -18,22 +18,11 @@
 
 	<h:form>
 
-		<p:dataTable var="seg" value="#{alumnoSeguimientoBean.seguimientos}"
-			paginator="true" rows="1">
-
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="#{etqAlmSeg['etiqueta.id']}" />
-				</f:facet>
-				<h:outputText value="#{seg.id}" />
-			</p:column>
-
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="#{etqAlmSeg['etiqueta.matricula']}" />
-				</f:facet>
-				<h:outputText value="#{seg.alumnoMatricula.id}" />
-			</p:column>
+		<p:dataTable var="seg" 
+			value="#{alumnoSeguimientoBeanListado.seguimientos}"
+			paginator="true" rows="1"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+			rowsPerPageTemplate="5,10,15" >
 
 			<p:column>
 				<f:facet name="header">
@@ -68,13 +57,6 @@
 					<h:outputText value="#{etqAlmSeg['etiqueta.justificante']}" />
 				</f:facet>
 				<h:outputText value="#{seg.justificante}" />
-			</p:column>
-
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="#{etqAlmSeg['etiqueta.observaciones']}" />
-				</f:facet>
-				<h:outputText value="#{seg.observaciones}" />
 			</p:column>
 
 		</p:dataTable>

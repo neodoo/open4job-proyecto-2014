@@ -8,9 +8,10 @@ import javax.faces.bean.SessionScoped;
 public class SesionBean {
 
 	private int idAlumno;
-	private int NumExpediente;
+	private int numExpediente;
 	private int idMatricula;
-
+	private int idSeguimiento;
+	
 	// GETTERS Y SETTERS
 	
 	public int getIdMatricula() {
@@ -30,10 +31,19 @@ public class SesionBean {
 	}
 
 	public int getNumExpediente() {
-		return NumExpediente;
+		return numExpediente;
 	}
 
 	public void setNumExpediente(int numExpediente) {
-		NumExpediente = numExpediente;
+		this.numExpediente = numExpediente;
 	}
+
+	public int getIdSeguimiento() {
+		return idSeguimiento;
+	}
+
+	public void setIdSeguimiento(int idSeguimiento) {
+		this.idSeguimiento = idSeguimiento;
+	}
+	
 }

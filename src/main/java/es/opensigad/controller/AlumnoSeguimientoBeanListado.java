@@ -2,6 +2,7 @@ package es.opensigad.controller;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -14,7 +15,7 @@ import es.opensigad.model.vo.AlumnoSeguimiento;
 
 @ManagedBean
 @ViewScoped
-public class AlumnoSeguimientoBean implements Serializable {
+public class AlumnoSeguimientoBeanListado implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,16 +40,16 @@ public class AlumnoSeguimientoBean implements Serializable {
 	private int idMateria;
 	private String tipo;
 	private int justificante;
-	private String observaciones;
 
-	private AlumnoSeguimiento seguimiento = new AlumnoSeguimiento();
+	private List<AlumnoSeguimiento> seguimientos;
+	private List<AlumnoSeguimiento> seguimientosFiltro;
 
 	@ManagedProperty(value = "#{sesionBean}")
 	private SesionBean sesionBean;
 
 	@PostConstruct
 	public void init() {
-		getDetalleAlumnoSeguimiento(sesionBean.getIdSeguimiento());
+		getListaAlumnoSeguimiento(sesionBean.getIdMatricula());
 	}
 	
 	public SesionBean getSesionBean() {
@@ -115,73 +116,24 @@ public class AlumnoSeguimientoBean implements Serializable {
 		this.justificante = justificante;
 	}
 
-	public String getObservaciones() {
-		return observaciones;
+	public List<AlumnoSeguimiento> getSeguimientos() {
+		return seguimientos;
 	}
 
-	public void setObservaciones(String observaciones) {
-		this.observaciones = observaciones;
+	public void setSeguimientos(List<AlumnoSeguimiento> seguimientos) {
+		this.seguimientos = seguimientos;
 	}
 
-	public AlumnoSeguimiento getSeguimiento() {
-		return seguimiento;
+	public List<AlumnoSeguimiento> getSeguimientosFiltro() {
+		return seguimientosFiltro;
 	}
 
-	public void setSeguimiento(AlumnoSeguimiento seguimiento) {
-		this.seguimiento = seguimiento;
+	public void setSeguimientosFiltro(List<AlumnoSeguimiento> seguimientosFiltro) {
+		this.seguimientosFiltro = seguimientosFiltro;
 	}
-
-
-	public void getDetalleAlumnoSeguimiento(int id) {
-		seguimiento = alumnoSeguimientoDAOInterfaz.getDetalleAlumnoSeguimiento(id);
-	}
-
-	public String insertarAlumnoSeguimiento() {
-		
-		String pagina = null;
-
-		int valor = alumnoSeguimientoDAOInterfaz.insertarAlumnoSeguimiento(seguimiento);
-
-		if (valor > 0) {
-			pagina = "actualizarAlumnoSeguimientoExito";
-		} else {
-			pagina = "actualizarAlumnoSeguimientoFallo";
-		}
-
-		return pagina;
-
-	}
-
-	public String actualizarAlumnoSeguimiento() {
-
-		String pagina = null;
-
-		boolean estado = alumnoSeguimientoDAOInterfaz.actualizarAlumnoSeguimiento(seguimiento);
-
-		if (estado) {
-			pagina = "actualizarAlumnoSeguimientoExito";
-		} else {
-			pagina = "actualizarAlumnoSeguimientoFallo";
-		}
-
-		return pagina;
-
-	}
-
-	public String eliminarAlumnoSeguimiento() {
-
-		String pagina = null;
-
-		boolean estado = alumnoSeguimientoDAOInterfaz.eliminarAlumnoSeguimiento(seguimiento);
-
-		if (estado) {
-			pagina = "eliminarAlumnoSeguimientoExito";
-		} else {
-			pagina = "eliminarAlumnoSeguimientoFallo";
-		}
-
-		return pagina;
-
+	
+	public void getListaAlumnoSeguimiento(int idMatricula) {
+		seguimientos = alumnoSeguimientoDAOInterfaz.getListaAlumnoSeguimiento(idMatricula);
 	}
 
 }

@@ -14,7 +14,7 @@ import es.opensigad.model.vo.AlumnoSeguimiento;
 
 @ManagedBean
 @ViewScoped
-public class AlumnoSeguimientoBean implements Serializable {
+public class AlumnoSeguimientoBeanDetalle implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -119,7 +119,7 @@ public class AlumnoSeguimientoBean implements Serializable {
 		return observaciones;
 	}
 
-	public void setObservaciones(String observaciones) {
+	public void setObse0rvaciones(String observaciones) {
 		this.observaciones = observaciones;
 	}
 
@@ -131,13 +131,13 @@ public class AlumnoSeguimientoBean implements Serializable {
 		this.seguimiento = seguimiento;
 	}
 
-
 	public void getDetalleAlumnoSeguimiento(int id) {
 		seguimiento = alumnoSeguimientoDAOInterfaz.getDetalleAlumnoSeguimiento(id);
 	}
+	
 
 	public String insertarAlumnoSeguimiento() {
-		
+
 		String pagina = null;
 
 		int valor = alumnoSeguimientoDAOInterfaz.insertarAlumnoSeguimiento(seguimiento);
