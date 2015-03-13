@@ -14,113 +14,102 @@
 
 		<ui:define name="content">
 
-			<h1>
-				<h:outputLabel id="tituloFichaAlumno"
-					value="#{etqAlm['titulo.fichaAlumno']}" />
-			</h1>
+			<f:facet name="header">
+				<p:outputLabel value="#{etqAlm['titulo.fichaAlumno']}" />
+			</f:facet>
 
 			<h:messages style="margin:8px;" />
 			<h:form>
-				<h:panelGrid columns="4" cellspacing="10">
-					<h:outputLabel id="etiquetaNumExpediente"
+				<p:panelGrid columns="4">
+
+					<p:outputLabel for="etiquetaNumExpediente"
 						value="#{etqAlm['etiquetas.numExpediente']}" />
-					<h:inputText value="#{alumnoBean.alumno.numExpediente}"
-						disabled="true">
-					</h:inputText>
+					<p:inputText id="etiquetaNumExpediente"
+						value="#{alumnoBean.alumno.numExpediente}" disabled="true" />
 
-					<h:outputLabel id="etiquetaSexo"
+					<p:outputLabel for="etiquetaSexo"
 						value="#{etqAlm['etiquetas.sexo']}" />
-					<h:selectOneRadio value="#{alumnoBean.alumno.sexo}">
-						<f:selectItem itemValue="h"
-							itemLabel="#{etqAlm['etiquetas.masculino']}" />
-						<f:selectItem itemValue="m"
-							itemLabel="#{etqAlm['etiquetas.femenino']}" />
-					</h:selectOneRadio>
+					<p:selectOneRadio id="etiquetaSexo"
+						value="#{alumnoBean.alumno.sexo}" layout="lineDirection">
+						<f:selectItem itemLabel="#{etqAlm['etiquetas.masculino']}"
+							itemValue="h" />
+						<f:selectItem itemLabel="#{etqAlm['etiquetas.femenino']}"
+							itemValue="m" />
+					</p:selectOneRadio>
 
-					<h:outputLabel id="etiquetaNombre"
+					<p:outputLabel for="etiquetaNombre"
 						value="#{etqAlm['etiquetas.nombre']}" />
-					<h:inputText value="#{alumnoBean.alumno.nombre}">
-					</h:inputText>
+					<p:inputText id="etiquetaNombre"
+						value="#{alumnoBean.alumno.nombre}" />
 
-					<h:outputLabel id="etiquetaFechaNacimiento"
-						value="#{etqAlm['etiquetas.fechaNacimiento']}" />
+					<p:outputLabel value="#{etqAlm['etiquetas.fechaNacimiento']}" />
 					<p:calendar value="#{alumnoBean.alumno.fechaNacimiento}" />
 
-					<h:outputLabel id="etiquetaApellido1"
+					<p:outputLabel for="etiquetaApellido1"
 						value="#{etqAlm['etiquetas.apellido1']}" />
-					<h:inputText value="#{alumnoBean.alumno.apellido1}">
-					</h:inputText>
+					<p:inputText id="etiquetaApellido1"
+						value="#{alumnoBean.alumno.apellido1}" />
 
-					<h:outputLabel id="etiquetaPaisNacimiento"
-						value="#{etqAlm['etiquetas.paisNacimiento']}" />
+					<p:outputLabel value="#{etqAlm['etiquetas.paisNacimiento']}" />
 					<p:selectOneMenu value="#{alumnoBean.territorioPais.codigo}">
 						<f:selectItem itemLabel="#{etqAlm['etiquetas.paisNacimiento']}"
 							itemValue="" />
 						<f:selectItems value="#{combosAlumnoBean.paisItem}" />
 					</p:selectOneMenu>
 
-					<h:outputLabel id="etiquetaApellido2"
+					<p:outputLabel for="etiquetaApellido2"
 						value="#{etqAlm['etiquetas.apellido2']}" />
-					<h:inputText value="#{alumnoBean.alumno.apellido2}">
-					</h:inputText>
+					<p:inputText id="etiquetaApellido2"
+						value="#{alumnoBean.alumno.apellido2}" />
 
-					<h:outputLabel id="etiquetaProvinciaNacimiento"
-						value="#{etqAlm['etiquetas.provinciaNacimiento']}" />
+					<p:outputLabel value="#{etqAlm['etiquetas.provinciaNacimiento']}" />
 					<p:selectOneMenu value="#{alumnoBean.territorioProvincia.codigo}">
 						<f:selectItem itemValue="#{alumnoBean.territorioProvincia.codigo}" />
 						<f:selectItems value="#{combosAlumnoBean.provinciaItem}" />
 					</p:selectOneMenu>
 
-					<h:outputLabel id="etiquetaTipoDocumento"
+					<p:outputLabel for="etiquetaTipoDocumento"
 						value="#{etqAlm['etiquetas.tipoDocumento']}" />
-					<h:inputText value="#{alumnoBean.alumno.tipoDocumento}">
-					</h:inputText>
+					<p:selectOneRadio id="etiquetaTipoDocumento"
+						value="#{alumnoBean.alumno.tipoDocumento}" layout="lineDirection">
+						<f:selectItem itemLabel="#{etqAlm['etiquetas.dni']}"
+							itemValue="dni" />
+						<f:selectItem itemLabel="#{etqAlm['etiquetas.nif']}"
+							itemValue="nif" />
+						<f:selectItem itemLabel="#{etqAlm['etiquetas.pasaporte']}"
+							itemValue="pasaporte" />
+					</p:selectOneRadio>
 
-					<h:outputLabel id="etiquetaDocumento"
+					<p:outputLabel for="etiquetaDocumento"
 						value="#{etqAlm['etiquetas.documento']}" />
-					<h:inputText value="#{alumnoBean.alumno.documento}">
-					</h:inputText>
+					<p:inputText id="etiquetaDocumento"
+						value="#{alumnoBean.alumno.documento}" />
 
-					<h:outputLabel id="etiquetaLocalidad"
+					<p:outputLabel for="etiquetaLocalidadNacimiento"
 						value="#{etqAlm['etiquetas.localidadNacimiento']}" />
-					<h:inputText value="#{alumnoBean.alumno.localidadNacimiento}">
-					</h:inputText>
+					<p:inputText id="etiquetaLocalidadNacimiento"
+						value="#{alumnoBean.alumno.localidadNacimiento}" />
 
-					<h:outputLabel id="etiquetaImagen"
+					<p:outputLabel for="etiquetaImagen"
 						value="#{etqAlm['etiquetas.imagen']}" />
-					<h:inputText value="#{alumnoBean.alumno.imagen}">
-					</h:inputText>
+					<p:inputText id="etiquetaImagen"
+						value="#{alumnoBean.alumno.imagen}" />
 
 					<h:commandButton value="Modificar Alumno"
 						action="#{alumnoBean.modifyAlumno()}"></h:commandButton>
-				</h:panelGrid>
-				<h:inputHidden id="idAlumno" value="#{alumnoBean.alumno.id}"></h:inputHidden>
-				<h:inputHidden id="numExpediente"
-					value="#{alumnoBean.alumno.numExpediente}"></h:inputHidden>
-
+				</p:panelGrid>
 			</h:form>
 			<h:form>
-				<h:inputHidden id="idAlumno" value="#{alumnoBean.alumno.id}"></h:inputHidden>
-				<h:inputHidden id="numExpediente"
-					value="#{alumnoBean.alumno.numExpediente}"></h:inputHidden>
 				<h:commandButton value="Insertar Contacto"
 					action="insertarAlumnoContacto"></h:commandButton>
-			</h:form>
-			<h:form>
-				<h:inputHidden id="idAlumno" value="#{alumnoBean.alumno.id}"></h:inputHidden>
-				<h:inputHidden id="numExpediente"
-					value="#{alumnoBean.alumno.numExpediente}"></h:inputHidden>
 				<h:commandButton value="Modificar Contacto"
 					action="actualizarAlumnoContacto"></h:commandButton>
-			</h:form>
-			<h:form>
-				<h:inputHidden id="idAlumnoEliminar" value="#{alumnoBean.alumno.id}"></h:inputHidden>
-				<h:inputHidden id="numExpedienteEliminar"
-					value="#{alumnoBean.alumno.numExpediente}"></h:inputHidden>
 				<h:commandButton value="Borrar Alumno"
 					action="#{alumnoBean.deleteAlumno()}" />
-				<h:commandButton action="#{verTutorBean.getListaTutor()}"
-					value="Mostrar Tutores" />
+				<h:commandButton value="Mostrar Tutores"
+					action="#{verTutorBean.getListaTutor()}" />
+				<h:commandButton value="Mostrar Matriculas"
+					action="#{verAlumnoMatriculaListadoBean.getListaMatricula()}" />
 			</h:form>
 		</ui:define>
 
