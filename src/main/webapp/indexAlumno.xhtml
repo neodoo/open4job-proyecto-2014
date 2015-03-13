@@ -18,7 +18,7 @@
 					value="#{etqAlm['etiquetas.alumnos']}" />
 			</h3>
 			<h:form>
-				<h:inputText value="#{alumnoBean.idAlumno}" />
+				<h:inputText value="#{sesionBean.numExpediente}" />
 				<h:commandButton value="Ver Ficha" action="#{alumnoBean.getDetalleAlumno()}"></h:commandButton>
 				<h:commandButton value="Ver Lista" action="verAlumnoLista"></h:commandButton>
 				<h:commandButton value="Insertar" action="insertarAlumno"></h:commandButton>
