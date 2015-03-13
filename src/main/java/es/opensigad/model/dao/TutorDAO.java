@@ -78,6 +78,7 @@ public class TutorDAO implements TutorDAOInterface {
 
 	}
 	
+	/*
 	@Override
 	public List<AlumnoTutor> getListaAlumnoTutor() {
 
@@ -118,9 +119,9 @@ public class TutorDAO implements TutorDAOInterface {
 		return listAlumnoTutor;
 
 	}
-
+*/
 	@Override
-	public List<AlumnoTutor> getListaAlumnoTutor2() {
+	public List<AlumnoTutor> getListaAlumnoTutor() {
 
 		List<AlumnoTutor> listAlumnoTutor = null;
 

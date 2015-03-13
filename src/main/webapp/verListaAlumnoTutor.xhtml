@@ -7,75 +7,86 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-
+	<h:outputStylesheet library="css" name="table-style.css" />
 </h:head>
 <h:body>
-	<p:dataTable value="#{verTutorBean.alumnoTutorLista}" var="tutor" rows="10"
-		paginator="true"
-		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-		rowsPerPageTemplate="5,10">
-		<p:column>
-			<f:facet name="header">
-			<h:outputLabel value="#{etqAlmNotas['titulo.id']}" />
-			</f:facet>
-             #{tutor.tutor.id}
-        </p:column>
-		<p:column>
-			<f:facet name="header">
-			<h:outputLabel value="#{etqAlmNotas['titulo.idMatricula']}" />
-			</f:facet>
+	<ui:composition template="/template/common/commonLayout.xhtml">
+
+		<ui:define name="content">
+
+			<h:form>
+				<p:dataTable id="tablaDeTutores" var="tutor"
+					value="#{verTutorBean.alumnoTutorLista}">
+
+					<f:facet name="header">
+						<p:outputPanel>
+						</p:outputPanel>
+					</f:facet>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="id" />
+						</f:facet> 	
+						<a href="actualizarTutor.xhtml"> #{tutor.tutor.id}</a>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="#{etqAlm['etiquetas.nombre']}" />
+						</f:facet>
              #{tutor.tutor.nombre}
         </p:column>
-		<p:column>
-			<f:facet name="header">
-				<h:outputLabel value="#{etqAlmNotas['titulo.idMateria']}" />
-			</f:facet>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="#{etqAlm['etiquetas.apellido1']}" />
+						</f:facet>
              #{tutor.tutor.apellido1}
         </p:column>
-		<p:column>
-			<f:facet name="header">
-			<h:outputLabel value="#{etqAlmNotas['titulo.idEvaluacion']}" />
-			</f:facet>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="#{etqAlm['etiquetas.apellido2']}" />
+						</f:facet>
             #{tutor.tutor.apellido2}
         </p:column>
-		<p:column>
-			<f:facet name="header">
-			<h:outputLabel value="#{etqAlmNotas['titulo.nota']}" />
-			</f:facet>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="#{etqAlm['etiquetas.tipoDocumento']}" />
+						</f:facet>
              #{tutor.tutor.tipoDocumento}
         </p:column>
-		<p:column>
-			<f:facet name="header">
-			<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
-			</f:facet>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="#{etqAlm['etiquetas.documento']}" />
+						</f:facet>
              #{tutor.tutor.documento}
         </p:column>
-		<p:column>
-			<f:facet name="header">
-			<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
-			</f:facet>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="#{etqAlm['etiquetas.fechaNacimiento']}" />
+						</f:facet>
               #{tutor.tutor.fechaNacimiento}
         </p:column>
-		<p:column>
-			<f:facet name="header">
-			<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
-			</f:facet>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="#{etqAlm['etiquetas.sexo']}" />
+						</f:facet>
              #{tutor.tutor.sexo}
         </p:column>
-		<p:column>
-			<f:facet name="header">
-			<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
-			</f:facet>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="#{etqAlm['etiquetas.telefono']}" />
+						</f:facet>
              #{tutor.tutor.telefono}
         </p:column>
-		<p:column>
-			<f:facet name="header">
-			<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
-			</f:facet>
-           #{tutor.tutor.email}
-         </p:column>
-	</p:dataTable>
+      			<f:facet name="footer">
+						<h:commandButton action="insertarTutor.xhtml"
+						value="Insertar Tutores" />
+					</f:facet>
+					
+						
+				</p:dataTable>
 
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>
 
