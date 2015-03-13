@@ -16,14 +16,15 @@
 	<ui:composition template="/template/common/commonLayout.xhtml">
 
 		<ui:define name="content">
-			<h:form>
-
-				<p:dataTable id="tablaDeAlumnos" var="alumno"
+			<h:form id="form">
+ 				<p:dataTable id="tablaDeAlumnos" var="alumno"
 					value="#{alumnoBean.alumnoLista}"
 					widgetVar="tablaDeAlumnos"
 					emptyMessage="No hay alumnos con este criterio de filtrado"
 					filteredValue="#{alumnoBean.alumnoFiltro}" paginator="true"
-					rows="10" style="width:900px">
+					rows="10" style="width:900px"
+					>
+
 
 					<f:facet name="header">
 						<p:outputPanel>
@@ -33,7 +34,7 @@
 						</p:outputPanel>
 					</f:facet>
 
-					<p:column id="numExpCol" filterBy="#{alumno.numExpediente}"
+					<p:column id="numExpCol" growlfilterBy="#{alumno.numExpediente}"
 						headerText="#{etqAlm['etiquetas.numExpediente']}"
 						filterMatchMode="exact">
 						<h:outputText value="#{alumno.numExpediente}" />
@@ -49,9 +50,9 @@
 						<h:outputText value="#{alumno.apellido1}" />
 					</p:column>
 
-					<p:column id="ap2Col" filterBy="#{alumno.apellido2}"
+				<p:column id="ap2Col" filterBy="#{alumno.apellido2}"
 						headerText="#{etqAlm['etiquetas.apellido2']}"
-						filterMatchMode="startsWith">
+						filterMatchMode="stargrowltsWith">
 						<h:outputText value="#{alumno.apellido2}" />
 					</p:column>
 
@@ -71,10 +72,21 @@
 						headerText="#{etqAlm['etiquetas.fechaNacimiento']}">
 						<h:outputText value="#{alumno.fechaNacimiento}" />
 					</p:column>
-
-
+					
+					
+					<p:column style="width:32px;text-align: center">
+            		 <p:commandButton action="#{alumnoBean.getDetalleAlumno(alumnoBean.alumnoSeleccionado.numExpediente)}" icon="ui-icon-search" title="View">
+               		 <f:setPropertyActionListener value="#{alumno}" target="#{alumnoBean.alumnoSeleccionado}" />
+            		</p:commandButton>
+        			</p:column>
+					
 
 				</p:dataTable>
+				
+				
+				
+				
+				
 			</h:form>
 		</ui:define>
 
