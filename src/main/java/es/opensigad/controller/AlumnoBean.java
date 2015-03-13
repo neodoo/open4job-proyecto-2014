@@ -64,6 +64,7 @@ public class AlumnoBean implements Serializable {
 		if (alumno != null) {
 			setTerritorioPais(alumno.getTerritorio2());
 			setTerritorioProvincia(alumno.getTerritorio1());
+			sesionBean.setIdAlumno(alumno.getId());
 			return pagina;
 		}
 
@@ -87,6 +88,7 @@ public class AlumnoBean implements Serializable {
 		String pagina = "indexAlumno";
 		alumno.setTerritorio1(territorioProvincia);
 		alumno.setTerritorio2(territorioPais);
+		alumno.setId(sesionBean.getIdAlumno());
 
 		if (alumnoDAO.modifyAlumno(alumno))
 			facesMessage = new FacesMessage(
