@@ -7,7 +7,16 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class SesionBean {
 
+	private int idSeguimiento;
 	private int idMatricula;
+
+	public int getIdSeguimiento() {
+		return idSeguimiento;
+	}
+
+	public void setIdSeguimiento(int idSeguimiento) {
+		this.idSeguimiento = idSeguimiento;
+	}
 
 	public int getIdMatricula() {
 		return idMatricula;
@@ -16,5 +25,4 @@ public class SesionBean {
 	public void setIdMatricula(int idMatricula) {
 		this.idMatricula = idMatricula;
 	}
-
 }
