@@ -23,7 +23,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 	@PersistenceContext(unitName = "opensigadUnit")
 	private EntityManager em = null;
-
+	
 	public static final Logger logger = Logger
 			.getLogger(AlumnoMatriculaDAO.class.getName());
 
@@ -50,7 +50,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 			Centro centroMatricula = new Centro();
 			Ensenanza ensenanza = new Ensenanza();
-
+			
 			alumno.setId(idAlumno);
 			centroMatricula.setId(idCentro);
 			ensenanza.setId(idEnsenanza);

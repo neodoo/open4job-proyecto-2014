@@ -25,12 +25,12 @@
 					<h:panelGrid columns="2" cellpadding="10">
 
 						<h:form>
-							<h:outputLabel id="idAlumno"
+							<!--  <h:outputLabel id="idAlumno"
 								value="#{etqAlmMat['etiquetas.idAlumno']}" />
-							<h:inputText value="#{verAlumnoMatriculaListadoBean.id}" />
+							<h:inputText value="#{verAlumnoMatriculaListadoBean.id}" />-->
 							<h:commandButton
 								value="#{etqAlmMat['boton.verMatriculasAlumno']}"
-								action="#{verAlumnoMatriculaListadoBean.getListaMatricula(verAlumnoMatriculaListadoBean.id)}"></h:commandButton>
+								action="#{verAlumnoMatriculaListadoBean.getListaMatriculaId()}"></h:commandButton>
 
 						</h:form>
 					</h:panelGrid>
@@ -64,10 +64,10 @@
 								<h:outputLabel id="alumno"
 									value="#{etqAlmMat['etiquetas.idAlumno']}" />
 
-								<p:selectOneMenu id="idalumno"
+								<!--  <p:selectOneMenu id="idalumno"
 									value="#{insertarAlumnoMatriculaBean.idAlumno}">
 									<f:selectItems value="#{comboMatriculaBean.alumnoItem}"></f:selectItems>
-								</p:selectOneMenu>
+								</p:selectOneMenu>-->
 
 								<h:outputLabel id="idCursoEscolar"
 									value="#{etqAlmMat['etiquetas.cursoEscolar']}" />
@@ -101,7 +101,7 @@
 
 								<h:commandButton
 									value="#{etqAlmMat['boton.guardarMatriculaAlumno']}"
-									action="#{insertarAlumnoMatriculaBean.insertarAlumnoMatricula(insertarAlumnoMatriculaBean.idAlumno,
+									action="#{insertarAlumnoMatriculaBean.insertarAlumnoMatricula(
 						 insertarAlumnoMatriculaBean.cursoEscolar, insertarAlumnoMatriculaBean.idCentro, insertarAlumnoMatriculaBean.idEnsenanza, insertarAlumnoMatriculaBean.modulo, insertarAlumnoMatriculaBean.curso)}"></h:commandButton>
 							</p:panelGrid>
 						</h:form>

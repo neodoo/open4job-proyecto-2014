@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
@@ -19,26 +20,29 @@ public class EliminarAlumnoMatriculaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private int idMatricula;
+	// private int idMatricula;
 
 	private FacesMessage facesMessage;
+
+	@ManagedProperty(value = "#{sesionBean}")
+	private SesionBean sesionAlumno;
+
+	public SesionBean getSesionAlumno() {
+		return sesionAlumno;
+	}
+
+	public void setSesionAlumno(SesionBean sesionAlumno) {
+		this.sesionAlumno = sesionAlumno;
+	}
 
 	public EliminarAlumnoMatriculaBean() {
 
 	}
 
-	public int getIdMatricula() {
-		return idMatricula;
-	}
-
-	public void setIdMatricula(int idMatricula) {
-		this.idMatricula = idMatricula;
-	}
-
-	public String borrarMatricula(int idMatricula) {
+	public String borrarMatricula() {
 		String pagina = "indexAlumnoMatricula";
 		// AlumnoMatriculaDAO alumnoMatriculaDAO = new AlumnoMatriculaDAO();
-		if (alumnoMatriculaDAO.borrarMatricula(idMatricula)) {
+		if (alumnoMatriculaDAO.borrarMatricula(sesionAlumno.getIdMatricula())) {
 
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"La matricula se ha eliminado correctamente ", null);

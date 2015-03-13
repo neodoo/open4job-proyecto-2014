@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
@@ -20,7 +21,8 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 	@EJB
 	private AlumnoMatriculaDAOInterfaz matriculaDAO = null;
 	
-	private int idAlumno;
+	
+	//private int idAlumno;
 	private int cursoEscolar;
 	private int idCentro;
 	private int idEnsenanza;
@@ -28,19 +30,25 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 	private int curso;
 
 	private FacesMessage facesMessage;
+	
+	@ManagedProperty(value = "#{sesionBean}")
+	private SesionBean sesionAlumno;
+
+	public SesionBean getSesionAlumno() {
+		return sesionAlumno;
+	}
+
+
+	public void setSesionAlumno(SesionBean sesionAlumno) {
+		this.sesionAlumno = sesionAlumno;
+	}
+
 
 	public InsertarAlumnoMatriculaBean() {
 
 	}
 
-	public int getIdAlumno() {
-		return idAlumno;
-	}
-
-	public void setIdAlumno(int idAlumno) {
-		this.idAlumno = idAlumno;
-	}
-
+	
 	public int getCursoEscolar() {
 		return cursoEscolar;
 	}
@@ -81,13 +89,13 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 		this.curso = curso;
 	}
 
-	public String insertarAlumnoMatricula(int idAlumno, int cursoEscolar,
+	public String insertarAlumnoMatricula(int cursoEscolar,
 			int centro, int ensenanza, String modulo, int curso) {
 
 		String pagina = "indexAlumnoMatricula";
 		//AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
 
-		if (matriculaDAO.insertarMatricula(idAlumno, cursoEscolar, centro,
+		if (matriculaDAO.insertarMatricula(sesionAlumno.getIdAlumno(), cursoEscolar, centro,
 				ensenanza, modulo, curso)) {
 
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,

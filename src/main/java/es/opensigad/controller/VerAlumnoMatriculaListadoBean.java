@@ -16,11 +16,20 @@ import es.opensigad.model.vo.AlumnoMatricula;
 public class VerAlumnoMatriculaListadoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@EJB
 	private AlumnoMatriculaDAOInterfaz matriculaDAO = null;
 	private int id;
 	private List<AlumnoMatricula> listaMatricula;
+	private SesionBean sesionAlumno;
+
+	public SesionBean getSesionAlumno() {
+		return sesionAlumno;
+	}
+
+	public void setSesionAlumno(SesionBean sesionAlumno) {
+		this.sesionAlumno = sesionAlumno;
+	}
 
 	public int getId() {
 		return id;
@@ -35,16 +44,17 @@ public class VerAlumnoMatriculaListadoBean implements Serializable {
 	}
 
 	public void setListaMatricula(List<AlumnoMatricula> listaMatriculaVO) {
-		this.listaMatricula = listaMatricula;
+		this.listaMatricula = listaMatriculaVO;
 	}
 
-	public String getListaMatricula(int idAlumno) {
+	public String getListaMatriculaId() {
 
 		String pagina = "verAlumnoMatriculaListado";
-		
-		//AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
-		listaMatricula = matriculaDAO.getListadoMatricula(idAlumno);
-		
+
+		// AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
+		listaMatricula = matriculaDAO.getListadoMatricula(sesionAlumno
+				.getIdAlumno());
+
 		return pagina;
 
 	}
