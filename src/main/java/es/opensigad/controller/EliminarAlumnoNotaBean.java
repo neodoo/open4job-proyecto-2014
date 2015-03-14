@@ -11,7 +11,7 @@ import es.opensigad.model.dao.AlumnoNotaDAO;
 import es.opensigad.model.dao.AlumnoNotaDAOInterfaz;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class EliminarAlumnoNotaBean implements Serializable {
 	@EJB
 	private AlumnoNotaDAOInterfaz alumnoNotaDAO = null;
