@@ -95,21 +95,23 @@
 					<p:inputText id="etiquetaImagen"
 						value="#{alumnoBean.alumno.imagen}" />
 
-					<h:commandButton value="Modificar Alumno"
-						action="#{alumnoBean.modifyAlumno()}"></h:commandButton>
+					<p:commandButton value="#{etqAlm['etiquetas.modificar']}"
+						action="#{alumnoBean.modifyAlumno()}" />
 				</p:panelGrid>
 			</h:form>
 			<h:form>
-				<h:commandButton value="Insertar Contacto"
-					action="insertarAlumnoContacto"></h:commandButton>
-				<h:commandButton value="Modificar Contacto"
-					action="actualizarAlumnoContacto"></h:commandButton>
-				<h:commandButton value="Borrar Alumno"
+				<p:commandButton value="Insertar Contacto"
+					action="insertarAlumnoContacto" />
+				<p:commandButton value="Modificar Contacto"
+					action="actualizarAlumnoContacto" />
+				<p:commandButton value="#{etqAlm['etiquetas.borrar']}"
 					action="#{alumnoBean.deleteAlumno()}" />
-				<h:commandButton value="Mostrar Tutores"
+				<p:commandButton value="Mostrar Tutores"
 					action="#{verTutorBean.getListaTutor()}" />
-				<h:commandButton value="Mostrar Matriculas"
+				<p:commandButton value="Mostrar Matriculas"
 					action="#{verAlumnoMatriculaListadoBean.getListaMatriculaId()}" />
+				<p:commandButton value="#{etqAlm['etiquetas.volverLista']}"
+					action="verAlumnoLista.xhtml" />
 			</h:form>
 		</ui:define>
 

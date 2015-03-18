@@ -18,17 +18,24 @@
 					<f:facet name="header">
 						<p:outputLabel value="#{etqAlm['titulo.insertarAlumno']}" />
 					</f:facet>
-					
-					<p:outputLabel for="etiquetaNumExpediente" value="#{etqAlm['etiquetas.numExpediente']}" />
-					<p:inputText id="etiquetaNumExpediente" value="#{alumnoBean.alumno.numExpediente}" />
-					
-					<p:outputLabel for="etiquetaImagen" value="#{etqAlm['etiquetas.imagen']}" />
-					<p:inputText id="etiquetaImagen" value="#{alumnoBean.alumno.imagen}" />
 
-					<p:outputLabel for="etiquetaNombre" value="#{etqAlm['etiquetas.nombre']}" />
-					<p:inputText id="etiquetaNombre" value="#{alumnoBean.alumno.nombre}" />
-					
-					<p:outputLabel for="etiquetaSexo" value="#{etqAlm['etiquetas.sexo']}" />
+					<p:outputLabel for="etiquetaNumExpediente"
+						value="#{etqAlm['etiquetas.numExpediente']}" />
+					<p:inputText id="etiquetaNumExpediente"
+						value="#{alumnoBean.alumno.numExpediente}" />
+
+					<p:outputLabel for="etiquetaImagen"
+						value="#{etqAlm['etiquetas.imagen']}" />
+					<p:inputText id="etiquetaImagen"
+						value="#{alumnoBean.alumno.imagen}" />
+
+					<p:outputLabel for="etiquetaNombre"
+						value="#{etqAlm['etiquetas.nombre']}" />
+					<p:inputText id="etiquetaNombre"
+						value="#{alumnoBean.alumno.nombre}" />
+
+					<p:outputLabel for="etiquetaSexo"
+						value="#{etqAlm['etiquetas.sexo']}" />
 					<p:selectOneRadio id="etiquetaSexo"
 						value="#{alumnoBean.alumno.sexo}" layout="lineDirection">
 						<f:selectItem itemLabel="#{etqAlm['etiquetas.masculino']}"
@@ -37,10 +44,13 @@
 							itemValue="m" />
 					</p:selectOneRadio>
 
-					<p:outputLabel for="etiquetaApellido1" value="#{etqAlm['etiquetas.apellido1']}" />
-					<p:inputText id="etiquetaApellido1" value="#{alumnoBean.alumno.apellido1}" />
+					<p:outputLabel for="etiquetaApellido1"
+						value="#{etqAlm['etiquetas.apellido1']}" />
+					<p:inputText id="etiquetaApellido1"
+						value="#{alumnoBean.alumno.apellido1}" />
 
-					<p:outputLabel for="etiquetaTipoDocumento" value="#{etqAlm['etiquetas.tipoDocumento']}" />
+					<p:outputLabel for="etiquetaTipoDocumento"
+						value="#{etqAlm['etiquetas.tipoDocumento']}" />
 					<p:selectOneRadio id="etiquetaTipoDocumento"
 						value="#{alumnoBean.alumno.tipoDocumento}" layout="lineDirection">
 						<f:selectItem itemLabel="#{etqAlm['etiquetas.dni']}"
@@ -51,12 +61,16 @@
 							itemValue="pasaporte" />
 					</p:selectOneRadio>
 
-					<p:outputLabel for="etiquetaApellido2" value="#{etqAlm['etiquetas.apellido2']}" />
-					<p:inputText id="etiquetaApellido2" value="#{alumnoBean.alumno.apellido2}" />
+					<p:outputLabel for="etiquetaApellido2"
+						value="#{etqAlm['etiquetas.apellido2']}" />
+					<p:inputText id="etiquetaApellido2"
+						value="#{alumnoBean.alumno.apellido2}" />
 
-					<p:outputLabel for="etiquetaDocumento" value="#{etqAlm['etiquetas.documento']}" />
-					<p:inputText id="etiquetaDocumento" value="#{alumnoBean.alumno.documento}" />
-					
+					<p:outputLabel for="etiquetaDocumento"
+						value="#{etqAlm['etiquetas.documento']}" />
+					<p:inputText id="etiquetaDocumento"
+						value="#{alumnoBean.alumno.documento}" />
+
 					<p:outputLabel value="#{etqAlm['etiquetas.fechaNacimiento']}" />
 					<p:calendar value="#{alumnoBean.alumno.fechaNacimiento}" />
 
@@ -72,13 +86,17 @@
 							itemValue="" />
 						<f:selectItems value="#{combosAlumnoBean.provinciaItem}" />
 					</p:selectOneMenu>
-					
-					<p:outputLabel for="etiquetaLocalidadNacimiento" value="#{etqAlm['etiquetas.localidadNacimiento']}" />
-					<p:inputText id="etiquetaLocalidadNacimiento" value="#{alumnoBean.alumno.localidadNacimiento}" />
+
+					<p:outputLabel for="etiquetaLocalidadNacimiento"
+						value="#{etqAlm['etiquetas.localidadNacimiento']}" />
+					<p:inputText id="etiquetaLocalidadNacimiento"
+						value="#{alumnoBean.alumno.localidadNacimiento}" />
 
 				</p:panelGrid>
 				<p:commandButton value="#{etqAlm['titulo.insertarAlumno']}"
 					action="#{alumnoBean.insertAlumno()}" />
+				<p:commandButton value="#{etqAlm['etiquetas.volverLista']}"
+					action="verAlumnoLista.xhtml" />
 			</h:form>
 		</ui:define>
 
