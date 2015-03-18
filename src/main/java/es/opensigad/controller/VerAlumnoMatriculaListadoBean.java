@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import es.opensigad.model.dao.AlumnoMatriculaDAO;
@@ -21,14 +22,15 @@ public class VerAlumnoMatriculaListadoBean implements Serializable {
 	private AlumnoMatriculaDAOInterfaz matriculaDAO = null;
 	private int id;
 	private List<AlumnoMatricula> listaMatricula;
-	private SesionBean sesionAlumno;
+	@ManagedProperty(value = "#{sesionBean}")
+	private SesionBean sesionBean;
 
-	public SesionBean getSesionAlumno() {
-		return sesionAlumno;
+	public SesionBean getSesionBean() {
+		return sesionBean;
 	}
 
-	public void setSesionAlumno(SesionBean sesionAlumno) {
-		this.sesionAlumno = sesionAlumno;
+	public void setSesionBean(SesionBean sesionBean) {
+		this.sesionBean = sesionBean;
 	}
 
 	public int getId() {
@@ -52,7 +54,7 @@ public class VerAlumnoMatriculaListadoBean implements Serializable {
 		String pagina = "verAlumnoMatriculaListado";
 
 		// AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
-		listaMatricula = matriculaDAO.getListadoMatricula(sesionAlumno
+		listaMatricula = matriculaDAO.getListadoMatricula(sesionBean
 				.getIdAlumno());
 
 		return pagina;

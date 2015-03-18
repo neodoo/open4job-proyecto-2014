@@ -25,14 +25,16 @@ public class EliminarAlumnoMatriculaBean implements Serializable {
 	private FacesMessage facesMessage;
 
 	@ManagedProperty(value = "#{sesionBean}")
-	private SesionBean sesionAlumno;
+	private SesionBean sesionBean;
 
-	public SesionBean getSesionAlumno() {
-		return sesionAlumno;
+	
+
+	public SesionBean getSesionBean() {
+		return sesionBean;
 	}
 
-	public void setSesionAlumno(SesionBean sesionAlumno) {
-		this.sesionAlumno = sesionAlumno;
+	public void setSesionBean(SesionBean sesionBean) {
+		this.sesionBean = sesionBean;
 	}
 
 	public EliminarAlumnoMatriculaBean() {
@@ -42,7 +44,7 @@ public class EliminarAlumnoMatriculaBean implements Serializable {
 	public String borrarMatricula() {
 		String pagina = "indexAlumnoMatricula";
 		// AlumnoMatriculaDAO alumnoMatriculaDAO = new AlumnoMatriculaDAO();
-		if (alumnoMatriculaDAO.borrarMatricula(sesionAlumno.getIdMatricula())) {
+		if (alumnoMatriculaDAO.borrarMatricula(sesionBean.getIdMatricula())) {
 
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"La matricula se ha eliminado correctamente ", null);

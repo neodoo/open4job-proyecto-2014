@@ -15,14 +15,12 @@ import es.opensigad.model.dao.AlumnoMatriculaDAOInterfaz;
 @RequestScoped
 public class InsertarAlumnoMatriculaBean implements Serializable {
 
-
 	private static final long serialVersionUID = 1L;
 
 	@EJB
 	private AlumnoMatriculaDAOInterfaz matriculaDAO = null;
-	
-	
-	//private int idAlumno;
+
+	// private int idAlumno;
 	private int cursoEscolar;
 	private int idCentro;
 	private int idEnsenanza;
@@ -30,25 +28,22 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 	private int curso;
 
 	private FacesMessage facesMessage;
-	
+
 	@ManagedProperty(value = "#{sesionBean}")
-	private SesionBean sesionAlumno;
+	private SesionBean sesionBean;
 
-	public SesionBean getSesionAlumno() {
-		return sesionAlumno;
+	public SesionBean getSesionBean() {
+		return sesionBean;
 	}
 
-
-	public void setSesionAlumno(SesionBean sesionAlumno) {
-		this.sesionAlumno = sesionAlumno;
+	public void setSesionBean(SesionBean sesionBean) {
+		this.sesionBean = sesionBean;
 	}
-
 
 	public InsertarAlumnoMatriculaBean() {
 
 	}
 
-	
 	public int getCursoEscolar() {
 		return cursoEscolar;
 	}
@@ -89,14 +84,14 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 		this.curso = curso;
 	}
 
-	public String insertarAlumnoMatricula(int cursoEscolar,
-			int centro, int ensenanza, String modulo, int curso) {
+	public String insertarAlumnoMatricula(int cursoEscolar, int centro,
+			int ensenanza, String modulo, int curso) {
 
 		String pagina = "indexAlumnoMatricula";
-		//AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
+		// AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
 
-		if (matriculaDAO.insertarMatricula(sesionAlumno.getIdAlumno(), cursoEscolar, centro,
-				ensenanza, modulo, curso)) {
+		if (matriculaDAO.insertarMatricula(sesionBean.getIdAlumno(),
+				cursoEscolar, centro, ensenanza, modulo, curso)) {
 
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"La matricula se ha insertado correctamente ", null);
