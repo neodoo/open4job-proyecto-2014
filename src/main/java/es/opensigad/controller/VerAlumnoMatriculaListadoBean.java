@@ -8,7 +8,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import es.opensigad.model.dao.AlumnoMatriculaDAO;
 import es.opensigad.model.dao.AlumnoMatriculaDAOInterfaz;
 import es.opensigad.model.vo.AlumnoMatricula;
 
@@ -22,7 +21,8 @@ public class VerAlumnoMatriculaListadoBean implements Serializable {
 	private AlumnoMatriculaDAOInterfaz matriculaDAO = null;
 	private int id;
 	private List<AlumnoMatricula> listaMatricula;
-	@ManagedProperty(value = "#{sesionBean}")
+
+	@ManagedProperty(value="#{sesionBean}")
 	private SesionBean sesionBean;
 
 	public SesionBean getSesionBean() {

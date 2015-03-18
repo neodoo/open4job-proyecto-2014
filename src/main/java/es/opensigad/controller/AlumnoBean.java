@@ -50,6 +50,7 @@ public class AlumnoBean implements Serializable {
 	
 	@ManagedProperty(value="#{sesionBean}")
 	private SesionBean sesionBean;
+	
 
 	public AlumnoBean() {
 	}
@@ -249,7 +250,5 @@ public class AlumnoBean implements Serializable {
 		this.alumnoSeleccionado = alumnoSeleccionado;
 	}
 
-	
-	
 	
 }
