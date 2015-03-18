@@ -233,8 +233,9 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 		List<AlumnoMatricula> alumnoMatriculaList = null;
 
 		try {
-
-			Query q = em.createQuery("from AlumnoMatricula am");
+						  
+			Query q = em.createQuery("from AlumnoMatricula am WHERE am.alumno.id = ?1");
+			q.setParameter(1,idAlumno);
 			alumnoMatriculaList = q.getResultList();
 
 			logger.log(Level.INFO,
