@@ -15,22 +15,24 @@
 
 		<!-- Contenido de la pagina.-->
 		<ui:define name="content">
-			
+
 			<h3>
 				<h:outputLabel id="idMatricula"
 					value="#{etqAlmMat['titulo.alumnoMatriculaListado']}" />
 			</h3>
 			<p>
 				<h:form>
-					<h:commandButton value="Nueva Matricula" action="insertarAlumnoMatricula"></h:commandButton>
+					<h:commandButton value="Nueva Matricula"
+						action="insertarAlumnoMatricula"></h:commandButton>
 				</h:form>
 			</p>
 
 			<p:dataTable value="#{verAlumnoMatriculaListadoBean.listaMatricula}"
 				var="m" styleClass="order-table" headerClass="order-table-header"
-				rowClasses="order-table-odd-row,order-table-even-row" rows="10" paginator="true"
-							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-							rowsPerPageTemplate="5,10">
+				rowClasses="order-table-odd-row,order-table-even-row" rows="10"
+				paginator="true"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10">
 
 				<p:column>
 					<f:facet name="header">
@@ -75,13 +77,15 @@
     				#{m.curso}
     		</p:column>
 
-				<!-- h:column>
-			<f:facet name="header">
-				<h:outputLabel id="idAlumno"
-					value="#{etqAlmMat['etiquetas.idAlumno']}" />
-			</f:facet>
-    				#{m.idAlumno}
-    		</h:column -->
+				<p:column style="text-align: center" headerText="Detalle">
+					<p:commandButton
+						action="#{verAlumnoMatriculaFichaBean.getDetalleMatricula}"
+						icon="ui-icon-person" title="View">
+						<f:setPropertyActionListener value="#{m.idM}"
+							target="#{verAlumnoMatriculaFichaBean.idMatricula}" />
+					</p:commandButton>
+				</p:column>
+
 
 			</p:dataTable>
 		</ui:define>

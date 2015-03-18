@@ -17,38 +17,29 @@ public class VerAlumnoMatriculaFichaBean {
 	private AlumnoMatriculaDAOInterfaz matriculaDAO = null;
 	private int idMatricula;
 
-	private AlumnoMatricula matricula = new AlumnoMatricula ();
+	private AlumnoMatricula matricula = new AlumnoMatricula();
 
-
-	
 	public int getIdMatricula() {
 		return idMatricula;
 	}
-
-
 
 	public void setIdMatricula(int idMatricula) {
 		this.idMatricula = idMatricula;
 	}
 
-
 	public AlumnoMatricula getMatricula() {
 		return matricula;
 	}
-
-
 
 	public void setMatricula(AlumnoMatricula matricula) {
 		this.matricula = matricula;
 	}
 
-
-
 	public String getDetalleMatricula() {
 
 		String pagina = "verAlumnoMatriculaFicha";
 
-		//AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
+		// AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
 		matricula = matriculaDAO.getListaFichaMatricula(idMatricula);
 
 		return pagina;
