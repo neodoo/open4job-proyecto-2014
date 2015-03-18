@@ -17,24 +17,48 @@
 
 		<ui:define name="content">
 			<h:form id="form">
- 				<p:dataTable id="tablaDeAlumnos" var="alumno"
-					value="#{alumnoBean.alumnoLista}"
-					widgetVar="tablaDeAlumnos"
+
+				<p:toolbar>
+					<f:facet name="left">
+						<p:commandButton value="Nuevo"
+							icon="ui-icon-document" action="insertarAlumno" />
+						<span class="ui-separator"> <span
+							class="ui-icon ui-icon-grip-dotted-vertical" />
+						</span>
+						<p:commandButton type="button" value="otras cosicas"
+							icon="ui-icon-folder-open" />
+
+
+					</f:facet>
+
+				</p:toolbar>
+
+
+				<p:dataTable id="tablaDeAlumnos" var="alumno"
+					value="#{alumnoBean.alumnoLista}" widgetVar="tablaDeAlumnos"
 					emptyMessage="No hay alumnos con este criterio de filtrado"
 					filteredValue="#{alumnoBean.alumnoFiltro}" paginator="true"
-					rows="10" style="width:900px"
-					>
-
+					rows="5" rowsPerPageTemplate="5,10,15">
 
 					<f:facet name="header">
 						<p:outputPanel>
-							<h:outputText value="Buscar en todos: " />
-							<p:inputText id="globalFilter"
-								onkeyup="PF('tablaDeAlumnos').filter()" style="width:150px" />
+							<div class="ui-grid">
+								<div class="ui-grid-row">
+									<div class="ui-grid-col-6">
+										<h1>ALUMNOS</h1>
+									</div>
+									<div class="ui-grid-col-6">
+										Buscar en todo
+										<p:inputText id="globalFilter"
+											onkeyup="PF('tablaDeAlumnos').filter()"
+											style="width:150px" />
+									</div>
+								</div>
+							</div>
 						</p:outputPanel>
 					</f:facet>
 
-					<p:column id="numExpCol" growlfilterBy="#{alumno.numExpediente}"
+					<p:column id="numExpCol" filterBy="#{alumno.numExpediente}"
 						headerText="#{etqAlm['etiquetas.numExpediente']}"
 						filterMatchMode="exact">
 						<h:outputText value="#{alumno.numExpediente}" />
@@ -50,9 +74,9 @@
 						<h:outputText value="#{alumno.apellido1}" />
 					</p:column>
 
-				<p:column id="ap2Col" filterBy="#{alumno.apellido2}"
+					<p:column id="ap2Col" filterBy="#{alumno.apellido2}"
 						headerText="#{etqAlm['etiquetas.apellido2']}"
-						filterMatchMode="stargrowltsWith">
+						filterMatchMode="startsWith">
 						<h:outputText value="#{alumno.apellido2}" />
 					</p:column>
 
@@ -60,40 +84,32 @@
 						<h:outputText value="#{alumno.documento}" />
 					</p:column>
 
-					<p:column id="sexCol" filterBy="#{alumno.sexo}"
-						headerText="#{etqAlm['etiquetas.sexo']}"
+					<p:column style="text-align: center" id="sexCol"
+						filterBy="#{alumno.sexo}" headerText="#{etqAlm['etiquetas.sexo']}"
 						filterMatchMode="startsWith">
 						<h:outputText value="#{alumno.sexo}" />
 					</p:column>
-
-
 
 					<p:column id="fecNacCol"
 						headerText="#{etqAlm['etiquetas.fechaNacimiento']}">
 						<h:outputText value="#{alumno.fechaNacimiento}" />
 					</p:column>
-					
-					
-					<p:column style="width:32px;text-align: center">
-            		 <p:commandButton action="#{alumnoBean.getDetalleAlumno(alumnoBean.alumnoSeleccionado.numExpediente)}" icon="ui-icon-search" title="View">
-               		 <f:setPropertyActionListener value="#{alumno}" target="#{alumnoBean.alumnoSeleccionado}" />
-            		</p:commandButton>
-        			</p:column>
-					
+
+					<p:column style="text-align: center" headerText="Detalle">
+						<p:commandButton
+							action="#{alumnoBean.getDetalleAlumno(alumnoBean.alumnoSeleccionado.numExpediente)}"
+							icon="ui-icon-person" title="View">
+							<f:setPropertyActionListener value="#{alumno}"
+								target="#{alumnoBean.alumnoSeleccionado}" />
+						</p:commandButton>
+					</p:column>
 
 				</p:dataTable>
-				
-				
-				
-				
-				
+
 			</h:form>
+
 		</ui:define>
-
 	</ui:composition>
-
-
-
 </h:body>
 
 </html>
