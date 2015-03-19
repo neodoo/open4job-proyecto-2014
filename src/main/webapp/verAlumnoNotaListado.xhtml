@@ -14,6 +14,7 @@
 	<ui:composition template="/template/common/commonLayout.xhtml">
 
 		<ui:define name="content">
+			<a href="javascript:location.reload()">Actualizar</a>
 			<h:form id="form">
 				<p:growl id="msgs" showDetail="true" />
 				<p:dataTable id="tablaDeAlumnosNota" var="nota"
@@ -30,6 +31,9 @@
 					<p:column id="notCol" headerText="#{etqAlmNotas['titulo.nota']}">
 						<h:outputText value="#{nota.nota}" />
 					</p:column>
+					<p:column id="idMatriculaCol" headerText="IDMatricula">
+						<h:outputText value="#{nota.alumnoMatricula.id}" />
+					</p:column>
 					<p:column id="evaCol"
 						headerText="#{etqAlmNotas['titulo.idEvaluacion']}">
 						<h:outputText value="#{nota.evaluacion}" />
@@ -39,21 +43,19 @@
 						headerText="#{etqAlmNotas['titulo.observacion']}">
 						<h:outputText value="#{nota.observacion}" />
 					</p:column>
-							<p:column id="action"
-						headerText="#{etqAlmNotas['titulo.eliminar']}">
-
-						<h:commandLink value="#{etqAlmNotas['titulo.eliminar']}" action="#{eliminarAlumnoNotaBean.borrarNotaById(nota.id)}" />
-
-					</p:column>
-					<p:column style="width:32px;text-align: center">
-						<p:commandButton update=":form:carDetail"
+					
+					<p:column id="visualizarDetalleCol" headerText="Detalle">
+						<!--  <p:commandButton update=":form:carDetail"
 							oncomplete="PF('carDialog').show()" icon="ui-icon-search"
 							title="View">
 							<f:setPropertyActionListener value="#{nota}"
 								target="#{verAlumnoNotaListadoBean.selectedAlumnoNota}" />
-						</p:commandButton>
-					</p:column>
+						</p:commandButton>-->
+						<h:commandLink value="Ver detalle" icon="ui-icon-search"
+							action="#{verAlumnoNotaListadoBean.getDetalleFilaNotasAlumno(nota.alumnoMatricula.id,nota.id)}" />
 					
+					</p:column>
+
 				</p:dataTable>
 
 

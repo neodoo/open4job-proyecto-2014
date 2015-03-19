@@ -19,5 +19,5 @@ public interface AlumnoNotaDAOInterfaz {
 			int idMateria, String evaluacion, String nota, String observacion);
 
 	public boolean borrarNotaById(int id);
-
+	public List<AlumnoNota> getDetalleNotasByIdMatricula(int idMatricula, int idFila);
 }

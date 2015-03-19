@@ -18,7 +18,7 @@ import es.opensigad.model.dao.AlumnoNotaDAOInterfaz;
 import es.opensigad.model.vo.AlumnoNota;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class VerAlumnoNotaListadoBean implements Serializable {
 
 	@EJB
@@ -26,9 +26,6 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 	
 	private AlumnoNota selectedAlumnoNota;
 
-	
-
-	
 	public AlumnoNota getSelectedAlumnoNota() {
 		return selectedAlumnoNota;
 	}
@@ -46,6 +43,7 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 
 	private List<AlumnoNota> alumnoNotas;
 	private int id;
+	private int idFila;
 
 	public int getId() {
 		return id;
@@ -54,7 +52,13 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
+	public int getIdFila() {
+		return idFila;
+	}
+	public void setIdFila(int idFila) {
+		this.idFila = idFila;
+	}
 	public List<AlumnoNota> getAlumnoNotas() {
 		return alumnoNotas;
 	}
@@ -68,6 +72,14 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 		String pagina = "verAlumnoNotaListado";
 		alumnoNotas = alumnoNotaDAO.getNotasByIdMatricula(id);
 
+		return pagina;
+
+	}
+	
+	public String getDetalleFilaNotasAlumno(int id,int idFila) {
+
+		String pagina = "verDetalleAlumnoNotaListado";
+		alumnoNotas = alumnoNotaDAO.getDetalleNotasByIdMatricula(id, idFila);
 		return pagina;
 
 	}
