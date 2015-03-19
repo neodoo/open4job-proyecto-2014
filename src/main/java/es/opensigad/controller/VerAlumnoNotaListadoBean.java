@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
@@ -23,18 +24,32 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 
 	@EJB
 	private AlumnoNotaDAOInterfaz alumnoNotaDAO = null;
-	
+
 	private AlumnoNota selectedAlumnoNota;
+
+	@ManagedProperty(value = "#{sesionBean}")
+	private SesionBean sesionBean;
+
+	public SesionBean getSesionBean() {
+		return sesionBean;
+	}
+
+	public void setSesionBean(SesionBean sesionBean) {
+		this.sesionBean = sesionBean;
+	}
 
 	public AlumnoNota getSelectedAlumnoNota() {
 		return selectedAlumnoNota;
 	}
+
 	public void setSelectedAlumnoNota(AlumnoNota selectedAlumnoNota) {
 		this.selectedAlumnoNota = selectedAlumnoNota;
 	}
+
 	public AlumnoNotaDAOInterfaz getAlumnoNotaDAO() {
 		return alumnoNotaDAO;
 	}
+
 	public void setAlumnoNotaDAO(AlumnoNotaDAOInterfaz alumnoNotaDAO) {
 		this.alumnoNotaDAO = alumnoNotaDAO;
 	}
@@ -68,9 +83,9 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 	}
 
 	public String getDetalleNotasAlumno(int id) {
-
+		sesionBean.setIdMatricula(id);
 		String pagina = "verAlumnoNotaListado";
-		alumnoNotas = alumnoNotaDAO.getNotasByIdMatricula(id);
+		alumnoNotas = alumnoNotaDAO.getNotasByIdMatricula(sesionBean.getIdMatricula());
 
 		return pagina;
 
@@ -85,14 +100,15 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 	}
 
 	public void onRowSelect(SelectEvent event) {
-		FacesMessage msg = new FacesMessage("Car Select",((AlumnoNota) event.getObject()).getObservacion());
+		FacesMessage msg = new FacesMessage("Car Select",
+				((AlumnoNota) event.getObject()).getObservacion());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
-		
 
 	}
 
 	public void onRowUnselect(UnselectEvent event) {
-		FacesMessage msg = new FacesMessage("Car Unselected",((AlumnoNota) event.getObject()).getObservacion());
+		FacesMessage msg = new FacesMessage("Car Unselected",
+				((AlumnoNota) event.getObject()).getObservacion());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 

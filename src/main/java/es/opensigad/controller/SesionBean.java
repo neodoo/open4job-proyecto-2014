@@ -12,11 +12,20 @@ public class SesionBean {
 	private int idMatricula;
 	private int idSeguimiento;
 	private int idTutor;
-	
+	private int idNota;
 	// GETTERS Y SETTERS
+	
 	
 	public int getIdMatricula() {
 		return idMatricula;
+	}
+
+	public int getIdNota() {
+		return idNota;
+	}
+
+	public void setIdNota(int idNota) {
+		this.idNota = idNota;
 	}
 
 	public void setIdMatricula(int idMatricula) {
