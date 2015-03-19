@@ -41,9 +41,9 @@ public class EliminarAlumnoNotaBean implements Serializable {
 	public String borrarNotaById(int id) {
 		String pagina = null;
 		if (alumnoNotaDAO.borrarNotaById(id)) {
-			pagina = "borrarAlumnoNotaExito";
+			pagina = "verAlumnoNotaListado";
 		} else {
-			pagina = "borrarAlumnoNotaFallo";
+			pagina = "verAlumnoNotaListado";
 		}
 		return pagina;
 	}
