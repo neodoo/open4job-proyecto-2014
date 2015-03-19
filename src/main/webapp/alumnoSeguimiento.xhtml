@@ -40,7 +40,7 @@
 
 			<h:outputLabel id="etiquetaFecha"
 				value="#{etqAlmSeg['etiqueta.fecha']}" style="font-weight:bold" />
-			<p:calendar value="#{alumnoSeguimientoBean.seguimiento.fecha}" mode="inline" />
+			<p:calendar value="#{alumnoSeguimientoBean.seguimiento.fecha}" mode="inline" size="0" />
 
 			<h:outputLabel id="etiquetaSesion"
 				value="#{etqAlmSeg['etiqueta.sesion']}" style="font-weight:bold" />
@@ -71,8 +71,7 @@
 			</h:selectOneMenu>
 
 			<h:outputLabel id="etiquetaObservaciones"
-				value="#{etqAlmSeg['etiqueta.observaciones']}"
-				style="font-weight:bold" />
+				value="#{etqAlmSeg['etiqueta.observaciones']}" style="font-weight:bold" />
 			<h:inputTextarea rows="4" cols="50"
 				value="#{alumnoSeguimientoBean.seguimiento.observaciones}">
 			</h:inputTextarea>

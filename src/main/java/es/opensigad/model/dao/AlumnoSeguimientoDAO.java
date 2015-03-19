@@ -14,15 +14,11 @@ import es.opensigad.model.vo.AlumnoSeguimiento;
 @Stateless
 public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
-	// public final static String ENTITY_MANAGER = "opensigadUnit";
-
+	
 	public static final Logger logger = Logger.getLogger(AlumnoSeguimientoDAO.class.getName());
 
 	@PersistenceContext(unitName = "opensigadUnit")
 	private EntityManager em;
-
-	// private EntityManagerFactory emf = null;
-	// private EntityManager em = null;
 
 	public EntityManager getEm() {
 		return em;
@@ -33,8 +29,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 	}
 
 	public AlumnoSeguimientoDAO() {
-		// emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-		// em = emf.createEntityManager();
+		
 	}
 
 	// Listar seguimientos de un alumno
@@ -44,9 +39,8 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 		try {
 
-			// em.getTransaction().begin();
-
-			String query = "SELECT alumnoSeguimiento FROM AlumnoSeguimiento alumnoSeguimiento "
+			String query = "SELECT alumnoSeguimiento "
+					+ " FROM AlumnoSeguimiento alumnoSeguimiento "
 					+ " WHERE alumnoSeguimiento.alumnoMatricula.id = :pidMatricula";
 
 			seguimientos = em.createQuery(query).setParameter("pidMatricula", pidMatricula).getResultList();
@@ -70,14 +64,20 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 		try {
 
-			String query = "from AlumnoSeguimiento aseg where aseg.id =" + pnumId;
+			String query = "SELECT aseg "
+					+ " FROM AlumnoSeguimiento aseg "
+					+ " WHERE aseg.id = "
+					+ pnumId;
+			
+			seguimiento = (AlumnoSeguimiento) em.createQuery(query).getResultList();
+			
+			//String query = "from AlumnoSeguimiento aseg where aseg.id =" + pnumId;
 
-			seguimiento = (AlumnoSeguimiento) em.createQuery(query).getSingleResult();
+			//seguimiento = (AlumnoSeguimiento) em.createQuery(query).getSingleResult();
 
 			logger.log(Level.INFO, "AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: OK.");
 
 		} catch (Exception e) {
-
 			
 			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: ERROR. " + e.getMessage());
 

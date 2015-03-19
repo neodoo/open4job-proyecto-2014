@@ -166,9 +166,13 @@ public class AlumnoSeguimientoBean implements Serializable {
 		return pagina;
 	}
 
-	public void getListaAlumnoSeguimiento(int idMatricula) {
+	public String getListaAlumnoSeguimiento(int idMatricula) {
+
+		String pagina = "alumnoSeguimientoListado";
 
 		seguimientos = alumnoSeguimientoDAOInterfaz.getListaAlumnoSeguimiento(idMatricula);
+
+		return pagina;
 
 	}
 
