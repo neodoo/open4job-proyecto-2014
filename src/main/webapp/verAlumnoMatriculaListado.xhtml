@@ -13,81 +13,71 @@
 <h:body>
 	<ui:composition template="/template/common/commonLayout.xhtml">
 
-		<!-- Contenido de la pagina.-->
+
 		<ui:define name="content">
 
-			<h3>
-				<h:outputLabel id="idMatricula"
-					value="#{etqAlmMat['titulo.alumnoMatriculaListado']}" />
-			</h3>
-			<p>
-				<h:form>
-					<h:commandButton value="Nueva Matricula"
-						action="insertarAlumnoMatricula"></h:commandButton>
-				</h:form>
-			</p>
+			<h:form id="form">
 
-			<p:dataTable value="#{verAlumnoMatriculaListadoBean.listaMatricula}"
-				var="m" styleClass="order-table" headerClass="order-table-header"
-				rowClasses="order-table-odd-row,order-table-even-row" rows="10"
-				paginator="true"
-				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				rowsPerPageTemplate="5,10">
+				<p:dataTable id="tablaDeMatriculas" var="alumnoMatricula"
+					value="#{verAlumnoMatriculaListadoBean.listaMatricula}"
+					widgetVar="tablaDeMatriculas"
+					emptyMessage="No hay matriculas con este criterio de filtrado"
+					filteredValue="#{verAlumnoMatriculaListadoBean.listaMatriculaFiltro}"
+					paginator="true" rows="5" rowsPerPageTemplate="5,10,15">
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel id="idMatricula"
+								value="#{etqAlmMat['etiquetas.idMatricula']}" />
+						</f:facet>
+					#{alumnoMatricula.id}
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel id="idCursoEscolar"
+								value="#{etqAlmMat['etiquetas.cursoEscolar']}" />
+						</f:facet>
+					#{alumnoMatricula.cursoEscolar}
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel id="idCentro"
+								value="#{etqAlmMat['etiquetas.centro']}" />
+						</f:facet>
+					#{alumnoMatricula.centro.id}
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel id="idEnseñanza"
+								value="#{etqAlmMat['etiquetas.ensenanza']}" />
+						</f:facet>
+					#{alumnoMatricula.ensenanza.id}
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel id="idModulo"
+								value="#{etqAlmMat['etiquetas.modulo']}" />
+						</f:facet>
+					#{alumnoMatricula.modulo}
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel id="idCurso"
+								value="#{etqAlmMat['etiquetas.curso']}" />
+						</f:facet>
+					#{alumnoMatricula.curso}
+					</p:column>
 
-				<p:column>
-					<f:facet name="header">
-						<h:outputLabel id="idMatricula"
-							value="#{etqAlmMat['etiquetas.idMatricula']}" />
-					</f:facet>
-    				#{m.id}
-    			</p:column>
-				<p:column>
-					<f:facet name="header">
-						<h:outputLabel id="idCursoEscolar"
-							value="#{etqAlmMat['etiquetas.cursoEscolar']}" />
-					</f:facet>
-    				#{m.cursoEscolar}
-    		</p:column>
-				<p:column>
-					<f:facet name="header">
-						<h:outputLabel id="idCentro"
-							value="#{etqAlmMat['etiquetas.centro']}" />
-					</f:facet>
-    				#{m.centro.id}
-    		</p:column>
-				<p:column>
-					<f:facet name="header">
-						<h:outputLabel id="idEnseñanza"
-							value="#{etqAlmMat['etiquetas.ensenanza']}" />
-					</f:facet>
-    				#{m.ensenanza.id}
-    		</p:column>
-				<p:column>
-					<f:facet name="header">
-						<h:outputLabel id="idModulo"
-							value="#{etqAlmMat['etiquetas.modulo']}" />
-					</f:facet>
-    				#{m.modulo}
-    		</p:column>
-				<p:column>
-					<f:facet name="header">
-						<h:outputLabel id="idCurso"
-							value="#{etqAlmMat['etiquetas.curso']}" />
-					</f:facet>
-    				#{m.curso}
-    		</p:column>
-
-				<p:column style="text-align: center" headerText="Detalle">
-					<p:commandButton
-						action="#{verAlumnoMatriculaFichaBean.getDetalleMatricula}"
-						icon="ui-icon-person" title="View">
-						<f:setPropertyActionListener value="#{m.idM}"
-							target="#{verAlumnoMatriculaFichaBean.idMatricula}" />
-					</p:commandButton>
-				</p:column>
-
-
-			</p:dataTable>
+					<p:column style="text-align: center" headerText="Detalle">
+						<p:commandButton
+							action="#{verAlumnoMatriculaFichaBean.getDetalleMatricula(verAlumnoMatriculaListadoBean.alumnoMatriculaSeleccionado.id)}"
+							icon="ui-icon-person" title="View">
+							<f:setPropertyActionListener value="#{alumnoMatricula}"
+								target="#{verAlumnoMatriculaListadoBean.alumnoMatriculaSeleccionado}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</h:form>
 		</ui:define>
 
 	</ui:composition>
