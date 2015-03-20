@@ -32,5 +32,4 @@ public interface TutorDAOInterface {
 	
 	public List<AlumnoTutor> getListaAlumnoTutor();
 	
-	//public List<AlumnoTutor> getListaAlumnoTutor2();
 }

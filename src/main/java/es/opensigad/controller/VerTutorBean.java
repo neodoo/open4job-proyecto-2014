@@ -4,6 +4,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -24,14 +25,6 @@ public class VerTutorBean {
 	@EJB
 	private TutorDAOInterface tutorDAOInterface =null;
 	
-	public TutorDAOInterface getTutorDAOInterface() {
-		return tutorDAOInterface;
-	}
-
-	public void setTutorDAOInterface(TutorDAOInterface tutorDAOInterface) {
-		this.tutorDAOInterface = tutorDAOInterface;
-	}
-
 	private int id;
 
 	private int idAlumno;
@@ -42,24 +35,17 @@ public class VerTutorBean {
 		
 	private List<AlumnoTutor> alumnoTutorLista;
 	
+	@ManagedProperty(value="#{sesionBean}")
+	private SesionBean sesionBean;
 	
 	
-	public List<AlumnoTutor> getAlumnoTutorLista() {
-		return alumnoTutorLista;
+	//GETTERS & SETTERS
+	public TutorDAOInterface getTutorDAOInterface() {
+		return tutorDAOInterface;
 	}
-
-	public void setAlumnoTutorLista(List<AlumnoTutor> alumnoTutorLista) {
-		this.alumnoTutorLista = alumnoTutorLista;
+	public void setTutorDAOInterface(TutorDAOInterface tutorDAOInterface) {
+		this.tutorDAOInterface = tutorDAOInterface;
 	}
-
-	public List<Tutor> getTutorLista() {
-		return tutorLista;
-	}
-
-	public void setTutorLista(List<Tutor> tutorLista) {
-		this.tutorLista = tutorLista;
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -83,27 +69,37 @@ public class VerTutorBean {
 	public void setTutor(Tutor tutor) {
 		this.tutor = tutor;
 	}
+	public List<Tutor> getTutorLista() {
+		return tutorLista;
+	}
+
+	public void setTutorLista(List<Tutor> tutorLista) {
+		this.tutorLista = tutorLista;
+	}
+	
+	public List<AlumnoTutor> getAlumnoTutorLista() {
+		return alumnoTutorLista;
+	}
+
+	public void setAlumnoTutorLista(List<AlumnoTutor> alumnoTutorLista) {
+		this.alumnoTutorLista = alumnoTutorLista;
+	}
 
 	
-	/*
-	public String getDetalleTutor(int idTutor) {
-
-		String pagina = "verTutoresPorAlumno";
-
-		//TutorDAO tutorDAO = new TutorDAO();
-		tutor = tutorDAOInterface.getDetalleTutor(idTutor);
-		
-		return pagina;
-
+	public SesionBean getSesionBean() {
+		return sesionBean;
 	}
-	*/
+
+	public void setSesionBean(SesionBean sesionBean) {
+		this.sesionBean = sesionBean;
+	}
+	
 	public  String getListaTutor() {
 		
 		String pagina = "verListaAlumnoTutor";
 		
 		FacesContext context = FacesContext.getCurrentInstance();
-		context.getExternalContext().getSessionMap().put("idAlumno", idAlumno);
-		//TutorDAO tutorDAO = new TutorDAO();
+		context.getExternalContext().getSessionMap().put("idAlumno", idAlumno); //sesionBean.getIdAlumno());
 		alumnoTutorLista = tutorDAOInterface.getListaAlumnoTutor();
 		
 		return pagina;
