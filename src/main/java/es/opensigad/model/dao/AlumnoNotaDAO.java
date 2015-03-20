@@ -33,6 +33,29 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 	}
 	
+	public List<AlumnoNota> getDetalleNotasByIdMatricula(int idMatricula, int idFila){
+		List<AlumnoNota> alumnos = null;
+		try {
+
+			String query = "SELECT an "
+					+ " FROM AlumnoNota an, AlumnoMatricula am"
+					+ " WHERE an.alumnoMatricula.id = am.id" 
+					+ " AND am.id = " + idMatricula +" AND an.id = "+idFila;
+
+			alumnos = em.createQuery(query).getResultList();
+			logger.log(Level.INFO, "AlumnoNotaDAO.getNotasByIdMatricula: OK.");
+
+		} catch (Exception e) {
+
+			logger.log(
+					Level.SEVERE,
+					"AlumnoNotaDAO.getNotasByIdMatricula: ERROR. "
+							+ e.getMessage());
+
+		}
+		return alumnos;
+	}
+	
 	public List<AlumnoNota> getNotasByIdMatricula(int id) {
 
 		List<AlumnoNota> alumnos = null;

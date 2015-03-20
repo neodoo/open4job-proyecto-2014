@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+</h:head>
+<h:body>
+	<ui:composition template="/template/common/commonLayout.xhtml">
+
+		<ui:define name="content">
+			<h:form id="form">
+				<p:growl id="msgs" showDetail="true" />
+				<p:dataTable id="tablaDeAlumnosNota" var="nota"
+					value="#{verAlumnoNotaListadoBean.alumnoNotas}">
+					<f:facet name="header">
+            		Single with Row Click
+        			</f:facet>
+					<p:column id="enMatCol"
+						headerText="#{etqAlmNotas['titulo.idMateria']}"
+						filterMatchMode="exact">
+						<h:outputText value="#{nota.ensenanzaMateria.materia}" />
+					</p:column>
+
+					<p:column id="notCol" headerText="#{etqAlmNotas['titulo.nota']}">
+						<h:outputText value="#{nota.nota}" />
+					</p:column>
+					<p:column id="idMatriculaCol" headerText="IDMatricula">
+						<h:outputText value="#{nota.alumnoMatricula.id}" />
+					</p:column>
+					<p:column id="evaCol"
+						headerText="#{etqAlmNotas['titulo.idEvaluacion']}">
+						<h:outputText value="#{nota.evaluacion}" />
+					</p:column>
+
+					<p:column id="obserCol"
+						headerText="#{etqAlmNotas['titulo.observacion']}">
+						<h:outputText value="#{nota.observacion}" />
+					</p:column>
+					<p:column id="action"
+						headerText="#{etqAlmNotas['titulo.eliminar']}">
+
+						<h:commandLink value="#{etqAlmNotas['titulo.eliminar']}"
+							action="#{eliminarAlumnoNotaBean.borrarNotaById(nota.id)}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</html>

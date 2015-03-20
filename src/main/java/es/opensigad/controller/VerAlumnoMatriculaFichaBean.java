@@ -15,17 +15,8 @@ public class VerAlumnoMatriculaFichaBean {
 
 	@EJB
 	private AlumnoMatriculaDAOInterfaz matriculaDAO = null;
-	private int idMatricula;
 
 	private AlumnoMatricula matricula = new AlumnoMatricula();
-
-	public int getIdMatricula() {
-		return idMatricula;
-	}
-
-	public void setIdMatricula(int idMatricula) {
-		this.idMatricula = idMatricula;
-	}
 
 	public AlumnoMatricula getMatricula() {
 		return matricula;
@@ -35,7 +26,7 @@ public class VerAlumnoMatriculaFichaBean {
 		this.matricula = matricula;
 	}
 
-	public String getDetalleMatricula() {
+	public String getDetalleMatricula(int idMatricula) {
 
 		String pagina = "verAlumnoMatriculaFicha";
 
