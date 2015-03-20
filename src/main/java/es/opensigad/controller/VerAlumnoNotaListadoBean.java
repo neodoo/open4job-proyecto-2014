@@ -4,24 +4,40 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 
 import es.opensigad.model.dao.AlumnoNotaDAOInterfaz;
-
-import es.opensigad.model.vo.*;
+import es.opensigad.model.vo.AlumnoNota;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class VerAlumnoNotaListadoBean implements Serializable {
 
 	@EJB
 	private AlumnoNotaDAOInterfaz alumnoNotaDAO = null;
+	
+	private AlumnoNota selectedAlumnoNota;
 
+	
+
+	
+	public AlumnoNota getSelectedAlumnoNota() {
+		return selectedAlumnoNota;
+	}
+	public void setSelectedAlumnoNota(AlumnoNota selectedAlumnoNota) {
+		this.selectedAlumnoNota = selectedAlumnoNota;
+	}
 	public AlumnoNotaDAOInterfaz getAlumnoNotaDAO() {
 		return alumnoNotaDAO;
 	}
-
 	public void setAlumnoNotaDAO(AlumnoNotaDAOInterfaz alumnoNotaDAO) {
 		this.alumnoNotaDAO = alumnoNotaDAO;
 	}
@@ -49,13 +65,23 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 
 	public String getDetalleNotasAlumno(int id) {
 
-		// recoger el id del alumno en este metodo
 		String pagina = "verAlumnoNotaListado";
-		// AlumnoNotaDAO alumnoNotaDAO = new AlumnoNotaDAO();
 		alumnoNotas = alumnoNotaDAO.getNotasByIdMatricula(id);
 
 		return pagina;
 
 	}
-	
+
+	public void onRowSelect(SelectEvent event) {
+		FacesMessage msg = new FacesMessage("Car Select",((AlumnoNota) event.getObject()).getObservacion());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		
+
+	}
+
+	public void onRowUnselect(UnselectEvent event) {
+		FacesMessage msg = new FacesMessage("Car Unselected",((AlumnoNota) event.getObject()).getObservacion());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
 }

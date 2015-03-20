@@ -12,30 +12,42 @@
 <h:body>
 
 	<h3>
-		<h:outputLabel id="tituloAlumnoSeguimientoDetalle"
-			value="#{etqAlmSeg['titulo.alumnoSeguimientoDetalle']}" />
+		<h:outputLabel 
+			id="tituloAlumnoSeguimientoDetalle"
+			value="#{etqAlmSeg['titulo.alumnoSeguimientoDetalle']}" 
+		/>
 	</h3>
 
 	<h:form>
-		<h:inputText value="#{alumnoSeguimientoBean.id}" />
-		<h:commandButton value="#{etqAlmSeg['boton.verSeguimiento']}"
-			action="#{alumnoSeguimientoBean.getDetalleAlumnoSeguimiento}"></h:commandButton>
+		<h:inputText 
+		 	id="Seguimiento" 
+		 	value="#{sesionBean.idSeguimiento}" 
+		/>
+		<h:commandButton 
+			value="#{etqAlmSeg['boton.verSeguimiento']}"
+			action="alumnoSeguimiento">
+		</h:commandButton>
 	</h:form>
 
 
 	<h3>
-		<h:outputLabel id="tituloAlumnoSeguimientoListado"
-			value="#{etqAlmSeg['titulo.alumnoSeguimientoListado']}" />
+		<h:outputLabel 
+			id="tituloAlumnoSeguimientoListado"
+			value="#{etqAlmSeg['titulo.alumnoSeguimientoListado']}" 
+		/>
 	</h3>
 
 	<h:form>
-		 <h:inputText id="Matricula" value="#{sesionBean.idMatricula}" /> 
+		 <h:inputText 
+		 	id="Matricula" 
+		 	value="#{sesionBean.idMatricula}" 
+		 /> 
 		
-			<h:commandButton value="#{etqAlmSeg['boton.verListadoSeguimiento']}"
+		<h:commandButton 
+			value="#{etqAlmSeg['boton.verListadoSeguimiento']}"
 			action="alumnoSeguimientoListado">
-			</h:commandButton>
+		</h:commandButton>
 	</h:form>
-
 
 </h:body>
 </html>

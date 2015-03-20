@@ -14,9 +14,67 @@
 	<ui:composition template="/template/common/commonLayout.xhtml">
 
 		<ui:define name="content">
-			<h:form>
-
+			<h:form id="form">
+				<p:growl id="msgs" showDetail="true" />
 				<p:dataTable id="tablaDeAlumnosNota" var="nota"
+					value="#{verAlumnoNotaListadoBean.alumnoNotas}">
+					<f:facet name="header">
+            		Single with Row Click
+        			</f:facet>
+					<p:column id="enMatCol"
+						headerText="#{etqAlmNotas['titulo.idMateria']}"
+						filterMatchMode="exact">
+						<h:outputText value="#{nota.ensenanzaMateria.materia}" />
+					</p:column>
+
+					<p:column id="notCol" headerText="#{etqAlmNotas['titulo.nota']}">
+						<h:outputText value="#{nota.nota}" />
+					</p:column>
+					<p:column id="evaCol"
+						headerText="#{etqAlmNotas['titulo.idEvaluacion']}">
+						<h:outputText value="#{nota.evaluacion}" />
+					</p:column>
+
+					<p:column id="obserCol"
+						headerText="#{etqAlmNotas['titulo.observacion']}">
+						<h:outputText value="#{nota.observacion}" />
+					</p:column>
+							<p:column id="action"
+						headerText="#{etqAlmNotas['titulo.eliminar']}">
+
+						<h:commandLink value="#{etqAlmNotas['titulo.eliminar']}" action="#{eliminarAlumnoNotaBean.borrarNotaById(nota.id)}" />
+
+					</p:column>
+					<p:column style="width:32px;text-align: center">
+						<p:commandButton update=":form:carDetail"
+							oncomplete="PF('carDialog').show()" icon="ui-icon-search"
+							title="View">
+							<f:setPropertyActionListener value="#{nota}"
+								target="#{verAlumnoNotaListadoBean.selectedAlumnoNota}" />
+						</p:commandButton>
+					</p:column>
+					
+				</p:dataTable>
+
+
+				<p:dialog header="Car Info" widgetVar="carDialog" modal="true"
+					showEffect="fade" hideEffect="fade" resizable="false">
+					<p:outputPanel id="carDetail" style="text-align:center;">
+						<p:panelGrid columns="2"
+							rendered="#{not empty verAlumnoNotaListadoBean.selectedAlumnoNota}"
+							columnClasses="label,value">
+
+							<h:outputText value="Id:" />
+							<h:outputText
+								value="#{verAlumnoNotaListadoBean.selectedAlumnoNota.id}" />
+
+						</p:panelGrid>
+					</p:outputPanel>
+				</p:dialog>
+
+
+
+				<!--  <p:dataTable id="tablaDeAlumnosNota" var="nota"
 					value="#{verAlumnoNotaListadoBean.alumnoNotas}"
 					widgetVar="tablaDeAlumnosNota" paginator="true" rows="10"
 					style="width:900px">
@@ -48,7 +106,8 @@
 						headerText="#{etqAlmNotas['titulo.observacion']}">
 						<h:outputText value="#{nota.observacion}" />
 					</p:column>
-				</p:dataTable>
+					
+				</p:dataTable> -->
 				<br />
 				<h:commandButton value="Insertar Nota"
 					action="insertarAlumnoNota.xhtml"></h:commandButton>

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
@@ -14,13 +15,12 @@ import es.opensigad.model.dao.AlumnoMatriculaDAOInterfaz;
 @RequestScoped
 public class InsertarAlumnoMatriculaBean implements Serializable {
 
-
 	private static final long serialVersionUID = 1L;
 
 	@EJB
 	private AlumnoMatriculaDAOInterfaz matriculaDAO = null;
-	
-	private int idAlumno;
+
+	// private int idAlumno;
 	private int cursoEscolar;
 	private int idCentro;
 	private int idEnsenanza;
@@ -29,16 +29,19 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 
 	private FacesMessage facesMessage;
 
+	@ManagedProperty(value = "#{sesionBean}")
+	private SesionBean sesionBean;
+
+	public SesionBean getSesionBean() {
+		return sesionBean;
+	}
+
+	public void setSesionBean(SesionBean sesionBean) {
+		this.sesionBean = sesionBean;
+	}
+
 	public InsertarAlumnoMatriculaBean() {
 
-	}
-
-	public int getIdAlumno() {
-		return idAlumno;
-	}
-
-	public void setIdAlumno(int idAlumno) {
-		this.idAlumno = idAlumno;
 	}
 
 	public int getCursoEscolar() {
@@ -81,14 +84,14 @@ public class InsertarAlumnoMatriculaBean implements Serializable {
 		this.curso = curso;
 	}
 
-	public String insertarAlumnoMatricula(int idAlumno, int cursoEscolar,
-			int centro, int ensenanza, String modulo, int curso) {
+	public String insertarAlumnoMatricula(int cursoEscolar, int centro,
+			int ensenanza, String modulo, int curso) {
 
 		String pagina = "indexAlumnoMatricula";
-		//AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
+		// AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
 
-		if (matriculaDAO.insertarMatricula(idAlumno, cursoEscolar, centro,
-				ensenanza, modulo, curso)) {
+		if (matriculaDAO.insertarMatricula(sesionBean.getIdAlumno(),
+				cursoEscolar, centro, ensenanza, modulo, curso)) {
 
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"La matricula se ha insertado correctamente ", null);

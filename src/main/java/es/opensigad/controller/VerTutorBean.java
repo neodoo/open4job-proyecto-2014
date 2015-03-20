@@ -2,9 +2,15 @@ package es.opensigad.controller;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+
+import org.primefaces.component.api.UIData;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 
 import es.opensigad.model.dao.TutorDAOInterface;
 import es.opensigad.model.vo.AlumnoTutor;
@@ -33,7 +39,7 @@ public class VerTutorBean {
 	private Tutor tutor;
 
 	private List<Tutor> tutorLista;
-	
+		
 	private List<AlumnoTutor> alumnoTutorLista;
 	
 	
@@ -78,6 +84,8 @@ public class VerTutorBean {
 		this.tutor = tutor;
 	}
 
+	
+	/*
 	public String getDetalleTutor(int idTutor) {
 
 		String pagina = "verTutoresPorAlumno";
@@ -88,7 +96,7 @@ public class VerTutorBean {
 		return pagina;
 
 	}
-	
+	*/
 	public  String getListaTutor() {
 		
 		String pagina = "verListaAlumnoTutor";
@@ -96,7 +104,7 @@ public class VerTutorBean {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().getSessionMap().put("idAlumno", idAlumno);
 		//TutorDAO tutorDAO = new TutorDAO();
-		alumnoTutorLista = tutorDAOInterface.getListaAlumnoTutor2();
+		alumnoTutorLista = tutorDAOInterface.getListaAlumnoTutor();
 		
 		return pagina;
 

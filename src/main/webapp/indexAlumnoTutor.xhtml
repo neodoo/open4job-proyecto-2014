@@ -18,6 +18,7 @@
 					value="#{etqAlm['titulo.fichaTutor']}" />
 			</h3>
 			<h:form>
+			<!--
 				<h3>Eliminar Tutor</h3>
 			Id Alumno-Tutor para eliminar.
 			<p:selectOneMenu id="alumno" value="#{eliminarTutorBean.alumnoTutor.id}">
@@ -29,8 +30,9 @@
 					value="Eliminar Relación" />
 				<h3>Insertar Tutor / Tutor-Alumno</h3>
 				<a href="insertarTutor.xhtml">Insertar Tutor</a>
-				<h3>Mostrar Tutores</h3>
-				<!-- ofe -->
+				
+				 ofe -->
+				<h3> Ingrese Id de Alumno para mostrar Tutores</h3>
 				<h:inputText value="#{verTutorBean.idAlumno}" name="idTutor" />
 				
 				<h:commandButton action="#{verTutorBean.getListaTutor()}"

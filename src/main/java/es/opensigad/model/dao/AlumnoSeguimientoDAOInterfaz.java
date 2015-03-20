@@ -7,7 +7,7 @@ import es.opensigad.model.vo.AlumnoSeguimiento;
 @Local
 public interface AlumnoSeguimientoDAOInterfaz {
 
-	public List<AlumnoSeguimiento> getListaAlumnoSeguimiento(int pidMatricula);
+	public List<AlumnoSeguimiento> getListaAlumnoSeguimiento(int idMatricula);
 
 	public int insertarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento);
 
@@ -15,6 +15,6 @@ public interface AlumnoSeguimientoDAOInterfaz {
 
 	public boolean eliminarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento);
 
-	public AlumnoSeguimiento getDetalleAlumnoSeguimiento(int pnumId);
+	public AlumnoSeguimiento getDetalleAlumnoSeguimiento(int idSeguimiento);
 
 }
