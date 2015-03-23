@@ -19,11 +19,6 @@
 				<!-- Formulario de insercción de una nota a una matricula.-->
 				<h:form>
 					<br />
-					<h:outputLabel value="#{etqAlmNotas['etiquetas.IntroducirNota']}" />
-					<br />
-					<h:inputText value="#{insertarAlumnoNotaBean.alumnoMatricula.id}"></h:inputText>
-					<br />
-
 					<br />
 					<h:outputLabel value="#{etqAlmNotas['titulo.idMateria']}" />
 					<p:selectOneMenu id="materia"
@@ -48,7 +43,7 @@
 					<h:inputText value="#{insertarAlumnoNotaBean.observacion}"></h:inputText>
 					<br />
 					<h:commandButton value="Guardar notas del alumno"
-						action="#{insertarAlumnoNotaBean.insertarNotaAlumno(insertarAlumnoNotaBean.ensenanzaMateria.id,insertarAlumnoNotaBean.alumnoMatricula.id,insertarAlumnoNotaBean.evaluacion,insertarAlumnoNotaBean.nota,insertarAlumnoNotaBean.observacion)}"></h:commandButton>
+						action="#{insertarAlumnoNotaBean.insertarNotaAlumno(insertarAlumnoNotaBean.ensenanzaMateria.id,insertarAlumnoNotaBean.evaluacion,insertarAlumnoNotaBean.nota,insertarAlumnoNotaBean.observacion)}"></h:commandButton>
 
 
 				</h:form>

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import es.opensigad.model.vo.AlumnoNota;
+import es.opensigad.model.vo.EnsenanzaMateria;
 
 @Local
 public interface AlumnoNotaDAOInterfaz {
@@ -20,4 +21,6 @@ public interface AlumnoNotaDAOInterfaz {
 
 	public boolean borrarNotaById(int id);
 	public List<AlumnoNota> getDetalleNotasByIdMatricula(int idMatricula, int idFila);
+
+	public List<EnsenanzaMateria> listMateriaCombo();
 }

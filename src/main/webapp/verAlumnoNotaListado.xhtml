@@ -46,9 +46,8 @@
 					
 					<p:column id="visualizarDetalleCol" headerText="Detalle">
 					
-						<h:commandLink value="Ver detalle"
-							action="#{verAlumnoNotaListadoBean.getDetalleFilaNotasAlumno(nota.id)}" />
-					
+						 <h:commandLink value="Ver detalle"
+							action="#{verAlumnoNotaListadoBean.getDetalleFilaNotasAlumno(nota.id)}" /> 
 					</p:column>
 
 				</p:dataTable>
@@ -58,8 +57,6 @@
 					action="insertarAlumnoNota.xhtml"></h:commandButton>
 				<h:commandButton value="Modificar Nota"
 					action="#{modificarNota.xhtml}"></h:commandButton>
-				<h:commandButton value="Eliminar Nota"
-					action="borrarAlumnoNota.xhtml"></h:commandButton>
 			</h:form>
 		</ui:define>
 

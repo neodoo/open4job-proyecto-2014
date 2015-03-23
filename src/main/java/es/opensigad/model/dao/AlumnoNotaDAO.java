@@ -203,7 +203,7 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
  //listaNotas = em.createQuery("from AlumnoNota").getResultList();
  
-			String query = "FROM EnsenanzaMateria em";
+			String query = "from EnsenanzaMateria em";
  			listMateria = em.createQuery(query).getResultList();
  
 			//String query = " from EnsenanzaMateria em";
