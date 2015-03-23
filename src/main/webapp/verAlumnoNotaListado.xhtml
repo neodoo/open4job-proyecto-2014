@@ -44,19 +44,20 @@
 						<h:outputText value="#{nota.observacion}" />
 					</p:column>
 					
-					<p:column id="visualizarDetalleCol" headerText="Detalle">
+					<p:column id="visualizarDetalleCol" headerText="Detalle" style="text-align: center" >
 					
-						 <h:commandLink value="Ver detalle"
-							action="#{verAlumnoNotaListadoBean.getDetalleFilaNotasAlumno(nota.id)}" /> 
+						 <p:commandButton
+							action="#{verAlumnoNotaListadoBean.getDetalleFilaNotasAlumno(nota.id)}" 
+							icon="ui-icon-person" title="View"/> 
 					</p:column>
 
 				</p:dataTable>
 				
 				<br />
-				<h:commandButton value="Insertar Nota"
-					action="insertarAlumnoNota.xhtml"></h:commandButton>
-				<h:commandButton value="Modificar Nota"
-					action="#{modificarNota.xhtml}"></h:commandButton>
+				<p:commandButton value="Insertar Nota"
+					action="insertarAlumnoNota.xhtml"></p:commandButton>
+				<p:commandButton value="Modificar Nota"
+					action="#{modificarNota.xhtml}"></p:commandButton>
 			</h:form>
 		</ui:define>
 
