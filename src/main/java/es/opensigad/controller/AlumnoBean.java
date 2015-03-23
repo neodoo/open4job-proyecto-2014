@@ -109,8 +109,8 @@ public class AlumnoBean implements Serializable {
 
 	public String deleteAlumno() {
 
-		String pagina = "indexAlumno";
-		if (alumnoDAO.deleteAlumno(alumno.getId()))
+		String pagina = "verAlumnoLista";
+		if (alumnoDAO.deleteAlumno(sesionBean.getIdAlumno()))
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"El alumno con numero de expediente "
 							+ sesionBean.getNumExpediente() + " ha sido eliminado",
