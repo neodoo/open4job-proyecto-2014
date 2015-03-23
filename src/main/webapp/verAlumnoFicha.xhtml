@@ -113,6 +113,72 @@
 				<p:commandButton value="#{etqAlm['etiquetas.volverLista']}"
 					action="verAlumnoLista.xhtml" />
 			</h:form>
+			<p:dataTable id="tablaDeDirecciones" var="direcciones"
+					value="#{alumnoBean.direccionLista}" widgetVar="tablaDeDirecciones"
+					emptyMessage="No hay direcciones con este criterio de filtrado"
+					filteredValue="#{alumnoBean.direccionFiltro}" paginator="true"
+					rows="5" rowsPerPageTemplate="5,10,15">
+
+					<f:facet name="header">
+						<p:outputPanel>
+							<div class="ui-grid">
+								<div class="ui-grid-row">
+									<div class="ui-grid-col-6">
+										<h1>Direcciones</h1>
+									</div>
+									<div class="ui-grid-col-6">
+										Buscar en todo
+										<p:inputText id="globalFilter"
+											onkeyup="PF('tablaDeDirecciones').filter()" style="width:150px" />
+									</div>
+								</div>
+							</div>
+						</p:outputPanel>
+					</f:facet>
+
+					<p:column id="dirCol"
+						headerText="#{etqAlm['etiquetas.domicilio']}">
+						<h:outputText value="#{direcciones.domicilio}" />
+					</p:column>
+
+					<p:column id="cpCol" filterBy="#{direcciones.codigoPostal}"
+						headerText="#{etqAlm['etiquetas.codigoPostal']}"
+						filterMatchMode="startsWith">
+						<h:outputText value="#{direcciones.codigoPostal}" />
+					</p:column>
+
+					<p:column id="locCol" filterBy="#{direcciones.localidad}"
+						headerText="#{etqAlm['etiquetas.localidad']}"
+						filterMatchMode="startsWith">
+						<h:outputText value="#{direcciones.localidad}" />
+					</p:column>
+
+					<p:column id="te1Col" filterBy="#{direcciones.territorio1.descripcion}" 
+						headerText="#{etqAlm['etiquetas.territorio1']}" filterMatchMode="startsWith">
+						<h:outputText value="#{direcciones.territorio1.descripcion}" />
+					</p:column>
+
+					<p:column style="text-align: center" id="sexCol"
+						filterBy="#{direcciones.territorio2.descripcion}" headerText="#{etqAlm['etiquetas.territorio2']}"
+						filterMatchMode="startsWith">
+						<h:outputText value="#{direcciones.territorio2.descripcion}" />
+					</p:column>
+
+					<p:column id="te2Col"
+						headerText="#{etqAlm['etiquetas.fechaNacimiento']}">
+						<h:outputText value="#{direcciones.principal}" />
+					</p:column>
+
+					<p:column style="text-align: center" headerText="Detalle">
+						<p:commandButton
+							action="#{alumnoBean.getDetalleAlumno(alumnoBean.alumnoSeleccionado.numExpediente)}"
+							icon="ui-icon-person" title="View">
+							<f:setPropertyActionListener value="#{alumno}"
+								target="#{alumnoBean.alumnoSeleccionado}" />
+						</p:commandButton>
+					</p:column>
+
+				</p:dataTable>
 		</ui:define>
 
 	</ui:composition>

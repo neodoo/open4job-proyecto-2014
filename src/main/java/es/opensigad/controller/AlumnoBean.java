@@ -14,12 +14,13 @@ import javax.faces.context.FacesContext;
 import es.opensigad.model.dao.AlumnoDAOInterfaz;
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoContacto;
+import es.opensigad.model.vo.AlumnoDireccion;
 import es.opensigad.model.vo.Territorio;
 
 @ManagedBean
 @RequestScoped
 public class AlumnoBean implements Serializable {
-	
+
 	@EJB
 	private AlumnoDAOInterfaz alumnoDAO = null;
 
@@ -28,32 +29,34 @@ public class AlumnoBean implements Serializable {
 	private FacesMessage facesMessage;
 
 	private Alumno alumno = new Alumno();
-	
+
 	private Alumno alumnoSeleccionado = new Alumno();
 
 	private Territorio territorioProvincia = new Territorio();
 
 	private Territorio territorioPais = new Territorio();
-	
+
 	private AlumnoContacto alumnoContacto = new AlumnoContacto();
-	
+
 	private List<Alumno> alumnoLista;
 
 	private List<Alumno> alumnoFiltro;
-	
-	
-	
+
+	private List<AlumnoDireccion> direccionLista;
+
+	private List<AlumnoDireccion> direccionFiltro;
+
 	@PostConstruct
-	public void init(){
+	public void init() {
 		getListAlumno();
 	}
-	
-	@ManagedProperty(value="#{sesionBean}")
+
+	@ManagedProperty(value = "#{sesionBean}")
 	private SesionBean sesionBean;
-	
 
 	public AlumnoBean() {
 	}
+
 	// MÉTODOS
 
 	public String getDetalleAlumno(int numExpediente) {
@@ -66,22 +69,28 @@ public class AlumnoBean implements Serializable {
 			setTerritorioPais(alumno.getTerritorio2());
 			setTerritorioProvincia(alumno.getTerritorio1());
 			sesionBean.setIdAlumno(alumno.getId());
+			getListDirecciones();
 			return pagina;
 		}
 
 		pagina = "indexAlumno";
 		facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
-				"El alumno con numero de expediente " + sesionBean.getNumExpediente()
-						+ " no existe", null);
+				"El alumno con numero de expediente "
+						+ sesionBean.getNumExpediente() + " no existe", null);
 		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 		return pagina;
 
 	}
-	
 
 	public void getListAlumno() {
 
 		alumnoLista = alumnoDAO.getListAlumno();
+	}
+
+	public void getListDirecciones() {
+
+		direccionLista = alumnoDAO.getListAlumnoDireccion(sesionBean
+				.getIdAlumno());
 	}
 
 	public String modifyAlumno() {
@@ -92,11 +101,10 @@ public class AlumnoBean implements Serializable {
 		alumno.setId(sesionBean.getIdAlumno());
 
 		if (alumnoDAO.modifyAlumno(alumno))
-			facesMessage = new FacesMessage(
-					FacesMessage.SEVERITY_INFO,
+			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"El alumno con numero de expediente "
-							+ sesionBean.getNumExpediente() + " ha sido modificado",
-					null);
+							+ sesionBean.getNumExpediente()
+							+ " ha sido modificado", null);
 		else
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"El alumno con numero de expediente "
@@ -113,12 +121,13 @@ public class AlumnoBean implements Serializable {
 		if (alumnoDAO.deleteAlumno(sesionBean.getIdAlumno()))
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"El alumno con numero de expediente "
-							+ sesionBean.getNumExpediente() + " ha sido eliminado",
-					null);
+							+ sesionBean.getNumExpediente()
+							+ " ha sido eliminado", null);
 		else
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"El alumno con numero de expediente "
-							+ sesionBean.getNumExpediente() + " no existe", null);
+							+ sesionBean.getNumExpediente() + " no existe",
+					null);
 		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 		return pagina;
 
@@ -131,8 +140,8 @@ public class AlumnoBean implements Serializable {
 		if (alumnoDAO.insertAlumno(alumno)) {
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"El alumno con numero de expediente "
-							+ sesionBean.getNumExpediente() + " ha sido insertado",
-					null);
+							+ sesionBean.getNumExpediente()
+							+ " ha sido insertado", null);
 			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 		} else {
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -145,14 +154,14 @@ public class AlumnoBean implements Serializable {
 
 	}
 
-	public String insertAlumnoContacto(){
+	public String insertAlumnoContacto() {
 		String pagina = "indexAlumno";
 		alumnoContacto.setAlumno(alumno);
 		if (alumnoDAO.insertAlumnoContacto(alumnoContacto)) {
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"El contacto del alumno con numero de expediente "
-							+ sesionBean.getNumExpediente() + " ha sido insertado",
-					null);
+							+ sesionBean.getNumExpediente()
+							+ " ha sido insertado", null);
 			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 		} else {
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -163,16 +172,15 @@ public class AlumnoBean implements Serializable {
 		}
 		return pagina;
 	}
-	
-	
-	public String modifyAlumnoContacto(){
+
+	public String modifyAlumnoContacto() {
 		String pagina = "indexAlumno";
 		alumnoContacto.setAlumno(alumno);
 		if (alumnoDAO.modifyAlumnoContacto(alumnoContacto)) {
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"El contacto del alumno con numero de expediente "
-							+ sesionBean.getNumExpediente() + " ha sido insertado",
-					null);
+							+ sesionBean.getNumExpediente()
+							+ " ha sido insertado", null);
 			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 		} else {
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -183,7 +191,7 @@ public class AlumnoBean implements Serializable {
 		}
 		return pagina;
 	}
-	
+
 	// GETTERS Y SETTERS
 
 	public SesionBean getSesionBean() {
@@ -193,7 +201,7 @@ public class AlumnoBean implements Serializable {
 	public void setSesionBean(SesionBean sesionBean) {
 		this.sesionBean = sesionBean;
 	}
-	
+
 	public List<Alumno> getAlumnoFiltro() {
 		return alumnoFiltro;
 	}
@@ -250,5 +258,20 @@ public class AlumnoBean implements Serializable {
 		this.alumnoSeleccionado = alumnoSeleccionado;
 	}
 
-	
+	public List<AlumnoDireccion> getDireccionLista() {
+		return direccionLista;
+	}
+
+	public void setDireccionLista(List<AlumnoDireccion> direccionLista) {
+		this.direccionLista = direccionLista;
+	}
+
+	public List<AlumnoDireccion> getDireccionFiltro() {
+		return direccionFiltro;
+	}
+
+	public void setDireccionFiltro(List<AlumnoDireccion> direccionFiltro) {
+		this.direccionFiltro = direccionFiltro;
+	}
+
 }
