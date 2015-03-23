@@ -3,6 +3,7 @@ package es.opensigad.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -26,7 +27,7 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 	private AlumnoNotaDAOInterfaz alumnoNotaDAO = null;
 
 	private AlumnoNota selectedAlumnoNota;
-
+	
 	@ManagedProperty(value = "#{sesionBean}")
 	private SesionBean sesionBean;
 
@@ -82,8 +83,7 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 		this.alumnoNotas = alumnNotas;
 	}
 
-	public String getDetalleNotasAlumno(int id) {
-		sesionBean.setIdMatricula(id);
+	public String getDetalleNotasAlumno() {
 		String pagina = "verAlumnoNotaListado";
 		alumnoNotas = alumnoNotaDAO.getNotasByIdMatricula(sesionBean.getIdMatricula());
 

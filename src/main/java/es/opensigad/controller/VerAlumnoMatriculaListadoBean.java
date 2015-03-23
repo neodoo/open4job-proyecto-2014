@@ -57,7 +57,9 @@ public class VerAlumnoMatriculaListadoBean implements Serializable {
 
 	public void setAlumnoMatriculaSeleccionado(
 			AlumnoMatricula alumnoMatriculaSeleccionado) {
+		
 		this.alumnoMatriculaSeleccionado = alumnoMatriculaSeleccionado;
+		sesionBean.setIdMatricula(this.alumnoMatriculaSeleccionado.getId());
 	}
 	public int getId() {
 		return id;
