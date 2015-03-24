@@ -10,6 +10,7 @@ import javax.faces.model.SelectItem;
 
 import es.opensigad.model.dao.AlumnoDAOInterfaz;
 import es.opensigad.model.dao.AlumnoNotaDAO;
+import es.opensigad.model.dao.AlumnoNotaDAOInterfaz;
 import es.opensigad.model.dao.TutorDAO;
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoTutor;
@@ -24,6 +25,9 @@ public class CombosAlumnoBean {
 	@EJB
 	private AlumnoDAOInterfaz alumnoDAO = null;
 
+	@EJB
+	private AlumnoNotaDAOInterfaz alumnoNotaDAO=null;
+	
 	public List<EnsenanzaMateria> listEnsenanzaMateria = null;
 	public List<Alumno> listAlumnos = null;
 	public List<Tutor> listTutor = null;
@@ -36,7 +40,6 @@ public class CombosAlumnoBean {
 
 	public List<EnsenanzaMateria> getDataListEnsenanzaMateria() {
 
-		AlumnoNotaDAO alumnoNotaDAO = new AlumnoNotaDAO();
 		listEnsenanzaMateria = alumnoNotaDAO.listMateriaCombo();
 
 		return listEnsenanzaMateria;

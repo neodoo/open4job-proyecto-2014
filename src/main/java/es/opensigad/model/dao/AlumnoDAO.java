@@ -27,12 +27,13 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
+
 	public static final Logger logger = Logger
 			.getLogger(Alumno.class.getName());
 
 	public AlumnoDAO() {
 	}
-	
+
 	@Override
 	public List<Alumno> getListAlumno() {
 
@@ -50,7 +51,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			logger.log(Level.SEVERE,
 					"AlumnoDAO.getListAlumno: " + e.getMessage());
 
-		} 
+		}
 
 		return alumnoList;
 
@@ -64,7 +65,8 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 		try {
 			String query = "SELECT a FROM Alumno a WHERE num_expediente = "
 					+ numExpediente;
-			alumno = (Alumno) entityManager.createQuery(query).getSingleResult();
+			alumno = (Alumno) entityManager.createQuery(query)
+					.getSingleResult();
 			logger.log(Level.INFO, "AlumnoDAO.getDetalleAlumno: OK.");
 
 		} catch (Exception e) {
@@ -95,7 +97,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			logger.log(Level.SEVERE,
 					"AlumnoDAO.insertAlumno: " + e.getMessage());
 
-		} 
+		}
 
 		return estado;
 	}
@@ -120,7 +122,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			logger.log(Level.SEVERE,
 					"AlumnoDAO.deleteAlumno: " + e.getMessage());
 
-		} 
+		}
 
 		return estado;
 
@@ -144,7 +146,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			logger.log(Level.SEVERE,
 					"AlumnoDAO.modifyAlumno: " + e.getMessage());
 
-		} 
+		}
 
 		return estado;
 
@@ -156,7 +158,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 		boolean estado = false;
 
 		try {
-			
+
 			entityManager.persist(alumnoContacto);
 
 			logger.log(Level.INFO, "AlumnoDAO.insertAlumnoContacto: OK.");
@@ -168,7 +170,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			logger.log(Level.SEVERE,
 					"AlumnoDAO.insertAlumnoContacto: " + e.getMessage());
 
-		} 
+		}
 
 		return estado;
 	}
@@ -178,10 +180,10 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 		boolean estado = false;
 
-
 		try {
 			AlumnoContacto alumnoContacto = new AlumnoContacto();
-			alumnoContacto = entityManager.find(AlumnoContacto.class, idContacto);
+			alumnoContacto = entityManager.find(AlumnoContacto.class,
+					idContacto);
 
 			entityManager.remove(alumnoContacto);
 
@@ -194,7 +196,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			logger.log(Level.SEVERE,
 					"AlumnoDAO.deleteAlumnoContacto: " + e.getMessage());
 
-		} 
+		}
 
 		return estado;
 	}
@@ -202,7 +204,6 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 	@Override
 	public boolean modifyAlumnoContacto(AlumnoContacto alumnoContacto) {
 		boolean estado = false;
-
 
 		try {
 
@@ -229,7 +230,8 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 		try {
 
-			alumnoContacto = entityManager.find(AlumnoContacto.class, idContacto);
+			alumnoContacto = entityManager.find(AlumnoContacto.class,
+					idContacto);
 
 			logger.log(Level.INFO, "AlumnoDAO.getDetalleAlumnoContacto: OK.");
 
@@ -238,7 +240,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			logger.log(Level.SEVERE,
 					"AlumnoDAO.getDetalleAlumnoContacto: " + e.getMessage());
 
-		} 
+		}
 
 		return alumnoContacto;
 	}
@@ -253,7 +255,6 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			Query q = entityManager.createQuery("from AlumnoContacto a");
 			alumnoContactoList = q.getResultList();
 
-
 			logger.log(Level.INFO, "AlumnoDAO.getListAlumnoContacto: OK.");
 
 		} catch (Exception e) {
@@ -261,7 +262,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			logger.log(Level.SEVERE,
 					"AlumnoDAO.getListAlumnoContacto: " + e.getMessage());
 
-		} 
+		}
 
 		return alumnoContactoList;
 
@@ -285,7 +286,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			logger.log(Level.SEVERE,
 					"AlumnoDAO.insertAlumnoDireccion: " + e.getMessage());
 
-		} 
+		}
 
 		return estado;
 
@@ -297,9 +298,10 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 		boolean estado = false;
 
 		try {
-			
+
 			AlumnoDireccion alumnoDireccion = new AlumnoDireccion();
-			alumnoDireccion = entityManager.find(AlumnoDireccion.class, idDireccion);
+			alumnoDireccion = entityManager.find(AlumnoDireccion.class,
+					idDireccion);
 
 			entityManager.remove(alumnoDireccion);
 			logger.log(Level.INFO, "AlumnoDAO.deleteAlumnoDireccion: OK.");
@@ -311,17 +313,16 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			logger.log(Level.SEVERE,
 					"AlumnoDAO.deleteAlumnoDireccion: " + e.getMessage());
 
-		} 
+		}
 
 		return estado;
 
 	}
-	
+
 	@Override
 	public boolean modifyAlumnoDireccion(AlumnoDireccion alumnoDireccion) {
 
 		boolean estado = false;
-
 
 		try {
 
@@ -334,7 +335,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			logger.log(Level.SEVERE,
 					"AlumnoDAO.modifyAlumnoDireccion: " + e.getMessage());
 
-		} 
+		}
 
 		return estado;
 
@@ -347,15 +348,16 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 		try {
 
-			alumnoDireccion = entityManager.find(AlumnoDireccion.class, idDireccion);
+			alumnoDireccion = entityManager.find(AlumnoDireccion.class,
+					idDireccion);
 			logger.log(Level.INFO, "AlumnoDAO.getDetalleAlumnoDireccion: OK.");
 
 		} catch (Exception e) {
 
-			logger.log(Level.SEVERE,
-					"AlumnoDAO.getDetalleAlumnoDireccion: " + e.getMessage());
+			logger.log(Level.SEVERE, "AlumnoDAO.getDetalleAlumnoDireccion: "
+					+ e.getMessage());
 
-		} 
+		}
 
 		return alumnoDireccion;
 
@@ -368,9 +370,10 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 		try {
 
-			Query q = entityManager.createQuery("from AlumnoDireccion a");
+			Query q = entityManager
+					.createQuery("from AlumnoDireccion a WHERE a.alumno.id = ?1");
+			q.setParameter(1, idAlumno);
 			alumnoDireccionList = q.getResultList();
-
 
 			logger.log(Level.INFO, "AlumnoDAO.getListAlumnoDireccion: OK.");
 
@@ -379,7 +382,7 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 			logger.log(Level.SEVERE,
 					"AlumnoDAO.getListAlumnoDireccion: " + e.getMessage());
 
-		} 
+		}
 		return alumnoDireccionList;
 
 	}
@@ -390,28 +393,28 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 		try {
 
-			Query q = entityManager.createQuery("SELECT t FROM Territorio t WHERE LENGTH(codigo) = 2");
+			Query q = entityManager
+					.createQuery("SELECT t FROM Territorio t WHERE LENGTH(codigo) = 2");
 
 			territorioList = q.getResultList();
-
 
 			logger.log(Level.INFO, "AlumnoDAO.getListPais: OK.");
 
 		} catch (Exception e) {
-			logger.log(Level.SEVERE,
-					"AlumnoDAO.getListPais: " + e.getMessage());
+			logger.log(Level.SEVERE, "AlumnoDAO.getListPais: " + e.getMessage());
 
-		} 
+		}
 		return territorioList;
 	}
-	
+
 	@Override
-	public List<Territorio> getListProvincia(){
+	public List<Territorio> getListProvincia() {
 		List<Territorio> territorioList = null;
 
 		try {
 
-			Query q = entityManager.createQuery("SELECT t FROM Territorio t WHERE LENGTH(codigo) > 2");
+			Query q = entityManager
+					.createQuery("SELECT t FROM Territorio t WHERE LENGTH(codigo) > 2");
 
 			territorioList = q.getResultList();
 
@@ -419,12 +422,11 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 		} catch (Exception e) {
 
-			logger.log(Level.SEVERE,
-					"AlumnoDAO.getListPais: " + e.getMessage());
+			logger.log(Level.SEVERE, "AlumnoDAO.getListPais: " + e.getMessage());
 
-		} 
+		}
 
 		return territorioList;
 	}
-	
+
 }

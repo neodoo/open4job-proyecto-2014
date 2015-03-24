@@ -28,6 +28,10 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 
 	private AlumnoNota selectedAlumnoNota;
 	
+	@PostConstruct
+	public void init(){
+		getDetalleNotasAlumno();
+	}
 	@ManagedProperty(value = "#{sesionBean}")
 	private SesionBean sesionBean;
 
@@ -72,9 +76,11 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 	public int getIdFila() {
 		return idFila;
 	}
+	
 	public void setIdFila(int idFila) {
 		this.idFila = idFila;
 	}
+	
 	public List<AlumnoNota> getAlumnoNotas() {
 		return alumnoNotas;
 	}
@@ -91,10 +97,10 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 
 	}
 	
-	public String getDetalleFilaNotasAlumno(int id,int idFila) {
+	public String getDetalleFilaNotasAlumno(int idFila) {
 
 		String pagina = "verDetalleAlumnoNotaListado";
-		alumnoNotas = alumnoNotaDAO.getDetalleNotasByIdMatricula(id, idFila);
+		alumnoNotas = alumnoNotaDAO.getDetalleNotasByIdMatricula(sesionBean.getIdMatricula(), idFila);
 		return pagina;
 
 	}
