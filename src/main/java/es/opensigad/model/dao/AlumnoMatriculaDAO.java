@@ -22,7 +22,7 @@ import es.opensigad.model.vo.Ensenanza;
 public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 	@PersistenceContext(unitName = "opensigadUnit")
-	private EntityManager em = null;
+	private EntityManager em;
 	
 	public static final Logger logger = Logger
 			.getLogger(AlumnoMatriculaDAO.class.getName());
@@ -218,7 +218,7 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 		} catch (Exception e) {
 
 			logger.log(Level.SEVERE,
-					"AlumnoMatriculaDAO.modificarMatricula: OK.");
+					"AlumnoMatriculaDAO.modificarMatricula: Fallo." + e.getMessage());
 
 		} finally {
 

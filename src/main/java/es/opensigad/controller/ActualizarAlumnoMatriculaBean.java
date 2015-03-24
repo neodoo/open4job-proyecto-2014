@@ -16,13 +16,12 @@ public class ActualizarAlumnoMatriculaBean implements Serializable {
 
 
 	private static final long serialVersionUID = 1L;
-	private int idMatricula;
 	private int cursoEscolar;
 	private int centro;
 	private int ensenanza;
 	private String modulo;
 	private int curso;
-	//private int idAlumno;
+	
 	private FacesMessage facesMessage;
 
 	@ManagedProperty(value = "#{verAlumnoMatriculaFichaBean}")
@@ -47,14 +46,6 @@ public class ActualizarAlumnoMatriculaBean implements Serializable {
 	public void setVerAlumnoMatriculaFichaBean(
 			VerAlumnoMatriculaFichaBean verAlumnoMatriculaFichaBean) {
 		this.verAlumnoMatriculaFichaBean = verAlumnoMatriculaFichaBean;
-	}
-
-	public int getIdMatricula() {
-		return idMatricula;
-	}
-
-	public void setIdMatricula(int idMatricula) {
-		this.idMatricula = idMatricula;
 	}
 
 	public int getCursoEscolar() {
@@ -97,21 +88,12 @@ public class ActualizarAlumnoMatriculaBean implements Serializable {
 		this.curso = curso;
 	}
 
-	/*public int getIdAlumno() {
-		return idAlumno;
-	}
-
-	public void setIdAlumno(int idAlumno) {
-		this.idAlumno = idAlumno;
-	}*/
-
 	public String modificarMatricula(int cursoEscolar,
-			int centro, int ensenanza, String modulo, int curso,
-			int idMatricula) {
+			int centro, int ensenanza, String modulo, int curso) {
 		String pagina = "verAlumnoMatriculaFicha";
 		AlumnoMatriculaDAO alumnoMatriculaDAO = new AlumnoMatriculaDAO();
 		if (alumnoMatriculaDAO.modificarMatricula(sesionAlumno.getIdAlumno(), cursoEscolar,
-			centro, ensenanza, modulo, curso, idMatricula)) {
+			centro, ensenanza, modulo, curso, sesionAlumno.getIdMatricula())) {
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"La matricula se ha actualizado correctamente ", null);
 		} else {
