@@ -153,7 +153,7 @@ public class Centro implements Serializable {
 	public AlumnoMatricula removeAlumnoMatricula(AlumnoMatricula alumnoMatricula) {
 		getAlumnoMatriculas().remove(alumnoMatricula);
 		alumnoMatricula.setCentro(null);
-
+//sdfsfd
 		return alumnoMatricula;
 	}
 
