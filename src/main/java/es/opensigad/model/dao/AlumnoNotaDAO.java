@@ -31,16 +31,6 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 	public static final Logger logger = Logger.getLogger(AlumnoNotaDAO.class
 			.getName());
 
-	//@ManagedProperty(value = "#{sesionBean}")
-	//private SesionBean sesionBean;
-
-	//public SesionBean getSesionBean() {
-	//	return sesionBean;
-	//}
-
-	//public void setSesionBean(SesionBean sesionBean) {
-	//	this.sesionBean = sesionBean;
-	//}
 	public AlumnoNotaDAO() {
 
 	}
@@ -211,16 +201,10 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 		List<EnsenanzaMateria> listMateria = null;
 		try {
-			
-
- //listaNotas = em.createQuery("from AlumnoNota").getResultList();
  
 			String query = "from EnsenanzaMateria em";
  			listMateria = em.createQuery(query).getResultList();
  
-			//String query = " from EnsenanzaMateria em";
-			//listMateria = em.createQuery("from EnsenanzaMateria em")
-				//	.getResultList();
 			logger.log(Level.INFO, "AlumnoNotaDAO.listMateriaCombo: OK.");
 
 		} catch (Exception e) {
