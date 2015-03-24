@@ -71,7 +71,7 @@
 
 					<p:column style="text-align: center" headerText="Detalle">
 						<p:commandButton
-							action="#{verAlumnoMatriculaFichaBean.getDetalleMatricula(verAlumnoMatriculaListadoBean.alumnoMatriculaSeleccionado.id)}"
+							action="#{verAlumnoMatriculaFichaBean.getDetalleMatricula()}"
 							icon="ui-icon-person" title="View">
 							<f:setPropertyActionListener value="#{alumnoMatricula}"
 								target="#{verAlumnoMatriculaListadoBean.alumnoMatriculaSeleccionado}" />
