@@ -2,8 +2,13 @@ package es.opensigad.controller;
 
 import java.io.Serializable;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.CellEditEvent;
+import org.primefaces.event.RowEditEvent;
 
 import es.opensigad.model.dao.AlumnoNotaDAO;
 import es.opensigad.model.vo.AlumnoMatricula;
@@ -16,7 +21,7 @@ public class ActualizarAlumnoNotaBean implements Serializable {
 	private int id;
 	private AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
 	private EnsenanzaMateria ensenanzaMateria = new EnsenanzaMateria();
-	private int evaluacion;
+	private String evaluacion;
 	private String nota;
 	private String observacion;
 	
@@ -48,11 +53,12 @@ public class ActualizarAlumnoNotaBean implements Serializable {
 		this.ensenanzaMateria = ensenanzaMateria;
 	}
 
-	public int getEvaluacion() {
+
+	public String getEvaluacion() {
 		return evaluacion;
 	}
 
-	public void setEvaluacion(int evaluacion) {
+	public void setEvaluacion(String evaluacion) {
 		this.evaluacion = evaluacion;
 	}
 
@@ -71,7 +77,7 @@ public class ActualizarAlumnoNotaBean implements Serializable {
 	public void setObservacion(String observacion) {
 		this.observacion = observacion;
 	}
-
+/*
 	public String actualizarNotaByIdMatricula(int id,int idAlumnoMatricula,int idMateria, String evaluacion,String nota, String observacion) {
 		String pagina=null;
 		AlumnoNotaDAO alumnoNotaDAO = new AlumnoNotaDAO();
@@ -81,6 +87,19 @@ public class ActualizarAlumnoNotaBean implements Serializable {
 			pagina = "actualizarAlumnoNotaFallo";
 		}
 		return pagina;
-	}
-
+	}*/
+	 public void onRowEdit(RowEditEvent event) {
+		
+				 FacesMessage msg = new FacesMessage("Car Edited");
+			     FacesContext.getCurrentInstance().addMessage(null, msg);
+			
+	
+	
+	    }
+	     
+	    public void onRowCancel(RowEditEvent event) {
+	        FacesMessage msg = new FacesMessage("Edit Cancelled");
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+	    }
+	
 }
