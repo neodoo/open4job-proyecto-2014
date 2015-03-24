@@ -96,17 +96,7 @@ public class ActualizarAlumnoNotaBean implements Serializable {
 	public void setObservacion(String observacion) {
 		this.observacion = observacion;
 	}
-/*
-	public String actualizarNotaByIdMatricula(int id,int idAlumnoMatricula,int idMateria, String evaluacion,String nota, String observacion) {
-		String pagina=null;
-		AlumnoNotaDAO alumnoNotaDAO = new AlumnoNotaDAO();
-		if (alumnoNotaDAO.actualizarNotaByIdMatricula(id,idAlumnoMatricula, idMateria, evaluacion, nota,observacion)){
-			pagina = "actualizarAlumnoNotaExito";
-		}else{
-			pagina = "actualizarAlumnoNotaFallo";
-		}
-		return pagina;
-	}*/
+
 	 public String onRowEdit(RowEditEvent event) {
 	
 		 	AlumnoNota alumnoNota = (AlumnoNota) event.getObject();
@@ -114,7 +104,7 @@ public class ActualizarAlumnoNotaBean implements Serializable {
 			 	String pagina=null;
 	
 				if (alumnoNotaDAO.actualizarNotaByIdMatricula(alumnoNota.getId(), alumnoNota.getAlumnoMatricula().getId(),alumnoNota.getEnsenanzaMateria().getId(),alumnoNota.getEvaluacion(),alumnoNota.getNota(),alumnoNota.getObservacion())){
-					 FacesMessage msg = new FacesMessage("Car Edited");
+					 FacesMessage msg = new FacesMessage("Nota Editada");
 				     FacesContext.getCurrentInstance().addMessage(null, msg);
 				}
 				
@@ -125,7 +115,7 @@ public class ActualizarAlumnoNotaBean implements Serializable {
 	    }
 	     
 	    public void onRowCancel(RowEditEvent event) {
-	        FacesMessage msg = new FacesMessage("Edit Cancelled");
+	        FacesMessage msg = new FacesMessage("Edición cancelada");
 	        FacesContext.getCurrentInstance().addMessage(null, msg);
 	    }
 	
