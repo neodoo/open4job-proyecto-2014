@@ -22,45 +22,21 @@
            TABLA LAPIZ
        </f:facet>
 
-					<p:ajax event="rowEdit" listener="#{actualizarAlumnoNotaBean.onRowEdit()}"
+					<p:ajax event="rowEdit" listener="#{actualizarAlumnoNotaBean.onRowEdit}"
 						update=":form:msgs" />
 					<p:ajax event="rowEditCancel" listener="#{actualizarAlumnoNotaBean.onRowCancel}"
 						update=":form:msgs" />
 
-					<p:column headerText="id">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{nota.id}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText id="modelInput" value="#{nota.id}"
-									style="width:96%" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-
-					<p:column headerText="alumnoMatriculaId">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{nota.alumnoMatricula.id}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{nota.alumnoMatricula.id}"
-									style="width:96%" label="Year" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-
 					<p:column headerText="EnsenanzaMateria">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="#{nota.ensenanzaMateria.id}" />
+								<h:outputText value="#{nota.ensenanzaMateria.materia}" />
 							</f:facet>
 							<f:facet name="input">
-								<h:selectOneMenu value="#{nota.ensenanzaMateria.materia}"
+								<h:selectOneMenu value="#{nota.ensenanzaMateria.id}"
 									style="width:100%">
-									<f:selectItems value="#{combosAlumnoBean.listEnsenanzaMateria}"
-										var="man" itemLabel="#{man}" itemValue="#{man}" />
+									<f:selectItems value="#{combosAlumnoBean.getListEnsenanzaMateria()}"
+										var="ensenanzaMateria" itemLabel="#{ensenanzaMateria.materia}" itemValue="#{ensenanzaMateria.id}" />
 								</h:selectOneMenu>
 							</f:facet>
 						</p:cellEditor>
