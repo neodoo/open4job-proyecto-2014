@@ -69,7 +69,7 @@ public class CombosAlumnoBean {
 	
 	public List<AlumnoTutor> getDataListAlumnoTutor(){
 		TutorDAO tutorDAO = new TutorDAO();
-		listAlumnoTutor = tutorDAO.getListaAlumnoTutor();
+		listAlumnoTutor = null; //TODO tutorDAO.getListaAlumnoTutor();
 		return listAlumnoTutor;
 	}
 
@@ -136,7 +136,7 @@ public class CombosAlumnoBean {
 	
 	public List<Tutor> getDataListTutores() {
 		TutorDAO tutorDAO = new TutorDAO();
-		listTutor = tutorDAO.getListaTutor();
+		listTutor = null; //TODO tutorDAO.getListaTutor();
 		return listTutor;
 	}
 
