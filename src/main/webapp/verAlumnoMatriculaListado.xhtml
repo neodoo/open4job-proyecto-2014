@@ -15,7 +15,8 @@
 
 
 		<ui:define name="content">
-
+		<h:messages style="margin:8px;" />
+		<br />
 			<h:form id="form">
 
 				<p:dataTable id="tablaDeMatriculas" var="alumnoMatricula"
@@ -77,6 +78,9 @@
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
+				<p:commandButton
+									value="#{etqAlmMat['boton.insertarMatriculaAlumno']}"
+									action="insertarAlumnoMatricula"></p:commandButton>
 			</h:form>
 		</ui:define>
 

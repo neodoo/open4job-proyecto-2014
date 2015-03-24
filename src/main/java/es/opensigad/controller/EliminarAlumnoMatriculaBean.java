@@ -42,14 +42,13 @@ public class EliminarAlumnoMatriculaBean implements Serializable {
 	}
 
 	public String borrarMatricula() {
-		String pagina = "indexAlumnoMatricula";
+		String pagina = "verAlumnoMatriculaListado";
 		// AlumnoMatriculaDAO alumnoMatriculaDAO = new AlumnoMatriculaDAO();
 		if (alumnoMatriculaDAO.borrarMatricula(sesionBean.getIdMatricula())) {
 
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"La matricula se ha eliminado correctamente ", null);
 		} else {
-			pagina = "borrarAlumnoMatriculaFallo";
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"La matricula no se ha eliminado correctamente ", null);
 		}

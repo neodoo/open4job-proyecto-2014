@@ -42,7 +42,7 @@ public class AlumnoMatriculaDAOTest extends TestCase {
 
 	public void testBorrarMatricula() {
 		
-		int id=45;
+		int id=19;
 		
 		boolean matricula = alumnoMatriculaDAO.borrarMatricula(id);
 		
@@ -55,7 +55,7 @@ public class AlumnoMatriculaDAOTest extends TestCase {
 
 	public void testGetListadoMatricula() {
 		
-		List<AlumnoMatricula> matricula = alumnoMatriculaDAO.getListadoMatricula(2);
+		List<AlumnoMatricula> matricula = alumnoMatriculaDAO.getListadoMatricula(1);
 
 		assertTrue(matricula.size() > 0);
 	}

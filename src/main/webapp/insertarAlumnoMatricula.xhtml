@@ -24,12 +24,7 @@
 			<h:form>
 				<p:panelGrid id="panel" columns="2" border="0" cellpadding="0"
 					cellspacing="5">
-					<h:outputLabel id="alumno"
-						value="#{etqAlmMat['etiquetas.idAlumno']}" />
 
-					<p:selectOneMenu id="idalumno" value="#{insertarAlumnoMatriculaBean.idAlumno}">
-						<f:selectItems value="#{comboMatriculaBean.alumnoItem}"></f:selectItems>
-					</p:selectOneMenu>
 
 					<h:outputLabel id="idCursoEscolar"
 						value="#{etqAlmMat['etiquetas.cursoEscolar']}" />
@@ -60,9 +55,8 @@
 
 
 					<h:commandButton
-						value="#{etqAlmMat['boton.guardarMatriculaAlumno']}"
-						action="#{insertarAlumnoMatriculaBean.insertarAlumnoMatricula(insertarAlumnoMatriculaBean.idAlumno,
-				 insertarAlumnoMatriculaBean.cursoEscolar, insertarAlumnoMatriculaBean.idCentro, insertarAlumnoMatriculaBean.idEnsenanza, insertarAlumnoMatriculaBean.modulo, insertarAlumnoMatriculaBean.curso)}"></h:commandButton>
+						value="#{etqAlmMat['boton.insertarMatriculaAlumno']}"
+						action="#{insertarAlumnoMatriculaBean.insertarAlumnoMatricula(insertarAlumnoMatriculaBean.cursoEscolar, insertarAlumnoMatriculaBean.idCentro, insertarAlumnoMatriculaBean.idEnsenanza, insertarAlumnoMatriculaBean.modulo, insertarAlumnoMatriculaBean.curso)}"></h:commandButton>
 				</p:panelGrid>
 			</h:form>
 

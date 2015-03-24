@@ -2,6 +2,7 @@ package es.opensigad.controller;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import es.opensigad.model.dao.AlumnoMatriculaDAO;
@@ -17,6 +18,17 @@ public class VerAlumnoMatriculaFichaBean {
 	private AlumnoMatriculaDAOInterfaz matriculaDAO = null;
 
 	private AlumnoMatricula matricula = new AlumnoMatricula();
+	
+	@ManagedProperty(value="#{sesionBean}")
+	private SesionBean sesionBean;
+
+	public SesionBean getSesionBean() {
+		return sesionBean;
+	}
+
+	public void setSesionBean(SesionBean sesionBean) {
+		this.sesionBean = sesionBean;
+	}
 
 	public AlumnoMatricula getMatricula() {
 		return matricula;
@@ -26,12 +38,12 @@ public class VerAlumnoMatriculaFichaBean {
 		this.matricula = matricula;
 	}
 
-	public String getDetalleMatricula(int idMatricula) {
+	public String getDetalleMatricula() {
 
 		String pagina = "verAlumnoMatriculaFicha";
 
 		// AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
-		matricula = matriculaDAO.getListaFichaMatricula(idMatricula);
+		matricula = matriculaDAO.getListaFichaMatricula(sesionBean.getIdMatricula());
 
 		return pagina;
 
