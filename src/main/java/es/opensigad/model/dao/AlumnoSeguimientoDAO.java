@@ -4,15 +4,40 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.jms.JMSContext;
+import javax.jms.JMSDestinationDefinition;
+import javax.jms.JMSDestinationDefinitions;
+import javax.jms.ObjectMessage;
+import javax.jms.Queue;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import es.opensigad.model.vo.AlumnoSeguimiento;
+import es.opensigad.model.vo.AlumnoSeguimientoDatosCorreo;
+
+
+
+/**
+ * Definition of the two JMS destinations used by the quickstart
+ * (one queue and one topic).
+ */
+@JMSDestinationDefinitions(
+        value =  {
+                @JMSDestinationDefinition(
+                        name = "java:/queue/NOTIFICACIONESCORREOMDBQueue",
+                        interfaceName = "javax.jms.Queue"
+                        //destinationName = "SeguimientoMDBQueue"
+                )
+        }
+)
+
 
 @Stateless
 public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
-
 	
 	public static final Logger logger = Logger.getLogger(AlumnoSeguimientoDAO.class.getName());
 
@@ -31,6 +56,13 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 		
 	}
 
+	@Inject
+	private JMSContext context;
+
+	@Resource(lookup = "java:/queue/NOTIFICACIONESCORREOMDBQueue")
+	private Queue queue;
+	
+	
 	// Listar seguimientos de un alumno
 	public List<AlumnoSeguimiento> getListaAlumnoSeguimiento(int idMatricula) {
 
@@ -44,7 +76,8 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 
 			seguimientos = em.createQuery(query).setParameter("pidMatricula", idMatricula).getResultList();
-
+			
+			
 			logger.log(Level.INFO,"AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: OK.");
 
 		} catch (Exception e) {
@@ -52,6 +85,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 			logger.log(Level.SEVERE,"AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: ERROR. " + e.getMessage());
 
 		}
+		   System.out.println("2. Sent ObjectMessage to the Queue");
 
 		return seguimientos;
 
@@ -65,8 +99,8 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 		try {
 			
 			String query = "from AlumnoSeguimiento aseg where aseg.id =" + idSeguimiento;
-
-			seguimiento = (AlumnoSeguimiento) em.createQuery(query).getResultList();
+			
+			seguimiento = (AlumnoSeguimiento) em.createQuery(query).getSingleResult();
 
 			logger.log(Level.INFO, "AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: OK.");
 
@@ -87,10 +121,16 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 		try {
 
-			em.persist(alumnoSeguimiento);
+			//em.persist(alumnoSeguimiento);
 
 			id = alumnoSeguimiento.getId();
-
+			
+			int idMatricula = 1;
+			AlumnoSeguimientoDatosCorreo asdc = this.obtenerDatosCorreo(idMatricula);
+			
+			ObjectMessage objMsg = context.createObjectMessage(asdc);
+			context.createProducer().send(queue, objMsg);
+		
 			logger.log(Level.INFO, "AlumnoSeguimientoDAO.insertarAlumnoSeguimiento: OK.");
 
 		} catch (Exception e) {
@@ -103,8 +143,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 	}
 
 	// Actualizar alumnos
-	public boolean actualizarAlumnoSeguimiento(
-			AlumnoSeguimiento alumnoSeguimiento) {
+	public boolean actualizarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento) {
 
 		boolean estado = false;
 
@@ -118,8 +157,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 		} catch (Exception e) {
 
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.actualizarAlumnoSeguimiento: ERROR. " + e.getMessage());
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.actualizarAlumnoSeguimiento: ERROR. " + e.getMessage());
 		}
 
 		return estado;
@@ -146,6 +184,24 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 		return estado;
 
+	}
+	
+	//@EJB
+	//private AlumnoDAO alumnoDAO;
+	
+	//@EJB
+	//private AlumnoMatriculaDAO alumnoMatriculaDAO;
+	
+	
+	public AlumnoSeguimientoDatosCorreo obtenerDatosCorreo (int idMatricula){
+
+		AlumnoSeguimientoDatosCorreo alumnoSeguimientoDatosCorreo = new AlumnoSeguimientoDatosCorreo();
+		
+		alumnoSeguimientoDatosCorreo.setAsunto("Asunto Correo");
+		alumnoSeguimientoDatosCorreo.setMensaje("Mensaje Correo");
+		alumnoSeguimientoDatosCorreo.setEmail("alg.pruebas@gmail.com");
+		
+		return alumnoSeguimientoDatosCorreo;
 	}
 
 }
