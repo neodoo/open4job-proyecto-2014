@@ -31,7 +31,8 @@ public class ScheduleTimerBeanSeguimiento {
 		//System.out.println("Execution Time : " + new Date());
 		//System.out.println("____________________________________________");
 		
-		System.out.println(alumnoSeguimientoDAOInterfaz.getListaAlumnoSeguimiento(1).size());
+		alumnoSeguimientoDAOInterfaz.getListaAlumnoSeguimiento(6);
+		//System.out.println(alumnoSeguimientoDAOInterfaz.getListaAlumnoSeguimiento(1).size());
 		
 	}
 	
