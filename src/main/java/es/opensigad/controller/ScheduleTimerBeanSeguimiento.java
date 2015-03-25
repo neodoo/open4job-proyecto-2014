@@ -15,7 +15,7 @@ import es.opensigad.model.dao.AlumnoSeguimientoDAOInterfaz;
 
 @Singleton
 @LocalBean
-@Startup
+//@Startup
 public class ScheduleTimerBeanSeguimiento {
 
 	@Resource
@@ -24,7 +24,7 @@ public class ScheduleTimerBeanSeguimiento {
 	@EJB
 	AlumnoSeguimientoDAOInterfaz alumnoSeguimientoDAOInterfaz;
 	
-	@Schedule(second = "*/10", minute = "*", hour = "*")
+	//@Schedule(second = "*/10", minute = "*", hour = "*")
 	public void execute(Timer timer) {
 		
 		//System.out.println("Executing ...");
