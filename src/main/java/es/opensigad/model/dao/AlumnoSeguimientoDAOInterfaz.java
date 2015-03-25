@@ -20,6 +20,9 @@ public interface AlumnoSeguimientoDAOInterfaz {
 
 	public AlumnoSeguimiento getDetalleAlumnoSeguimiento(int idSeguimiento);
 	
+	public String getContactoCorreoAlumnoSeguimiento(int idMatricula);
+
 	public AlumnoSeguimientoDatosCorreo obtenerDatosCorreo(int idMatricula);
+
 
 }

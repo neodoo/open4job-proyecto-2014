@@ -22,14 +22,11 @@ import java.util.logging.Logger;
 
 import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
-import javax.ejb.EJB;
 import javax.ejb.MessageDriven;
-import javax.ejb.Stateless;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
-import javax.jms.TextMessage;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -64,14 +61,16 @@ public class NotificacionesCorreoQueueMDB implements MessageListener {
 		try {
 
 			javax.mail.Message message = new MimeMessage(session);
-			
-			InternetAddress addressFrom = new InternetAddress("alg.pruebas@gmail.com");
+
+			InternetAddress addressFrom = new InternetAddress(
+					"alg.pruebas@gmail.com");
 			message.setFrom(addressFrom);
-			message.setFrom();
-			
+			// message.setFrom();
+
 			InternetAddress addressRecipient = new InternetAddress(email);
-			message.addRecipient(javax.mail.Message.RecipientType.TO, addressRecipient);
-			
+			message.addRecipient(javax.mail.Message.RecipientType.TO,
+					addressRecipient);
+
 			message.setSubject(asunto);
 			message.setText(mensaje);
 
@@ -97,8 +96,10 @@ public class NotificacionesCorreoQueueMDB implements MessageListener {
 			if (rcvMessage instanceof ObjectMessage) {
 
 				msg = (ObjectMessage) rcvMessage;
-				AlumnoSeguimientoDatosCorreo correo = (AlumnoSeguimientoDatosCorreo) msg.getObject();
-				enviarCorreo(correo.getEmail(), correo.getAsunto(),	correo.getMensaje());
+				AlumnoSeguimientoDatosCorreo correo = (AlumnoSeguimientoDatosCorreo) msg
+						.getObject();
+				enviarCorreo(correo.getEmail(), correo.getAsunto(),
+						correo.getMensaje());
 
 				LOGGER.info("Received Message from queue: "
 						+ msg.getObject().toString());

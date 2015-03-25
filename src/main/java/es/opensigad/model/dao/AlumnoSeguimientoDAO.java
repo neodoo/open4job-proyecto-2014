@@ -5,7 +5,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.annotation.Resource;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.jms.JMSContext;
@@ -14,12 +13,12 @@ import javax.jms.JMSDestinationDefinitions;
 import javax.jms.ObjectMessage;
 import javax.jms.Queue;
 import javax.persistence.EntityManager;
+import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
+import javax.persistence.StoredProcedureQuery;
 
 import es.opensigad.model.vo.AlumnoSeguimiento;
 import es.opensigad.model.vo.AlumnoSeguimientoDatosCorreo;
-
-
 
 /**
  * Definition of the two JMS destinations used by the quickstart
@@ -74,15 +73,17 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 					+ " FROM AlumnoSeguimiento alumnoSeguimiento "
 					+ " WHERE alumnoSeguimiento.alumnoMatricula.id = :pidMatricula";
 
+			seguimientos = em.createQuery(query)
+					.setParameter("pidMatricula", idMatricula).getResultList();
 
-			seguimientos = em.createQuery(query).setParameter("pidMatricula", idMatricula).getResultList();
-			
-			
-			logger.log(Level.INFO,"AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: OK.");
+			logger.log(Level.INFO,
+					"AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: OK.");
 
 		} catch (Exception e) {
 
-			logger.log(Level.SEVERE,"AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: ERROR. " + e.getMessage());
+			logger.log(Level.SEVERE,
+					"AlumnoSeguimientoDAO.getListaAlumnoSeguimiento: ERROR. "
+							+ e.getMessage());
 
 		}
 		   System.out.println("2. Sent ObjectMessage to the Queue");
@@ -97,12 +98,15 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 		AlumnoSeguimiento seguimiento = null;
 
 		try {
-			
-			String query = "from AlumnoSeguimiento aseg where aseg.id =" + idSeguimiento;
-			
-			seguimiento = (AlumnoSeguimiento) em.createQuery(query).getSingleResult();
 
-			logger.log(Level.INFO, "AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: OK.");
+			String query = "from AlumnoSeguimiento aseg where aseg.id ="
+					+ idSeguimiento;
+
+			seguimiento = (AlumnoSeguimiento) em.createQuery(query)
+					.getSingleResult();			
+			
+			logger.log(Level.INFO,
+					"AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: OK.");
 
 		} catch (Exception e) {
 			
@@ -124,6 +128,9 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 			//em.persist(alumnoSeguimiento);
 
 			id = alumnoSeguimiento.getId();
+
+			logger.log(Level.INFO,
+					"AlumnoSeguimientoDAO.insertarAlumnoSeguimiento: OK.");
 			
 			int idMatricula = 1;
 			AlumnoSeguimientoDatosCorreo asdc = this.obtenerDatosCorreo(idMatricula);
@@ -153,7 +160,8 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 			estado = true;
 
-			logger.log(Level.INFO, "AlumnoSeguimientoDAO.actualizarAlumnoSeguimiento: OK.");
+			logger.log(Level.INFO,
+					"AlumnoSeguimientoDAO.actualizarAlumnoSeguimiento: OK.");
 
 		} catch (Exception e) {
 
@@ -170,12 +178,12 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 		boolean estado = false;
 
 		try {
-
 			em.remove(em.merge(alumnoSeguimiento));
 
 			estado = true;
 
-			logger.log(Level.INFO, "AlumnoSeguimientoDAO.eliminarAlumnoSeguimiento: OK.");
+			logger.log(Level.INFO,
+					"AlumnoSeguimientoDAO.eliminarAlumnoSeguimiento: OK.");
 
 		} catch (Exception e) {
 
@@ -202,6 +210,46 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 		alumnoSeguimientoDatosCorreo.setEmail("alg.pruebas@gmail.com");
 		
 		return alumnoSeguimientoDatosCorreo;
+	}
+
+	// Obtener datos correo
+	public String getContactoCorreoAlumnoSeguimiento(int idMatricula) {
+		String contacto = null;
+
+		try {
+			/*
+			Query query = em
+					.createNativeQuery("SELECT alumno_contacto.contacto" 
+							+ " FROM alumno_contacto"
+							+ " INNER JOIN alumno_matricula"
+							+ " ON alumno_contacto.id_alumno = alumno_matricula.id_alumno"
+							+ " WHERE alumno_matricula.id = ?"
+							+ " AND alumno_contacto.tipo='email'"
+							+ " AND alumno_contacto.principal = 1");
+
+			query.setParameter(1, idMatricula);
+			contacto = (String) query.getSingleResult();
+			*/
+			
+			StoredProcedureQuery spq = em.createStoredProcedureQuery("ContactoCorreoAlumnoSeguimiento");
+			spq.registerStoredProcedureParameter("id_matricula", Integer.class, ParameterMode.IN);
+			spq.registerStoredProcedureParameter("contacto", String.class, ParameterMode.OUT);
+
+			spq.execute();
+			contacto = (String) spq.getOutputParameterValue("contacto");
+			
+			logger.log(Level.INFO,
+					"AlumnoSeguimientoDAO.getContactoCorreoAlumnoSeguimiento: OK.");
+
+		} catch (Exception e) {
+
+			logger.log(Level.SEVERE,
+					"AlumnoSeguimientoDAO.getContactoCorreoAlumnoSeguimiento: ERROR. "
+							+ e.getMessage());
+
+		}
+
+		return contacto;
 	}
 
 }
