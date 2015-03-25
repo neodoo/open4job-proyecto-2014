@@ -18,9 +18,11 @@
 			<h:form id="form">
 				<p:growl id="msgs" showDetail="true" />
 				<p:dataTable id="tablaDeAlumnosNota" var="nota"
-					value="#{verAlumnoNotaListadoBean.alumnoNotas}">
+					value="#{verAlumnoNotaListadoBean.alumnoNotas}" rows="10"
+                    paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
 					<f:facet name="header">
-            		Single with Row Click
+            		#{etqAlmNotas['titulo.listadoNotas']}
         			</f:facet>
 					<p:column id="enMatCol"
 						headerText="#{etqAlmNotas['titulo.idMateria']}"
