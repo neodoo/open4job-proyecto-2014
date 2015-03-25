@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import es.opensigad.model.dao.AlumnoSeguimientoDAOInterfaz;
+import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.AlumnoSeguimiento;
 
 @ManagedBean
@@ -136,4 +137,23 @@ public class AlumnoSeguimientoBeanListado implements Serializable {
 		seguimientos = alumnoSeguimientoDAOInterfaz.getListaAlumnoSeguimiento(idMatricula);
 	}
 	
-}	
+
+	//metodos llamada al listado desde la JSF de matriculas
+	
+	public void setListaSeguimientos(List<AlumnoSeguimiento> aseg) {
+		this.seguimientos = aseg;
+	}
+
+	public String getListaSeguimientos() {
+
+		String pagina = "visualizarAlumnoSeguimientoListado";
+
+		seguimientos = alumnoSeguimientoDAOInterfaz.getListaAlumnoSeguimiento(sesionBean.getIdMatricula());
+		return pagina;
+
+	}
+
+}
+
+	
+
