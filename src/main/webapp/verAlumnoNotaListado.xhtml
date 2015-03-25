@@ -25,6 +25,7 @@
             		#{etqAlmNotas['titulo.listadoNotas']}
         			</f:facet>
 					<p:column id="enMatCol"
+						filterBy="#{nota.ensenanzaMateria.materia}"
 						headerText="#{etqAlmNotas['titulo.idMateria']}"
 						filterMatchMode="exact">
 						<h:outputText value="#{nota.ensenanzaMateria.materia}" />
@@ -33,10 +34,8 @@
 					<p:column id="notCol" headerText="#{etqAlmNotas['titulo.nota']}">
 						<h:outputText value="#{nota.nota}" />
 					</p:column>
-					<p:column id="idMatriculaCol" headerText="IDMatricula">
-						<h:outputText value="#{nota.alumnoMatricula.id}" />
-					</p:column>
 					<p:column id="evaCol"
+						filterBy="#{nota.evaluacion}"
 						headerText="#{etqAlmNotas['titulo.idEvaluacion']}">
 						<h:outputText value="#{nota.evaluacion}" />
 					</p:column>
