@@ -5,9 +5,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
+import javax.faces.bean.ManagedProperty;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import es.opensigad.controller.SesionBean;
 import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.AlumnoNota;
 import es.opensigad.model.vo.EnsenanzaMateria;
@@ -199,16 +201,10 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 		List<EnsenanzaMateria> listMateria = null;
 		try {
-			
-
- //listaNotas = em.createQuery("from AlumnoNota").getResultList();
  
 			String query = "from EnsenanzaMateria em";
  			listMateria = em.createQuery(query).getResultList();
  
-			//String query = " from EnsenanzaMateria em";
-			//listMateria = em.createQuery("from EnsenanzaMateria em")
-				//	.getResultList();
 			logger.log(Level.INFO, "AlumnoNotaDAO.listMateriaCombo: OK.");
 
 		} catch (Exception e) {

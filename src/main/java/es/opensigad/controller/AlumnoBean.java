@@ -38,6 +38,8 @@ public class AlumnoBean implements Serializable {
 
 	private AlumnoContacto alumnoContacto = new AlumnoContacto();
 
+	private AlumnoDireccion alumnoDireccion = new AlumnoDireccion();
+
 	private List<Alumno> alumnoLista;
 
 	private List<Alumno> alumnoFiltro;
@@ -192,6 +194,30 @@ public class AlumnoBean implements Serializable {
 		return pagina;
 	}
 
+	public String insertAlumnoDireccion() {
+		String pagina = "indexAlumno";
+		alumnoDireccion.setAlumno(alumno);
+		alumnoDireccion.getAlumno().setId(sesionBean.getIdAlumno());
+		alumnoDireccion.getAlumno().setNumExpediente(sesionBean.getNumExpediente());
+		alumnoDireccion.setTerritorio1(territorioProvincia);
+		alumnoDireccion.setTerritorio2(territorioPais);
+		if (alumnoDAO.insertAlumnoDireccion(alumnoDireccion)) {
+			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"La direccion para el alumno con numero de expediente "
+							+ alumno.getNumExpediente() + " ha sido insertada",
+					null);
+			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+		} else {
+			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"ERROR: La direccion para el alumno con numero de expediente "
+							+ alumno.getNumExpediente()
+							+ " no se ha sido insertada", null);
+			FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+		}
+		return pagina;
+
+	}
+
 	// GETTERS Y SETTERS
 
 	public SesionBean getSesionBean() {
@@ -272,6 +298,14 @@ public class AlumnoBean implements Serializable {
 
 	public void setDireccionFiltro(List<AlumnoDireccion> direccionFiltro) {
 		this.direccionFiltro = direccionFiltro;
+	}
+
+	public AlumnoDireccion getAlumnoDireccion() {
+		return alumnoDireccion;
+	}
+
+	public void setAlumnoDireccion(AlumnoDireccion alumnoDireccion) {
+		this.alumnoDireccion = alumnoDireccion;
 	}
 
 }

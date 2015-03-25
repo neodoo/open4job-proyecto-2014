@@ -42,6 +42,7 @@ public class AlumnoSeguimientoBean implements Serializable {
 	private String observaciones;
 
 	private AlumnoSeguimiento seguimiento = new AlumnoSeguimiento();
+	private AlumnoSeguimiento seguimientoSeleccionado = new AlumnoSeguimiento();
 
 	@ManagedProperty(value = "#{sesionBean}")
 	private SesionBean sesionBean;
@@ -130,7 +131,6 @@ public class AlumnoSeguimientoBean implements Serializable {
 	public void setSeguimiento(AlumnoSeguimiento seguimiento) {
 		this.seguimiento = seguimiento;
 	}
-
 
 	public void getDetalleAlumnoSeguimiento(int id) {
 		seguimiento = alumnoSeguimientoDAOInterfaz.getDetalleAlumnoSeguimiento(id);

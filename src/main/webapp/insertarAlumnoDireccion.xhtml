@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+
+	<ui:composition template="/template/common/commonLayout.xhtml">
+
+		<ui:define name="content">
+			<h:form>
+				<p:panelGrid columns="2">
+					<f:facet name="header">
+						<p:outputLabel value="#{etqAlm['titulo.insertarAlumnoDireccion']}" />
+					</f:facet>
+					<p:outputLabel id="etiquetaNumExpediente"
+						value="#{etqAlm['etiquetas.numExpediente']}" />
+					<p:inputText value="#{sesionBean.numExpediente}"
+						disabled="true">
+					</p:inputText>
+
+					<p:selectOneMenu value="#{alumnoBean.territorioPais.codigo}">
+						<f:selectItem itemLabel="#{etqAlm['etiquetas.pais']}" itemValue="" />
+						<f:selectItems value="#{combosAlumnoBean.paisItem}" />
+					</p:selectOneMenu>
+
+					<p:selectOneMenu value="#{alumnoBean.territorioProvincia.codigo}">
+						<f:selectItem itemLabel="#{etqAlm['etiquetas.provincia']}"
+							itemValue="" />
+						<f:selectItems value="#{combosAlumnoBean.provinciaItem}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel id="etiquetaLocalidad"
+						value="#{etqAlm['etiquetas.localidad']}" />
+					<p:inputText value="#{alumnoBean.alumnoDireccion.localidad}">
+					</p:inputText>
+
+					<p:outputLabel id="etiquetaCodigoPostal"
+						value="#{etqAlm['etiquetas.codigoPostal']}" />
+					<p:inputText value="#{alumnoBean.alumnoDireccion.codigoPostal}">
+					</p:inputText>
+
+					<p:outputLabel id="etiquetaDomicilio"
+						value="#{etqAlm['etiquetas.domicilio']}" />
+					<p:inputText value="#{alumnoBean.alumnoDireccion.domicilio}">
+					</p:inputText>
+
+					<p:outputLabel id="etiquetaPrincipal"
+						value="#{etqAlm['etiquetas.principal']}" />
+					<p:selectOneRadio value="#{alumnoBean.alumnoDireccion.principal}">
+						<f:selectItem itemValue="1" itemLabel="#{etqAlm['etiquetas.si']}" />
+						<f:selectItem itemValue="0" itemLabel="#{etqAlm['etiquetas.no']}" />
+					</p:selectOneRadio>
+
+				</p:panelGrid>
+				<h:inputHidden id="numExpediente"
+					value="#{alumnoBean.alumno.numExpediente}"></h:inputHidden>
+				<h:inputHidden id="idAlumno" value="#{alumnoBean.alumno.id}"></h:inputHidden>
+				<p:commandButton value="Insertar direccion"
+					action="#{alumnoBean.insertAlumnoDireccion()}"></p:commandButton>
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>

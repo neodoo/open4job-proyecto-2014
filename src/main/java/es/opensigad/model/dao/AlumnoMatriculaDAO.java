@@ -187,7 +187,9 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 	public boolean modificarMatricula(int idAlumno, int cursoEscolar,
 			int idCentro, int idEnsenanza, String modulo, int curso,
 			int idMatricula) {
-
+		
+		boolean estado = false;
+		
 		try {
 
 			Alumno alumno = new Alumno();
@@ -213,18 +215,16 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 			logger.log(Level.INFO, "AlumnoMatriculaDAO.modificarMatricula: OK.");
 
-			return true;
+			estado = true;
 
 		} catch (Exception e) {
 
 			logger.log(Level.SEVERE,
 					"AlumnoMatriculaDAO.modificarMatricula: Fallo." + e.getMessage());
 
-		} finally {
-
 		}
 
-		return false;
+		return estado;
 
 	}
 
