@@ -3,7 +3,6 @@ package es.opensigad.controller;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -40,8 +39,9 @@ public class AlumnoSeguimientoBeanListado implements Serializable {
 	private int idMateria;
 	private String tipo;
 	private int justificante;
-
+	
 	private List<AlumnoSeguimiento> seguimientos;
+
 	private List<AlumnoSeguimiento> seguimientosFiltro;
 
 	@ManagedProperty(value = "#{sesionBean}")
@@ -135,5 +135,5 @@ public class AlumnoSeguimientoBeanListado implements Serializable {
 	public void getListaAlumnoSeguimiento(int idMatricula) {
 		seguimientos = alumnoSeguimientoDAOInterfaz.getListaAlumnoSeguimiento(idMatricula);
 	}
-
-}
+	
+}	
