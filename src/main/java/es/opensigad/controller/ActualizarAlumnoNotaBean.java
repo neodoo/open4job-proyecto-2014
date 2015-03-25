@@ -2,23 +2,47 @@ package es.opensigad.controller;
 
 import java.io.Serializable;
 
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.CellEditEvent;
+import org.primefaces.event.RowEditEvent;
 
 import es.opensigad.model.dao.AlumnoNotaDAO;
+import es.opensigad.model.dao.AlumnoNotaDAOInterfaz;
 import es.opensigad.model.vo.AlumnoMatricula;
+import es.opensigad.model.vo.AlumnoNota;
 import es.opensigad.model.vo.EnsenanzaMateria;
 
 @ManagedBean
 @RequestScoped
 public class ActualizarAlumnoNotaBean implements Serializable {
+	
+	@EJB
+	private AlumnoNotaDAOInterfaz alumnoNotaDAO=null;
+	
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private AlumnoMatricula alumnoMatricula = new AlumnoMatricula();
 	private EnsenanzaMateria ensenanzaMateria = new EnsenanzaMateria();
-	private int evaluacion;
+	private String evaluacion;
 	private String nota;
 	private String observacion;
+	
+	@ManagedProperty(value = "#{sesionBean}")
+	private SesionBean sesionBean;
+
+	public SesionBean getSesionBean() {
+		return sesionBean;
+	}
+
+	public void setSesionBean(SesionBean sesionBean) {
+		this.sesionBean = sesionBean;
+	}
 	
 	public ActualizarAlumnoNotaBean() {
 
@@ -48,11 +72,12 @@ public class ActualizarAlumnoNotaBean implements Serializable {
 		this.ensenanzaMateria = ensenanzaMateria;
 	}
 
-	public int getEvaluacion() {
+
+	public String getEvaluacion() {
 		return evaluacion;
 	}
 
-	public void setEvaluacion(int evaluacion) {
+	public void setEvaluacion(String evaluacion) {
 		this.evaluacion = evaluacion;
 	}
 
@@ -72,15 +97,26 @@ public class ActualizarAlumnoNotaBean implements Serializable {
 		this.observacion = observacion;
 	}
 
-	public String actualizarNotaByIdMatricula(int id,int idAlumnoMatricula,int idMateria, String evaluacion,String nota, String observacion) {
-		String pagina=null;
-		AlumnoNotaDAO alumnoNotaDAO = new AlumnoNotaDAO();
-		if (alumnoNotaDAO.actualizarNotaByIdMatricula(id,idAlumnoMatricula, idMateria, evaluacion, nota,observacion)){
-			pagina = "actualizarAlumnoNotaExito";
-		}else{
-			pagina = "actualizarAlumnoNotaFallo";
-		}
-		return pagina;
-	}
-
+	 public String onRowEdit(RowEditEvent event) {
+	
+		 	AlumnoNota alumnoNota = (AlumnoNota) event.getObject();
+		 	
+			 	String pagina=null;
+	
+				if (alumnoNotaDAO.actualizarNotaByIdMatricula(alumnoNota.getId(), alumnoNota.getAlumnoMatricula().getId(),alumnoNota.getEnsenanzaMateria().getId(),alumnoNota.getEvaluacion(),alumnoNota.getNota(),alumnoNota.getObservacion())){
+					 FacesMessage msg = new FacesMessage("Nota Editada");
+				     FacesContext.getCurrentInstance().addMessage(null, msg);
+				}
+				
+				pagina = "verDetalleAlumnoNotaListado";
+				return pagina;
+	
+	
+	    }
+	     
+	    public void onRowCancel(RowEditEvent event) {
+	        FacesMessage msg = new FacesMessage("Edición cancelada");
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+	    }
+	
 }

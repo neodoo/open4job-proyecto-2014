@@ -15,7 +15,8 @@
 
 
 		<ui:define name="content">
-
+		<h:messages style="margin:8px;" />
+		<br />
 			<h:form id="form">
 
 				<p:dataTable id="tablaDeMatriculas" var="alumnoMatricula"
@@ -70,13 +71,16 @@
 
 					<p:column style="text-align: center" headerText="Detalle">
 						<p:commandButton
-							action="#{verAlumnoMatriculaFichaBean.getDetalleMatricula(verAlumnoMatriculaListadoBean.alumnoMatriculaSeleccionado.id)}"
+							action="#{verAlumnoMatriculaFichaBean.getDetalleMatricula()}"
 							icon="ui-icon-person" title="View">
 							<f:setPropertyActionListener value="#{alumnoMatricula}"
 								target="#{verAlumnoMatriculaListadoBean.alumnoMatriculaSeleccionado}" />
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
+				<p:commandButton
+									value="#{etqAlmMat['boton.insertarMatriculaAlumno']}"
+									action="insertarAlumnoMatricula"></p:commandButton>
 			</h:form>
 		</ui:define>
 

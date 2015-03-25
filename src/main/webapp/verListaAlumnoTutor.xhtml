@@ -15,8 +15,11 @@
 		<ui:define name="content">
 
 			<h:form>
+
 				<p:dataTable id="tablaDeTutores" var="tutor"
-					value="#{verTutorBean.alumnoTutorLista}">
+					value="#{verTutorBean.alumnoTutorLista}" widgetVar="tablaDeTutores"
+					emptyMessage="No hay alumnos con este criterio de filtrado"
+					paginator="true" rows="5" rowsPerPageTemplate="5,10,15">
 
 					<f:facet name="header">
 						<p:outputPanel>
@@ -25,80 +28,73 @@
 					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="id" />
-						</f:facet> 	
-						<a href="actualizarTutor.xhtml"> #{tutor.tutor.id}</a>
+						</f:facet>
+						<a href="actualizarTutor.xhtml"> #{tutor.id}</a>
 					</p:column>
 					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="#{etqAlm['etiquetas.nombre']}" />
 						</f:facet>
-             #{tutor.tutor.nombre}
-        </p:column>
+						#{tutor.tutor.nombre}
+					</p:column>
 					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="#{etqAlm['etiquetas.apellido1']}" />
 						</f:facet>
-             #{tutor.tutor.apellido1}
-        </p:column>
+						#{tutor.tutor.apellido1}
+					</p:column>
 					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="#{etqAlm['etiquetas.apellido2']}" />
 						</f:facet>
-            #{tutor.tutor.apellido2}
-        </p:column>
+						#{tutor.tutor.apellido2}
+					</p:column>
 					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="#{etqAlm['etiquetas.tipoDocumento']}" />
 						</f:facet>
-             #{tutor.tutor.tipoDocumento}
-        </p:column>
+						#{tutor.tutor.tipoDocumento}
+					</p:column>
 					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="#{etqAlm['etiquetas.documento']}" />
 						</f:facet>
-             #{tutor.tutor.documento}
-        </p:column>
+						#{tutor.tutor.documento}
+					</p:column>
 					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="#{etqAlm['etiquetas.fechaNacimiento']}" />
 						</f:facet>
-              #{tutor.tutor.fechaNacimiento}
-        </p:column>
+						#{tutor.tutor.fechaNacimiento}
+					</p:column>
 					<p:column>
 						<f:facet name="header">
 							<h:outputLabel value="#{etqAlm['etiquetas.sexo']}" />
 						</f:facet>
-             #{tutor.tutor.sexo}
-        </p:column>
+						#{tutor.tutor.sexo}
+					</p:column>
 					<p:column>
 						<f:facet name="header">
-							<h:outputLabel value="#{etqAlm['etiquetas.telefono']}" />
+							<h:outputLabel value="#{etqAlm['tipo.Telefono']}" />
 						</f:facet>
-             #{tutor.tutor.telefono}
-        </p:column>
-      			<f:facet name="footer">
+						#{tutor.tutor.telefono}
+					</p:column>
+					<f:facet name="footer">
 						<h:commandButton action="insertarTutor.xhtml"
-						value="Insertar Tutores" />
+							value="Insertar Tutores" />
 					</f:facet>
-					
-						
-				</p:dataTable>
+				
 
+					<p:column style="width:32px;text-align: center">
+						<h:commandButton action="#{verTutorBean.getDetalleTutor(verTutorBean.tutorSeleccionado.id)}" icon="ui-icon-person"
+							title="View">
+						<f:setPropertyActionListener value="#{tutor.tutor}"
+								target="#{verTutorBean.tutorSeleccionado}" />
+						</h:commandButton>
+					</p:column>
+				</p:dataTable>
 			</h:form>
 		</ui:define>
 	</ui:composition>
 </h:body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-

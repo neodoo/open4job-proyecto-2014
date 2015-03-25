@@ -5,10 +5,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 
 import es.opensigad.model.vo.Alumno;
@@ -38,7 +36,7 @@ public class TutorDAO implements TutorDAOInterface {
 	}
 
 	@Override
-	public List<Tutor> getListaTutor() {
+	public List<Tutor> getListaTutor(int idAlumno) {
 
 		List<Tutor> listAlumnoTutor = null;
 
@@ -54,8 +52,8 @@ public class TutorDAO implements TutorDAOInterface {
 
 			// Recuperamos el objeto relacion Alumno_tutor para recuperar todos
 			// los datos
-			Query q = em.createQuery("SELECT at FROM Tutor at");
-			
+			//Query q = em.createQuery("SELECT at FROM Tutor at");
+			Query q = em.createQuery("SELECT at FROM AlumnoTutor at WHERE at.alumno.id = "+ idAlumno);
 			listAlumnoTutor = q.getResultList();
 
 			//em.getTransaction().commit();
@@ -78,82 +76,27 @@ public class TutorDAO implements TutorDAOInterface {
 
 	}
 	
-	/*
+	
 	@Override
-	public List<AlumnoTutor> getListaAlumnoTutor() {
+	public List<AlumnoTutor> getListaAlumnoTutor(int idAlumno) {
 
 		List<AlumnoTutor> listAlumnoTutor = null;
 
-		//EntityManagerFactory emf = null;
-		//EntityManager em = null;
-
-		try {
-
-			//emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-			//em = emf.createEntityManager();
-
-			//em.getTransaction().begin();
-
-			// Recuperamos el objeto relacion Alumno_tutor para recuperar todos
-			// los datos
-			Query q = em.createQuery("SELECT at FROM AlumnoTutor at");
-			
-			listAlumnoTutor = q.getResultList();
-
-			//em.getTransaction().commit();
-
-			logger.log(Level.INFO, "TutorDAO.getListaTutor: OK.");
-
-		} catch (Exception e) {
-
-			//em.getTransaction().rollback();
-			logger.log(Level.SEVERE, "TutorDAO.getListaAlumnoTutor: " + e.getMessage());
-
-		} finally {
-
-			//try { em.close(); } catch (Exception e) { }
-			//try { emf.close(); } catch (Exception e) { }
-
-		}
-
-		return listAlumnoTutor;
-
-	}
-*/
-	@Override
-	public List<AlumnoTutor> getListaAlumnoTutor() {
-
-		List<AlumnoTutor> listAlumnoTutor = null;
-
-		//EntityManagerFactory emf = null;
-		//EntityManager em = null;
-
+	
 		try {
 			
-			FacesContext context = FacesContext.getCurrentInstance();
-			int idAlumno= (int)context.getExternalContext().getSessionMap().get("idAlumno");
+			//FacesContext context = FacesContext.getCurrentInstance();
+			//int idAlumno= (int)context.getExternalContext().getSessionMap().get("idAlumno");
 
-			//emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-			//em = emf.createEntityManager();
-
-			//em.getTransaction().begin();
-
+	        
 			// Recuperamos el objeto relacion Alumno_tutor para recuperar todos
 			// los datos
 			Query q = em.createQuery("SELECT at FROM AlumnoTutor at WHERE at.alumno.id = "
 				+ idAlumno);
 
-			// "SELECT at FROM es.opensigad.model.vo.AlumnoTutor as at "
-			// + "LEFT OUTER JOIN es.opensigad.model.vo.Tutor as t "
-			// + "ON at.tutor.id = t.id "
-			// + "WHERE at.alumno.id = " + idAlumno);
-			// = :varAlumno");
-
-			// q.setParameter("varAlumno", idAlumno);
 			listAlumnoTutor = q.getResultList();
 
-			//em.getTransaction().commit();
-
+	
 			logger.log(Level.INFO, "TutorDAO.getListaTutor: OK.");
 
 		} catch (Exception e) {
@@ -163,9 +106,7 @@ public class TutorDAO implements TutorDAOInterface {
 
 		} finally {
 
-			//try { em.close(); } catch (Exception e) { }
-			//try { emf.close(); } catch (Exception e) { }
-
+	
 		}
 
 		return listAlumnoTutor;
@@ -177,18 +118,11 @@ public class TutorDAO implements TutorDAOInterface {
 
 		boolean estado = false;
 		
-		//EntityManagerFactory emf = null;
-		//EntityManager em = null;
-
 		try {
 
-			//emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-			//em = emf.createEntityManager();
-
-			//em.getTransaction().begin();
-
+	
 			AlumnoTutor alumnoTutor; //= new AlumnoTutor();
-			//alumnoTutor.setId(idAlumnoTutor);
+
 			alumnoTutor=em.find(AlumnoTutor.class, idAlumnoTutor);
 			
 			em.remove(alumnoTutor);
@@ -367,11 +301,11 @@ public class TutorDAO implements TutorDAOInterface {
 
 			// Recuperamos los datos de l tabla tutor con el id que nos llega
 			Query q = em
-					.createQuery("SELECT t FROM Tutor t WHERE t.tutor.id = "
+					.createQuery("SELECT t FROM Tutor t WHERE t.id = "
 							+ idTutor); // WHERE t.tutor.id =
 										// :varTutor");
 			// q.setParameter("varTutor", idTutor);
-			
+					
 			tutor = (Tutor) q.getSingleResult();
 
 			logger.log(Level.INFO, "TutorDAO.getDetalleTutor: OK.");

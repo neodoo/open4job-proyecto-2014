@@ -1,16 +1,16 @@
 package es.opensigad.controller;
+import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-
-import org.primefaces.component.api.UIData;
-import org.primefaces.event.SelectEvent;
-import org.primefaces.event.UnselectEvent;
 
 import es.opensigad.model.dao.TutorDAOInterface;
 import es.opensigad.model.vo.AlumnoTutor;
@@ -18,11 +18,13 @@ import es.opensigad.model.vo.Tutor;
 
 
 @ManagedBean
-@RequestScoped
-public class VerTutorBean {
+@SessionScoped
+public class VerTutorBean implements Serializable {
 	
 	@EJB
 	private TutorDAOInterface tutorDAOInterface =null;
+	
+	private static final long serialVersionUID = 1L;
 	
 	public TutorDAOInterface getTutorDAOInterface() {
 		return tutorDAOInterface;
@@ -36,14 +38,42 @@ public class VerTutorBean {
 
 	private int idAlumno;
 
-	private Tutor tutor;
+	private Tutor tutor= new Tutor();
+	
+	private Tutor tutorSeleccionado = new Tutor();
+	
+	public Tutor getTutorSeleccionado() {
+		return tutorSeleccionado;
+	}
+
+	public void setTutorSeleccionado(Tutor tutorSeleccionado) {
+		this.tutorSeleccionado = tutorSeleccionado;
+	}
 
 	private List<Tutor> tutorLista;
 		
 	private List<AlumnoTutor> alumnoTutorLista;
+
+	@PostConstruct
+	public void init(){
+		getListaAlumnoTutor();
+	}
 	
+		
+	@ManagedProperty(value="#{sesionBean}")
+	private SesionBean sesionBean;
 	
+	public VerTutorBean() {
+	}
 	
+	public SesionBean getSesionBean() {
+		return sesionBean;
+	}
+
+	public void setSesionBean(SesionBean sesionBean) {
+		this.sesionBean = sesionBean;
+	}
+
 	public List<AlumnoTutor> getAlumnoTutorLista() {
 		return alumnoTutorLista;
 	}
@@ -84,29 +114,48 @@ public class VerTutorBean {
 		this.tutor = tutor;
 	}
 
+	public void getListaAlumnoTutor() {
+		
+		//alumnoTutorLista = tutorDAOInterface.getListaAlumnoTutor(sesionBean.getIdAlumno());
+		tutorLista = tutorDAOInterface.getListaTutor(sesionBean.getIdAlumno());
+	}
 	
-	/*
-	public String getDetalleTutor(int idTutor) {
+	
+	public String getListaTutor() {
+		
+		String pagina = "verListaAlumnoTutor.xhtml";
+		
+		sesionBean.setIdAlumno(idAlumno);
+		
+		alumnoTutorLista = tutorDAOInterface.getListaAlumnoTutor(sesionBean.getIdAlumno());
+		return pagina;
+	}
+	
 
-		String pagina = "verTutoresPorAlumno";
+	
+	public String getDetalleTutor(int numExpediente) {
 
-		//TutorDAO tutorDAO = new TutorDAO();
-		tutor = tutorDAOInterface.getDetalleTutor(idTutor);
+		String pagina = "verTutorFicha.xhtml";
+		
+		
+		tutor = tutorDAOInterface.getDetalleTutor(numExpediente);
+
+		if (tutor != null) {
+			sesionBean.setIdTutor(tutor.getId());
+			return pagina;
+		}
+
+		pagina = "indexAlumnoTutor.xhtml";
+		FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
+				"El tutor con el id " + numExpediente
+						+ " no existe", null);
+		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+		
 		
 		return pagina;
 
 	}
-	*/
-	public  String getListaTutor() {
-		
-		String pagina = "verListaAlumnoTutor";
-		
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.getExternalContext().getSessionMap().put("idAlumno", idAlumno);
-		//TutorDAO tutorDAO = new TutorDAO();
-		alumnoTutorLista = tutorDAOInterface.getListaAlumnoTutor();
-		
-		return pagina;
-
-	}
+	
+	
+	
 }

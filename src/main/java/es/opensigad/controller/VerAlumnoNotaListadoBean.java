@@ -3,6 +3,7 @@ package es.opensigad.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -26,7 +27,11 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 	private AlumnoNotaDAOInterfaz alumnoNotaDAO = null;
 
 	private AlumnoNota selectedAlumnoNota;
-
+	
+	@PostConstruct
+	public void init(){
+		getDetalleNotasAlumno();
+	}
 	@ManagedProperty(value = "#{sesionBean}")
 	private SesionBean sesionBean;
 
@@ -71,9 +76,11 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 	public int getIdFila() {
 		return idFila;
 	}
+	
 	public void setIdFila(int idFila) {
 		this.idFila = idFila;
 	}
+	
 	public List<AlumnoNota> getAlumnoNotas() {
 		return alumnoNotas;
 	}
@@ -82,8 +89,7 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 		this.alumnoNotas = alumnNotas;
 	}
 
-	public String getDetalleNotasAlumno(int id) {
-		sesionBean.setIdMatricula(id);
+	public String getDetalleNotasAlumno() {
 		String pagina = "verAlumnoNotaListado";
 		alumnoNotas = alumnoNotaDAO.getNotasByIdMatricula(sesionBean.getIdMatricula());
 
@@ -91,10 +97,10 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 
 	}
 	
-	public String getDetalleFilaNotasAlumno(int id,int idFila) {
+	public String getDetalleFilaNotasAlumno(int idFila) {
 
 		String pagina = "verDetalleAlumnoNotaListado";
-		alumnoNotas = alumnoNotaDAO.getDetalleNotasByIdMatricula(id, idFila);
+		alumnoNotas = alumnoNotaDAO.getDetalleNotasByIdMatricula(sesionBean.getIdMatricula(), idFila);
 		return pagina;
 
 	}
