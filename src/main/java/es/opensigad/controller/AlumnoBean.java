@@ -38,6 +38,8 @@ public class AlumnoBean implements Serializable {
 
 	private AlumnoContacto alumnoContacto = new AlumnoContacto();
 
+	private List<AlumnoContacto> alumnoContactoLista;
+	
 	private AlumnoDireccion alumnoDireccion = new AlumnoDireccion();
 
 	private List<Alumno> alumnoLista;
@@ -72,6 +74,7 @@ public class AlumnoBean implements Serializable {
 			setTerritorioProvincia(alumno.getTerritorio1());
 			sesionBean.setIdAlumno(alumno.getId());
 			getListDirecciones();
+			getListAlumnoContacto();
 			return pagina;
 		}
 
@@ -89,12 +92,19 @@ public class AlumnoBean implements Serializable {
 		alumnoLista = alumnoDAO.getListAlumno();
 	}
 
+	
+	
 	public void getListDirecciones() {
 
 		direccionLista = alumnoDAO.getListAlumnoDireccion(sesionBean
 				.getIdAlumno());
 	}
 
+	public void getListAlumnoContacto(){
+		
+		alumnoContactoLista=alumnoDAO.getListAlumnoContacto(sesionBean.getIdAlumno());
+	}
+	
 	public String modifyAlumno() {
 
 		String pagina = "indexAlumno";
@@ -308,4 +318,14 @@ public class AlumnoBean implements Serializable {
 		this.alumnoDireccion = alumnoDireccion;
 	}
 
+	public List<AlumnoContacto> getAlumnoContactoLista() {
+		return alumnoContactoLista;
+	}
+
+	public void setAlumnoContactoLista(List<AlumnoContacto> alumnoContactoLista) {
+		this.alumnoContactoLista = alumnoContactoLista;
+	}
+
+
+	
 }
