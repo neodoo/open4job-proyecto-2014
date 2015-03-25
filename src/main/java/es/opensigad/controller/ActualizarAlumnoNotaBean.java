@@ -103,7 +103,7 @@ public class ActualizarAlumnoNotaBean implements Serializable {
 		 	
 			 	String pagina=null;
 	
-				if (alumnoNotaDAO.actualizarNotaByIdMatricula(alumnoNota.getId(), alumnoNota.getAlumnoMatricula().getId(),alumnoNota.getEnsenanzaMateria().getId(),alumnoNota.getEvaluacion(),alumnoNota.getNota(),alumnoNota.getObservacion())){
+				if (alumnoNotaDAO.actualizarNotaByIdMatricula(sesionBean.getIdFilaNota(), alumnoNota.getAlumnoMatricula().getId(),alumnoNota.getEnsenanzaMateria().getId(),alumnoNota.getEvaluacion(),alumnoNota.getNota(),alumnoNota.getObservacion())){
 					 FacesMessage msg = new FacesMessage("Nota Editada");
 				     FacesContext.getCurrentInstance().addMessage(null, msg);
 				}
