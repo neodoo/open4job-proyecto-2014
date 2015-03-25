@@ -252,7 +252,8 @@ public class AlumnoDAO implements AlumnoDAOInterfaz {
 
 		try {
 
-			Query q = entityManager.createQuery("from AlumnoContacto a");
+			Query q = entityManager.createQuery("from AlumnoContacto a WHERE a.alumno.id = ?1");
+			q.setParameter(1,idAlumno);
 			alumnoContactoList = q.getResultList();
 
 			logger.log(Level.INFO, "AlumnoDAO.getListAlumnoContacto: OK.");

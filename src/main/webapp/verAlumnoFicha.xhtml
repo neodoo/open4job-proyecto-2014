@@ -20,6 +20,30 @@
 
 			<h:messages style="margin:8px;" />
 			<h:form>
+			
+						<p:toolbar>
+					<f:facet name="left">
+						<p:commandButton value="#{etqAlm['etiquetas.modificar']}"
+							action="#{alumnoBean.modifyAlumformno()}" />
+						<p:commandButton value="#{etqAlm['etiquetas.borrar']}"
+							action="#{alumnoBean.deleteAlumno()}" />
+						<span class="ui-separator"> <span
+							class="ui-icon ui-icon-grip-dotted-vertical" />
+						</span>
+
+						<p:commandButton value="Mostrar Tutores"
+							action="#{verTutorBean.getListaTutor()}" />
+						<p:commandButton value="Mostrar Matriculas"
+							action="#{verAlumnoMatriculaListadoBean.getListaMatriculaId()}" />
+						<span class="ui-separator"> <span
+							class="ui-icon ui-icon-grip-dotted-vertical" />
+						</span>
+
+						<p:commandButton value="#{etqAlm['etiquetas.volverLista']}"
+							action="verAlumnoLista.xhtml" />
+					</f:facet>
+				</p:toolbar>
+			
 				<p:panelGrid columns="4">
 
 					<p:outputLabel for="etiquetaNumExpediente"
@@ -95,26 +119,10 @@
 					<p:inputText id="etiquetaImagen"
 						value="#{alumnoBean.alumno.imagen}" />
 
-					<p:commandButton value="#{etqAlm['etiquetas.modificar']}"
-						action="#{alumnoBean.modifyAlumno()}" />
+					
 				</p:panelGrid>
 			</h:form>
 			<h:form>
-				<p:commandButton value="Insertar Direccion"
-					action="insertarAlumnoDireccion" />
-				<p:commandButton value="Insertar Contacto"
-					action="insertarAlumnoContacto" />
-				<p:commandButton value="Modificar Contacto"
-					action="actualizarAlumnoContacto" />
-				<p:commandButton value="#{etqAlm['etiquetas.borrar']}"
-					action="#{alumnoBean.deleteAlumno()}" />
-				<p:commandButton value="Mostrar Tutores"
-					action="#{verTutorBean.getListaTutor()}" />
-				<p:commandButton value="Mostrar Matriculas"
-					action="#{verAlumnoMatriculaListadoBean.getListaMatriculaId()}" />
-				<p:commandButton value="#{etqAlm['etiquetas.volverLista']}"
-					action="verAlumnoLista.xhtml" />
-			</h:form>
 			<p:dataTable id="tablaDeDirecciones" var="direcciones"
 					value="#{alumnoBean.direccionLista}" widgetVar="tablaDeDirecciones"
 					emptyMessage="No hay direcciones con este criterio de filtrado"
@@ -181,6 +189,53 @@
 					</p:column>
 
 				</p:dataTable>
+				</h:form>
+				
+			
+			<h:form>
+				
+				<p:dataTable id="tablaAlumnosContacto" var="alumnoContacto"
+					value="#{alumnoBean.alumnoContactoLista}">
+					
+					<f:facet name="header">Contactos</f:facet>
+					<p:column headerText="tipo">
+					
+								<h:outputText value="#{alumnoContacto.tipo}" />
+							
+					</p:column>
+
+					<p:column headerText="contacto">
+						
+								<h:outputText value="#{alumnoContacto.contacto}"/>
+							
+					</p:column>
+
+					<p:column headerText="expediente">
+						<h:outputText value="#{alumnoContacto.alumno.numExpediente}"  />
+					</p:column>
+
+					<p:column headerText="principal">
+						
+								<h:outputText value="#{alumnoContacto.principal}" />
+							
+					</p:column>
+
+
+				</p:dataTable>
+				
+				
+			</h:form>
+
+				<h:form>
+				<p:commandButton value="Insertar Contacto"
+					action="insertarAlumnoContacto" />
+				<p:commandButton value="Modificar Contacto"
+					action="actualizarAlumnoContacto" />
+			</h:form>
+				
+				
+				
+				
 		</ui:define>
 
 	</ui:composition>
