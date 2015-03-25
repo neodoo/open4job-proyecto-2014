@@ -100,6 +100,8 @@
 				</p:panelGrid>
 			</h:form>
 			<h:form>
+				<p:commandButton value="Insertar Direccion"
+					action="insertarAlumnoDireccion" />
 				<p:commandButton value="Insertar Contacto"
 					action="insertarAlumnoContacto" />
 				<p:commandButton value="Modificar Contacto"
@@ -154,12 +156,12 @@
 					</p:column>
 
 					<p:column id="te1Col" filterBy="#{direcciones.territorio1.descripcion}" 
-						headerText="#{etqAlm['etiquetas.territorio1']}" filterMatchMode="startsWith">
+						headerText="#{etqAlm['etiquetas.provincia']}" filterMatchMode="startsWith">
 						<h:outputText value="#{direcciones.territorio1.descripcion}" />
 					</p:column>
 
 					<p:column style="text-align: center" id="sexCol"
-						filterBy="#{direcciones.territorio2.descripcion}" headerText="#{etqAlm['etiquetas.territorio2']}"
+						filterBy="#{direcciones.territorio2.descripcion}" headerText="#{etqAlm['etiquetas.pais']}"
 						filterMatchMode="startsWith">
 						<h:outputText value="#{direcciones.territorio2.descripcion}" />
 					</p:column>

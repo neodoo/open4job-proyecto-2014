@@ -13,7 +13,7 @@ public interface TutorDAOInterface {
 	
 
 	// Recoge un idAlumno y devuelve los tutores asignados a ese alumno
-	public List<Tutor> getListaTutor();
+	public List<Tutor> getListaTutor(int idAlumno);
 
 	// recibe 1 idtutor y devuelve ese tutor
 	public Tutor getDetalleTutor(int id);
@@ -30,6 +30,7 @@ public interface TutorDAOInterface {
 	
 	//Metodos despues de la addicion de ejb con jpa
 	
-	public List<AlumnoTutor> getListaAlumnoTutor();
+	public List<AlumnoTutor> getListaAlumnoTutor(int idAlumno);
 	
+	//public List<AlumnoTutor> getListaAlumnoTutor2();
 }

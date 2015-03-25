@@ -109,7 +109,6 @@
 
 	</dependencyManagement>
 
-
 	<dependencies>
 		<!-- Import the Common Annotations API (JSR-250), we use provided scope 
 			as the API is included in JBoss AS 7 -->
@@ -126,13 +125,6 @@
 			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
-<!--  		<dependency>
-			<groupId>org.jboss.jbossas</groupId>
-			<artifactId>jboss-as-client</artifactId>
-			<type>pom</type>
-			<version>5.1.0.GA</version>
-		</dependency> -->
 
 		<dependency>
 			<groupId>com.sun.faces</groupId>
@@ -202,6 +194,33 @@
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
+		</dependency>
+
+
+		<!-- JMS -->
+
+		<dependency>
+			<groupId>javax.jms</groupId>
+			<artifactId>javax.jms-api</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>javax.mail-api</artifactId>
+			<version>1.5.2</version>
 		</dependency>
 
 	</dependencies>

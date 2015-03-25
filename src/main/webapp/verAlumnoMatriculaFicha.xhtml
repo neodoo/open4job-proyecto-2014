@@ -15,7 +15,7 @@
 	<ui:composition template="/template/common/commonLayout.xhtml">
 
 		<ui:define name="content">
-
+			<h:messages style="margin:8px;" />
 			<h1><h:outputLabel value="#{etqAlmMat['titulo.fichaMatricula']}"/></h1>
 
 			<h:form>
@@ -64,8 +64,7 @@
 				<br />
 
 				<p:commandButton value="Actualizar"
-					action="#{actualizarAlumnoMatriculaBean.modificarMatricula(verAlumnoMatriculaFichaBean.matricula.alumno.id,verAlumnoMatriculaFichaBean.matricula.cursoEscolar,
-		 verAlumnoMatriculaFichaBean.matricula.centro.id,verAlumnoMatriculaFichaBean.matricula.ensenanza.id,verAlumnoMatriculaFichaBean.matricula.modulo, verAlumnoMatriculaFichaBean.matricula.curso,verAlumnoMatriculaFichaBean.idMatricula)}" />
+					action="#{actualizarAlumnoMatriculaBean.modificarMatricula(verAlumnoMatriculaFichaBean.matricula.cursoEscolar, verAlumnoMatriculaFichaBean.matricula.centro.id, verAlumnoMatriculaFichaBean.matricula.ensenanza.id, verAlumnoMatriculaFichaBean.matricula.modulo, verAlumnoMatriculaFichaBean.matricula.curso)}" />
 
 				<p:commandButton value="Eliminar"
 					action="#{eliminarAlumnoMatriculaBean.borrarMatricula()}"></p:commandButton>

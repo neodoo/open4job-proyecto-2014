@@ -16,31 +16,65 @@
 		<ui:define name="content">
 			<h:form id="form">
 				<p:growl id="msgs" showDetail="true" />
-				<p:dataTable id="tablaDeAlumnosNota" var="nota"
-					value="#{verAlumnoNotaListadoBean.alumnoNotas}">
+				<p:dataTable id="cars1" var="nota" value="#{verAlumnoNotaListadoBean.alumnoNotas}"
+					editable="true" style="margin-bottom:20px">
 					<f:facet name="header">
-            		Single with Row Click
-        			</f:facet>
-					<p:column id="enMatCol"
-						headerText="#{etqAlmNotas['titulo.idMateria']}"
-						filterMatchMode="exact">
-						<h:outputText value="#{nota.ensenanzaMateria.materia}" />
+           TABLA LAPIZ
+       </f:facet>
+
+					<p:ajax event="rowEdit" listener="#{actualizarAlumnoNotaBean.onRowEdit}"
+						update=":form:msgs" />
+					<p:ajax event="rowEditCancel" listener="#{actualizarAlumnoNotaBean.onRowCancel}"
+						update=":form:msgs" />
+
+					<p:column headerText="EnsenanzaMateria">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{nota.ensenanzaMateria.materia}" />
+							</f:facet>
+							<f:facet name="input">
+								<h:selectOneMenu value="#{nota.ensenanzaMateria.id}"
+									style="width:100%">
+									<f:selectItems value="#{combosAlumnoBean.getListEnsenanzaMateria()}"
+										var="ensenanzaMateria" itemLabel="#{ensenanzaMateria.materia}" itemValue="#{ensenanzaMateria.id}" />
+								</h:selectOneMenu>
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
 
-					<p:column id="notCol" headerText="#{etqAlmNotas['titulo.nota']}">
-						<h:outputText value="#{nota.nota}" />
-					</p:column>
-					<p:column id="idMatriculaCol" headerText="IDMatricula">
-						<h:outputText value="#{nota.alumnoMatricula.id}" />
-					</p:column>
-					<p:column id="evaCol"
-						headerText="#{etqAlmNotas['titulo.idEvaluacion']}">
-						<h:outputText value="#{nota.evaluacion}" />
+					<p:column headerText="Nota">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{nota.nota}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{nota.nota}" style="width:96%" label="Year" />
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
 
-					<p:column id="obserCol"
-						headerText="#{etqAlmNotas['titulo.observacion']}">
-						<h:outputText value="#{nota.observacion}" />
+					<p:column headerText="Evaluacion">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{nota.evaluacion}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{nota.evaluacion}" style="width:96%"
+									label="Year" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Observacion">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{nota.observacion}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{nota.observacion}" style="width:96%"
+									label="Year" />
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
 					<p:column id="action"
 						headerText="#{etqAlmNotas['titulo.eliminar']}">
@@ -48,7 +82,12 @@
 						<h:commandLink value="#{etqAlmNotas['titulo.eliminar']}"
 							action="#{eliminarAlumnoNotaBean.borrarNotaById(nota.id)}" />
 					</p:column>
+					<p:column style="width:32px">
+						<p:rowEditor />
+					</p:column>
 				</p:dataTable>
+
+
 			</h:form>
 		</ui:define>
 

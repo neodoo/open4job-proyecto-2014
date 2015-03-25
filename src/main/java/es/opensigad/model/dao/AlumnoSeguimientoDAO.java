@@ -4,27 +4,44 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.jms.JMSContext;
+import javax.jms.JMSDestinationDefinition;
+import javax.jms.JMSDestinationDefinitions;
+import javax.jms.ObjectMessage;
+import javax.jms.Queue;
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
 
 import es.opensigad.model.vo.AlumnoSeguimiento;
+import es.opensigad.model.vo.AlumnoSeguimientoDatosCorreo;
+
+/**
+ * Definition of the two JMS destinations used by the quickstart
+ * (one queue and one topic).
+ */
+@JMSDestinationDefinitions(
+        value =  {
+                @JMSDestinationDefinition(
+                        name = "java:/queue/NOTIFICACIONESCORREOMDBQueue",
+                        interfaceName = "javax.jms.Queue"
+                        //destinationName = "SeguimientoMDBQueue"
+                )
+        }
+)
+
 
 @Stateless
 public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
-
-	// public final static String ENTITY_MANAGER = "opensigadUnit";
-
-	public static final Logger logger = Logger
-			.getLogger(AlumnoSeguimientoDAO.class.getName());
+	
+	public static final Logger logger = Logger.getLogger(AlumnoSeguimientoDAO.class.getName());
 
 	@PersistenceContext(unitName = "opensigadUnit")
 	private EntityManager em;
-
-	// private EntityManagerFactory emf = null;
-	// private EntityManager em = null;
 
 	public EntityManager getEm() {
 		return em;
@@ -34,11 +51,17 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 		this.em = em;
 	}
 
-	// public AlumnoSeguimientoDAO() {
-	// emf = Persistence.createEntityManagerFactory(ENTITY_MANAGER);
-	// em = emf.createEntityManager();
-	// }
+	public AlumnoSeguimientoDAO() {
+		
+	}
 
+	@Inject
+	private JMSContext context;
+
+	@Resource(lookup = "java:/queue/NOTIFICACIONESCORREOMDBQueue")
+	private Queue queue;
+	
+	
 	// Listar seguimientos de un alumno
 	public List<AlumnoSeguimiento> getListaAlumnoSeguimiento(int idMatricula) {
 
@@ -46,9 +69,8 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 		try {
 
-			// em.getTransaction().begin();
-
-			String query = "SELECT alumnoSeguimiento FROM AlumnoSeguimiento alumnoSeguimiento "
+			String query = "SELECT alumnoSeguimiento "
+					+ " FROM AlumnoSeguimiento alumnoSeguimiento "
 					+ " WHERE alumnoSeguimiento.alumnoMatricula.id = :pidMatricula";
 
 			seguimientos = em.createQuery(query)
@@ -64,6 +86,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 							+ e.getMessage());
 
 		}
+		   System.out.println("2. Sent ObjectMessage to the Queue");
 
 		return seguimientos;
 
@@ -80,16 +103,15 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 					+ idSeguimiento;
 
 			seguimiento = (AlumnoSeguimiento) em.createQuery(query)
-					.getSingleResult();
-
+					.getSingleResult();			
+			
 			logger.log(Level.INFO,
 					"AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: OK.");
 
 		} catch (Exception e) {
+			
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: ERROR. " + e.getMessage());
 
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.getDetalleAlumnoSeguimiento: ERROR. "
-							+ e.getMessage());
 		}
 
 		return seguimiento;
@@ -103,18 +125,24 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 		try {
 
-			em.persist(alumnoSeguimiento);
+			//em.persist(alumnoSeguimiento);
 
 			id = alumnoSeguimiento.getId();
 
 			logger.log(Level.INFO,
 					"AlumnoSeguimientoDAO.insertarAlumnoSeguimiento: OK.");
+			
+			int idMatricula = 1;
+			AlumnoSeguimientoDatosCorreo asdc = this.obtenerDatosCorreo(idMatricula);
+			
+			ObjectMessage objMsg = context.createObjectMessage(asdc);
+			context.createProducer().send(queue, objMsg);
+		
+			logger.log(Level.INFO, "AlumnoSeguimientoDAO.insertarAlumnoSeguimiento: OK.");
 
 		} catch (Exception e) {
 
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.insertarAlumnoSeguimiento: ERROR. "
-							+ e.getMessage());
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.insertarAlumnoSeguimiento: ERROR. " + e.getMessage());
 		}
 
 		return id;
@@ -122,8 +150,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 	}
 
 	// Actualizar alumnos
-	public boolean actualizarAlumnoSeguimiento(
-			AlumnoSeguimiento alumnoSeguimiento) {
+	public boolean actualizarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento) {
 
 		boolean estado = false;
 
@@ -138,9 +165,7 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 		} catch (Exception e) {
 
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.actualizarAlumnoSeguimiento: ERROR. "
-							+ e.getMessage());
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.actualizarAlumnoSeguimiento: ERROR. " + e.getMessage());
 		}
 
 		return estado;
@@ -153,7 +178,6 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 		boolean estado = false;
 
 		try {
-
 			em.remove(em.merge(alumnoSeguimiento));
 
 			estado = true;
@@ -163,13 +187,29 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 
 		} catch (Exception e) {
 
-			logger.log(Level.SEVERE,
-					"AlumnoSeguimientoDAO.eliminarAlumnoSeguimiento: ERROR. "
-							+ e.getMessage());
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.eliminarAlumnoSeguimiento: ERROR. " + e.getMessage());
 		}
 
 		return estado;
 
+	}
+	
+	//@EJB
+	//private AlumnoDAO alumnoDAO;
+	
+	//@EJB
+	//private AlumnoMatriculaDAO alumnoMatriculaDAO;
+	
+	
+	public AlumnoSeguimientoDatosCorreo obtenerDatosCorreo (int idMatricula){
+
+		AlumnoSeguimientoDatosCorreo alumnoSeguimientoDatosCorreo = new AlumnoSeguimientoDatosCorreo();
+		
+		alumnoSeguimientoDatosCorreo.setAsunto("Asunto Correo");
+		alumnoSeguimientoDatosCorreo.setMensaje("Mensaje Correo");
+		alumnoSeguimientoDatosCorreo.setEmail("alg.pruebas@gmail.com");
+		
+		return alumnoSeguimientoDatosCorreo;
 	}
 
 	// Obtener datos correo

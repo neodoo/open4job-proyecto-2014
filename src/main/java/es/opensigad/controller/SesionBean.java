@@ -12,20 +12,13 @@ public class SesionBean {
 	private int idMatricula;
 	private int idSeguimiento;
 	private int idTutor;
-	private int idNota;
+	private int idFilaNota;
+
 	// GETTERS Y SETTERS
 	
 	
 	public int getIdMatricula() {
 		return idMatricula;
-	}
-
-	public int getIdNota() {
-		return idNota;
-	}
-
-	public void setIdNota(int idNota) {
-		this.idNota = idNota;
 	}
 
 	public void setIdMatricula(int idMatricula) {
@@ -62,6 +55,14 @@ public class SesionBean {
 
 	public void setIdTutor(int idTutor) {
 		this.idTutor = idTutor;
+	}
+
+	public int getIdFilaNota() {
+		return idFilaNota;
+	}
+
+	public void setIdFilaNota(int idFilaNota) {
+		this.idFilaNota = idFilaNota;
 	}
 	
 	
