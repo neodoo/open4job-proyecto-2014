@@ -42,6 +42,7 @@
 		<res-auth>Container</res-auth>
 	</resource-ref>
 
+
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>administrator</web-resource-name>
@@ -55,6 +56,7 @@
 			<role-name>ADMINISTRATOR</role-name>
 		</auth-constraint>
 	</security-constraint>
+	
 	<!--Defining security constraint for type of roles available -->
 
 	<!--Defining type of authenitcation mechanism -->
