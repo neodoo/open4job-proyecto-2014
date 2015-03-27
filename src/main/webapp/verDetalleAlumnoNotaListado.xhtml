@@ -19,7 +19,7 @@
 				<p:dataTable id="cars1" var="nota" value="#{verAlumnoNotaListadoBean.alumnoNotas}"
 					editable="true" style="margin-bottom:20px">
 					<f:facet name="header">
-           TABLA LAPIZ
+         #{etqAlmNotas['titulo.listadoDetalleNotas']}
        </f:facet>
 
 					<p:ajax event="rowEdit" listener="#{actualizarAlumnoNotaBean.onRowEdit}"

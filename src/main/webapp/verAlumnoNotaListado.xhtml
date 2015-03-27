@@ -18,11 +18,14 @@
 			<h:form id="form">
 				<p:growl id="msgs" showDetail="true" />
 				<p:dataTable id="tablaDeAlumnosNota" var="nota"
-					value="#{verAlumnoNotaListadoBean.alumnoNotas}">
+					value="#{verAlumnoNotaListadoBean.alumnoNotas}" rows="10"
+                    paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
 					<f:facet name="header">
-            		Single with Row Click
+            		#{etqAlmNotas['titulo.listadoNotas']}
         			</f:facet>
 					<p:column id="enMatCol"
+						filterBy="#{nota.ensenanzaMateria.materia}"
 						headerText="#{etqAlmNotas['titulo.idMateria']}"
 						filterMatchMode="exact">
 						<h:outputText value="#{nota.ensenanzaMateria.materia}" />
@@ -31,10 +34,8 @@
 					<p:column id="notCol" headerText="#{etqAlmNotas['titulo.nota']}">
 						<h:outputText value="#{nota.nota}" />
 					</p:column>
-					<p:column id="idMatriculaCol" headerText="IDMatricula">
-						<h:outputText value="#{nota.alumnoMatricula.id}" />
-					</p:column>
 					<p:column id="evaCol"
+						filterBy="#{nota.evaluacion}"
 						headerText="#{etqAlmNotas['titulo.idEvaluacion']}">
 						<h:outputText value="#{nota.evaluacion}" />
 					</p:column>

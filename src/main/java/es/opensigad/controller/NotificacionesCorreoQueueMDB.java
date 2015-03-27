@@ -65,7 +65,8 @@ public class NotificacionesCorreoQueueMDB implements MessageListener {
 			InternetAddress addressFrom = new InternetAddress(
 					"alg.pruebas@gmail.com");
 			message.setFrom(addressFrom);
-			// message.setFrom();
+			//message.setFrom();
+
 
 			InternetAddress addressRecipient = new InternetAddress(email);
 			message.addRecipient(javax.mail.Message.RecipientType.TO,
