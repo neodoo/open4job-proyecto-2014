@@ -15,10 +15,11 @@
 	<ui:composition template="/template/common/commonLayout.xhtml">
 		<ui:define name="content">
 			<h:form id="form">
-
 				<p:dataTable var="seg"
 					value="#{alumnoSeguimientoBeanListado.seguimientos}"
-					widgetVar="tablaSeguimientos" paginator="true" rows="5"
+					widgetVar="tablaSeguimientos" 
+					paginator="true" 
+					rows="5"
 					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 					rowsPerPageTemplate="5,10,15">
 
@@ -44,7 +45,7 @@
 						id="fecCol" 
 						filterBy="#{seg.fecha}"
 						headerText="#{etqAlmSeg['etiqueta.fecha']}"
-						filterMatchMode="exact" >
+						filterMatchMode="exact">
 						<h:outputText value="#{seg.fecha}" />
 					</p:column>
 
@@ -52,7 +53,7 @@
 						id="sesCol" 
 						filterBy="#{seg.sesion}"
 						headerText="#{etqAlmSeg['etiqueta.sesion']}"
-						filterMatchMode="exact" >
+						filterMatchMode="exact">
 						<h:outputText value="#{seg.sesion}" />
 					</p:column>
 
@@ -60,7 +61,7 @@
 						id="matCol" 
 						filterBy="#{seg.ensenanzaMateria.id}"
 						headerText="#{etqAlmSeg['etiqueta.materia']}"
-						filterMatchMode="exact" >
+						filterMatchMode="exact">
 						<h:outputText value="#{seg.ensenanzaMateria.id}" />
 					</p:column>
 
@@ -68,7 +69,7 @@
 						id="tipCol" 
 						filterBy="#{seg.tipo}"
 						headerText="#{etqAlmSeg['etiqueta.tipo']}" 
-						filterMatchMode="exact" >
+						filterMatchMode="exact">
 						<h:outputText value="#{seg.tipo}" />
 					</p:column>
 
@@ -76,20 +77,23 @@
 						id="jusCol" 
 						filterBy="#{seg.justificante}"
 						headerText="#{etqAlmSeg['etiqueta.justificante']}"
-						filterMatchMode="exact" >
+						filterMatchMode="exact">
 						<h:outputText value="#{seg.justificante}" />
 					</p:column>
 
-					<p:column style="text-align: center" headerText="Detalle" >
-						<p:commandButton 
-							action="#{alumnoBean.getDetalleAlumno(alumnoBean.alumnoSeleccionado.numExpediente)}"
-							icon="ui-icon-person" title="View">
+					<p:column 
+						style="text-align: center" 
+						headerText="Detalle">
+						<p:commandButton
+							icon="ui-icon-person" 
+							action="alumnoSeguimiento" 
+							title="View">
 							<f:setPropertyActionListener 
-								value="#{seg}"
-								target="#{alumnoBean.alumnoSeleccionado}" />
+								target="#{sesionBean.idSeguimiento}"
+								value="#{seg.id}" />
 						</p:commandButton>
 					</p:column>
-					
+
 				</p:dataTable>
 			</h:form>
 		</ui:define>
