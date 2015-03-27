@@ -58,3 +58,29 @@ Introducir en standalone.xml o standalone-full.xml en jboss:domain:security lo s
                         <share-prepared-statements>false</share-prepared-statements>
                     </statement>
     </datasource>
+    
+    
+    
+ ** Ejemplo de RESTEASY **
+    
+En el POM
+    
+    	<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>jsr311-api</artifactId>
+			<version>1.1.1</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		
+En el web.xml
+		
+		 <servlet>
+        <servlet-name>javax.ws.rs.core.Application</servlet-name>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>javax.ws.rs.core.Application</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
