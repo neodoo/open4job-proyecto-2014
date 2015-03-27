@@ -3,6 +3,7 @@ package es.opensigad.controller;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -10,7 +11,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import es.opensigad.model.dao.AlumnoSeguimientoDAOInterfaz;
-import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.AlumnoSeguimiento;
 
 @ManagedBean
@@ -136,7 +136,6 @@ public class AlumnoSeguimientoBeanListado implements Serializable {
 	public void getListaAlumnoSeguimiento(int idMatricula) {
 		seguimientos = alumnoSeguimientoDAOInterfaz.getListaAlumnoSeguimiento(idMatricula);
 	}
-	
 
 	//metodos llamada al listado desde la JSF de matriculas
 	
@@ -155,5 +154,4 @@ public class AlumnoSeguimientoBeanListado implements Serializable {
 
 }
 
-	
 

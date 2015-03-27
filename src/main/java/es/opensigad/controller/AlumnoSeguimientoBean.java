@@ -42,15 +42,16 @@ public class AlumnoSeguimientoBean implements Serializable {
 	private String observaciones;
 
 	private AlumnoSeguimiento seguimiento = new AlumnoSeguimiento();
-	private AlumnoSeguimiento seguimientoSeleccionado = new AlumnoSeguimiento();
 
 	@ManagedProperty(value = "#{sesionBean}")
 	private SesionBean sesionBean;
 
+	/*
 	@PostConstruct
 	public void init() {
 		getDetalleAlumnoSeguimiento(sesionBean.getIdSeguimiento());
 	}
+	*/
 	
 	public SesionBean getSesionBean() {
 		return sesionBean;

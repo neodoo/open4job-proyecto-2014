@@ -12,6 +12,8 @@
 
 <h:body>
 
+	<f:event type="preRenderView" listener="#{alumnoSeguimientoBean.getDetalleAlumnoSeguimiento(sesionBean.getIdSeguimiento())}"  />
+
 	<h1>
 		<h:outputLabel id="tituloFichaSeguimiento" value="#{etqAlmSeg['titulo.fichaSeguimiento']}" />
 	</h1>

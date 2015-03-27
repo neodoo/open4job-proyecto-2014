@@ -122,17 +122,16 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 	public int insertarAlumnoSeguimiento(AlumnoSeguimiento alumnoSeguimiento) {
 
 		int id = 0;
-
+		int idMatricula = 0;
+		
 		try {
 
-			//em.persist(alumnoSeguimiento);
+			idMatricula = alumnoSeguimiento.getAlumnoMatricula().getId();
+			
+			em.persist(alumnoSeguimiento);
 
 			id = alumnoSeguimiento.getId();
-
-			logger.log(Level.INFO,
-					"AlumnoSeguimientoDAO.insertarAlumnoSeguimiento: OK.");
 			
-			int idMatricula = 1;
 			AlumnoSeguimientoDatosCorreo asdc = this.obtenerDatosCorreo(idMatricula);
 			
 			ObjectMessage objMsg = context.createObjectMessage(asdc);
@@ -203,13 +202,29 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 	
 	public AlumnoSeguimientoDatosCorreo obtenerDatosCorreo (int idMatricula){
 
+		String dirCorreo;
+		
 		AlumnoSeguimientoDatosCorreo alumnoSeguimientoDatosCorreo = new AlumnoSeguimientoDatosCorreo();
-		
-		alumnoSeguimientoDatosCorreo.setAsunto("Asunto Correo");
-		alumnoSeguimientoDatosCorreo.setMensaje("Mensaje Correo");
-		alumnoSeguimientoDatosCorreo.setEmail("alg.pruebas@gmail.com");
-		
+
+		try {
+			
+			dirCorreo = this.getContactoCorreoAlumnoSeguimiento(idMatricula);
+			
+			alumnoSeguimientoDatosCorreo.setAsunto("Asunto Correo");
+			alumnoSeguimientoDatosCorreo.setMensaje("Mensaje Correo");
+			alumnoSeguimientoDatosCorreo.setEmail(dirCorreo);
+			
+			
+			logger.log(Level.INFO,
+					"AlumnoSeguimientoDAO.obtenerDatosCorreo: OK.");
+
+		} catch (Exception e) {
+
+			logger.log(Level.SEVERE, "AlumnoSeguimientoDAO.obtenerDatosCorreo: ERROR. " + e.getMessage());
+		}
+
 		return alumnoSeguimientoDatosCorreo;
+		
 	}
 
 	// Obtener datos correo
@@ -232,11 +247,11 @@ public class AlumnoSeguimientoDAO implements AlumnoSeguimientoDAOInterfaz {
 			*/
 			
 			StoredProcedureQuery spq = em.createStoredProcedureQuery("ContactoCorreoAlumnoSeguimiento");
-			spq.registerStoredProcedureParameter("id_matricula", Integer.class, ParameterMode.IN);
-			spq.registerStoredProcedureParameter("contacto", String.class, ParameterMode.OUT);
-
+			spq.registerStoredProcedureParameter(0, Integer.class, ParameterMode.IN);
+			spq.registerStoredProcedureParameter(1, String.class, ParameterMode.OUT);
+			spq.setParameter(0, idMatricula);
 			spq.execute();
-			contacto = (String) spq.getOutputParameterValue("contacto");
+			contacto = (String) spq.getOutputParameterValue(1);
 			
 			logger.log(Level.INFO,
 					"AlumnoSeguimientoDAO.getContactoCorreoAlumnoSeguimiento: OK.");
