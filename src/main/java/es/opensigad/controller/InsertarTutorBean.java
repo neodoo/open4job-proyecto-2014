@@ -3,10 +3,13 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import es.opensigad.model.dao.TutorDAO;
+import es.opensigad.model.dao.TutorDAOInterface;
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoTutor;
 
@@ -15,10 +18,11 @@ import es.opensigad.model.vo.AlumnoTutor;
 @SessionScoped
 public class InsertarTutorBean implements Serializable{
 
+	@EJB
+	private TutorDAOInterface tutorDAOInterface = null;
 	
 	private static final long serialVersionUID = 1L;
 	
-	private Alumno alumno = new Alumno();
 	private int idTutor;
 	private String nombre;
 	private String apellido1;
@@ -30,14 +34,18 @@ public class InsertarTutorBean implements Serializable{
 	private String sexo;
 	private String tlf;
 	private String email;
-
 	
-	public Alumno getAlumno() {
-		return alumno;
+	@ManagedProperty(value = "#{sesionBean}")
+	private SesionBean sesionBean;
+	
+	//GETTERS Y SETTERS
+	
+	public TutorDAOInterface getTutorDAOInterface() {
+		return tutorDAOInterface;
 	}
 
-	public void setAlumno(Alumno alumno) {
-		this.alumno = alumno;
+	public void setTutorDAOInterface(TutorDAOInterface tutorDAOInterface) {
+		this.tutorDAOInterface = tutorDAOInterface;
 	}
 
 	public int getIdTutor() {
@@ -127,15 +135,23 @@ public class InsertarTutorBean implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	
-	public String insertarTutor(int id, String nombre, String apellido1, String apellido2, String tipoDocumento, String documento, Date fechaNac, String parentesco, String sexo, String tlf, String email) {
+	public SesionBean getSesionBean() {
+		return sesionBean;
+	}
+
+	public void setSesionBean(SesionBean sesionBean) {
+		this.sesionBean = sesionBean;
+	}
+	
+	
+
+	public String insertarTutor(String nombre, String apellido1, String apellido2, String tipoDocumento, String documento, Date fechaNac, String parentesco, String sexo, String tlf, String email) {
 		
 		String pagina = null;
-		TutorDAO tutorDAO = new TutorDAO();
+		//TutorDAO tutorDAO = new TutorDAO();
 		
-		
-		if(tutorDAO.insertarTutor(id, nombre, apellido1, apellido2, tipoDocumento, documento, fechaNac, parentesco, sexo, tlf, email))
+		if(tutorDAOInterface.insertarTutor(sesionBean.getIdAlumno(), nombre, apellido1, apellido2, tipoDocumento, documento, fechaNac, parentesco, sexo, tlf, email))
 			pagina = "insertarTutorExito.xhtml";
 		else
 			pagina = "insertarTutorFallo.xhtml";

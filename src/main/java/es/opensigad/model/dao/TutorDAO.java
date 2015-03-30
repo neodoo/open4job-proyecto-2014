@@ -89,11 +89,17 @@ public class TutorDAO implements TutorDAOInterface {
 	
 	// borra 1 tutor con el idTutor recibido
 	@Override
-	public boolean deleteAlumnoTutor(int idAlumnoTutor) {
+	public boolean deleteAlumnoTutor(int idAlumno,int idTutor) {
 
 		boolean estado = false;
+		int idAlumnoTutor;
+		
 		
 		try {
+			
+			Query q = em.createQuery("SELECT at.id FROM AlumnoTutor at WHERE at.alumno.id= " + idAlumno+ " AND at.tutor.id= "+ idTutor);
+			idAlumnoTutor= (int)q.getSingleResult();
+
 			AlumnoTutor alumnoTutor; 
 			alumnoTutor=em.find(AlumnoTutor.class, idAlumnoTutor);
 			
