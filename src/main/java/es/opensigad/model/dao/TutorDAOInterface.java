@@ -32,5 +32,7 @@ public interface TutorDAOInterface {
 	
 	public List<AlumnoTutor> getListaAlumnoTutor(int idAlumno);
 	
-	//public List<AlumnoTutor> getListaAlumnoTutor2();
+	//Devuelve el parentesco entre 2 ids
+	
+	public String getParentesco(int idAlumno, int idTutor);
 }
