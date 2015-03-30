@@ -5,11 +5,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
-import javax.faces.bean.ManagedProperty;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import es.opensigad.controller.SesionBean;
 import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.AlumnoNota;
 import es.opensigad.model.vo.EnsenanzaMateria;
