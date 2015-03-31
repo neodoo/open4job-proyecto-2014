@@ -1,5 +1,6 @@
 package es.opensigad.controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.ejb.EJB;
@@ -97,7 +98,7 @@ public class ActualizarAlumnoNotaBean implements Serializable {
 		this.observacion = observacion;
 	}
 
-	 public String onRowEdit(RowEditEvent event) {
+	 public void onRowEdit(RowEditEvent event) throws IOException {
 	
 		 	AlumnoNota alumnoNota = (AlumnoNota) event.getObject();
 		 	
@@ -106,12 +107,9 @@ public class ActualizarAlumnoNotaBean implements Serializable {
 				if (alumnoNotaDAO.actualizarNotaByIdMatricula(sesionBean.getIdFilaNota(), alumnoNota.getAlumnoMatricula().getId(),alumnoNota.getEnsenanzaMateria().getId(),alumnoNota.getEvaluacion(),alumnoNota.getNota(),alumnoNota.getObservacion())){
 					 FacesMessage msg = new FacesMessage("Nota Editada");
 				     FacesContext.getCurrentInstance().addMessage(null, msg);
+				     pagina = "verAlumnoNotaListado.xhtml";
+					FacesContext.getCurrentInstance().getExternalContext().redirect(pagina);
 				}
-				
-				pagina = "verDetalleAlumnoNotaListado";
-				return pagina;
-	
-	
 	    }
 	     
 	    public void onRowCancel(RowEditEvent event) {

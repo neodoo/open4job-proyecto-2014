@@ -1,5 +1,6 @@
 package es.opensigad.controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.ejb.EJB;
@@ -7,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import es.opensigad.model.dao.AlumnoMatriculaDAOInterfaz;
@@ -16,7 +18,7 @@ import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.EnsenanzaMateria;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class InsertarAlumnoNotaBean implements Serializable {
 	private FacesMessage facesMessage;
 	@EJB
@@ -93,9 +95,9 @@ public class InsertarAlumnoNotaBean implements Serializable {
 	}
 
 	public String insertarNotaAlumno(int idMateria,
-			 String evaluacion, String nota, String observacion) {
+			 String evaluacion, String nota, String observacion) throws IOException {
 		
-		String pagina = "verAlumnoNotaListado";	
+		String pagina = "verAlumnoNotaListado.xhtml";	
 		if (alumnoNotaDAO.insertarNotasAlumnoByIdMatricula(idMateria,sesionBean.getIdMatricula(), evaluacion, nota, observacion)) {
 			
 			facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -109,6 +111,7 @@ public class InsertarAlumnoNotaBean implements Serializable {
 							+ " NO ha sido insertada.", null);
 		}
 		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-		return pagina;
+		FacesContext.getCurrentInstance().getExternalContext().redirect(pagina);
+		return null;
 	}
 }

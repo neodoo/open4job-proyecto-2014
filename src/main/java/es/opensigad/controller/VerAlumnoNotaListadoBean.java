@@ -20,7 +20,7 @@ import es.opensigad.model.dao.AlumnoNotaDAOInterfaz;
 import es.opensigad.model.vo.AlumnoNota;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class VerAlumnoNotaListadoBean implements Serializable {
 
 	@EJB
@@ -28,7 +28,7 @@ public class VerAlumnoNotaListadoBean implements Serializable {
 
 	private AlumnoNota selectedAlumnoNota;
 	
-	@PostConstruct
+	
 	public void init(){
 		getDetalleNotasAlumno();
 	}

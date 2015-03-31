@@ -15,10 +15,11 @@
 	<ui:composition template="/template/common/commonLayout.xhtml">
 
 		<ui:define name="content">
-			<h:messages style="margin:8px;" />
+			
 			<h1><h:outputLabel value="#{etqAlmMat['titulo.fichaMatricula']}"/></h1>
 
 			<h:form>
+			  <h:messages id="msg" style="margin:8px;" />
 				<p:panelGrid id="panel" columns="2" border="0" cellpadding="0"
 					cellspacing="5">
 					<h:outputLabel value="#{etqAlmMat['etiquetas.idMatricula']}"
@@ -40,10 +41,10 @@
 					</p:selectOneMenu>
 					<h:outputLabel value="#{etqAlmMat['etiquetas.ensenanza']}"
 						style="font-weight:bold" />
-					<h:selectOneMenu
+					<p:selectOneMenu
 						value="#{verAlumnoMatriculaFichaBean.matricula.ensenanza.id}">
 						<f:selectItems value="#{comboMatriculaBean.ensenanzaItem}"></f:selectItems>
-					</h:selectOneMenu>
+					</p:selectOneMenu>
 					<h:outputLabel value="#{etqAlmMat['etiquetas.modulo']}"
 						style="font-weight:bold" />
 					<p:inputText
@@ -63,7 +64,7 @@
 
 				<br />
 
-				<p:commandButton value="Actualizar"
+				<p:commandButton value="Actualizar" update="@parent:msg"
 					action="#{actualizarAlumnoMatriculaBean.modificarMatricula(verAlumnoMatriculaFichaBean.matricula.cursoEscolar, verAlumnoMatriculaFichaBean.matricula.centro.id, verAlumnoMatriculaFichaBean.matricula.ensenanza.id, verAlumnoMatriculaFichaBean.matricula.modulo, verAlumnoMatriculaFichaBean.matricula.curso)}" />
 
 				<p:commandButton value="Eliminar"
@@ -72,10 +73,11 @@
 					action="#{verAlumnoNotaListadoBean.getDetalleNotasAlumno()}"></p:commandButton>
 					
 			
-					<p:commandButton value="Seguimiento"
+					<p:commandButton value="Seguimiento" 
 					action="#{alumnoSeguimientoBeanListado.getListaSeguimientos()}"></p:commandButton>
 
-
+<p:commandButton value="Volver a la página principal"
+					action="verAlumnoLista.xhtml"></p:commandButton>
 
 			</h:form>
 		</ui:define>
