@@ -98,7 +98,6 @@ Proyecto clonado para su migración a WildFly
 
 // Incorporar JavaMelody (monitorización app):
 
-   <!-- javamelody-core -->
         <dependency>
                 <groupId>net.bull.javamelody</groupId>
                 <artifactId>javamelody-core</artifactId>
