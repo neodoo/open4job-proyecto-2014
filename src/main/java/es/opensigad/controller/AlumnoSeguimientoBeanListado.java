@@ -48,6 +48,7 @@ public class AlumnoSeguimientoBeanListado implements Serializable {
 	@ManagedProperty(value = "#{sesionBean}")
 	private SesionBean sesionBean;
 
+	
 	@PostConstruct
 	public void init() {
 		getListaAlumnoSeguimiento(sesionBean.getIdMatricula());

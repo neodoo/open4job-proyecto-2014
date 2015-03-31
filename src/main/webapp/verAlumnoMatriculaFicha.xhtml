@@ -70,12 +70,14 @@
 					action="#{eliminarAlumnoMatriculaBean.borrarMatricula()}"></p:commandButton>
 					<p:commandButton value="Ver notas"
 					action="#{verAlumnoNotaListadoBean.getDetalleNotasAlumno()}"></p:commandButton>
-					
-			
-					<p:commandButton value="Seguimiento"
-					action="#{alumnoSeguimientoBeanListado.getListaSeguimientos()}"></p:commandButton>
-
-
+							
+				<p:commandButton 
+					value="Seguimiento"
+					action="alumnoSeguimientoListado" >
+					<f:setPropertyActionListener 
+						target="#{sesionBean.idMatricula}"
+						value="#{verAlumnoMatriculaFichaBean.matricula.id}" />
+				</p:commandButton>
 
 			</h:form>
 		</ui:define>

@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jboss-web>
   <security-domain>school</security-domain>
+  
+  <resource-ref>
+  	<res-ref-name>jdbc/openSigadDS</res-ref-name>
+  	<jndi-name>java:jboss/datasources/openSigadDS</jndi-name>
+  </resource-ref>
+  
 </jboss-web>

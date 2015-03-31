@@ -8,11 +8,13 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import es.opensigad.model.dao.AlumnoSeguimientoDAOInterfaz;
 import es.opensigad.model.vo.AlumnoSeguimiento;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class AlumnoSeguimientoBean implements Serializable {
 
@@ -40,18 +42,16 @@ public class AlumnoSeguimientoBean implements Serializable {
 	private String tipo;
 	private int justificante;
 	private String observaciones;
+	private int idX;
 
 	private AlumnoSeguimiento seguimiento = new AlumnoSeguimiento();
 
-	@ManagedProperty(value = "#{sesionBean}")
+	@Inject
 	private SesionBean sesionBean;
 
-	/*
-	@PostConstruct
 	public void init() {
 		getDetalleAlumnoSeguimiento(sesionBean.getIdSeguimiento());
 	}
-	*/
 	
 	public SesionBean getSesionBean() {
 		return sesionBean;
@@ -185,4 +185,13 @@ public class AlumnoSeguimientoBean implements Serializable {
 
 	}
 
+	public int getIdX() {
+		return idX;
+	}
+
+	public void setIdX(int idX) {
+		this.idX = idX;
+	}
+
+	
 }
