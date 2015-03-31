@@ -5,25 +5,20 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.core.Response;
+import javax.xml.ws.Response;
+
+import org.primefaces.push.annotation.PathParam;
 
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.Centro;
 import es.opensigad.model.vo.Ensenanza;
 
-@Path("/alumno")
-@Stateless
+
 public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 	@PersistenceContext(unitName = "opensigadUnit")
@@ -282,14 +277,6 @@ public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 		return alumnoMatricula;
 
 	}
-	@GET
-	@Path("/{idMatricula}")
-	public Response printMessage(@PathParam("idMatricula") String msg) {
-		 
-		String result = "Restful example : " + msg;
- 
-		return Response.status(200).entity(result).build();
- 
-	}
+	
 
 }
