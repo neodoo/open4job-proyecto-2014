@@ -111,5 +111,4 @@
 		<role-name>USER</role-name>
 	</security-role>
 	<!--Defining security role -->
-
 </web-app>

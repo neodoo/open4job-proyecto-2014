@@ -1,55 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<h:outputStylesheet library="css" name="table-style.css" />
-</h:head>
-<h:body>
-	<ui:composition template="/template/common/commonLayout.xhtml">
-
-		<ui:define name="content">
-
-			<h:panelGrid columns="2" cellpadding="10">
-				<!-- Formulario de insercción de una nota a una matricula.-->
-				<h:form>
-					<br />
-					<br />
-					<h:outputLabel value="#{etqAlmNotas['titulo.idMateria']}" />
-					<p:selectOneMenu id="materia"
-						value="#{insertarAlumnoNotaBean.ensenanzaMateria.id}">
-						<f:selectItems
-							value="#{combosAlumnoBean.getListEnsenanzaMateria()}"
-							var="ensenanzaMateria" itemLabel="#{ensenanzaMateria.materia}"
-							itemValue="#{ensenanzaMateria.id}" />
-					</p:selectOneMenu>
-					<!--
-	<h:inputText
-	value="#{insertarAlumnoNotaBean.ensenanzaMateria.id}"></h:inputText>
-	<br />
-	-->
-					<h:outputLabel value="#{etqAlmNotas['titulo.idEvaluacion']}" />
-					<h:inputText value="#{insertarAlumnoNotaBean.evaluacion}"></h:inputText>
-					<br />
-					<h:outputLabel value="#{etqAlmNotas['titulo.nota']}" />
-					<h:inputText value="#{insertarAlumnoNotaBean.nota}"></h:inputText>
-					<br />
-					<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
-					<h:inputText value="#{insertarAlumnoNotaBean.observacion}"></h:inputText>
-					<br />
-					<h:commandButton value="Guardar notas del alumno"
-						action="#{insertarAlumnoNotaBean.insertarNotaAlumno(insertarAlumnoNotaBean.ensenanzaMateria.id,insertarAlumnoNotaBean.evaluacion,insertarAlumnoNotaBean.nota,insertarAlumnoNotaBean.observacion)}"></h:commandButton>
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/common/commonLayout.xhtml">
+	<ui:define name="content">
+		<h:panelGrid columns="2" cellpadding="10">
+			<!-- Formulario de insercción de una nota a una matricula.-->
+			<h:form>
+				<br />
+				<br />
+				<h:outputLabel value="#{etqAlmNotas['titulo.idMateria']}" />
+				<p:selectOneMenu id="materia"
+					value="#{insertarAlumnoNotaBean.ensenanzaMateria.id}">
+					<f:selectItems
+						value="#{combosAlumnoBean.getListEnsenanzaMateria()}"
+						var="ensenanzaMateria" itemLabel="#{ensenanzaMateria.materia}"
+						itemValue="#{ensenanzaMateria.id}" />
+				</p:selectOneMenu>
+				<h:outputLabel value="#{etqAlmNotas['titulo.idEvaluacion']}" />
+				<h:inputText value="#{insertarAlumnoNotaBean.evaluacion}"></h:inputText>
+				<br />
+				<h:outputLabel value="#{etqAlmNotas['titulo.nota']}" />
+				<h:inputText value="#{insertarAlumnoNotaBean.nota}"></h:inputText>
+				<br />
+				<h:outputLabel value="#{etqAlmNotas['titulo.observacion']}" />
+				<h:inputText value="#{insertarAlumnoNotaBean.observacion}"></h:inputText>
+				<br />
+				<h:commandButton value="Guardar notas del alumno"
+					action="#{insertarAlumnoNotaBean.insertarNotaAlumno(insertarAlumnoNotaBean.ensenanzaMateria.id,insertarAlumnoNotaBean.evaluacion,insertarAlumnoNotaBean.nota,insertarAlumnoNotaBean.observacion)}"></h:commandButton>
 
 
-				</h:form>
-			</h:panelGrid>
-		</ui:define>
+			</h:form>
+		</h:panelGrid>
+	</ui:define>
 
-	</ui:composition>
-</h:body>
-</html>
+</ui:composition>

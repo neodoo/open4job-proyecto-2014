@@ -19,7 +19,7 @@ public interface TutorDAOInterface {
 	public Tutor getDetalleTutor(int id);
 
 	// borra 1 tutor con el id recibido
-	public boolean deleteAlumnoTutor(int idAlumnoTutor);
+	public boolean deleteAlumnoTutor(int idAlumno,int idTutor);
 
 	// modifica un tutor con el id recibido
 	public boolean updateTutor(int idAlumno, int idTutor, String nombre, String apellido1, String apellido2, String tipoDocumento, 
@@ -32,5 +32,7 @@ public interface TutorDAOInterface {
 	
 	public List<AlumnoTutor> getListaAlumnoTutor(int idAlumno);
 	
-	//public List<AlumnoTutor> getListaAlumnoTutor2();
+	//Devuelve el parentesco entre 2 ids
+	
+	public String getParentesco(int idAlumno, int idTutor);
 }

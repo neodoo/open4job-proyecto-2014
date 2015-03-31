@@ -20,63 +20,64 @@
 					
 					<h:outputLabel id="tituloFichaTutor"
 					value="#{etqAlm['etiquetas.tutor']}" style="font-weight:bold"/>
-					<p:inputText value="#{actualizarTutorBean.idTutor}" disabled="true">
+					<p:inputText value="#{verTutorBean.tutor.id}">
 					</p:inputText>
 					
 					<h:outputLabel value="#{etqAlm['etiquetas.nombre']}"
 						style="font-weight:bold" />
-					<p:inputText value="#{actualizarTutorBean.nombre}" disabled="true">
+					<p:inputText value="#{verTutorBean.tutor.nombre}">
+					
 					</p:inputText>
 					
 					<h:outputLabel value="#{etqAlm['etiquetas.apellido1']}" style="font-weight:bold"/>
-					<p:inputText value="#{actualizarTutorBean.apellido1}" disabled="true">
+					<p:inputText value="#{verTutorBean.tutor.apellido1}">
 					</p:inputText>
 					
 					<h:outputLabel value="#{etqAlm['etiquetas.apellido2']}" style="font-wight:bold"/>
-					<p:inputText value="#{actualizarTutorBean.apellido2}" disabled="true">
+					<p:inputText value="#{verTutorBean.tutor.apellido2}" >
 					</p:inputText>
 					
 					<h:outputLabel value="#{etqAlm['etiquetas.tipoDocumento']}" style="font-wight:bold"/>
-					<p:inputText value="#{actualizarTutorBean.tipoDocumento}" disabled="true">
+					<p:inputText value="#{verTutorBean.tutor.tipoDocumento}">
 					</p:inputText>
 					
 					<h:outputLabel value="#{etqAlm['etiquetas.documento']}" style="font-wight:bold"/>
-					<p:inputText value="#{actualizarTutorBean.documento}" disabled="true">
+					<p:inputText value="#{verTutorBean.tutor.documento}">
 					</p:inputText>
 					
 					<h:outputLabel value="#{etqAlm['etiquetas.fechaNacimiento']}" style="font-wight:bold"/>
-					<p:calendar id="calendar" value="#{actualizarTutorBean.fechaNac}" mode="popup" showOn0="focus" disabled="true">
+					<p:calendar id="calendar" value="#{verTutorBean.tutor.fechaNacimiento}" mode="popup" showOn0="focus" >
 					</p:calendar>
 					
 					<h:outputLabel value="#{etqAlm['etiquetas.parentesco']}" style="font-wight:bold"/>
-					<p:inputText value="#{actualizarTutorBean.parentesco}" disabled="true">
+					<p:inputText value="#{verTutorBean.parentescoActual}" >
 					</p:inputText>
 					
 					<h:outputLabel value="#{etqAlm['etiquetas.sexo']}" style="font-wight:bold"/>
-					<p:inputText value="#{actualizarTutorBean.sexo}" disabled="true">
+					<p:inputText value="#{verTutorBean.tutor.sexo}" >
 					</p:inputText>
 					
 					<h:outputLabel value="#{etqAlm['tipo.Telefono']}" style="font-wight:bold"/>
-					<p:inputText value="#{actualizarTutorBean.tlf}" disabled="true">
+					<p:inputText value="#{verTutorBean.tutor.telefono}">
 					</p:inputText>
 					
 					<h:outputLabel value="#{etqAlm['tipo.Email']}" style="font-wight:bold" />
-					<p:inputText value="#{actualizarTutorBean.email}" disabled="true">
+					<p:inputText value="#{verTutorBean.tutor.email}">
 					</p:inputText>			
 		
 			</p:panelGrid>
 			
 			<h:commandButton value="Actualizar"
 			action="#{actualizarTutorBean.actualizarTutor
-			(actualizarTutorBean.alumno.id,actualizarTutorBean.idTutor, 
-			actualizarTutorBean.nombre,actualizarTutorBean.apellido1,
-			actualizarTutorBean.apellido2,actualizarTutorBean.tipoDocumento,
-			actualizarTutorBean.documento,actualizarTutorBean.fechaNac,
-			actualizarTutorBean.parentesco,actualizarTutorBean.sexo,
-			actualizarTutorBean.tlf,actualizarTutorBean.email)}">
+			(verTutorBean.tutor.id, 
+			verTutorBean.tutor.nombre,verTutorBean.tutor.apellido1,
+			verTutorBean.tutor.apellido2,verTutorBean.tutor.tipoDocumento,
+			verTutorBean.tutor.documento,verTutorBean.tutor.fechaNacimiento,
+			verTutorBean.parentescoActual,verTutorBean.tutor.sexo,
+			verTutorBean.tutor.telefono,verTutorBean.tutor.email)}">
 			</h:commandButton>
 			
-			<h:commandButton value="Borrar" action="#{eliminarTutorBean.deleteTutor(actualizarTutorBean.idTutor)}">
+			<h:commandButton value="Borrar" action="#{eliminarTutorBean.deleteTutor()}">
 			</h:commandButton>
 		</h:form>
 
