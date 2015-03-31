@@ -16,90 +16,83 @@
 		<ui:define name="content">
 
 			<h:form>
-				<h:outputLabel id="etiquetaNuevoTutor"
+			<h:outputLabel id="etiquetaNuevoTutor"
 					value="#{etqAlm['titulo.nuevoTutor']}" />
-				<br />
-				<h:outputLabel value="ID Alumno" />
-				<p:selectOneMenu id="alumno" value="#{insertarTutorBean.alumno.id}">
-					<f:selectItems value="#{combosAlumnoBean.getListAlumnos()}"
-						var="alumno" itemLabel="#{alumno.nombre}" itemValue="#{alumno.id}" />
-				</p:selectOneMenu>
+					
+			<p:panelGrid id="panel" columns="2" border="0" cellpadding="0"
+					cellspacing="5">
+				
 				<!-- Aqui se ingresa el nombre y se valida -->
 				<h:outputLabel id="etiquetaNombre"
 					value="#{etqAlm['etiquetas.nombre']}" />
-				<h:inputText value="#{insertarTutorBean.nombre}" label="nombre"></h:inputText>
-
-				<br> </br>
+				<h:inputText value="#{insertarTutorBean.nombre}" label="nombre">
+				</h:inputText>
 
 				<!-- Aqui se ingresa el apellido1 y se valida -->
 				<h:outputLabel id="etiquetaApellido1"
 					value="#{etqAlm['etiquetas.apellido1']}" />
 				<h:inputText value="#{insertarTutorBean.apellido1}"
-					label="apellido1"></h:inputText>
-
-				<br> </br>
+					label="apellido1">
+					</h:inputText>
 
 				<!-- Aqui se ingresa el apellido2 y se valida -->
 				<h:outputLabel id="etiquetaApellido2"
 					value="#{etqAlm['etiquetas.apellido2']}" />
 				<h:inputText value="#{insertarTutorBean.apellido2}"
-					label="apellido2"></h:inputText>
-
-				<br> </br>
+					label="apellido2">
+					</h:inputText>
 
 				<!-- Aqui se ingresa el tipo de Documento y se valida -->
 				<h:outputLabel id="etiquetaTipoDocumento"
 					value="#{etqAlm['etiquetas.tipoDocumento']}" />
 				<h:inputText value="#{insertarTutorBean.tipoDocumento}"
-					label="apellido2"></h:inputText>
-
-				<br> </br>
+					label="apellido2">
+					</h:inputText>
 
 				<!-- Aqui se ingresa el DNI y se valida -->
 				<h:outputLabel id="etiquetaDni" value="#{etqAlm['etiquetas.dni']}" />
 				<h:inputText value="#{insertarTutorBean.documento}"
-					label="documento"></h:inputText>
-
-				<br> </br>
+					label="documento">
+					</h:inputText>
 
 				<!-- Aqui se ingresa el Fecha Nacimiento y se valida -->
 				<h:outputLabel id="etiquetaFechaNacimiento"
 					value="#{etqAlm['etiquetas.fechaNacimiento']}" />
-				<!--  <h:inputText id="fechaNac" value="#{insertarTutorBean.fechaNac}">-->
 				<p:calendar id="calendar" value="#{insertarTutorBean.fechaNac}"
 					mode="popup" showOn0="focus" />
-
-				<br> </br>
 
 				<!-- Aqui se ingresa el parentesco-->
 				<h:outputLabel id="etiquetaParentesco"
 					value="#{etqAlm['etiquetas.parentesco']}" />
 				<h:inputText value="#{insertarTutorBean.parentesco}"
-					label="parentesco"></h:inputText>
-
-				<br> </br>
+					label="parentesco">
+					</h:inputText>
 
 				<!-- Aqui se ingresa el sexo-->
 				<h:outputLabel id="sexo" value="sexo" />
-				<h:inputText value="#{insertarTutorBean.sexo}" label="sexo"></h:inputText>
-
-				<br> </br>
+				<h:inputText value="#{insertarTutorBean.sexo}" label="sexo">
+				</h:inputText>
 
 				<!-- Aqui se ingresa el telefono y se valida -->
 				<h:outputLabel id="etiquetaTelefono"
-					value="#{etqAlm['etiquetas.telefono']}" />
-				<h:inputText value="#{insertarTutorBean.tlf}" label="tlf"></h:inputText>
+					value="#{etqAlm['tipo.Telefono']}" />
+				<h:inputText value="#{insertarTutorBean.tlf}" label="tlf">
+				</h:inputText>
 
-				<br> </br>
 				<!-- Aqui se ingresa el email y se valida -->
 				<h:outputLabel id="etiquetaEmail"
-					value="#{etqAlm['etiquetas.email']}" />
-				<h:inputText value="#{insertarTutorBean.email}" label="email"></h:inputText>
+					value="#{etqAlm['tipo.Email']}" />
+				<h:inputText value="#{insertarTutorBean.email}" label="email">
+				</h:inputText>
 
-				<br> </br>
-
+			</p:panelGrid>
 				<h:commandButton value="Registrar"
-					action="#{insertarTutorBean.insertarTutor(insertarTutorBean.alumno.id,insertarTutorBean.nombre,insertarTutorBean.apellido1,insertarTutorBean.apellido2,insertarTutorBean.tipoDocumento,insertarTutorBean.documento,insertarTutorBean.fechaNac,insertarTutorBean.parentesco,insertarTutorBean.sexo,insertarTutorBean.tlf,insertarTutorBean.email)}"></h:commandButton>
+					action="#{insertarTutorBean.insertarTutor(insertarTutorBean.nombre,
+					insertarTutorBean.apellido1,insertarTutorBean.apellido2,
+					insertarTutorBean.tipoDocumento,insertarTutorBean.documento,
+					insertarTutorBean.fechaNac,insertarTutorBean.parentesco,
+					insertarTutorBean.sexo,insertarTutorBean.tlf,insertarTutorBean.email)}">
+					</h:commandButton>
 
 			</h:form>
 		</ui:define>

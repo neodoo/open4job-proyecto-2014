@@ -97,7 +97,7 @@ public class ActualizarAlumnoMatriculaBean implements Serializable {
 	public String modificarMatricula(int cursoEscolar,
 			int centro, int ensenanza, String modulo, int curso) {
 		
-		String pagina = "verAlumnoMatriculaListado";
+		String pagina = "verAlumnoMatriculaFicha";
 		
 		//AlumnoMatriculaDAO alumnoMatriculaDAO = new AlumnoMatriculaDAO();
 		if (alumnoMatriculaDAO.modificarMatricula(sesionAlumno.getIdAlumno(), cursoEscolar,

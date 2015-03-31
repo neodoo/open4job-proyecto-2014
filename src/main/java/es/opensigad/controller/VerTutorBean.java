@@ -122,7 +122,7 @@ public class VerTutorBean implements Serializable {
 	}
 
 	public void setParentescoActual(String parentescoActual) {
-		parentescoActual = parentescoActual;
+		this.parentescoActual = parentescoActual;
 	}
 
 	
@@ -151,6 +151,7 @@ public class VerTutorBean implements Serializable {
 		String pagina = "verTutorFicha.xhtml";
 
 		tutor = tutorDAOInterface.getDetalleTutor(idTutor);
+		
 		parentescoActual = tutorDAOInterface.getParentesco(sesionBean.getIdAlumno(), idTutor);
 
 		if (tutor != null) {

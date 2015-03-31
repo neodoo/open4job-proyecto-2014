@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import es.opensigad.model.dao.TutorDAO;
+import es.opensigad.model.dao.TutorDAOInterface;
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.Tutor;
 
@@ -18,7 +21,9 @@ public class ActualizarTutorBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Alumno alumno = new Alumno();
+	@EJB
+	private TutorDAOInterface tutorDAOInterface = null;
+	
 	private int idTutor;
 	private String nombre;
 	private String apellido1;
@@ -31,14 +36,18 @@ public class ActualizarTutorBean implements Serializable {
 	private String tlf;
 	private String email;
 
-	public Alumno getAlumno() {
-		return alumno;
+	@ManagedProperty(value = "#{sesionBean}")
+	private SesionBean sesionBean;
+	
+
+	public TutorDAOInterface getTutorDAOInterface() {
+		return tutorDAOInterface;
 	}
 
-	public void setAlumno(Alumno alumno) {
-		this.alumno = alumno;
+	public void setTutorDAOInterface(TutorDAOInterface tutorDAOInterface) {
+		this.tutorDAOInterface = tutorDAOInterface;
 	}
-
+	
 	public int getIdTutor() {
 		return idTutor;
 	}
@@ -126,15 +135,21 @@ public class ActualizarTutorBean implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public SesionBean getSesionBean() {
+		return sesionBean;
+	}
 
-	public String actualizarTutor(int idAlumno, int idTutor, String nombre,
+	public void setSesionBean(SesionBean sesionBean) {
+		this.sesionBean = sesionBean;
+	}
+	
+	public String actualizarTutor(int idTutor, String nombre,
 			String apellido1, String apellido2, String tipoDocumento,
 			String documento, Date fechaNac, String parentesco, String sexo,
 			String tlf, String email) {
 		String pagina = null;
-		TutorDAO tutorDAO = new TutorDAO();
-
-		if (tutorDAO.updateTutor(idAlumno, idTutor, nombre, apellido1,
+		
+		if (tutorDAOInterface.updateTutor(sesionBean.getIdAlumno(), idTutor, nombre, apellido1,
 				apellido2, tipoDocumento, documento, fechaNac, parentesco,
 				sexo, tlf, email))
 			pagina = "actualizarTutorExito.xhtml";

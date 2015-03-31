@@ -40,7 +40,7 @@ public class VerAlumnoMatriculaFichaBean {
 
 	public String getDetalleMatricula() {
 
-		String pagina = "verAlumnoMatriculaFicha";
+		String pagina = "verAlumnoMatriculaFicha.xhtml?redirect-faces=true";
 
 		// AlumnoMatriculaDAO matriculaDAO = new AlumnoMatriculaDAO();
 		matricula = matriculaDAO.getListaFichaMatricula(sesionBean.getIdMatricula());
