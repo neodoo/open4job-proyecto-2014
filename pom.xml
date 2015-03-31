@@ -110,63 +110,18 @@
 	</dependencyManagement>
 
 	<dependencies>
-		<!-- Import the Common Annotations API (JSR-250), we use provided scope 
-			as the API is included in JBoss AS 7 -->
+	
 		<dependency>
-			<groupId>org.jboss.spec.javax.annotation</groupId>
-			<artifactId>jboss-annotations-api_1.1_spec</artifactId>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
 			<scope>provided</scope>
-		</dependency>
-
-		<!-- Import the EJB 3.1 API, we use provided scope as the API is included 
-			in JBoss AS 7 -->
-		<dependency>
-			<groupId>org.jboss.spec.javax.ejb</groupId>
-			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.sun.faces</groupId>
-			<artifactId>jsf-api</artifactId>
-			<version>2.1.7</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.sun.faces</groupId>
-			<artifactId>jsf-impl</artifactId>
-			<version>2.1.7</version>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.1</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>5.1</version>
-		</dependency>
-
-		<!-- JPA -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.3.6.Final</version>
 		</dependency>
 
 		<!-- MySql dependency -->
@@ -176,29 +131,7 @@
 			<version>5.1.6</version>
 		</dependency>
 
-		<!-- Tomcat 6 need this -->
-		<dependency>
-			<groupId>com.sun.el</groupId>
-			<artifactId>el-ri</artifactId>
-			<version>1.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
-		</dependency>
-
-
 		<!-- JMS -->
-
 		<dependency>
 			<groupId>javax.jms</groupId>
 			<artifactId>javax.jms-api</artifactId>
@@ -206,23 +139,32 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-		</dependency>
-		
-		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>javax.mail-api</artifactId>
 			<version>1.5.2</version>
 		</dependency>
-
+				
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+				
+		<!-- test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		
+        <!-- javamelody-core -->
+        <dependency>
+                <groupId>net.bull.javamelody</groupId>
+                <artifactId>javamelody-core</artifactId>
+                <version>1.55.0</version>
+        </dependency>		
+		
 	</dependencies>
 
 </project>
