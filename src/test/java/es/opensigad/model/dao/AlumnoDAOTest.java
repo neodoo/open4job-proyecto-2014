@@ -1,7 +1,9 @@
 package es.opensigad.model.dao;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.dbunit.dataset.DataSetException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,11 +25,12 @@ public class AlumnoDAOTest extends JPABaseTest {
 	}
 		
 	@Before
-	public void prepareData() {
+	public void prepareData() throws DataSetException, IOException {
 		beginTransaction();
-		pais = prepareTerritorio("EN", "England");
-		provincia = prepareTerritorio("EN001", "London");
+		loadDataSet("/territorios.xml");
 		commitTransaction();
+		pais = getTerritorio("EN");
+		provincia = getTerritorio("EN001");
 	}
 
 	@After
@@ -44,6 +47,8 @@ public class AlumnoDAOTest extends JPABaseTest {
 	public void testInsertGetListAlumno() {
 		beginTransaction();
 				
+		//TODO: usar un dataset con alumnos en lugar de insertar, 
+		//y crear otro test que compruebe a parte la inserción.
 		Alumno alumno = new Alumno();
 		alumno.setApellido1("Doe");
 		alumno.setApellido2("Doe");
@@ -64,12 +69,7 @@ public class AlumnoDAOTest extends JPABaseTest {
 	}
 	
 	
-	private Territorio prepareTerritorio(String codigo, String descripcion) {
-		Territorio england = new Territorio();
-		england.setCodigo(codigo);
-		england.setDescripcion(descripcion);
-		em.merge(england);
-		return england;
+	private Territorio getTerritorio(String codigo) {
+		return em.find(Territorio.class, codigo);
 	}
-	
 }
