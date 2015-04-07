@@ -23,15 +23,14 @@
 		<class>es.opensigad.model.vo.Tutor</class>
 		
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/opensigad?zeroDateTimeBehavior=convertToNull" />
-			<property name="javax.persistence.jdbc.user" value="opensigad" />
-			<property name="javax.persistence.jdbc.password" value=".opensigad8$" />
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:mydb" />
+			<property name="javax.persistence.jdbc.user" value="SA" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver" />
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="true" />
-			<!-- property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" /-->
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-			<!-- property name="hibernate.hbm2ddl.auto" value="validate" /-->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<!-- Configuring Connection Pool -->
 			<property name="hibernate.c3p0.min_size" value="5" />
 			<property name="hibernate.c3p0.max_size" value="20" />

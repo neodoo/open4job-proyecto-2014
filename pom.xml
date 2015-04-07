@@ -159,6 +159,19 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+
         <!-- javamelody-core -->
         <dependency>
                 <groupId>net.bull.javamelody</groupId>

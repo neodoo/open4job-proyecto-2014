@@ -35,8 +35,8 @@ public class AlumnoDAOTest extends JPABaseTest {
 		//XXX: otra opción sería mover los deletes a setUp, 
 		//lo que nos permitiría evaluar el estado de la base de datos después de un test fallido 
 		beginTransaction();
-		em.createQuery("delete from Territorio").executeUpdate();
 		em.createQuery("delete from Alumno").executeUpdate();
+		em.createQuery("delete from Territorio").executeUpdate();
 		commitTransaction();
 	}
 

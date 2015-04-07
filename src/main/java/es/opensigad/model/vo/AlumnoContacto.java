@@ -23,7 +23,7 @@ public class AlumnoContacto implements Serializable {
 
 	private int principal;
 
-	@Column(name="tipo", columnDefinition="enum('telefono','email')")
+	@Column(name="tipo")
 	private String tipo;
 
 	//bi-directional many-to-one association to Alumno

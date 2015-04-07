@@ -2,8 +2,10 @@ package es.opensigad.model.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import org.hibernate.Transaction;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -33,7 +35,11 @@ public class JPABaseTest {
 	}
 	
 	protected void beginTransaction() {
-		em.getTransaction().begin();
+		EntityTransaction trans = em.getTransaction();
+		if (trans.isActive()) {
+			trans.rollback();
+		}
+		trans.begin();
 	}
 	
 	protected void commitTransaction() {

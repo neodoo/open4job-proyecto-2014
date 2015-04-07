@@ -32,7 +32,7 @@ public class AlumnoSeguimiento implements Serializable {
 
 	private String sesion;
 
-	@Column(name="tipo", columnDefinition="enum('falta','incidencia')")
+	@Column(name="tipo")
 	private String tipo;
 
 	//bi-directional many-to-one association to AlumnoMatricula

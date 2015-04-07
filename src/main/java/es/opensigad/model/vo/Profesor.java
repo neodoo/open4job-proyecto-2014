@@ -38,10 +38,10 @@ public class Profesor implements Serializable {
 	@Column(name="num_registro")
 	private String numRegistro;
 
-	@Column(name="sexo", columnDefinition="enum('h','m')")
+	@Column(name="sexo")
 	private String sexo;
 
-	@Column(name="tipo_documento", columnDefinition="enum('dni','nif','pasaporte')")
+	@Column(name="tipo_documento")
 	private String tipoDocumento;
 
 	public Profesor() {

@@ -19,7 +19,7 @@ public class AlumnoNota implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name="evaluacion", columnDefinition="enum('1','2','3','F','E')")
+	@Column(name="evaluacion")
 	private String evaluacion;
 
 	private String nota;
