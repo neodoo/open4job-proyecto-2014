@@ -9,16 +9,14 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.xml.ws.Response;
-
-import org.primefaces.push.annotation.PathParam;
 
 import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.Centro;
 import es.opensigad.model.vo.Ensenanza;
+import javax.ejb.Stateless;
 
-
+@Stateless
 public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {
 
 	@PersistenceContext(unitName = "opensigadUnit")

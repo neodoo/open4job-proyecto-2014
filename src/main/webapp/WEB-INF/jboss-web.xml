@@ -2,6 +2,8 @@
 <jboss-web>
   <security-domain>school</security-domain>
   
+  <context>/sigad</context>
+  
   <resource-ref>
   	<res-ref-name>jdbc/openSigadDS</res-ref-name>
   	<jndi-name>java:jboss/datasources/openSigadDS</jndi-name>
