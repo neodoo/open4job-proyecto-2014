@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,6 +16,7 @@ import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.Centro;
 import es.opensigad.model.vo.Ensenanza;
 import javax.ejb.Stateless;
+
 
 @Stateless
 public class AlumnoMatriculaDAO implements AlumnoMatriculaDAOInterfaz {

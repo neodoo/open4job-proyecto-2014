@@ -3,10 +3,7 @@ package es.opensigad.controller;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -42,7 +39,7 @@ public class AlumnoSeguimientoBean implements Serializable {
 	private String tipo;
 	private int justificante;
 	private String observaciones;
-	private int idX;
+
 
 	private AlumnoSeguimiento seguimiento = new AlumnoSeguimiento();
 
@@ -184,14 +181,5 @@ public class AlumnoSeguimientoBean implements Serializable {
 		return pagina;
 
 	}
-
-	public int getIdX() {
-		return idX;
-	}
-
-	public void setIdX(int idX) {
-		this.idX = idX;
-	}
-
 	
 }
