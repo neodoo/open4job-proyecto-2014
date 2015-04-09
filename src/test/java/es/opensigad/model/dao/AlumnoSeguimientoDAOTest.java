@@ -3,10 +3,14 @@ package es.opensigad.model.dao;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import es.opensigad.model.vo.Alumno;
 import es.opensigad.model.vo.AlumnoMatricula;
 import es.opensigad.model.vo.AlumnoSeguimiento;
 import es.opensigad.model.vo.EnsenanzaMateria;
 import junit.framework.TestCase;
+import static org.mockito.Mockito.*;
 
 public class AlumnoSeguimientoDAOTest extends TestCase {
 
@@ -88,5 +92,21 @@ public class AlumnoSeguimientoDAOTest extends TestCase {
 
 		assertTrue(estado);
 	}
+	
+	public void testAlumnoSeguimientoListado (){
 
+		// 
+		AlumnoSeguimiento alumnoSeg = new AlumnoSeguimiento();
+			
+		AlumnoSeguimientoDAO dao = mock(AlumnoSeguimientoDAO.class);
+		List<AlumnoSeguimiento> alumnoSeguimientoListado = dao.getListaAlumnoSeguimiento(idMatricula);
+		/*
+		// stubbing appears before the actual execution
+		when(dao.get(0)).thenReturn("first");
+
+		// 
+		System.out.println(mockedList.get(0));
+		*/
+	}
+	
 }

@@ -1,16 +1,14 @@
 package es.opensigad.controller;
 
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
-import es.opensigad.model.dao.AlumnoMatriculaDAO;
 import es.opensigad.model.dao.AlumnoMatriculaDAOInterfaz;
-import es.opensigad.model.dao.AlumnoNotaDAOInterfaz;
 import es.opensigad.model.vo.AlumnoMatricula;
 
-@ManagedBean
+@Named
 @SessionScoped
 public class VerAlumnoMatriculaFichaBean {
 
@@ -19,7 +17,7 @@ public class VerAlumnoMatriculaFichaBean {
 
 	private AlumnoMatricula matricula = new AlumnoMatricula();
 	
-	@ManagedProperty(value="#{sesionBean}")
+	@Inject
 	private SesionBean sesionBean;
 
 	public SesionBean getSesionBean() {
