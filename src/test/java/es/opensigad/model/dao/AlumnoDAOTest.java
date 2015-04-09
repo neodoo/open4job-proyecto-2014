@@ -12,13 +12,13 @@ import es.opensigad.model.vo.Territorio;
 
 public class AlumnoDAOTest extends JPABaseTest {
 
-	AlumnoDAOPoolDB alumnoDAO;
+	AlumnoDAO alumnoDAO;
 	Territorio pais;
 	Territorio provincia;
 	
 	@Before
 	public void setUp() {
-		alumnoDAO = new AlumnoDAOPoolDB();
+		alumnoDAO = new AlumnoDAO();
 		alumnoDAO.setEntityManager(super.getEm());
 	}
 		
