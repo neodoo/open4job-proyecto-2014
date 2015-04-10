@@ -81,4 +81,8 @@ public class VerAlumnoMatriculaListadoBean implements Serializable {
 
 	}
 
+	
+	public String navegaListadoMatricula() {
+		return "verAlumnoMatriculaListado?faces-redirect=true&id=" + sesionBean.getIdAlumno();
+	}
 }
