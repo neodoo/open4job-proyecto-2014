@@ -15,6 +15,7 @@ public class AlumnoDAOTest extends JPABaseTest {
 	AlumnoDAOPoolDB alumnoDAO;
 	Territorio pais;
 	Territorio provincia;
+	Alumno alumno;
 	
 	@Before
 	public void setUp() {
@@ -27,9 +28,12 @@ public class AlumnoDAOTest extends JPABaseTest {
 		beginTransaction();
 		pais = prepareTerritorio("EN", "England");
 		provincia = prepareTerritorio("EN001", "London");
+		alumno = prepareAlumno();
 		commitTransaction();
 	}
 
+
+	
 	@After
 	public void tearDown() {
 		//XXX: otra opción sería mover los deletes a setUp, 
@@ -42,8 +46,30 @@ public class AlumnoDAOTest extends JPABaseTest {
 
 	@Test
 	public void testInsertGetListAlumno() {
-		beginTransaction();
-				
+
+		alumnoDAO.insertAlumno(alumno);
+		List<Alumno> alumnos = alumnoDAO.getListAlumno();
+		assertTrue(alumnos.size() > 0);
+
+	}
+	
+	@Test
+	public void testGetDetalleAlumno() {
+		
+		Alumno alumno = alumnoDAO.getDetalleAlumno(10012);
+		assertTrue(alumno != null);
+	}
+	
+	@Test
+	public void testModifyAlumno() {
+		
+		Alumno alumno = new Alumno();
+		alumno.setNombre("Juan");
+		alumnoDAO.modifyAlumno(alumno);
+		assertTrue(alumno.getNombre().equals("Juan"));
+	}
+	
+	private Alumno prepareAlumno(){
 		Alumno alumno = new Alumno();
 		alumno.setApellido1("Doe");
 		alumno.setApellido2("Doe");
@@ -55,14 +81,9 @@ public class AlumnoDAOTest extends JPABaseTest {
 		alumno.setTipoDocumento("nif");
 		alumno.setTerritorio1(pais);
 		alumno.setTerritorio2(provincia);
-
-		alumnoDAO.insertAlumno(alumno);
-		List<Alumno> alumnos = alumnoDAO.getListAlumno();
-		assertTrue(alumnos.size() > 0);
-		
-		commitTransaction();
+		em.merge(alumno);
+		return alumno;
 	}
-	
 	
 	private Territorio prepareTerritorio(String codigo, String descripcion) {
 		Territorio england = new Territorio();
