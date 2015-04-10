@@ -16,14 +16,14 @@ import es.opensigad.model.vo.EnsenanzaMateria;
 public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 
 	@PersistenceContext(unitName = "opensigadUnit")
-	public EntityManager em = null;
+	private EntityManager entityManager;
 
-	public EntityManager getEm() {
-		return em;
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 
-	public void setEm(EntityManager em) {
-		this.em = em;
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 
 	public static final Logger logger = Logger.getLogger(AlumnoNotaDAO.class
@@ -42,7 +42,7 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 					+ " WHERE an.alumnoMatricula.id = am.id" 
 					+ " AND am.id = " + idMatricula +" AND an.id = "+idFila;
 
-			alumnos = em.createQuery(query).getResultList();
+			alumnos = entityManager.createQuery(query).getResultList();
 			logger.log(Level.INFO, "AlumnoNotaDAO.getNotasByIdMatricula: OK.");
 
 		} catch (Exception e) {
@@ -67,7 +67,7 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 					+ " WHERE an.alumnoMatricula.id = am.id" 
 					+ " AND am.id = " + id;
 
-			alumnos = em.createQuery(query).getResultList();
+			alumnos = entityManager.createQuery(query).getResultList();
 			logger.log(Level.INFO, "AlumnoNotaDAO.getNotasByIdMatricula: OK.");
 
 		} catch (Exception e) {
@@ -111,7 +111,7 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 			alumnoNota.setNota(nota);
 			alumnoNota.setObservacion(observacion);
 
-			em.persist(alumnoNota);
+			entityManager.persist(alumnoNota);
 
 			estado = true;
 
@@ -150,7 +150,7 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 			alumnoNota.setNota(nota);
 			alumnoNota.setObservacion(observacion);
 
-			em.merge(alumnoNota);
+			entityManager.merge(alumnoNota);
 
 			estado = true;
 
@@ -177,8 +177,8 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 			AlumnoNota alumnoNota = new AlumnoNota();
 			alumnoNota.setId(id);
 
-			alumnoNota = em.find(AlumnoNota.class, id);
-			em.remove(alumnoNota);
+			alumnoNota = entityManager.find(AlumnoNota.class, id);
+			entityManager.remove(alumnoNota);
 
 			estado = true;
 
@@ -201,7 +201,7 @@ public class AlumnoNotaDAO implements AlumnoNotaDAOInterfaz {
 		try {
  
 			String query = "from EnsenanzaMateria em";
- 			listMateria = em.createQuery(query).getResultList();
+ 			listMateria = entityManager.createQuery(query).getResultList();
  
 			logger.log(Level.INFO, "AlumnoNotaDAO.listMateriaCombo: OK.");
 
